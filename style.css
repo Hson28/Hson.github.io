@@ -1,9 +1,8 @@
-/* TEST-COMMIT */
 /* --- Globala Stilar --- */
 :root {
     --bg-color: #1a1a1d;
     --primary-text: #e0e0e0;
-    --accent-color: #4682B4; 
+    --accent-color: #4682B4; 
     --green-accent: #5dcf61;
     --card-bg: #2c2c30;
     --border-color: #444;
@@ -31,7 +30,7 @@ header {
     background-color: var(--card-bg);
     border-bottom: 2px solid var(--border-color);
     /* KORRIGERING: Gjorde headern tunnare */
-    padding: 0.5rem 0; 
+    padding: 0.5rem 0; 
     position: sticky;
     top: 0;
     width: 100%;
@@ -96,7 +95,7 @@ nav {
 .nav-links a.active,
 .nav-links a:focus-visible { /* TILLAGD: focus-visible */
     color: var(--accent-color);
-    outline: none; /* Ta bort ful standard-outline */
+    outline: none; /* Ta bort ful standard-outline */
 }
 
 .nav-toggle {
@@ -187,8 +186,8 @@ p {
 
 /* TILLAGD: Stil för underrubrik (tidigare inline) */
 .hero-subtitle {
-    font-size: 1.3rem;
-    font-style: italic;
+    font-size: 1.3rem;
+    font-style: italic;
 }
 
 /* --- Knappar & Länkar --- */
@@ -268,7 +267,7 @@ a {
     border-radius: 8px;
     margin-bottom: 2rem;
     border: 1px solid var(--border-color);
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  S   transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .project-card:hover,
@@ -330,26 +329,27 @@ footer {
 
 /* --- TILLAGD: CSS FÖR SKRIVMASKIN-EFFEKT --- */
 #hero-title {
-    display: inline-block;
-    position: relative;
-    /* Förhindra att sidan "hoppar" när texten är borta */
-    min-height: 3.2rem; 
+    display: inline-block;
+    position: relative;
+    /* Förhindra att sidan "hoppar" när texten är borta */
+    min-height: 3.2rem; 
 }
 
 .typing-cursor {
-    display: inline-block;
-    width: 10px; 
-    height: 3rem; /* Bör matcha h1:s ungefärliga storlek */
-    background-color: var(--accent-color);
-    margin-left: 8px;
-    animation: blink 0.7s infinite;
-    position: relative; 
-    bottom: -6px; /* Justera vertikalt */
+    display: inline-block;
+    width: 10px; 
+    height: 3rem; /* Bör matcha h1:s ungefärliga storlek */
+  
+    background-color: var(--accent-color);
+    margin-left: 8px;
+    animation: blink 0.7s infinite;
+    position: relative; 
+    bottom: -6px; /* Justera vertikalt */
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }
 
 
@@ -362,14 +362,14 @@ footer {
         font-size: 1.8rem;
     }
 
-    /* TILLAGD: Justera cursor för mindre rubrik */
-    .typing-cursor {
-        height: 2.5rem;
-        bottom: -4px;
-    }
-    #hero-title {
-        min-height: 2.7rem;
-    }
+    /* TILLAGD: Justera cursor för mindre rubrik */
+    .typing-cursor {
+        height: 2.5rem;
+        bottom: -4px;
+    }
+    #hero-title {
+        min-height: 2.7rem;
+    }
 
     .nav-toggle {
         display: block;
@@ -393,12 +393,12 @@ footer {
     }
 
     .nav-links.nav-open {
-        right: 0;
+    L   right: 0;
     }
 
     .nav-links li {
         margin: 1.5rem 0;
-    }
+_   }
 
     .nav-links a {
         font-size: 1.5rem;
