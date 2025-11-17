@@ -104,10 +104,6 @@ const translations = {
     }
 };
 
-/* SKRIVMASKINS-FUNKTIONEN ÄR HELT BORTTAGEN HÄRIFRÅN
-*/
-
-
 // --- Funktion för att byta språk (ENKEL OCH STABIL VERSION) ---
 
 const setLanguage = (lang) => {
