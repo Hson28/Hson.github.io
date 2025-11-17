@@ -126,26 +126,40 @@ function typewriterEffect(element, text, speed = 50) {
 }
 
 
-// --- Funktion för att byta språk ---
+// --- Funktion för att byta språk (MODIFIERAD OCH ROBUST) ---
 
 const setLanguage = (lang) => {
     document.documentElement.lang = lang; 
 
+    // Hämta rubriken och dess översättning
+    const heroTitleElement = document.querySelector('h1[data-key="hero_title"]');
+    const heroTitleTranslation = translations[lang]['hero_title'];
+
+    // 1. UPPPDATERA ALL ANNAN TEXT FÖRST
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
-        const translation = translations[lang][key];
         
+        // Hoppa över rubriken, vi tar den separat
+        if (key === 'hero_title') {
+            return; 
+        }
+
+        const translation = translations[lang][key];
         if (translation) {
-            if (key === 'hero_title') {
-                if (element.textContent !== translation) {
-                    typewriterEffect(element, translation);
-                }
-            } else {
-                element.innerHTML = translation;
-            }
+            element.innerHTML = translation;
         }
     });
 
+    // 2. KÖR SKRIVMASKINSEFFEKTEN SEPARAT (SIST)
+    // Detta gör att även om typewriterEffect kraschar, har resten av sidan laddats.
+    if (heroTitleElement && heroTitleTranslation) {
+        // Kör bara om texten faktiskt behöver ändras
+        if (heroTitleElement.textContent !== heroTitleTranslation) {
+            typewriterEffect(heroTitleElement, heroTitleTranslation);
+        }
+    }
+
+    // 3. Spara val och uppdatera knappar
     localStorage.setItem('language', lang); 
 
     document.getElementById('lang-sv').classList.toggle('active-lang', lang === 'sv');
@@ -176,10 +190,8 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 2. FADE-IN KODEN HAR TAGITS BORT HÄRIFRÅN ---
 
-
-    // --- 3. Aktiv nav-länk vid scroll ---
+    // --- 2. Aktiv nav-länk vid scroll ---
     const sections = document.querySelectorAll('section[id]');
     const navLinksA = document.querySelectorAll('nav .nav-links a');
 
@@ -202,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
     sections.forEach(sec => sectionObserver.observe(sec));
 
 
-    // --- 4. Språkväxlings-logik ---
+    // --- 3. Språkväxlings-logik ---
     const langSvButton = document.getElementById('lang-sv');
     const langEnButton = document.getElementById('lang-en');
 
@@ -220,12 +232,12 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.remove('no-scroll');
     });
 
+    // Sätt språket när sidan laddas
     const savedLang = localStorage.getItem('language') || 'sv';
     setLanguage(savedLang);
 
     
-    // --- 5. ROBUST KOD FÖR "NO-SCROLL" ---
-    // (Flyttad hit in för att vara säker)
+    // --- 4. ROBUST KOD FÖR "NO-SCROLL" ---
     const noScrollStyle = document.createElement('style');
     noScrollStyle.innerHTML = `
         body.no-scroll {
