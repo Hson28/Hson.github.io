@@ -197,6 +197,12 @@ img {
     .typing-effect::after {
         animation: none !important;
     }
+
+    /* NY REGEL: Stänger av fade-in för kort */
+    .project-card {
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+    }
 }
 
 /* ========================================
@@ -475,9 +481,7 @@ section:nth-of-type(odd) {
     position: relative; /* För att ::after ska placeras korrekt */
 }
 
-/* * NY REGEL: Säkerställer att taglinen också behåller sin höjd 
- * för att förhindra "layout jump" när texten är tom.
- */
+/* Säkerställer att taglinen också behåller sin höjd */
 .hero-text p.hero-tagline[data-lang-key="hero_tagline"] {
     min-height: 1.6em; /* 1.6 (line-height) * 1em (font-size) */
 }
@@ -526,10 +530,24 @@ section:nth-of-type(odd) {
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md);
     overflow: hidden;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+    
+    /* --- NYA/UPPDATERADE RADER FÖR FADE-IN --- */
+    opacity: 0; /* Startar som osynlig */
+    transform: translateY(20px); /* Startar 20px längre ner */
+    /* Uppdaterad transition för att inkludera opacity och transform */
+    transition: opacity 0.6s ease-out, 
+                transform 0.6s ease-out, 
+                box-shadow var(--transition-fast);
+}
+
+/* NY REGEL: Denna klass läggs till av JavaScript när kortet är synligt */
+.project-card.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 .project-card:hover {
+    /* Denna regel fungerar som förut, men agerar på synliga kort */
     transform: translateY(-5px);
     box-shadow: var(--shadow-lg);
 }
