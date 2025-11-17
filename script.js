@@ -6,6 +6,7 @@
  * 2. Språkväxling SV/EN (med localStorage)
  * 3. Åtkomstvänlig mobilmeny
  * 4. Mjuk scrollning för ankar-länkar
+ * 5. Skrivmaskinseffekt för H1
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -78,7 +79,8 @@
         navMenu: document.querySelector("#primary-navigation"),
         navLinks: document.querySelectorAll(".nav-link"),
         langElements: document.querySelectorAll("[data-lang-key]"),
-        anchorLinks: document.querySelectorAll('a[href^="#"]')
+        anchorLinks: document.querySelectorAll('a[href^="#"]'),
+        heroH1: document.querySelector(".hero-text h1") // <-- NYTT ELEMENT
     };
 
     // --- 3. Variabler ---
@@ -298,7 +300,41 @@
         }
     }
 
-    // --- 8. Initiering & Händelselyssnare ---
+    // --- 8. Skrivmaskinseffekt (NY FUNKTION) ---
+
+    /**
+     * Startar en skrivmaskinseffekt på ett givet element.
+     * @param {HTMLElement} element - Elementet där texten ska skrivas ut.
+     * @param {number} speed - Hastigheten i millisekunder per tecken.
+     */
+    function startTypeEffect(element, speed = 150) {
+        if (!element) return; // Avbryt om elementet inte finns
+
+        // Hämta texten (som initLanguage redan har ställt in)
+        const text = element.textContent; 
+        if (!text) return; // Avbryt om texten är tom
+        
+        element.textContent = ""; // Töm elementet
+        element.classList.add("typing-effect"); // Lägg till klass för CSS-markör
+        let i = 0;
+
+        function typeWriter() {
+            if (i < text.length) {
+                element.textContent += text.charAt(i);
+                i++;
+                setTimeout(typeWriter, speed);
+            } else {
+                // Ta bort markören när texten är klar
+                element.classList.remove("typing-effect");
+            }
+        }
+        
+        // Starta effekten med en liten fördröjning
+        setTimeout(typeWriter, speed);
+    }
+
+
+    // --- 9. Initiering & Händelselyssnare ---
 
     /**
      * Binder alla händelselyssnare.
@@ -339,8 +375,11 @@
      */
     function init() {
         initTheme();
-        initLanguage();
+        initLanguage(); // Kör denna FÖRE skrivmaskinen
         bindEvents();
+        
+        // Starta skrivmaskinseffekten på H1-elementet (NY RAD)
+        startTypeEffect(dom.heroH1, 150);
     }
 
     // Kör initieringen
