@@ -475,6 +475,14 @@ section:nth-of-type(odd) {
     position: relative; /* För att ::after ska placeras korrekt */
 }
 
+/* * NY REGEL: Säkerställer att taglinen också behåller sin höjd 
+ * för att förhindra "layout jump" när texten är tom.
+ */
+.hero-text p.hero-tagline[data-lang-key="hero_tagline"] {
+    min-height: 1.6em; /* 1.6 (line-height) * 1em (font-size) */
+}
+
+
 /* Lägger till en blinkande markör efter texten */
 .typing-effect::after {
     content: '|'; /* Markören */
