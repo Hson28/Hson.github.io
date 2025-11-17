@@ -3,153 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alex Johansson - IT-Säkerhetsstudent</title>
-    <meta name="description" content="Portföljsida för Alex Johansson, student i IT-säkerhet. Utforska mina projekt, kompetenser och kontakta mig.">
-    <meta name="keywords" content="IT-säkerhet, portfölj, student, projekt, Alex Johansson">
-    <meta name="author" content="Alex Johansson">
+    <title data-lang-key="meta_title">Jehanni — IT-säkerhetsspecialiststudent</title>
     
-    <!-- Open Graph -->
-    <meta property="og:title" content="Alex Johansson - IT-Säkerhetsstudent">
-    <meta property="og:description" content="Portföljsida för Alex Johansson, student i IT-säkerhet.">
-    <meta property="og:image" content="https://alexjohansson.github.io/portfolio/images/og-image.jpg">
-    <meta property="og:url" content="https://alexjohansson.github.io/portfolio/">
-    <meta property="og:type" content="website">
+    <meta name="description" lang="sv" content="Portfölj för Jehanni, en student inom IT-säkerhet specialiserad på nätverk, Linux och defensiv säkerhet.">
     
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Alex Johansson - IT-Säkerhetsstudent">
-    <meta name="twitter:description" content="Portföljsida för Alex Johansson, student i IT-säkerhet.">
-    <meta name="twitter:image" content="https://alexjohansson.github.io/portfolio/images/og-image.jpg">
-    
-    <!-- Preconnect för typsnitt -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Alex Johansson",
-        "jobTitle": "IT-Säkerhetsstudent",
-        "sameAs": [
-            "https://www.linkedin.com/in/alexjohansson",
-            "https://github.com/alexjohansson"
-        ]
-    }
-    </script>
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a202c" media="(prefers-color-scheme: dark)">
     
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
-</head>
+    
+    </head>
 <body>
-    <header>
-        <nav id="navbar">
-            <div class="nav-container">
-                <a href="#hero" class="logo">Alex Johansson</a>
-                <button id="hamburger" aria-label="Öppna meny" aria-expanded="false">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+    
+    <a href="#main-content" class="skip-link" data-lang-key="skip_link">Hoppa till huvudinnehåll</a>
+
+    <header class="site-header">
+        <div class="container header-container">
+            <div class="logo">
+                <a href="#" data-lang-key="nav_home">Jehanni</a>
+                <span class="logo-title" data-lang-key="header_title">IT-säkerhetsspecialiststudent</span>
+            </div>
+
+            <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+                <span class="sr-only" data-lang-key="aria_menu">Meny</span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <nav class="site-nav">
+                <ul id="primary-navigation" class="nav-list" data-visible="false">
+                    <li><a href="#about" class="nav-link" data-lang-key="nav_about">Om</a></li>
+                    <li><a href="#projects" class="nav-link" data-lang-key="nav_projects">Projekt</a></li>
+                    <li><a href="#skills" class="nav-link" data-lang-key="nav_skills">Färdigheter</a></li>
+                    <li><a href="#cv" class="nav-link" data-lang-key="nav_cv">CV</a></li>
+                    <li><a href="#reflection" class="nav-link" data-lang-key="nav_reflection">Reflektion</a></li>
+                </ul>
+            </nav>
+
+            <div class="header-toggles">
+                <button class="theme-toggle" aria-label="Växla mörkt/ljust läge">
+                    <span class="theme-icon-light" aria-hidden="true">☀️</span>
+                    <span class="theme-icon-dark" aria-hidden="true">🌙</span>
                 </button>
-                <ul id="nav-menu" role="menu">
-                    <li><a href="#hero" role="menuitem">Hem</a></li>
-                    <li><a href="#about" role="menuitem">Om mig</a></li>
-                    <li><a href="#skills" role="menuitem">Kompetenser</a></li>
-                    <li><a href="#projects" role="menuitem">Projekt</a></li>
-                    <li><a href="#cv" role="menuitem">CV/Utbildning</a></li>
-                    <li><a href="#contact" role="menuitem">Kontakt</a></li>
+                <button class="lang-toggle" lang="sv" aria-label="Växla språk till engelska">
+                    EN
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+
+        <section class="hero">
+            <div class="container hero-container">
+                <div class="hero-text">
+                    <h1 data-lang-key="hero_h1">Jehanni</h1>
+                    <p class="hero-tagline" data-lang-key="hero_tagline">
+                        Jag bygger säkra nätverk och driftsätter robusta backuplösningar.
+                    </p>
+                    <a href="#projects" class="button button-primary" data-lang-key="hero_cta">Se mina projekt</a>
+                </div>
+                <div class="hero-image-wrapper">
+                    <img src="https://via.placeholder.com/400x400/333/808080?text=Profilbild" 
+                         alt="Platshållarbild för profilfoto" 
+                         class="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="container">
+                <h2 data-lang-key="about_h2">Om mig</h2>
+                <p data-lang-key="about_p1">
+                    Jag är en driven student inom IT-säkerhet med ett djupt intresse för defensiv säkerhet, nätverksarkitektur och Linux-administration. Mitt fokus ligger på att bygga robusta och motståndskraftiga system från grunden. Jag tror starkt på "security by design" och att proaktiva åtgärder är nyckeln till en säker digital miljö.
+                </p>
+                <p data-lang-key="about_p2">
+                    För närvarande studerar jag [Ditt Programnamn] vid [Din Skola], där jag specialiserar mig på [Område 1] och [Område 2]. Jag letar alltid efter nya utmaningar där jag kan tillämpa och utöka mina kunskaper i praktiken.
+                </p>
+                <h3 data-lang-key="about_h3">Certifikat & Utbildning</h3>
+                <ul class="cert-list">
+                    <li data-lang-key="about_cert1">Cisco Certified Network Associate (CCNA) - Pågående</li>
+                    <li data-lang-key="about_cert2">Exempel Certifikat (t.ex. CompTIA Security+) - 2024</li>
+                    <li data-lang-key="about_cert3">Introduktion till Cybersäkerhet (Cisco NetAcad) - 2023</li>
                 </ul>
             </div>
-        </nav>
-    </header>
-    
-    <main>
-        <section id="hero" class="hero">
-            <div class="hero-content">
-                <h1>Hej, jag är Alex Johansson</h1>
-                <p>Student i IT-säkerhet med passion för cybersäkerhet och programmering.</p>
-                <a href="#projects" class="btn btn-primary">Se mina projekt</a>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 data-lang-key="projects_h2">Utvalda Projekt</h2>
+                <div class="project-grid">
+                    
+                    <article class="project-card">
+                        <div class="card-content">
+                            <h3 data-lang-key="project1_title">Backup-server med LUKS</h3>
+                            <p class="project-role" data-lang-key="project1_role">Eget projekt</p>
+                            <p data-lang-key="project1_desc">
+                                Design och driftsättning av en säker, automatiserad backup-server på en Debian-maskin. Använder full disk-kryptering med LUKS och rsync över SSH för dataöverföring.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Linux</span>
+                                <span class="tag">LUKS</span>
+                                <span class="tag">Bash</span>
+                                <span class="tag">Ansible</span>
+                                <span class="tag">rsync</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link" data-lang-key="project_link_repo">
+                                    GitHub Repo
+                                    <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="card-content">
+                            <h3 data-lang-key="project2_title">Nätverkssegmentering (Homelab)</h3>
+                            <p class="project-role" data-lang-key="project2_role">Studieprojekt</p>
+                            <p data-lang-key="project2_desc">
+                                Implementering av VLAN och strikta brandväggsregler (med pfSense) i en hemmalabbmiljö för att isolera IoT-enheter från det primära nätverket och blockera misstänkt trafik.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">pfSense</span>
+                                <span class="tag">VLAN</span>
+                                <span class="tag">Nätverk</span>
+                                <span class="tag">Brandvägg</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link" data-lang-key="project_link_writeup">
+                                    Läs rapport
+                                    <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    </div>
             </div>
         </section>
-        
-        <section id="about" class="about">
-            <h2>Om mig</h2>
-            <p>Jag är en driven student vid [Universitet] som specialiserar mig på IT-säkerhet. Med erfarenhet från praktik och personliga projekt strävar jag efter att skydda digitala system mot hot.</p>
-        </section>
-        
+
         <section id="skills" class="skills">
-            <h2>Kompetenser</h2>
-            <ul class="skills-list">
-                <li>Penetration Testing</li>
-                <li>Kryptografi</li>
-                <li>Nätverkssäkerhet</li>
-                <li>Python, JavaScript</li>
-                <li>SQL Injection Prevention</li>
-            </ul>
-        </section>
-        
-        <section id="projects" class="projects">
-            <h2>Projekt</h2>
-            <div class="projects-grid">
-                <article class="project-card">
-                    <img src="images/project1.jpg" alt="Miniatyrbild för Penetration Testing Tool" loading="lazy">
-                    <h3>Penetration Testing Tool</h3>
-                    <p>Ett verktyg för att simulera attacker och identifiera sårbarheter i nätverk.</p>
-                    <div class="tags">
-                        <span class="tag">Python</span>
-                        <span class="tag">Security</span>
-                    </div>
-                    <a href="https://github.com/alexjohansson/pen-test-tool" class="btn btn-secondary">Repo</a>
-                    <a href="https://alexjohansson.github.io/pen-test-tool" class="btn btn-secondary">Live</a>
-                </article>
-                <article class="project-card">
-                    <img src="images/project2.jpg" alt="Miniatyrbild för Secure Chat App" loading="lazy">
-                    <h3>Secure Chat App</h3>
-                    <p>En krypterad chattapplikation byggd med end-to-end-kryptering.</p>
-                    <div class="tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">Encryption</span>
-                    </div>
-                    <a href="https://github.com/alexjohansson/secure-chat" class="btn btn-secondary">Repo</a>
-                    <a href="https://alexjohansson.github.io/secure-chat" class="btn btn-secondary">Live</a>
-                </article>
-                <!-- Lägg till fler projekt om nödvändigt -->
+            <div class="container">
+                <h2 data-lang-key="skills_h2">Kärnkompetenser</h2>
+                <div class="skill-list">
+                    <span class="skill-badge" data-lang-key="skill_linux">Linux Administration</span>
+                    <span class="skill-badge" data-lang-key="skill_network">Nätverkskonfiguration & Felsökning</span>
+                    <span class="skill-badge" data-lang-key="skill_automation">Automatisering (Bash/Ansible)</span>
+                    <span class="skill-badge" data-lang-key="skill_security">Säkerhetsprinciper</span>
+                    <span class="skill-badge" data-lang-key="skill_crypto">Krypteringstekniker</span>
+                    <span class="skill-badge" data-lang-key="skill_vm">Virtualisering (KVM/Proxmox)</span>
+                    <span class="skill-badge" data-lang-key="skill_incident">Incidenthantering (Grund)</span>
+                </div>
             </div>
         </section>
         
         <section id="cv" class="cv">
-            <h2>CV / Utbildning</h2>
-            <p>Jag studerar IT-säkerhet vid [Universitet]. Här kan du ladda ner mitt CV.</p>
-            <a href="cv.pdf" class="btn btn-primary" target="_blank" rel="noopener">Ladda ner CV</a>
+             <div class="container">
+                <h2 data-lang-key="cv_h2">CV</h2>
+                <p data-lang-key="cv_p">
+                    Mitt fullständiga CV, som innehåller detaljerad information om min utbildning, erfarenhet och tekniska färdigheter, finns tillgängligt för nedladdning.
+                </p>
+                <a href="Jehanni_CV_SV.pdf" class="button button-secondary" data-lang-key="cv_button_sv">Ladda ner CV (SV)</a>
+                <a href="Jehanni_CV_EN.pdf" class="button button-secondary" data-lang-key="cv_button_en">Ladda ner CV (EN)</a>
+            </div>
         </section>
-        
-        <section id="contact" class="contact">
-            <h2>Kontakt</h2>
-            <p>Kontakta mig via e-post: <a href="mailto:alex@example.com">alex@example.com</a></p>
-            <form id="contact-form" action="" method="post">
-                <label for="name">Namn</label>
-                <input type="text" id="name" name="name" required aria-describedby="name-error">
-                <span id="name-error" class="error" aria-live="polite"></span>
-                
-                <label for="email">E-post</label>
-                <input type="email" id="email" name="email" required aria-describedby="email-error">
-                <span id="email-error" class="error" aria-live="polite"></span>
-                
-                <label for="message">Meddelande</label>
-                <textarea id="message" name="message" required aria-describedby="message-error"></textarea>
-                <span id="message-error" class="error" aria-live="polite"></span>
-                
-                <button type="submit" class="btn btn-primary">Skicka</button>
-            </form>
+
+        <section id="reflection" class="reflection">
+            <div class="container">
+                <h2 data-lang-key="reflection_h2">En säkerhetsmedveten portfölj</h2>
+                <blockquote>
+                    <p data-lang-key="reflection_p1">
+                        Denna portfölj är medvetet byggd utan tredjeparts-ramverk, spårningsskript eller analysverktyg. Den körs helt på klientsidan (client-side) och gör inga nätverksanrop förutom att ladda de nödvändiga filerna.
+                    </p>
+                    <p data-lang-key="reflection_p2">
+                        Genom att använda ren, semantisk HTML, modern CSS och minimal JavaScript (vanilla JS) minimeras attackytan, laddningstiden förbättras och din integritet som besökare respekteras. Inga cookies, ingen `localStorage` för spårning (endast för dina tema- och språkval), och inga data skickas till en server.
+                    </p>
+                    <cite data-lang-key="reflection_cite">— Jehanni</cite>
+                </blockquote>
+            </div>
         </section>
+
     </main>
-    
-    <footer>
-        <p>&copy; 2023 Alex Johansson. Alla rättigheter förbehållna.</p>
-        <a href="https://github.com/alexjohansson" aria-label="GitHub">GitHub</a>
-        <a href="https://www.linkedin.com/in/alexjohansson" aria-label="LinkedIn">LinkedIn</a>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <p data-lang-key="footer_copy">&copy; 2025 Jehanni. Alla rättigheter förbehållna.</p>
+            <ul class="social-links">
+                <li>
+                    <a href="https://github.com/ditt-anvandarnamn" target="_blank" rel="noopener noreferrer" data-lang-key="footer_github">GitHub</a>
+                </li>
+                <li>
+                    <a href="https://linkedin.com/in/ditt-anvandarnamn" target="_blank" rel="noopener noreferrer" data-lang-key="footer_linkedin">LinkedIn</a>
+                </li>
+            </ul>
+        </div>
     </footer>
+    
+    <script src="script.js" defer></script>
 </body>
 </html>
