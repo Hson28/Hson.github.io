@@ -7,6 +7,7 @@
  * 3. Åtkomstvänlig mobilmeny
  * 4. Mjuk scrollning för ankar-länkar
  * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
+ * 6. Fade-in på projektkort vid scroll (IntersectionObserver)
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -80,14 +81,15 @@
         langElements: document.querySelectorAll("[data-lang-key]"),
         anchorLinks: document.querySelectorAll('a[href^="#"]'),
         heroH1: document.querySelector(".hero-text h1"),
-        heroTagline: document.querySelector(".hero-tagline") // LADE TILL TAGLINE
+        heroTagline: document.querySelector(".hero-tagline"),
+        projectCards: document.querySelectorAll(".project-card") // NY RAD
     };
 
     // --- 3. Variabler ---
     let currentTheme = "light";
     let currentLang = "sv";
     let isTyping = false; 
-    let typingTimeout = null; // För att hantera avbrott vid språkbyte
+    let typingTimeout = null; 
 
     // --- 4. Temahantering ---
     // (Inga ändringar i denna sektion)
@@ -155,16 +157,13 @@
     }
 
     // --- 5. Språkhantering ---
-
+    // (Inga ändringar i denna sektion)
     function storeDefaultLanguage() {
         dom.langElements.forEach(el => {
             el.dataset.defaultSv = el.textContent.trim();
         });
     }
 
-    /**
-     * UPPDATERAD: Hanterar nu kedjad animering och avbrott.
-     */
     function updateText(lang) {
         dom.html.setAttribute("lang", lang);
         
@@ -178,19 +177,16 @@
             );
         }
 
-        // Stoppa alla pågående skrivanimationer om användaren byter språk
         if (typingTimeout) {
             clearTimeout(typingTimeout);
             typingTimeout = null;
         }
-        isTyping = false; // Återställ status
+        isTyping = false; 
         
-        // Rensa CSS-klasser från animerade element
         if (dom.heroH1) dom.heroH1.classList.remove("typing-effect");
         if (dom.heroTagline) dom.heroTagline.classList.remove("typing-effect");
 
 
-        // Hämta texterna för de animerade elementen
         const h1Text = (lang === 'en' && translations.en['hero_h1']) 
             ? translations.en['hero_h1'] 
             : (dom.heroH1 ? dom.heroH1.dataset.defaultSv : "");
@@ -199,17 +195,14 @@
             ? translations.en['hero_tagline'] 
             : (dom.heroTagline ? dom.heroTagline.dataset.defaultSv : "");
 
-        // Loopa igenom och uppdatera all *annan* text direkt
         dom.langElements.forEach(el => {
             const key = el.dataset.langKey;
             
-            // Skippa de element vi ska animera
             if (el === dom.heroH1 || el === dom.heroTagline) {
-                el.textContent = ""; // Töm dem
+                el.textContent = ""; 
                 return;
             }
 
-            // Uppdatera alla andra element
             if (lang === "en" && translations.en[key]) {
                 el.textContent = translations.en[key];
             } else {
@@ -217,10 +210,7 @@
             }
         });
         
-        // Starta den kedjade animationen
-        // 1. Skriv H1 (långsammare)
         startTypeEffect(dom.heroH1, h1Text, 100, () => {
-            // 2. När H1 är klar, skriv Tagline (snabbare)
             startTypeEffect(dom.heroTagline, taglineText, 50, null);
         });
 
@@ -229,7 +219,7 @@
 
     function toggleLanguage() {
         const newLang = currentLang === "sv" ? "en" : "sv";
-        updateText(newLang); // updateText startar nu hela kedjan
+        updateText(newLang); 
         try {
             localStorage.setItem("language", newLang);
         } catch (e) {
@@ -304,23 +294,13 @@
     }
 
     // --- 8. Skrivmaskinseffekt ---
-
-    /**
-     * UPPDATERAD: Accepterar nu en 'callback'-funktion.
-     * Startar en skrivmaskinseffekt på ett givet element.
-     * @param {HTMLElement} element - Elementet där texten ska skrivas ut.
-     * @param {string} text - Textsträngen som ska skrivas.
-     * @param {number} speed - Hastigheten i millisekunder per tecken.
-     * @param {Function | null} callback - Funktion att köra när skrivandet är klart.
-     */
+    // (Inga ändringar i denna sektion)
     function startTypeEffect(element, text, speed = 150, callback = null) {
-        // Avbryt om elementet inte finns eller texten är tom
         if (!element || !text) {
-            if(callback) callback(); // Kör callback direkt om inget finns att skriva
+            if(callback) callback(); 
             return;
         } 
         
-        // Sätt globalt "skriver"-läge
         if (!isTyping) isTyping = true; 
 
         element.textContent = ""; 
@@ -328,7 +308,6 @@
         let i = 0;
 
         function typeWriter() {
-            // Avbryt om isTyping har återställts (t.ex. av språkbyte)
             if (!isTyping) { 
                 element.classList.remove("typing-effect");
                 return;
@@ -337,30 +316,74 @@
             if (i < text.length) {
                 element.textContent += text.charAt(i);
                 i++;
-                // Spara timeout-ID så vi kan avbryta den
                 typingTimeout = setTimeout(typeWriter, speed);
             } else {
-                // Klar
                 element.classList.remove("typing-effect");
                 typingTimeout = null;
                 
-                // Om detta är det sista anropet i kedjan (ingen callback), återställ 'isTyping'
                 if (!callback) {
                     isTyping = false;
                 }
                 
-                // Kör nästa funktion i kedjan (om det finns en)
                 if (callback) {
                     callback(); 
                 }
             }
         }
         
-        setTimeout(typeWriter, speed); // Starta den första iterationen
+        setTimeout(typeWriter, speed); 
     }
 
 
-    // --- 9. Initiering & Händelselyssnare ---
+    // --- 9. Scroll-animation (Fade-in) --- (NY SEKTION)
+
+    /**
+     * Initialiserar en IntersectionObserver för att animera element när de rullar in i vyn.
+     */
+    function initScrollObserver() {
+        // Kontrollera om IntersectionObserver stöds i webbläsaren
+        if (!('IntersectionObserver' in window)) {
+            // Fallback för äldre webbläsare: visa alla kort direkt
+            dom.projectCards.forEach(card => card.classList.add('is-visible'));
+            return;
+        }
+
+        // Respektera användarens val för minskad rörelse
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            dom.projectCards.forEach(card => card.classList.add('is-visible'));
+            return;
+        }
+
+        const observerOptions = {
+            root: null, // Använder viewport som "root"
+            rootMargin: '0px',
+            threshold: 0.1 // Utlös animationen när 10% av kortet är synligt
+        };
+
+        const observerCallback = (entries, observer) => {
+            entries.forEach(entry => {
+                // När elementet kommer in i vyn...
+                if (entry.isIntersecting) {
+                    // ...lägg till klassen som gör det synligt...
+                    entry.target.classList.add('is-visible');
+                    // ...och sluta sedan observera det för att spara prestanda.
+                    observer.unobserve(entry.target);
+                }
+            });
+        };
+
+        // Skapa observatören
+        const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Sätt observatören att titta på varje projektkort
+        dom.projectCards.forEach(card => {
+            scrollObserver.observe(card);
+        });
+    }
+
+
+    // --- 10. Initiering & Händelselyssnare --- (Tidigare Sektion 9)
 
     function bindEvents() {
         if (dom.themeToggle) {
@@ -392,8 +415,9 @@
 
     function init() {
         initTheme();
-        initLanguage(); // Denna funktion startar nu skrivmaskinskedjan
+        initLanguage(); // Startar skrivmaskinskedjan
         bindEvents();
+        initScrollObserver(); // NY RAD: Startar scroll-observatören
     }
 
     document.addEventListener("DOMContentLoaded", init);
