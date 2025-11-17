@@ -2,14 +2,16 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* =============================================
-       NYTT: SKRIVMASKIN-EFFEKT FÖR H1
+       1. SKRIVMASKIN-EFFEKT FÖR H1 (ROBUST VERSION)
     ============================================= */
     const heroTitle = document.getElementById('hero-title');
     if (heroTitle) {
-        const textToType = heroTitle.textContent.trim(); // Hämta texten från HTML
+        // Texten är definierad här för att garantera att den körs
+        const textToType = "Hej, jag är Jehanni Halvarsson."; 
+        
         heroTitle.textContent = ''; // Töm elementet
 
-        // Skapa cursorn och lägg inuti H1
+        // Skapa cursorn
         const cursor = document.createElement('span');
         cursor.className = 'typing-cursor';
         heroTitle.appendChild(cursor);
@@ -24,35 +26,29 @@ document.addEventListener('DOMContentLoaded', () => {
                 i++;
                 setTimeout(typeWriter, typingSpeed);
             } else {
-                // Klart! Ta bort animationen från cursorn
+                // Klart! Dölj cursorn snyggt
                 cursor.style.animation = 'none';
                 cursor.style.opacity = '0';
-                
-                // Valfritt: Ta bort cursorn helt efter 2 sekunder
-                setTimeout(() => cursor.remove(), 2000);
+                setTimeout(() => cursor.remove(), 2000); // Ta bort helt
             }
         }
         
         // Starta effekten efter en kort fördröjning
-        setTimeout(typeWriter, 500);
+        setTimeout(typeWriter, 500); 
     }
 
 
     /* =============================================
-       1. MOBILNAVIGERING (HAMBURGERMENY)
+       2. MOBILNAVIGERING (HAMBURGERMENY)
     ============================================= */
     const navToggle = document.querySelector('.nav-toggle');
     const navLinks = document.querySelector('.nav-links');
 
     if (navToggle && navLinks) {
         navToggle.addEventListener('click', () => {
-            // Växla .nav-open-klassen på länk-listan för att visa/dölja
             navLinks.classList.toggle('nav-open');
-            
-            // Växla .nav-open på knappen för att animera till "X"
             navToggle.classList.toggle('nav-open');
-
-            // Uppdatera ARIA-attribut för tillgänglighet
+            
             const isMenuOpen = navLinks.classList.contains('nav-open');
             navToggle.setAttribute('aria-expanded', isMenuOpen);
         });
@@ -71,14 +67,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =============================================
-       2. FADE-IN EFFEKT VID SCROLL
-       (Matchar din .fade-in och .is-visible CSS)
+       3. FADE-IN EFFEKT VID SCROLL
     ============================================= */
     const faders = document.querySelectorAll('.fade-in');
     
     const appearOptions = {
-        threshold: 0.1, // Starta när 10% av elementet syns
-        rootMargin: "0px 0px -50px 0px" // Starta lite innan den når botten av viewport
+        threshold: 0.1, 
+        rootMargin: "0px 0px -50px 0px"
     };
 
     const appearOnScroll = new IntersectionObserver((entries, observer) => {
@@ -86,9 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!entry.isIntersecting) {
                 return;
             } else {
-                // Lägg till klassen som din CSS väntar på
                 entry.target.classList.add('is-visible');
-                // Sluta observera elementet efter att det animerats en gång
                 observer.unobserve(entry.target); 
             }
         });
@@ -100,8 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     /* =============================================
-       3. AKTIV LÄNK I NAVIGERINGEN VID SCROLL
-       (Matchar din .active CSS-klass)
+       4. AKTIV LÄNK I NAVIGERINGEN VID SCROLL
     ============================================= */
     const sections = document.querySelectorAll('main section[id]');
     const navAnchors = document.querySelectorAll('.nav-links a');
@@ -111,7 +103,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sections.forEach(section => {
             const sectionTop = section.offsetTop;
-            // 150px offset gör att länken markeras lite innan sektionen når toppen
             if (pageYOffset >= sectionTop - 150) { 
                 currentSectionId = section.getAttribute('id');
             }
@@ -119,14 +110,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         navAnchors.forEach(a => {
             a.classList.remove('active');
-            // Jämför länkens href (t.ex. "#om-mig") med sektionens ID
             if (a.getAttribute('href') === `#${currentSectionId}`) {
                 a.classList.add('active');
             }
         });
         
-        // Hantera specialfall för toppen av sidan
-        // Om vi är väldigt nära toppen, avmarkera allt.
         if (pageYOffset < 150) {
              navAnchors.forEach(a => a.classList.remove('active'));
         }
