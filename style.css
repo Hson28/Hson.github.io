@@ -2,12 +2,11 @@
    GLOBAL SETUP & CSS-VARIABLER
    ======================================== */
 
-/* Använd systemtypsnitt för prestanda och "native" känsla */
-/* INSTRUKTION: För att använda ett Google Font, avkommentera raden nedan
-  och @import-länken i början av filen.
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-  --font-family-base: 'Inter', var(--font-family-system); 
-*/
+/* * INSTRUKTION: Google Font (Inter) är nu aktiverat. 
+ * @import-raden nedan har flyttats ut från kommentaren.
+ */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 :root {
     --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
