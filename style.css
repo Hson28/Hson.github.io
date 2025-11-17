@@ -2,8 +2,8 @@
 :root {
     --bg-color: #1a1a1d;
     --primary-text: #e0e0e0;
-    --accent-color: #4682B4; /* Byt till en modernare blå, t.ex. #007bff eller #4A90E2 */
-    --green-accent: #5dcf61; /* Behåll din gröna hover */
+    --accent-color: #4682B4; 
+    --green-accent: #5dcf61;
     --card-bg: #2c2c30;
     --border-color: #444;
 }
@@ -14,7 +14,6 @@
     padding: 0;
 }
 
-/* NYTT: Mjuk scroll-beteende */
 html {
     scroll-behavior: smooth;
 }
@@ -30,7 +29,8 @@ body {
 header {
     background-color: var(--card-bg);
     border-bottom: 2px solid var(--border-color);
-    padding: 1rem 0;
+    /* KORRIGERING: Gjorde headern tunnare */
+    padding: 0.5rem 0; 
     position: sticky;
     top: 0;
     width: 100%;
@@ -67,11 +67,10 @@ nav {
     color: var(--primary-text);
     font-weight: bold;
     transition: color 0.3s ease;
-    padding: 0.5rem 0; /* NYTT: Ger mer klickyta */
-    position: relative; /* NYTT: För hover-effekt */
+    padding: 0.5rem 0;
+    position: relative;
 }
 
-/* NYTT: Avancerad hover-effekt för nav-länkar */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -87,19 +86,18 @@ nav {
 
 .nav-links a:hover::after,
 .nav-links a.active::after,
-.nav-links a:focus-visible::after { /* NYTT: Lade till focus-visible */
+.nav-links a:focus-visible::after { /* TILLAGD: focus-visible */
     transform: scaleX(1);
     transform-origin: bottom left;
 }
 
 .nav-links a:hover,
 .nav-links a.active,
-.nav-links a:focus-visible { /* NYTT: Lade till focus-visible */
+.nav-links a:focus-visible { /* TILLAGD: focus-visible */
     color: var(--accent-color);
     outline: none; /* Ta bort ful standard-outline */
 }
 
-/* NYTT: Styling för hamburgarknapp (dold på desktop) */
 .nav-toggle {
     display: none;
     background: none;
@@ -152,7 +150,6 @@ section:last-of-type {
     border-bottom: none;
 }
 
-/* NYTT: Animation för infädning vid scroll */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -187,7 +184,7 @@ p {
     max-width: 75ch;
 }
 
-/* NYTT: Stil för underrubrik (tidigare inline) */
+/* TILLAGD: Stil för underrubrik (tidigare inline) */
 .hero-subtitle {
     font-size: 1.3rem;
     font-style: italic;
@@ -207,7 +204,7 @@ p {
 }
 
 .cta-knapp:hover,
-.cta-knapp:focus-visible { /* NYTT: Lade till focus-visible */
+.cta-knapp:focus-visible { /* TILLAGD: focus-visible */
     background-color: var(--green-accent);
     transform: translateY(-3px);
     box-shadow: 0 4px 10px rgba(93, 207, 97, 0.3);
@@ -220,7 +217,8 @@ a {
 /* --- Sektion: Kompetenser --- */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    /* KORRIGERING: Ändrade till 230px för bättre radbrytning */
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -234,7 +232,7 @@ a {
 }
 
 .skill-category:hover,
-.skill-category:focus-visible { /* NYTT: Lade till focus-visible */
+.skill-category:focus-visible { /* TILLAGD: focus-visible */
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
@@ -273,7 +271,7 @@ a {
 }
 
 .project-card:hover,
-.project-card:focus-visible { /* NYTT: Lade till focus-visible */
+.project-card:focus-visible { /* TILLAGD: focus-visible */
     transform: translateY(-5px);
     box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
 }
@@ -310,13 +308,12 @@ a {
 }
 
 .contact-links a:hover,
-.contact-links a:focus-visible { /* NYTT: Lade till focus-visible */
+.contact-links a:focus-visible { /* TILLAGD: focus-visible */
     color: var(--green-accent);
 }
 
-/* NYTT: Ändra färg på både text och ikon */
 .contact-links a:hover svg,
-.contact-links a:focus-visible svg {
+.contact-links a:focus-visible svg { /* TILLAGD: focus-visible */
     fill: var(--green-accent);
 }
 
@@ -330,14 +327,14 @@ footer {
     border-top: 1px solid var(--border-color);
 }
 
-/* --- NYTT: CSS FÖR SKRIVMASKIN-EFFEKT --- */
+/* --- TILLAGD: CSS FÖR SKRIVMASKIN-EFFEKT --- */
 #hero-title {
-    display: inline-block; /* Annars hamnar cursorn på ny rad */
+    display: inline-block;
     position: relative;
-    min-height: 3.2rem; /* Förhindra att sidan "hoppar" när texten tas bort */
+    /* Förhindra att sidan "hoppar" när texten är borta */
+    min-height: 3.2rem; 
 }
 
-/* Cursorn som blinkar */
 .typing-cursor {
     display: inline-block;
     width: 10px; 
@@ -364,7 +361,7 @@ footer {
         font-size: 1.8rem;
     }
 
-    /* NYTT: Justera cursor för mindre rubrik */
+    /* TILLAGD: Justera cursor för mindre rubrik */
     .typing-cursor {
         height: 2.5rem;
         bottom: -4px;
@@ -373,10 +370,9 @@ footer {
         min-height: 2.7rem;
     }
 
-    /* NYTT: Regler för mobilmeny */
     .nav-toggle {
-        display: block; /* Visa hamburgarknappen */
-        z-index: 1001; /* Se till att den är överst */
+        display: block;
+        z-index: 1001;
     }
 
     .nav-links {
@@ -387,7 +383,7 @@ footer {
         
         position: fixed;
         top: 0;
-        right: -100%; /* Börja utanför skärmen */
+        right: -100%;
         width: 100%;
         height: 100vh;
         
@@ -395,7 +391,7 @@ footer {
         transition: right 0.4s ease-in-out;
     }
 
-    .nav-links.nav-open { /* Klassen som JS lägger till */
+    .nav-links.nav-open {
         right: 0;
     }
 
@@ -407,9 +403,8 @@ footer {
         font-size: 1.5rem;
     }
     
-    /* NYTT: Animera hamburgare till ett "X" */
     .nav-open .hamburger {
-        background-color: transparent; /* Mellersta linjen försvinner */
+        background-color: transparent;
     }
     .nav-open .hamburger::before {
         transform: rotate(45deg) translate(5px, 8px);
