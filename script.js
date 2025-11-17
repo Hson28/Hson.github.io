@@ -1,6 +1,4 @@
 // --- 1. Ordbok för översättningar ---
-// (Redigera texten innanför "..." för att matcha ditt innehåll)
-
 const translations = {
     "sv": {
         "nav_about": "Om Mig",
@@ -106,7 +104,33 @@ const translations = {
     }
 };
 
-// --- 2. Funktion för att byta språk ---
+// --- NY FUNKTION: Skrivmaskinseffekt ---
+let typewriterTimeout; // Global variabel för att kunna avbryta animationen
+
+function typewriterEffect(element, text, speed = 50) {
+    // Avbryt omedelbart en tidigare pågående skrivning
+    clearTimeout(typewriterTimeout);
+
+    let i = 0;
+    element.innerHTML = ''; // Rensa texten
+    element.classList.remove('typing-done'); // Ta bort "klar"-klassen
+
+    function type() {
+        if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            // Spara ID:t så vi kan avbryta det om språket byts igen
+            typewriterTimeout = setTimeout(type, speed); 
+        } else {
+            // Skrivandet är klart
+            element.classList.add('typing-done');
+        }
+    }
+    type();
+}
+
+
+// --- 2. Funktion för att byta språk (MODIFIERAD) ---
 
 const setLanguage = (lang) => {
     document.documentElement.lang = lang; // Sätt 'lang' på <html>
@@ -116,7 +140,18 @@ const setLanguage = (lang) => {
         const translation = translations[lang][key];
         
         if (translation) {
-            element.innerHTML = translation;
+            // --- NY LOGIK ---
+            // Om det är rubriken, kör skrivmaskinseffekten
+            if (key === 'hero_title') {
+                // Kör bara effekten om texten faktiskt skiljer sig
+                if (element.textContent !== translation) {
+                    typewriterEffect(element, translation);
+                }
+            } else {
+                // För alla andra element, uppdatera som vanligt
+                element.innerHTML = translation;
+            }
+            // --- SLUT PÅ NY LOGIK ---
         }
     });
 
@@ -142,7 +177,6 @@ document.addEventListener('DOMContentLoaded', () => {
         document.body.classList.toggle('no-scroll');
     });
 
-    // Stäng menyn om man klickar på en länk
     navLinks.querySelectorAll('a').forEach(link => {
         link.addEventListener('click', () => {
             navLinks.classList.remove('nav-open');
@@ -196,7 +230,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     langSvButton.addEventListener('click', () => {
         setLanguage('sv');
-        // Stäng mobilmenyn vid klick
         navLinks.classList.remove('nav-open');
         navToggle.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('no-scroll');
@@ -204,13 +237,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     langEnButton.addEventListener('click', () => {
         setLanguage('en');
-        // Stäng mobilmenyn vid klick
         navLinks.classList.remove('nav-open');
         navToggle.setAttribute('aria-expanded', 'false');
         document.body.classList.remove('no-scroll');
     });
 
-    // Hämta sparat språk från localStorage, eller använd 'sv' som standard
     const savedLang = localStorage.getItem('language') || 'sv';
     setLanguage(savedLang);
 
