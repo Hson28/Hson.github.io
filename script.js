@@ -6,7 +6,7 @@
  * 2. Språkväxling SV/EN (med localStorage)
  * 3. Åtkomstvänlig mobilmeny
  * 4. Mjuk scrollning för ankar-länkar
- * 5. Skrivmaskinseffekt för H1
+ * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -15,8 +15,7 @@
     "use strict";
 
     // --- 1. Språkdata ---
-    // INSTRUKTION: Lägg till nya nyckel-värde-par här för att utöka översättningar.
-    // Se till att varje element i HTML som ska översättas har ett matchande `data-lang-key`.
+    // (Inga ändringar i denna sektion)
     const translations = {
         en: {
             meta_title: "Jehanni — IT Security Specialist Student",
@@ -80,21 +79,18 @@
         navLinks: document.querySelectorAll(".nav-link"),
         langElements: document.querySelectorAll("[data-lang-key]"),
         anchorLinks: document.querySelectorAll('a[href^="#"]'),
-        heroH1: document.querySelector(".hero-text h1")
+        heroH1: document.querySelector(".hero-text h1"),
+        heroTagline: document.querySelector(".hero-tagline") // LADE TILL TAGLINE
     };
 
     // --- 3. Variabler ---
     let currentTheme = "light";
     let currentLang = "sv";
-    // // ÄNDRING: Håll reda på om en skrivmaskinseffekt redan körs för att förhindra överlappning
     let isTyping = false; 
+    let typingTimeout = null; // För att hantera avbrott vid språkbyte
 
     // --- 4. Temahantering ---
-
-    /**
-     * Tillämpar ett tema (mörkt/ljust) på <html>-elementet.
-     * @param {string} theme - Temat som ska tillämpas ('dark' eller 'light').
-     */
+    // (Inga ändringar i denna sektion)
     function applyTheme(theme) {
         dom.html.setAttribute("data-theme", theme);
         if (dom.themeToggle) {
@@ -116,9 +112,6 @@
         }
     }
 
-    /**
-     * Växlar mellan mörkt och ljust tema och sparar valet.
-     */
     function toggleTheme() {
         const newTheme = currentTheme === "light" ? "dark" : "light";
         applyTheme(newTheme);
@@ -129,9 +122,6 @@
         }
     }
 
-    /**
-     * Initialiserar temat baserat på localStorage eller systeminställning.
-     */
     function initTheme() {
         let savedTheme = null;
         try {
@@ -166,9 +156,6 @@
 
     // --- 5. Språkhantering ---
 
-    /**
-     * Sparar standardtext (svenska) i ett data-attribut för enkel återställning.
-     */
     function storeDefaultLanguage() {
         dom.langElements.forEach(el => {
             el.dataset.defaultSv = el.textContent.trim();
@@ -176,8 +163,7 @@
     }
 
     /**
-     * Uppdaterar textinnehållet på sidan baserat på valt språk.
-     * @param {string} lang - Språkkoden ('sv' eller 'en').
+     * UPPDATERAD: Hanterar nu kedjad animering och avbrott.
      */
     function updateText(lang) {
         dom.html.setAttribute("lang", lang);
@@ -192,36 +178,58 @@
             );
         }
 
+        // Stoppa alla pågående skrivanimationer om användaren byter språk
+        if (typingTimeout) {
+            clearTimeout(typingTimeout);
+            typingTimeout = null;
+        }
+        isTyping = false; // Återställ status
+        
+        // Rensa CSS-klasser från animerade element
+        if (dom.heroH1) dom.heroH1.classList.remove("typing-effect");
+        if (dom.heroTagline) dom.heroTagline.classList.remove("typing-effect");
+
+
+        // Hämta texterna för de animerade elementen
+        const h1Text = (lang === 'en' && translations.en['hero_h1']) 
+            ? translations.en['hero_h1'] 
+            : (dom.heroH1 ? dom.heroH1.dataset.defaultSv : "");
+        
+        const taglineText = (lang === 'en' && translations.en['hero_tagline']) 
+            ? translations.en['hero_tagline'] 
+            : (dom.heroTagline ? dom.heroTagline.dataset.defaultSv : "");
+
+        // Loopa igenom och uppdatera all *annan* text direkt
         dom.langElements.forEach(el => {
             const key = el.dataset.langKey;
-            let newText = "";
+            
+            // Skippa de element vi ska animera
+            if (el === dom.heroH1 || el === dom.heroTagline) {
+                el.textContent = ""; // Töm dem
+                return;
+            }
 
+            // Uppdatera alla andra element
             if (lang === "en" && translations.en[key]) {
-                newText = translations.en[key];
+                el.textContent = translations.en[key];
             } else {
-                // Återgå till svenska (antingen från cache eller standard-HTML)
-                newText = el.dataset.defaultSv || el.textContent;
+                el.textContent = el.dataset.defaultSv || el.textContent;
             }
-
-            // --- ÄNDRING: Logiken för skrivmaskinen är nu HÄR ---
-            // Om elementet är vår H1:a, starta skrivmaskinseffekten
-            if (el === dom.heroH1) {
-                startTypeEffect(el, newText, 150);
-            } else {
-                // För alla andra element, uppdatera texten direkt
-                el.textContent = newText;
-            }
+        });
+        
+        // Starta den kedjade animationen
+        // 1. Skriv H1 (långsammare)
+        startTypeEffect(dom.heroH1, h1Text, 100, () => {
+            // 2. När H1 är klar, skriv Tagline (snabbare)
+            startTypeEffect(dom.heroTagline, taglineText, 50, null);
         });
 
         currentLang = lang;
     }
 
-    /**
-     * Växlar mellan svenska och engelska och sparar valet.
-     */
     function toggleLanguage() {
         const newLang = currentLang === "sv" ? "en" : "sv";
-        updateText(newLang); // updateText kommer nu att starta om skrivmaskinen
+        updateText(newLang); // updateText startar nu hela kedjan
         try {
             localStorage.setItem("language", newLang);
         } catch (e) {
@@ -229,9 +237,6 @@
         }
     }
 
-    /**
-     * Initialiserar språket baserat på localStorage eller webbläsarinställning.
-     */
     function initLanguage() {
         storeDefaultLanguage();
         let savedLang = null;
@@ -250,15 +255,11 @@
             initialLang = "en";
         }
         
-        // Kör updateText, som nu automatiskt startar skrivmaskinseffekten
         updateText(initialLang);
     }
 
     // --- 6. Mobilnavigation ---
-
-    /**
-     * Växlar synligheten för mobilmenyn.
-     */
+    // (Inga ändringar i denna sektion)
     function toggleMenu() {
         if (!dom.navMenu || !dom.navToggle) return;
         
@@ -269,9 +270,6 @@
         dom.html.style.overflow = !isVisible ? "hidden" : "auto";
     }
     
-    /**
-     * Stänger menyn (används av Escape-knapp och länkklick).
-     */
     function closeMenu() {
         if (!dom.navMenu || !dom.navToggle) return;
 
@@ -283,11 +281,7 @@
     }
 
     // --- 7. Mjuk Scrollning ---
-
-    /**
-     * Hanterar mjuk scrollning för interna ankar-länkar.
-     * @param {Event} e - Klickhändelsen.
-     */
+    // (Inga ändringar i denna sektion)
     function smoothScroll(e) {
         try {
             const hash = e.currentTarget.hash;
@@ -312,43 +306,62 @@
     // --- 8. Skrivmaskinseffekt ---
 
     /**
-     * // ÄNDRING: Accepterar nu texten som ska skrivas som ett argument
+     * UPPDATERAD: Accepterar nu en 'callback'-funktion.
      * Startar en skrivmaskinseffekt på ett givet element.
      * @param {HTMLElement} element - Elementet där texten ska skrivas ut.
      * @param {string} text - Textsträngen som ska skrivas.
      * @param {number} speed - Hastigheten i millisekunder per tecken.
+     * @param {Function | null} callback - Funktion att köra när skrivandet är klart.
      */
-    function startTypeEffect(element, text, speed = 150) {
-        // Om texten redan skrivs, avbryt för att förhindra dubbelkörning
-        if (isTyping || !element || !text) return; 
+    function startTypeEffect(element, text, speed = 150, callback = null) {
+        // Avbryt om elementet inte finns eller texten är tom
+        if (!element || !text) {
+            if(callback) callback(); // Kör callback direkt om inget finns att skriva
+            return;
+        } 
+        
+        // Sätt globalt "skriver"-läge
+        if (!isTyping) isTyping = true; 
 
-        isTyping = true;
-        element.textContent = ""; // Töm elementet
-        element.classList.add("typing-effect"); // Lägg till klass för CSS-markör
+        element.textContent = ""; 
+        element.classList.add("typing-effect");
         let i = 0;
 
         function typeWriter() {
+            // Avbryt om isTyping har återställts (t.ex. av språkbyte)
+            if (!isTyping) { 
+                element.classList.remove("typing-effect");
+                return;
+            }
+
             if (i < text.length) {
                 element.textContent += text.charAt(i);
                 i++;
-                setTimeout(typeWriter, speed);
+                // Spara timeout-ID så vi kan avbryta den
+                typingTimeout = setTimeout(typeWriter, speed);
             } else {
                 // Klar
                 element.classList.remove("typing-effect");
-                isTyping = false;
+                typingTimeout = null;
+                
+                // Om detta är det sista anropet i kedjan (ingen callback), återställ 'isTyping'
+                if (!callback) {
+                    isTyping = false;
+                }
+                
+                // Kör nästa funktion i kedjan (om det finns en)
+                if (callback) {
+                    callback(); 
+                }
             }
         }
         
-        // Starta effekten
-        setTimeout(typeWriter, speed);
+        setTimeout(typeWriter, speed); // Starta den första iterationen
     }
 
 
     // --- 9. Initiering & Händelselyssnare ---
 
-    /**
-     * Binder alla händelselyssnare.
-     */
     function bindEvents() {
         if (dom.themeToggle) {
             dom.themeToggle.addEventListener("click", toggleTheme);
@@ -377,19 +390,12 @@
         });
     }
 
-    /**
-     * Körs när DOM är fullständigt laddad.
-     */
     function init() {
         initTheme();
-        initLanguage(); // Denna funktion startar nu skrivmaskinseffekten
+        initLanguage(); // Denna funktion startar nu skrivmaskinskedjan
         bindEvents();
-        
-        // // ÄNDRING: Denna rad behövs inte längre här!
-        // startTypeEffect(dom.heroH1, 150); 
     }
 
-    // Kör initieringen
     document.addEventListener("DOMContentLoaded", init);
 
 })();
