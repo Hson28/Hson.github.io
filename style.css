@@ -1,373 +1,420 @@
 /* --- Globala Stilar --- */
 :root {
-    --bg-color: #1a1a1d;
-    --primary-text: #e0e0e0;
-    --accent-color: #4682B4; /* Byt till en modernare blå, t.ex. #007bff eller #4A90E2 */
-    --green-accent: #5dcf61; /* Behåll din gröna hover */
-    --card-bg: #2c2c30;
-    --border-color: #444;
+    --bg-color: #1a1a1d;
+    --primary-text: #e0e0e0;
+    --accent-color: #4682B4; /* Byt till en modernare blå, t.ex. #007bff eller #4A90E2 */
+    --green-accent: #5dcf61; /* Behåll din gröna hover */
+    --card-bg: #2c2c30;
+    --border-color: #444;
 }
 
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 /* NYTT: Mjuk scroll-beteende */
 html {
-    scroll-behavior: smooth;
+    scroll-behavior: smooth;
 }
 
 body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: var(--bg-color);
-    color: var(--primary-text);
-    line-height: 1.6;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--primary-text);
+    line-height: 1.6;
 }
 
 /* --- Navigation --- */
 header {
-    background-color: var(--card-bg);
-    border-bottom: 2px solid var(--border-color);
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    width: 100%;
-    z-index: 100;
+    background-color: var(--card-bg);
+    border-bottom: 2px solid var(--border-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }
 
 nav {
-    max-width: 1000px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 1rem;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
 }
 
 .nav-logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--accent-color);
-    text-decoration: none;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
 }
 
 .nav-links {
-    list-style: none;
-    display: flex;
+    list-style: none;
+    display: flex;
 }
 
 .nav-links li {
-    margin-left: 2rem;
+    margin-left: 2rem;
 }
 
 .nav-links a {
-    text-decoration: none;
-    color: var(--primary-text);
-    font-weight: bold;
-    transition: color 0.3s ease;
-    padding: 0.5rem 0; /* NYTT: Ger mer klickyta */
-    position: relative; /* NYTT: För hover-effekt */
+    text-decoration: none;
+    color: var(--primary-text);
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0; /* NYTT: Ger mer klickyta */
+    position: relative; /* NYTT: För hover-effekt */
 }
 
 /* NYTT: Avancerad hover-effekt för nav-länkar */
 .nav-links a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: var(--accent-color);
-    transform: scaleX(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease-out;
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
 }
 
 .nav-links a:hover::after,
-.nav-links a.active::after { /* NYTT: .active-klass */
-    transform: scaleX(1);
-    transform-origin: bottom left;
+.nav-links a.active::after,
+.nav-links a:focus-visible::after { /* NYTT: Lade till focus-visible */
+    transform: scaleX(1);
+    transform-origin: bottom left;
 }
 
 .nav-links a:hover,
-.nav-links a.active { /* NYTT: .active-klass */
-    color: var(--accent-color);
+.nav-links a.active,
+.nav-links a:focus-visible { /* NYTT: Lade till focus-visible */
+    color: var(--accent-color);
+    outline: none; /* Ta bort ful standard-outline */
 }
 
 /* NYTT: Styling för hamburgarknapp (dold på desktop) */
 .nav-toggle {
-    display: none;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0.5rem;
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
 }
 
 .hamburger {
-    display: block;
-    position: relative;
-    width: 25px;
-    height: 3px;
-    background-color: var(--primary-text);
-    transition: all 0.3s ease;
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-text);
+    transition: all 0.3s ease;
 }
 
 .hamburger::before,
 .hamburger::after {
-    content: '';
-    position: absolute;
-    width: 25px;
-    height: 3px;
-    background-color: var(--primary-text);
-    left: 0;
-    transition: all 0.3s ease;
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-text);
+    left: 0;
+    transition: all 0.3s ease;
 }
 
 .hamburger::before {
-    top: -8px;
+    top: -8px;
 }
 
 .hamburger::after {
-    bottom: -8px;
+    bottom: -8px;
 }
 
 /* --- Huvudinnehåll --- */
 main {
-    max-width: 1000px;
-    margin: 2rem auto;
-    padding: 0 1rem;
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
 }
 
 section {
-    padding: 3rem 0;
-    border-bottom: 1px solid var(--border-color);
+    padding: 3rem 0;
+    border-bottom: 1px solid var(--border-color);
 }
 
 section:last-of-type {
-    border-bottom: none;
+    border-bottom: none;
 }
 
 /* NYTT: Animation för infädning vid scroll */
 .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .fade-in.is-visible {
-    opacity: 1;
-    transform: translateY(0);
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
 h1, h2, h3 {
-    color: var(--primary-text);
-    margin-bottom: 1.5rem;
+    color: var(--primary-text);
+    margin-bottom: 1.5rem;
 }
 
 h1 {
-    font-size: 3rem;
-    color: var(--accent-color);
+    font-size: 3rem;
+    color: var(--accent-color);
 }
 
 h2 {
-    font-size: 2.2rem;
-    border-bottom: 2px solid var(--accent-color);
-    padding-bottom: 0.5rem;
-    display: inline-block;
+    font-size: 2.2rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    display: inline-block;
 }
 
 p {
-    margin-bottom: 1rem;
-    max-width: 75ch;
+    margin-bottom: 1rem;
+    max-width: 75ch;
+}
+
+/* NYTT: Stil för underrubrik (tidigare inline) */
+.hero-subtitle {
+    font-size: 1.3rem;
+    font-style: italic;
 }
 
 /* --- Knappar & Länkar --- */
 .cta-knapp {
-    display: inline-block;
-    background-color: var(--accent-color);
-    color: #1a1a1d;
-    padding: 0.75rem 1.5rem;
-    text-decoration: none;
-    font-weight: bold;
-    border-radius: 5px;
-    margin-top: 1rem;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* NYTT: Box-shadow */
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #1a1a1d;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.cta-knapp:hover {
-    background-color: var(--green-accent);
-    transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(93, 207, 97, 0.3); /* NYTT: Lägg till skugga */
+.cta-knapp:hover,
+.cta-knapp:focus-visible { /* NYTT: Lade till focus-visible */
+    background-color: var(--green-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(93, 207, 97, 0.3);
 }
 
 a {
-    color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 /* --- Sektion: Kompetenser --- */
 .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* NYTT: Lite bredare kort */
-    gap: 1.5rem;
-    margin-top: 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
 .skill-category {
-    background-color: var(--card-bg);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* NYTT */
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* NYTT: Hover-effekt för kompetenskort */
-.skill-category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+.skill-category:hover,
+.skill-category:focus-visible { /* NYTT: Lade till focus-visible */
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 
 .skill-category h3 {
-    color: var(--accent-color);
-    margin-bottom: 1rem;
+    color: var(--accent-color);
+    margin-bottom: 1rem;
 }
 
 .skill-category ul {
-    list-style: none;
+    list-style: none;
 }
 
 .skill-category li {
-    margin-bottom: 0.5rem;
-    position: relative;
-    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
 }
 
 .skill-category li::before {
-    content: '✓';
-    position: absolute;
-    left: 0;
-    color: var(--accent-color);
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
 }
 
 /* --- Sektion: Projekt --- */
 .project-card {
-    background-color: var(--card-bg);
-    padding: 2rem;
-    border-radius: 8px;
-    margin-bottom: 2rem;
-    border: 1px solid var(--border-color);
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* NYTT: Transform */
+    background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.project-card:hover {
-    transform: translateY(-5px); /* NYTT: "Lyft"-effekt */
-    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4); /* NYTT: Starkare skugga */
+.project-card:hover,
+.project-card:focus-visible { /* NYTT: Lade till focus-visible */
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
 }
 
 .project-card h3 {
-    color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 /* --- Sektion: Kontakt --- */
 .contact-links {
-    list-style: none;
-    padding: 0;
+    list-style: none;
+    padding: 0;
 }
 
 .contact-links li {
-    margin-bottom: 1rem;
-    font-size: 1.2rem;
-    display: flex; /* NYTT: För ikoner */
-    align-items: center; /* NYTT: För ikoner */
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
 }
 
-/* NYTT: Styling för SVG-ikoner */
 .contact-links svg {
-    width: 24px;
-    height: 24px;
-    margin-right: 12px;
-    fill: var(--primary-text);
-    transition: fill 0.3s ease;
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    fill: var(--primary-text);
+    transition: fill 0.3s ease;
 }
 
 .contact-links a {
-    text-decoration: none;
-    font-weight: bold;
-    transition: color 0.3s ease;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
-/* NYTT: Ändra färg på både text och ikon vid hover */
-.contact-links a:hover {
-    color: var(--green-accent);
+.contact-links a:hover,
+.contact-links a:focus-visible { /* NYTT: Lade till focus-visible */
+    color: var(--green-accent);
 }
-.contact-links a:hover svg {
-    fill: var(--green-accent);
+
+/* NYTT: Ändra färg på både text och ikon */
+.contact-links a:hover svg,
+.contact-links a:focus-visible svg {
+    fill: var(--green-accent);
 }
 
 
 /* --- Sidfot --- */
 footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    margin-top: 2rem;
-    color: #888;
-    border-top: 1px solid var(--border-color);
+    text-align: center;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
+    color: #888;
+    border-top: 1px solid var(--border-color);
 }
+
+/* --- NYTT: CSS FÖR SKRIVMASKIN-EFFEKT --- */
+#hero-title {
+    display: inline-block; /* Annars hamnar cursorn på ny rad */
+    position: relative;
+    min-height: 3.2rem; /* Förhindra att sidan "hoppar" när texten tas bort */
+}
+
+/* Cursorn som blinkar */
+.typing-cursor {
+    display: inline-block;
+    width: 10px; 
+    height: 3rem; /* Bör matcha h1:s ungefärliga storlek */
+    background-color: var(--accent-color);
+    margin-left: 8px;
+    animation: blink 0.7s infinite;
+    position: relative; 
+    bottom: -6px; /* Justera vertikalt */
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
 
 /* --- Mobilanpassning --- */
 @media (max-width: 700px) {
-    h1 {
-        font-size: 2.5rem;
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    /* NYTT: Justera cursor för mindre rubrik */
+    .typing-cursor {
+        height: 2.5rem;
+        bottom: -4px;
     }
-    h2 {
-        font-size: 1.8rem;
+    #hero-title {
+        min-height: 2.7rem;
     }
 
-    /* NYTT: Regler för mobilmeny */
-    .nav-toggle {
-        display: block; /* Visa hamburgarknappen */
-        z-index: 1001; /* Se till att den är överst */
-    }
+    /* NYTT: Regler för mobilmeny */
+    .nav-toggle {
+        display: block; /* Visa hamburgarknappen */
+        z-index: 1001; /* Se till att den är överst */
+    }
 
-    .nav-links {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
-        position: fixed;
-        top: 0;
-        right: -100%; /* Börja utanför skärmen */
-        width: 100%;
-        height: 100vh;
-        
-        background-color: var(--card-bg);
-        transition: right 0.4s ease-in-out;
-    }
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        position: fixed;
+        top: 0;
+        right: -100%; /* Börja utanför skärmen */
+        width: 100%;
+        height: 100vh;
+        
+        background-color: var(--card-bg);
+        transition: right 0.4s ease-in-out;
+    }
 
-    .nav-links.nav-open { /* Klassen som JS lägger till */
-        right: 0;
-    }
+    .nav-links.nav-open { /* Klassen som JS lägger till */
+        right: 0;
+    }
 
-    .nav-links li {
-        margin: 1.5rem 0;
-    }
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
 
-    .nav-links a {
-        font-size: 1.5rem;
-    }
-    
-    /* NYTT: Animera hamburgare till ett "X" */
-    .nav-open .hamburger {
-        background-color: transparent; /* Mellersta linjen försvinner */
-    }
-    .nav-open .hamburger::before {
-        transform: rotate(45deg) translate(5px, 8px);
-    }
-    .nav-open .hamburger::after {
-        transform: rotate(-45deg) translate(5px, -8px);
-    }
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+    
+    /* NYTT: Animera hamburgare till ett "X" */
+    .nav-open .hamburger {
+        background-color: transparent; /* Mellersta linjen försvinner */
+    }
+    .nav-open .hamburger::before {
+        transform: rotate(45deg) translate(5px, 8px);
+    }
+    .nav-open .hamburger::after {
+        transform: rotate(-45deg) translate(5px, -8px);
+    }
 }
