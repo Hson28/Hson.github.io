@@ -198,10 +198,11 @@ img {
         animation: none !important;
     }
 
-    /* NY REGEL: Stänger av fade-in för kort */
+    /* Stänger av fade-in för kort */
     .project-card {
         opacity: 1 !important;
         transform: translateY(0) !important;
+        transition-delay: 0ms !important;
     }
 }
 
@@ -352,10 +353,19 @@ img {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-text);
+    text-decoration: none; /* Säkerställ att ingen understrykning finns från start */
+    transition: color var(--transition-fast);
 }
-.nav-link:hover {
+
+/* --- UPPDATERADE/NYA REGLER FÖR SCROLLSPY --- */
+.nav-link:hover,
+.nav-link.is-active {
     color: var(--color-primary);
+    text-decoration: underline;
+    text-underline-offset: 4px;
 }
+/* --- SLUT PÅ UPPDATERING --- */
+
 
 /* Tema- och Språkväxlare */
 .header-toggles {
@@ -531,16 +541,17 @@ section:nth-of-type(odd) {
     box-shadow: var(--shadow-md);
     overflow: hidden;
     
-    /* --- NYA/UPPDATERADE RADER FÖR FADE-IN --- */
+    /* --- FADE-IN STILAR --- */
     opacity: 0; /* Startar som osynlig */
     transform: translateY(20px); /* Startar 20px längre ner */
-    /* Uppdaterad transition för att inkludera opacity och transform */
+    
+    /* Notera: transition-delay läggs till via JS */
     transition: opacity 0.6s ease-out, 
                 transform 0.6s ease-out, 
                 box-shadow var(--transition-fast);
 }
 
-/* NY REGEL: Denna klass läggs till av JavaScript när kortet är synligt */
+/* Denna klass läggs till av JavaScript när kortet är synligt */
 .project-card.is-visible {
     opacity: 1;
     transform: translateY(0);
