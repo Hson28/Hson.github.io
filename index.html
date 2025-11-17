@@ -1,448 +1,150 @@
 <!DOCTYPE html>
-<html lang="sv" data-theme="light">
+<html lang="sv">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ditt Namn - Student IT-säkerhetsspecialist</title>
-    
-    <!-- 
-      INSTRUKTIONER FÖR REDIGERING:
-      1. Sök och ersätt "Ditt Namn" med ditt riktiga namn.
-      2. Uppdatera <meta name="description"> med din personliga pitch.
-      3. Länka till din egen profilbild (sök efter: "profile-image-placeholder").
-      4. Fyll i dina projekt i <section id="projects">.
-      5. Fyll i din erfarenhet i <section id="resume">.
-      6. Uppdatera din e-post i <section id="contact"> (både i mailto-länken och formulärets action-attribut).
-      7. Uppdatera dina sociala länkar (GitHub, LinkedIn).
-
-      PUBLICERING PÅ GITHUB PAGES:
-      1. Se till att denna fil heter "index.html".
-      2. Skapa ett nytt repo på GitHub.
-      3. Ladda upp index.html, style.css, och script.js till repot.
-      4. Gå till repots "Settings" -> "Pages".
-      5. Välj "main" (eller "master") branchen som källa och spara.
-      6. Din sida kommer att vara live på: https://[ditt-användarnamn].github.io/[repo-namn]/
-    -->
-
-    <!-- SEO & Metadata -->
-    <meta name="description" content="Portfölj för [Ditt Namn], en driven student inom IT-säkerhet med fokus på nätverk, Linux och penetrationstestning.">
-    <meta property="og:title" content="Ditt Namn - Portfölj IT-säkerhet">
-    <meta property="og:description" content="Se mina projekt, färdigheter och erfarenheter inom cybersäkerhet.">
+    <meta name="description" content="Portföljsida för en student i IT-säkerhet, visar projekt, färdigheter och erfarenhet.">
+    <meta property="og:title" content="NAME - IT-Säkerhetsstudent">
+    <meta property="og:description" content="Utforska min portfölj inom IT-säkerhet, inklusive projekt och färdigheter.">
+    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Portfolio+Image">
     <meta property="og:type" content="website">
-    <!-- <meta property="og:image" content="url/till/din/og-bild.png"> -->
-
-    <!-- Favicon (Exempel - ersätt med dina egna) -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛡️</text></svg>">
-
-    <!-- Typsnitt: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    
-    <!-- Ikoner: Feather Icons -->
-    <script src="https://unpkg.com/feather-icons"></script>
-
-    <!-- CSS -->
+    <title>NAME - IT-Säkerhetsstudent</title>
     <link rel="stylesheet" href="style.css">
-
-    <!-- JavaScript (laddas efter HTML-tolkning) -->
-    <script src="script.js" defer></script>
+    <!-- Preconnect för font om nödvändigt, men använder systemfont för prestanda -->
 </head>
 <body>
-
-    <!-- Preloader / Laddningsskärm -->
-    <div class="preloader" id="preloader">
-        <div class="spinner"></div>
-    </div>
-
-    <!-- Header med navigation -->
-    <header class="site-header">
-        <div class="container">
-            <a href="#hero" class="logo" aria-label="Till toppen av sidan">Ditt Namn</a>
-            
-            <button class="mobile-nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
-                <span class="sr-only">Meny</span>
-                <i data-feather="menu" class="icon-menu" aria-hidden="true"></i>
-                <i data-feather="x" class="icon-close" aria-hidden="true"></i>
-            </button>
-
-            <nav class="primary-navigation" id="primary-navigation">
-                <ul class="nav-list">
-                    <li><a href="#about" class="nav-link">Om mig</a></li>
-                    <li><a href="#skills" class="nav-link">Färdigheter</a></li>
-                    <li><a href="#projects" class="nav-link">Projekt</a></li>
-                    <li><a href="#resume" class="nav-link">Erfarenhet</a></li>
-                    <li><a href="#contact" class="nav-link">Kontakt</a></li>
-                </ul>
-            </nav>
-
-            <button class="theme-toggle" id="theme-toggle" aria-label="Växla mörkt/ljust läge">
-                <i data-feather="moon" class="icon-moon" aria-hidden="true"></i>
-                <i data-feather="sun" class="icon-sun" aria-hidden="true"></i>
-            </button>
-        </div>
-    </header>
-
-    <main id="main-content">
-
-        <!-- Hero-sektion -->
-        <section id="hero" class="hero-section text-center">
-            <div class="container flow">
-                <h1 class="hero-title">Ditt Namn</h1>
-                <p class="hero-subtitle">Student inom IT-säkerhetsspecialist</p>
-                <p class="hero-pitch">
-                    En analytisk och nyfiken problemlösare som studerar för att skydda digital infrastruktur. Jag brinner för nätverkssäkerhet, säker skripting och etisk hacking.
-                </p>
-                <a href="#projects" class="btn btn-primary">Se mina projekt</a>
-            </div>
-        </section>
-
-        <!-- Om mig -->
-        <section id="about" class="about-section scroll-reveal">
-            <div class="container grid-cols-2">
-                <div class="about-image-wrapper">
-                    <!-- Ersätt med din riktiga bild -->
-                    <img 
-                        src="https://placehold.co/600x600/0070f3/white?text=Ditt+Foto&font=inter" 
-                        alt="Porträttbild av Ditt Namn" 
-                        class="profile-image-placeholder"
-                        loading="lazy">
-                </div>
-                <div class="about-content flow">
-                    <h2 class="section-title">Om mig</h2>
-                    <p>
-                        Hej! Jag är [Ditt Namn], och jag studerar för närvarande till IT-säkerhetsspecialist vid [Din Skola/YH-utbildning]. Mitt intresse för IT började med att bygga datorer och växte snabbt till en fascination för hur nätverk fungerar – och hur de kan säkras.
-                    </p>
-                    <p>
-                        Just nu fördjupar jag mig i penetrationstestning och säkerhetsarkitektur. På fritiden bygger jag hemmalabb, experimenterar med virtuella maskiner och bidrar till open source-säkerhetsprojekt.
-                    </p>
-                    <h3 class="subsection-title">Relevanta certifikat & kurser</h3>
-                    <ul class="certificates-list">
-                        <li><i data-feather="award" aria-hidden="true"></i> Cisco NetAcad: CCNAv7 (Pågående)</li>
-                        <li><i data-feather="award" aria-hidden="true"></i> TryHackMe: CompTIA PenTest+ Path (Slutförd)</li>
-                        <li><i data-feather="award" aria-hidden="true"></i> [Annan Kurs/Cert, t.ex. Security+]</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-
-        <!-- Färdigheter -->
-        <section id="skills" class="skills-section scroll-reveal">
-            <div class="container text-center flow">
-                <h2 class="section-title">Tekniska färdigheter</h2>
-                <p class="section-subtitle">Några av de verktyg och tekniker jag arbetar med dagligen.</p>
-                <div class="skills-grid">
-                    <div class="skill-badge" data-level="advanced">
-                        <i data-feather="terminal" aria-hidden="true"></i>
-                        <span>Linux (Debian/RHEL)</span>
-                    </div>
-                    <div class="skill-badge" data-level="advanced">
-                        <i data-feather="shield" aria-hidden="true"></i>
-                        <span>SELinux & AppArmor</span>
-                    </div>
-                    <div class="skill-badge" data-level="intermediate">
-                        <i data-feather="git-branch" aria-hidden="true"></i>
-                        <span>Nätverksanalys (Wireshark)</span>
-                    </div>
-                    <div class="skill-badge" data-level="intermediate">
-                        <i data-feather="code" aria-hidden="true"></i>
-                        <span>Scripting (Bash & Python)</span>
-                    </div>
-                    <div class="skill-badge" data-level="intermediate">
-                        <i data-feather="target" aria-hidden="true"></i>
-                        <span>Penetrationstestning (Metasploit, Nmap)</span>
-                    </div>
-                    <div class="skill-badge" data-level="beginner">
-                        <i data-feather="database" aria-hidden="true"></i>
-                        <span>Säker konfiguration (Docker, K8s)</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Projekt -->
-        <section id="projects" class="projects-section scroll-reveal">
-            <div class="container flow">
-                <h2 class="section-title text-center">Utvalda projekt</h2>
-                <div class="projects-grid">
-
-                    <!-- Projekt 1 -->
-                    <div class="project-card">
-                        <div class="project-card-content">
-                            <h3 class="project-title">Säkert Hemmanätverk (Homelab)</h3>
-                            <p class="project-description">
-                                Design och implementation av ett segmenterat hemnätverk med brandvägg (pfSense), VLAN och IDS/IPS (Suricata) för att isolera IoT-enheter.
-                            </p>
-                            <ul class="tech-stack">
-                                <li>pfSense</li>
-                                <li>VLAN</li>
-                                <li>Suricata</li>
-                                <li>OpenVPN</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/ditt-anvandarnamn/repo-1" class="project-link" target="_blank" rel="noopener noreferrer">
-                                    <i data-feather="github" aria-hidden="true"></i> GitHub Repo
-                                </a>
-                                <button class="project-link as-button" data-modal-target="modal-project-1">
-                                    <i data-feather="eye" aria-hidden="true"></i> Läs mer
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Projekt 2 -->
-                    <div class="project-card">
-                        <div class="project-card-content">
-                            <h3 class="project-title">Automatiserad Logganalys</h3>
-                            <p class="project-description">
-                                Ett Python-skript som parsar brandväggsloggar, identifierar misstänkta mönster (t.ex. port-scanning) och skickar varningar via en Discord-webhook.
-                            </p>
-                            <ul class="tech-stack">
-                                <li>Python</li>
-                                <li>Regex</li>
-                                <li>Discord API</li>
-                                <li>Cronjob</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/ditt-anvandarnamn/repo-2" class="project-link" target="_blank" rel="noopener noreferrer">
-                                    <i data-feather="github" aria-hidden="true"></i> GitHub Repo
-                                </a>
-                                <button class="project-link as-button" data-modal-target="modal-project-2">
-                                    <i data-feather="eye" aria-hidden="true"></i> Läs mer
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Projekt 3 -->
-                    <div class="project-card">
-                        <div class="project-card-content">
-                            <h3 class="project-title">CTF Writeups (TryHackMe)</h3>
-                            <p class="project-description">
-                                Detaljerade "writeups" och lösningsguider för olika "Capture The Flag"-utmaningar, med fokus på metodik (från recon till privilegieeskalering).
-                            </p>
-                            <ul class="tech-stack">
-                                <li>Nmap</li>
-                                <li>Metasploit</li>
-                                <li>Burp Suite</li>
-                                <li>Reverse Shells</li>
-                            </ul>
-                            <div class="project-links">
-                                <a href="https://github.com/ditt-anvandarnamn/repo-3" class="project-link" target="_blank" rel="noopener noreferrer">
-                                    <i data-feather="github" aria-hidden="true"></i> GitHub Repo
-                                </a>
-                                <button class="project-link as-button" data-modal-target="modal-project-3">
-                                    <i data-feather="eye" aria-hidden="true"></i> Läs mer
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Erfarenhet / CV -->
-        <section id="resume" class="resume-section scroll-reveal">
-            <div class="container">
-                <h2 class="section-title text-center">Meriter och erfarenhet</h2>
-                <div class="timeline">
-                    
-                    <!-- Utbildning -->
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i data-feather="book-open" aria-hidden="true"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2023 – Pågående</span>
-                            <h3 class="timeline-title">IT-säkerhetsspecialist (YH)</h3>
-                            <p class="timeline-subtitle">[Namn på din skola], [Ort]</p>
-                            <p>
-                                Intensivutbildning med fokus på defensiv och offensiv säkerhet. Relevanta kurser: Nätverkssäkerhet, Linux-administration, Penetrationstestning, Incidenthantering.
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Tidigare roll -->
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i data-feather="briefcase" aria-hidden="true"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2020 – 2023</span>
-                            <h3 class="timeline-title">[Tidigare Jobbtitel, t.ex. IT-support]</h3>
-                            <p class="timeline-subtitle">[Företagsnamn], [Ort]</p>
-                            <p>
-                                Ansvarade för [ditt främsta ansvar]. Arbetade med [några tekniker/system, t.ex. Active Directory, felsökning av nätverk].
-                            </p>
-                        </div>
-                    </div>
-                    
-                    <!-- Annan relevant merit -->
-                    <div class="timeline-item">
-                        <div class="timeline-icon">
-                            <i data-feather="star" aria-hidden="true"></i>
-                        </div>
-                        <div class="timeline-content">
-                            <span class="timeline-date">2022</span>
-                            <h3 class="timeline-title">Volontärarbete / Eget projekt</h3>
-                            <p class="timeline-subtitle">[Beskrivning]</p>
-                            <p>
-                                [T.ex. Hjälpte en lokal förening att säkra sitt Wi-Fi och implementera en backup-strategi.]
-                            </p>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Kontakt -->
-        <section id="contact" class="contact-section scroll-reveal">
-            <div class="container">
-                <h2 class="section-title text-center">Kontakta mig</h2>
-                <p class="section-subtitle text-center">
-                    Jag letar alltid efter LIA-plats eller intressanta projekt. Skicka ett meddelande!
-                </p>
-
-                <div class="contact-grid">
-                    <form 
-                        id="contact-form" 
-                        class="contact-form flow" 
-                        action="mailto:ditt.namn@exempel.com" 
-                        method="POST" 
-                        enctype="text/plain"
-                    >
-                        <!-- 
-                            Formuläret använder mailto: som en fallback (om JS är avstängt).
-                            script.js kommer att fånga upp "submit", validera, och visa ett
-                            bekräftelsemeddelande istället för att öppna mail-klienten.
-                        -->
-                        <div class="form-group">
-                            <label for="name">Namn</label>
-                            <input type="text" id="name" name="name" required autocomplete="name">
-                            <div class="error-message" aria-live="polite"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="email">E-post</label>
-                            <input type="email" id="email" name="email" required autocomplete="email">
-                            <div class="error-message" aria-live="polite"></div>
-                        </div>
-                        <div class="form-group">
-                            <label for="message">Meddelande</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
-                            <div class="error-message" aria-live="polite"></div>
-                        </div>
-                        <button type="submit" class="btn btn-primary" id="submit-button">
-                            Skicka meddelande
-                        </button>
-                        <div id="form-status" aria-live="polite"></div>
-                    </form>
-
-                    <div class="contact-info">
-                        <h3>Eller nå mig här:</h3>
-                        <p>
-                            <a href="mailto:ditt.namn@exempel.com" class="contact-link">
-                                <i data-feather="mail" aria-hidden="true"></i> ditt.namn@exempel.com
-                            </a>
-                        </p>
-                        <div class="social-links">
-                            <a href="https://github.com/ditt-anvandarnamn" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Min GitHub-profil">
-                                <i data-feather="github"></i>
-                            </a>
-                            <a href="https://linkedin.com/in/ditt-anvandarnamn" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Min LinkedIn-profil">
-                                <i data-feather="linkedin"></i>
-                            </a>
-                            <!-- <a href="https://tryhackme.com/p/ditt-anvandarnamn" class="social-icon" target="_blank" rel="noopener noreferrer" aria-label="Min TryHackMe-profil">
-                                <i data-feather="shield"></i>
-                            </a> -->
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Sidfot -->
-    <footer class="site-footer">
-        <div class="container footer-grid">
-            <div class="footer-col">
-                <p>&copy; 2025 Ditt Namn. Alla rättigheter förbehållna.</p>
-            </div>
-            <nav class="footer-nav">
-                <ul>
+    <a href="#main" class="skip-link">Hoppa till huvudinnehåll</a>
+    <header>
+        <nav>
+            <div class="nav-container">
+                <a href="#hero" class="logo">NAME</a>
+                <button class="menu-toggle" aria-label="Öppna meny" aria-expanded="false">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+                <ul class="nav-menu">
+                    <li><a href="#hero">Hem</a></li>
                     <li><a href="#about">Om mig</a></li>
                     <li><a href="#projects">Projekt</a></li>
+                    <li><a href="#skills">Färdigheter</a></li>
+                    <li><a href="#experience">Erfarenhet</a></li>
                     <li><a href="#contact">Kontakt</a></li>
                 </ul>
-            </nav>
-            <div class="footer-col text-right">
-                <a href="https://github.com/ditt-anvandarnamn/ditt-repo" target="_blank" rel="noopener noreferrer">
-                    View on GitHub <i data-feather="github" aria-hidden="true"></i>
-                </a>
+                <button class="theme-toggle" aria-label="Växla tema">🌙</button>
             </div>
+        </nav>
+    </header>
+    <main id="main">
+        <section id="hero" class="hero">
+            <div class="hero-content">
+                <h1>NAME</h1>
+                <p class="title">Student i IT-Säkerhet</p>
+                <p class="pitch">Passionerad för cybersäkerhet, med fokus på att skydda digitala tillgångar genom innovativa lösningar.</p>
+                <a href="#contact" class="cta-button">Kontakta mig</a>
+            </div>
+            <img src="https://via.placeholder.com/400x400?text=Profile+Image" alt="Profilbild av NAME" srcset="https://via.placeholder.com/200x200?text=Profile+Image 200w, https://via.placeholder.com/400x400?text=Profile+Image 400w" loading="lazy">
+        </section>
+        <section id="about" class="about fade-in">
+            <h2>Om mig</h2>
+            <p>Kort bio: Jag är en student i IT-säkerhet med intresse för nätverkssäkerhet och kryptering. Jag har erfarenhet av praktiska projekt och söker möjligheter att växa inom branschen.</p>
+            <ul class="key-skills">
+                <li>Nätverkssäkerhet</li>
+                <li>Kryptering</li>
+                <li>Incidenthantering</li>
+            </ul>
+        </section>
+        <section id="projects" class="projects fade-in">
+            <h2>Projekt</h2>
+            <div class="projects-grid">
+                <article class="project-card">
+                    <h3>Projekt 1: Säker VPN-Setup</h3>
+                    <p>Kort beskrivning: Implementerade en säker VPN-lösning med OpenVPN för små företag.</p>
+                    <p>Teknologier: OpenVPN, Linux, Bash</p>
+                    <a href="https://github.com/example/project1" target="_blank">Se projekt</a>
+                </article>
+                <article class="project-card">
+                    <h3>Projekt 2: Penetrationstest</h3>
+                    <p>Kort beskrivning: Utförde penetrationstest på en webbapplikation med hjälp av Kali Linux.</p>
+                    <p>Teknologier: Kali Linux, Metasploit, Burp Suite</p>
+                    <a href="https://github.com/example/project2" target="_blank">Se projekt</a>
+                </article>
+                <article class="project-card">
+                    <h3>Projekt 3: Krypteringsverktyg</h3>
+                    <p>Kort beskrivning: Byggde ett enkelt krypteringsverktyg i Python för filskydd.</p>
+                    <p>Teknologier: Python, Cryptography Library</p>
+                    <a href="https://github.com/example/project3" target="_blank">Se projekt</a>
+                </article>
+            </div>
+            <button class="load-more" aria-label="Ladda fler projekt">Ladda fler projekt</button>
+        </section>
+        <section id="skills" class="skills fade-in">
+            <h2>Färdigheter</h2>
+            <div class="skills-list">
+                <div class="skill">
+                    <span class="skill-name">Python</span>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 80%;"></div></div>
+                </div>
+                <div class="skill">
+                    <span class="skill-name">Nätverk</span>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 75%;"></div></div>
+                </div>
+                <div class="skill">
+                    <span class="skill-name">Kryptering</span>
+                    <div class="skill-bar"><div class="skill-fill" style="width: 70%;"></div></div>
+                </div>
+            </div>
+        </section>
+        <section id="experience" class="experience fade-in">
+            <h2>Erfarenhet</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h3>2023 - Nu: Studentprojekt</h3>
+                    <p>Arbetade med säkerhetsprojekt på universitetet.</p>
+                </div>
+                <div class="timeline-item">
+                    <h3>2022: Praktik inom IT</h3>
+                    <p>Assisterade i nätverksunderhåll och säkerhetsrevisioner.</p>
+                </div>
+            </div>
+        </section>
+        <section id="contact" class="contact fade-in">
+            <h2>Kontakt</h2>
+            <form id="contact-form">
+                <label for="name">Namn</label>
+                <input type="text" id="name" name="name" required aria-describedby="name-error">
+                <span id="name-error" class="error" role="alert"></span>
+                
+                <label for="email">E-post</label>
+                <input type="email" id="email" name="email" required aria-describedby="email-error">
+                <span id="email-error" class="error" role="alert"></span>
+                
+                <label for="message">Meddelande</label>
+                <textarea id="message" name="message" required aria-describedby="message-error"></textarea>
+                <span id="message-error" class="error" role="alert"></span>
+                
+                <button type="submit">Skicka</button>
+            </form>
+            <button class="copy-email" data-email="example@email.com">Kopiera e-post</button>
+            <!-- Säkerhetsnotering: Detta formulär kräver server-side hantering i produktion. Lägg inte upp känslig data i klientkod. -->
+        </section>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2023 NAME. Alla rättigheter förbehållna.</p>
+            <ul class="social-links">
+                <li><a href="https://linkedin.com/in/example" target="_blank" aria-label="LinkedIn">LinkedIn</a></li>
+                <li><a href="https://github.com/example" target="_blank" aria-label="GitHub">GitHub</a></li>
+            </ul>
         </div>
     </footer>
-
-    <!-- Projekt Modal (Struktur) -->
-    <div class="modal" id="project-modal" aria-hidden="true">
-        <div class="modal-overlay" tabindex="-1" data-modal-close></div>
-        <div class="modal-content" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-            <button class="modal-close" data-modal-close aria-label="Stäng modal">
-                <i data-feather="x" aria-hidden="true"></i>
-            </button>
-            <h2 id="modal-title" class="modal-title">Projekttitel</h2>
-            <div id="modal-body" class="modal-body flow">
-                <!-- Innehåll laddas dynamiskt via JS -->
-            </div>
+    <div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
+        <div class="modal-content">
+            <h3 id="modal-title">Tack!</h3>
+            <p>Ditt meddelande har skickats (simulerat).</p>
+            <button class="close-modal">Stäng</button>
         </div>
     </div>
-
-    <!-- Dummy-innehåll för modaler (gömt) -->
-    <div style="display: none;" id="modal-content-store">
-        <div id="modal-project-1-content">
-            <img src="https://placehold.co/800x400/0070f3/white?text=Projektbild+Nätverk&font=inter" alt="Diagram över hemnätverket" loading="lazy" class="modal-image">
-            <p>Detta projekt startade som ett behov av att säkert kunna experimentera med skadliga program (malware) i en isolerad miljö, samtidigt som jag ville skydda mina IoT-enheter från resten av nätverket.</p>
-            <h4>Teknisk Implementation</h4>
-            <ul>
-                <li><strong>Brandvägg:</strong> Använde pfSense på en dedikerad maskin.</li>
-                <li><strong>Segmentering:</strong> Konfigurerade tre huvudsakliga VLAN: 'Trusted' (mina datorer), 'IoT' (smart-lampor, TV), och 'Lab' (för experiment).</li>
-                <li><strong>Övervakning:</strong> Implementerade Suricata (IDS/IPS) för att övervaka trafik mellan VLAN och upptäcka intrångsförsök.</li>
-                <li><strong>Fjärråtkomst:</strong> Satte upp en OpenVPN-server för säker åtkomst till labbmiljön utifrån.</li>
-            </ul>
-            <h4>Lärdomar</h4>
-            <p>Den största utmaningen var att korrekt konfigurera brandväggsreglerna för att tillåta nödvändig trafik (t.ex. att kunna 'casta' till TV:n) samtidigt som onödig kommunikation blockerades. Detta gav djup insikt i nätverksprotokoll och "zero-trust"-principer.</p>
-        </div>
-        <div id="modal-project-2-content">
-            <img src="https://placehold.co/800x400/0070f3/white?text=Projektbild+Kod&font=inter" alt="Kodavsnitt från Python-skriptet" loading="lazy" class="modal-image">
-            <p>Syftet med detta skript var att automatisera den tråkiga processen att manuellt gå igenom loggfiler från min brandvägg.</p>
-            <h4>Funktionalitet</h4>
-            <ul>
-                <li>Skriptet körs varje timme via ett cronjob.</li>
-                <li>Använder reguljära uttryck (regex) för att extrahera IP, port och timestamp från `syslog`-formaterade loggar.</li>
-                <li>Sammanställer en lista över de mest frekventa "blockerade" IP-adresserna.</li>
-                <li>Om en IP överskrider ett tröskelvärde för anslutningsförsök (t.ex. 100 försök på en minut), formateras en varning.</li>
-                <li>Varningen skickas som ett snyggt inbäddat meddelande till en specifik Discord-kanal via en webhook.</li>
-            </ul>
-            <h4>Lärdomar</h4>
-            <p>Lärde mig mycket om effektiv filhantering och regex i Python. Det var också ett bra tillfälle att arbeta med externa API:er (Discord Webhooks) och förstå vikten av att automatisera repetitiva säkerhetsuppgifter.</p>
-        </div>
-        <div id="modal-project-3-content">
-            <!-- Inget behov av bild för en writeup kanske, eller en screenshot av THM -->
-            <p>Jag dokumenterar regelbundet mina lösningar på TryHackMe (THM) och Hack The Box (HTB) för att befästa mina kunskaper och dela med mig av mina metoder. Dessa "writeups" är inte bara en guide, utan en dagbok över min inlärningsprocess.</p>
-            <h4>Typisk Metodik</h4>
-            <ol>
-                <li><strong>Spaning (Reconnaissance):</strong> Börjar alltid med Nmap för att identifiera öppna portar och tjänster. `nmap -sC -sV -oA nmap/initial [IP]`</li>
-                <li><strong>Enumerering:</strong> Djupdyker i de identifierade tjänsterna. Letar efter webbsidor (Gobuster), SMB-shares (smbclient), eller API-endpoints.</li>
-                <li><strong>Initialt Fotfäste (Initial Foothold):</strong> Utnyttjar en sårbarhet, t.ex. en känd CVE, felkonfiguration eller svaga lösenord, för att få en "reverse shell".</li>
-                <li><strong>Privilegieeskalering (Privilege Escalation):</strong> När jag väl är inne som en lågprivilegierad användare, letar jag efter sätt att bli 'root' eller 'SYSTEM'. Detta involverar ofta att köra skript som `linpeas.sh` eller `winPEAS.exe` för att hitta felkonfigurerade SUID-binärer, sparade lösenord eller sårbara kernel-versioner.</li>
-            </ol>
-            <h4>Lärdomar</h4>
-            <p>CTF:er har lärt mig att tänka kreativt och vara extremt metodisk. Att dokumentera varje steg i en writeup tvingar mig att förstå *varför* ett visst kommando fungerade, inte bara att det gjorde det.</p>
-        </div>
-    </div>
-
+    <script src="script.js"></script>
 </body>
 </html>
