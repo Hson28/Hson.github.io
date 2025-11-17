@@ -104,25 +104,21 @@ const translations = {
     }
 };
 
-// --- NY FUNKTION: Skrivmaskinseffekt ---
-let typewriterTimeout; // Global variabel för att kunna avbryta animationen
+// --- FUNKTION: Skrivmaskinseffekt ---
+let typewriterTimeout; 
 
 function typewriterEffect(element, text, speed = 50) {
-    // Avbryt omedelbart en tidigare pågående skrivning
     clearTimeout(typewriterTimeout);
-
     let i = 0;
-    element.innerHTML = ''; // Rensa texten
-    element.classList.remove('typing-done'); // Ta bort "klar"-klassen
+    element.innerHTML = ''; 
+    element.classList.remove('typing-done'); 
 
     function type() {
         if (i < text.length) {
             element.innerHTML += text.charAt(i);
             i++;
-            // Spara ID:t så vi kan avbryta det om språket byts igen
             typewriterTimeout = setTimeout(type, speed); 
         } else {
-            // Skrivandet är klart
             element.classList.add('typing-done');
         }
     }
@@ -130,32 +126,27 @@ function typewriterEffect(element, text, speed = 50) {
 }
 
 
-// --- 2. Funktion för att byta språk (MODIFIERAD) ---
+// --- Funktion för att byta språk ---
 
 const setLanguage = (lang) => {
-    document.documentElement.lang = lang; // Sätt 'lang' på <html>
+    document.documentElement.lang = lang; 
 
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
         const translation = translations[lang][key];
         
         if (translation) {
-            // --- NY LOGIK ---
-            // Om det är rubriken, kör skrivmaskinseffekten
             if (key === 'hero_title') {
-                // Kör bara effekten om texten faktiskt skiljer sig
                 if (element.textContent !== translation) {
                     typewriterEffect(element, translation);
                 }
             } else {
-                // För alla andra element, uppdatera som vanligt
                 element.innerHTML = translation;
             }
-            // --- SLUT PÅ NY LOGIK ---
         }
     });
 
-    localStorage.setItem('language', lang); // Spara val
+    localStorage.setItem('language', lang); 
 
     document.getElementById('lang-sv').classList.toggle('active-lang', lang === 'sv');
     document.getElementById('lang-en').classList.toggle('active-lang', lang === 'en');
@@ -185,20 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // --- 2. Fade-in på sektioner vid scroll ---
-    const fadeElements = document.querySelectorAll('.fade-in');
-
-    const fadeObserver = new IntersectionObserver((entries, observer) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                observer.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.1
-    });
-    fadeElements.forEach(el => fadeObserver.observe(el));
+    // --- 2. FADE-IN KODEN HAR TAGITS BORT HÄRIFRÅN ---
 
 
     // --- 3. Aktiv nav-länk vid scroll ---
@@ -245,13 +223,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('language') || 'sv';
     setLanguage(savedLang);
 
-});
+    
+    // --- 5. ROBUST KOD FÖR "NO-SCROLL" ---
+    // (Flyttad hit in för att vara säker)
+    const noScrollStyle = document.createElement('style');
+    noScrollStyle.innerHTML = `
+        body.no-scroll {
+            overflow: hidden;
+        }
+    `;
+    document.head.appendChild(noScrollStyle);
 
-// CSS som behövs för 'no-scroll' när menyn är öppen
-const noScrollStyle = document.createElement('style');
-noScrollStyle.innerHTML = `
-    body.no-scroll {
-        overflow: hidden;
-    }
-`;
-document.head.appendChild(noScrollStyle);
+});
