@@ -7,7 +7,8 @@
  * 3. Åtkomstvänlig mobilmeny
  * 4. Mjuk scrollning för ankar-länkar
  * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
- * 6. Fade-in på projektkort vid scroll (IntersectionObserver)
+ * 6. "Staggered" fade-in på projektkort (IntersectionObserver)
+ * 7. "Scrollspy" för aktiv meny-länk (IntersectionObserver)
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -77,12 +78,12 @@
         langToggle: document.querySelector(".lang-toggle"),
         navToggle: document.querySelector(".nav-toggle"),
         navMenu: document.querySelector("#primary-navigation"),
-        navLinks: document.querySelectorAll(".nav-link"),
+        navLinks: document.querySelectorAll(".nav-link"), // Används nu av Scrollspy
         langElements: document.querySelectorAll("[data-lang-key]"),
         anchorLinks: document.querySelectorAll('a[href^="#"]'),
         heroH1: document.querySelector(".hero-text h1"),
         heroTagline: document.querySelector(".hero-tagline"),
-        projectCards: document.querySelectorAll(".project-card") // NY RAD
+        projectCards: document.querySelectorAll(".project-card")
     };
 
     // --- 3. Variabler ---
@@ -335,55 +336,94 @@
     }
 
 
-    // --- 9. Scroll-animation (Fade-in) --- (NY SEKTION)
-
-    /**
-     * Initialiserar en IntersectionObserver för att animera element när de rullar in i vyn.
-     */
+    // --- 9. Scroll-animation (Staggered Fade-in) ---
+    // UPPDATERAD: LÄGGER TILL "STAGGER" (fördröjning)
     function initScrollObserver() {
-        // Kontrollera om IntersectionObserver stöds i webbläsaren
-        if (!('IntersectionObserver' in window)) {
-            // Fallback för äldre webbläsare: visa alla kort direkt
-            dom.projectCards.forEach(card => card.classList.add('is-visible'));
-            return;
-        }
-
-        // Respektera användarens val för minskad rörelse
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) {
+
+        // Fallback för gamla webbläsare eller om användaren vill ha minskad rörelse
+        if (!('IntersectionObserver' in window) || prefersReducedMotion) {
             dom.projectCards.forEach(card => card.classList.add('is-visible'));
             return;
         }
 
         const observerOptions = {
-            root: null, // Använder viewport som "root"
+            root: null, 
             rootMargin: '0px',
-            threshold: 0.1 // Utlös animationen när 10% av kortet är synligt
+            threshold: 0.1 // Utlös när 10% är synligt
         };
 
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
-                // När elementet kommer in i vyn...
                 if (entry.isIntersecting) {
-                    // ...lägg till klassen som gör det synligt...
                     entry.target.classList.add('is-visible');
-                    // ...och sluta sedan observera det för att spara prestanda.
                     observer.unobserve(entry.target);
                 }
             });
         };
 
-        // Skapa observatören
         const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
 
         // Sätt observatören att titta på varje projektkort
-        dom.projectCards.forEach(card => {
+        dom.projectCards.forEach((card, index) => {
+            // --- NY RAD FÖR "STAGGERED" EFFEKT ---
+            // Lägger till en fördröjning (0s, 0.1s, 0.2s, etc.)
+            card.style.transitionDelay = `${index * 100}ms`;
+            // --- SLUT PÅ NY RAD ---
+
             scrollObserver.observe(card);
         });
     }
 
+    
+    // --- 10. Scrollspy (Aktiv meny-länk) --- (NY SEKTION)
+    
+    /**
+     * Initialiserar en IntersectionObserver för att markera aktiv länk i menyn.
+     */
+    function initScrollspy() {
+        if (!('IntersectionObserver' in window)) {
+            return; // Scrollspy är "nice to have", funkar inte i gamla webbläsare
+        }
+        
+        const sections = document.querySelectorAll("main section[id]");
+        
+        const observerOptions = {
+            root: null,
+            // "rootMargin" definierar en horisontell "linje" i mitten av skärmen
+            // -40% från toppen, -60% från botten = en 20% hög zon i mitten
+            rootMargin: "-40% 0px -60% 0px",
+            threshold: 0 // Utlös så fort zonen träffas
+        };
 
-    // --- 10. Initiering & Händelselyssnare --- (Tidigare Sektion 9)
+        const observerCallback = (entries) => {
+            entries.forEach(entry => {
+                // När en sektion träffar vår "linje" i mitten...
+                if (entry.isIntersecting) {
+                    const id = entry.target.getAttribute('id');
+                    const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+
+                    // Rensa alla andra aktiva länkar
+                    dom.navLinks.forEach(link => link.classList.remove('is-active'));
+                    
+                    // Lägg till aktiv klass på den rätta
+                    if (activeLink) {
+                        activeLink.classList.add('is-active');
+                    }
+                }
+            });
+        };
+
+        const scrollspyObserver = new IntersectionObserver(observerCallback, observerOptions);
+
+        // Observera alla sektioner
+        sections.forEach(section => {
+            scrollspyObserver.observe(section);
+        });
+    }
+
+
+    // --- 11. Initiering & Händelselyssnare --- (Tidigare Sektion 10)
 
     function bindEvents() {
         if (dom.themeToggle) {
@@ -415,9 +455,10 @@
 
     function init() {
         initTheme();
-        initLanguage(); // Startar skrivmaskinskedjan
+        initLanguage(); 
         bindEvents();
-        initScrollObserver(); // NY RAD: Startar scroll-observatören
+        initScrollObserver(); // Startar "staggered fade-in"
+        initScrollspy();    // NY RAD: Startar "scrollspy"
     }
 
     document.addEventListener("DOMContentLoaded", init);
