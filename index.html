@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>[Ditt Namn] - Studerande IT-Säkerhetsspecialist</title>
+    <style>
+        /* --- Globala Stilar --- */
+        :root {
+            --bg-color: #1a1a1d; /* Mörk bakgrund */
+            --primary-text: #e0e0e0; /* Ljusgrå text */
+            --accent-color: #4caf50; /* En grön accentfärg */
+            --card-bg: #2c2c30; /* Bakgrund för "kort" */
+            --border-color: #444;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            line-height: 1.6;
+        }
+
+        /* --- Navigation --- */
+        header {
+            background-color: var(--card-bg);
+            border-bottom: 2px solid var(--border-color);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+        }
+
+        nav {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 1rem;
+        }
+
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-text);
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* --- Huvudinnehåll --- */
+        main {
+            max-width: 1000px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            padding: 3rem 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        h1, h2, h3 {
+            color: var(--primary-text);
+            margin-bottom: 1.5rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: var(--accent-color);
+        }
+
+        h2 {
+            font-size: 2.2rem;
+            border-bottom: 2px solid var(--accent-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+
+        p {
+            margin-bottom: 1rem;
+            max-width: 75ch; /* Bra för läsbarhet */
+        }
+
+        /* --- Knappar & Länkar --- */
+        .cta-knapp {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: #1a1a1d;
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            margin-top: 1rem;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+
+        .cta-knapp:hover {
+            background-color: #5dcf61;
+            transform: translateY(-3px);
+        }
+
+        a {
+            color: var(--accent-color);
+        }
+
+        /* --- Sektion: Kompetenser --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .skill-category {
+            background-color: var(--card-bg);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            margin-bottom: 0.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-category li::before {
+            content: '✓'; /* Byt mot '►' eller liknande om du vill */
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* --- Sektion: Projekt --- */
+        .project-card {
+            background-color: var(--card-bg);
+            padding: 2rem;
+            border-radius: 8px;
+            margin-bottom: 2rem;
+            border: 1px solid var(--border-color);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .project-card:hover {
+            box-shadow: 0 0 15px rgba(76, 175, 80, 0.3);
+        }
+
+        .project-card h3 {
+            color: var(--accent-color);
+        }
+
+        /* --- Sektion: Kontakt --- */
+        .contact-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .contact-links li {
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .contact-links a {
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* --- Sidfot --- */
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 2rem;
+            color: #888;
+            border-top: 1px solid var(--border-color);
+        }
+
+        /* --- Mobilanpassning --- */
+        @media (max-width: 700px) {
+            .nav-links {
+                display: none; /* Enkel lösning för nu - du kan lägga till en hamburgermeny senare */
+            }
+
+            h1 {
+                font-size: 2.5rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#startsida" class="nav-logo">[Ditt Namn]</a>
+            <ul class="nav-links">
+                <li><a href="#om-mig">Om Mig</a></li>
+                <li><a href="#kompetenser">Kompetenser</a></li>
+                <li><a href="#projekt">Projekt</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+
+        <section id="startsida">
+            <h1>Hej, jag är [Ditt Namn].</h1>
+            <p style="font-size: 1.3rem; font-style: italic;">Studerande IT-säkerhetsspecialist med passion för att bygga och skydda digitala system.</p>
+            <p>Jag studerar just nu [Ditt program, t.ex. "IT-säkerhet"] på [Din skola] och fokuserar på att utveckla praktiska färdigheter inom nätverkssäkerhet, penetrationstestning och incidenthantering. Jag letar ständigt efter nya utmaningar och möjligheter att tillämpa mina kunskaper i praktiken.</p>
+            <a href="#projekt" class="cta-knapp">Se mina projekt</a>
+        </section>
+
+        <section id="om-mig">
+            <h2>Om Mig</h2>
+            <p>Mitt intresse för IT-säkerhet började när [skriv din korta personliga story, t.ex. "jag insåg hur sårbar vår digitala vardag är"]. Det som driver mig är problemlösningen och den ständiga utmaningen i att ligga steget före hotaktörer.</p>
+            <p>Efter min examen är mitt mål att arbeta som [t.ex. "SOC-analytiker", "Penetrationstestare"] där jag kan fortsätta att lära mig och bidra till en säkrare digital miljö. Jag är särskilt intresserad av molnsäkerhet och incidenthantering.</p>
+            <a href="cv.pdf" class="cta-knapp" target="_blank">Ladda ner mitt CV (PDF)</a>
+        </section>
+
+        <section id="kompetenser">
+            <h2>Kompetenser & Verktyg</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Tekniska Områden</h3>
+                    <ul>
+                        <li>Nätverkssäkerhet (IDS/IPS, VPN)</li>
+                        <li>Penetrationstestning</li>
+                        <li>Incidenthantering & Forensik</li>
+                        <li>Säkerhetsanalys (SIEM)</li>
+                        <li>Sårbarhetsanalys</li>
+                        <li>Molnsäkerhet (Grundläggande)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Verktyg & Plattformar</h3>
+                    <ul>
+                        <li>Kali Linux</li>
+                        <li>Wireshark</li>
+                        <li>Nmap</li>
+                        <li>Burp Suite</li>
+                        <li>Metasploit</li>
+                        <li>Splunk (Grundläggande)</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Språk & Skripting</h3>
+                    <ul>
+                        <li>Python</li>
+                        <li>Bash</li>
+                        <li>PowerShell</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="projekt">
+            <h2>Mina Projekt</h2>
+            <p>Det bästa sättet att lära sig är att bygga (och bryta). Här är några projekt jag arbetat med.</p>
+
+            <article class="project-card">
+                <h3>Projekt 1: Säkert Hemmalabb</h3>
+                <p>Jag har byggt ett segmenterat hemnätverk med pfSense som brandvägg för att isolera IoT-enheter från mitt primära nätverk. Projektet inkluderade uppsättning av VLAN, brandväggsregler och en centraliserad loggserver.</p>
+                <p><strong>Tekniker:</strong> pfSense, VLAN, Suricata (IDS), Syslog.</p>
+            </article>
+
+            <article class="project-card">
+                <h3>Projekt 2: "Capture The Flag" (CTF) Write-ups</h3>
+                <p>Jag deltar aktivt i CTF-tävlingar på plattformar som TryHackMe och Hack The Box. Här har jag samlat mina "write-ups" (genomgångar) för några av de maskiner jag har klarat.</p>
+                <p><strong>Tekniker:</strong> Nmap, Metasploit, Burp Suite, Python.</p>
+                <a href="[LÄNK TILL DIN GITHUB/BLOGG]" target="_blank">Läs mina write-ups här</a>
+            </article>
+
+            <article class="project-card">
+                <h3>Projekt 3: Sårbarhetsanalys (Skolprojekt)</h3>
+                <p>Genomförde en sårbarhetsanalys (enligt OWASP Top 10) av en test-webbapplikation. Identifierade och rapporterade flera sårbarheter, inklusive XSS och SQL-injektion.</p>
+                <p><strong>Tekniker:</strong> OWASP ZAP, Burp Suite, SQLMap.</p>
+            </article>
+        </section>
+
+        <section id="kontakt">
+            <h2>Kontakta mig</h2>
+            <p>Jag är alltid öppen för att diskutera nya möjligheter. Tveka inte att höra av dig!</p>
+            <ul class="contact-links">
+                <li><strong>E-post:</strong> <a href="mailto:din.email@exempel.com">din.email@exempel.com</a></li>
+                <li><strong>LinkedIn:</strong> <a href="[DIN LÄNKEDIN-URL]" target="_blank">linkedin.com/in/[dittnamn]</a></li>
+                <li><strong>GitHub:</strong> <a href="[DIN GITHUB-URL]" target="_blank">github.com/[dittnamn]</a></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2025 [Ditt Namn]. Byggd med HTML, CSS och GitHub Pages.</p>
+    </footer>
+
+</body>
+</html>
