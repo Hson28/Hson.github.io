@@ -1,172 +1,373 @@
-/* ===== GRUNDINSTÄLLNINGAR & VARIABLER ===== */
+/* --- Globala Stilar --- */
 :root {
-    --bg-color: #0a0a0a;       /* Mörk bakgrund */
-    --primary-color: #00ff00;  /* "Hacker-grön" */
-    --text-color: #e0e0e0;     /* Ljusgrå text */
-    --card-bg: #1a1a1a;       /* Bakgrund för kort */
-    --border-color: #333;
-    --font-main: 'Roboto Mono', monospace;
+    --bg-color: #1a1a1d;
+    --primary-text: #e0e0e0;
+    --accent-color: #4682B4; /* Byt till en modernare blå, t.ex. #007bff eller #4A90E2 */
+    --green-accent: #5dcf61; /* Behåll din gröna hover */
+    --card-bg: #2c2c30;
+    --border-color: #444;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* NYTT: Mjuk scroll-beteende */
+html {
+    scroll-behavior: smooth;
 }
 
 body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: var(--bg-color);
-    color: var(--text-color);
-    font-family: var(--font-main);
-    margin: 0;
-    padding: 0;
+    color: var(--primary-text);
     line-height: 1.6;
 }
 
-h1, h2, h3 {
-    color: var(--primary-color);
-    font-weight: 700;
+/* --- Navigation --- */
+header {
+    background-color: var(--card-bg);
+    border-bottom: 2px solid var(--border-color);
+    padding: 1rem 0;
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 100;
 }
 
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--text-color);
-}
-
-section {
-    padding: 60px 20px;
+nav {
     max-width: 1000px;
     margin: 0 auto;
-    border-bottom: 1px solid var(--border-color);
-}
-
-/* ===== HEADER & NAVIGERING ===== */
-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    padding: 0 1rem;
+}
+
+.nav-logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+}
+
+.nav-links li {
+    margin-left: 2rem;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--primary-text);
+    font-weight: bold;
+    transition: color 0.3s ease;
+    padding: 0.5rem 0; /* NYTT: Ger mer klickyta */
+    position: relative; /* NYTT: För hover-effekt */
+}
+
+/* NYTT: Avancerad hover-effekt för nav-länkar */
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent-color);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.nav-links a:hover::after,
+.nav-links a.active::after { /* NYTT: .active-klass */
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.nav-links a:hover,
+.nav-links a.active { /* NYTT: .active-klass */
+    color: var(--accent-color);
+}
+
+/* NYTT: Styling för hamburgarknapp (dold på desktop) */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+}
+
+.hamburger {
+    display: block;
+    position: relative;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-text);
+    transition: all 0.3s ease;
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 3px;
+    background-color: var(--primary-text);
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger::before {
+    top: -8px;
+}
+
+.hamburger::after {
+    bottom: -8px;
+}
+
+/* --- Huvudinnehåll --- */
+main {
+    max-width: 1000px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+section {
+    padding: 3rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
-header .logo {
-    font-size: 1.5em;
-    font-weight: 700;
-    color: var(--primary-color);
+section:last-of-type {
+    border-bottom: none;
 }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
+/* NYTT: Animation för infädning vid scroll */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
-header nav li {
-    margin-left: 20px;
+.fade-in.is-visible {
+    opacity: 1;
+    transform: translateY(0);
 }
 
-.lang-switcher button {
-    background: none;
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-    font-family: var(--font-main);
-    font-size: 1em;
+
+h1, h2, h3 {
+    color: var(--primary-text);
+    margin-bottom: 1.5rem;
 }
 
-.lang-switcher button.active {
-    color: var(--primary-color);
-    font-weight: 700;
+h1 {
+    font-size: 3rem;
+    color: var(--accent-color);
 }
 
-.lang-switcher span {
-    color: var(--border-color);
-}
-
-/* ===== HERO-SEKTION ===== */
-#hero {
-    min-height: 70vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-}
-
-#hero h1 {
-    font-size: 2.5em;
-    margin: 0;
-}
-
-/* ===== "COOL EFFEKT 1": SKRIVMASKIN-EFFEKTEN ===== */
-.typing-effect {
-    font-size: 1.2em;
-    /* Vi använder JS för att ändra texten, men CSS för markören */
+h2 {
+    font-size: 2.2rem;
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
     display: inline-block;
 }
 
-/* Skapar den blinkande markören */
-.typing-cursor {
+p {
+    margin-bottom: 1rem;
+    max-width: 75ch;
+}
+
+/* --- Knappar & Länkar --- */
+.cta-knapp {
     display: inline-block;
-    width: 10px;
-    height: 1.2em;
-    background-color: var(--primary-color);
-    animation: blink 0.7s infinite;
-    margin-left: 5px;
-    position: relative;
-    bottom: -2px;
+    background-color: var(--accent-color);
+    color: #1a1a1d;
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    margin-top: 1rem;
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* NYTT: Box-shadow */
 }
 
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+.cta-knapp:hover {
+    background-color: var(--green-accent);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(93, 207, 97, 0.3); /* NYTT: Lägg till skugga */
 }
 
-/* ===== PROJEKT-SEKTION ===== */
-.project-grid {
+a {
+    color: var(--accent-color);
+}
+
+/* --- Sektion: Kompetenser --- */
+.skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* NYTT: Lite bredare kort */
+    gap: 1.5rem;
+    margin-top: 2rem;
 }
 
+.skill-category {
+    background-color: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* NYTT */
+}
+
+/* NYTT: Hover-effekt för kompetenskort */
+.skill-category:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+
+.skill-category h3 {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+}
+
+.skill-category ul {
+    list-style: none;
+}
+
+.skill-category li {
+    margin-bottom: 0.5rem;
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.skill-category li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* --- Sektion: Projekt --- */
 .project-card {
     background-color: var(--card-bg);
+    padding: 2rem;
+    border-radius: 8px;
+    margin-bottom: 2rem;
     border: 1px solid var(--border-color);
-    padding: 20px;
-    border-radius: 5px;
-    
-    /* ===== "COOL EFFEKT 2": SUBTIL HOVER-EFFEKT ===== */
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease; /* NYTT: Transform */
 }
 
 .project-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 15px rgba(0, 255, 0, 0.1);
+    transform: translateY(-5px); /* NYTT: "Lyft"-effekt */
+    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4); /* NYTT: Starkare skugga */
 }
 
 .project-card h3 {
-    margin-top: 0;
+    color: var(--accent-color);
 }
 
-/* ===== KONTAKT-SEKTION ===== */
+/* --- Sektion: Kontakt --- */
+.contact-links {
+    list-style: none;
+    padding: 0;
+}
+
+.contact-links li {
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    display: flex; /* NYTT: För ikoner */
+    align-items: center; /* NYTT: För ikoner */
+}
+
+/* NYTT: Styling för SVG-ikoner */
+.contact-links svg {
+    width: 24px;
+    height: 24px;
+    margin-right: 12px;
+    fill: var(--primary-text);
+    transition: fill 0.3s ease;
+}
+
 .contact-links a {
-    display: inline-block;
-    margin: 10px 15px 10px 0;
-    font-size: 1.1em;
-    border: 1px solid var(--primary-color);
-    padding: 8px 15px;
-    transition: background-color 0.3s, color 0.3s;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
 }
 
+/* NYTT: Ändra färg på både text och ikon vid hover */
 .contact-links a:hover {
-    background-color: var(--primary-color);
-    color: var(--bg-color);
+    color: var(--green-accent);
+}
+.contact-links a:hover svg {
+    fill: var(--green-accent);
 }
 
-/* ===== SIDFOT ===== */
+
+/* --- Sidfot --- */
 footer {
     text-align: center;
-    padding: 20px;
-    font-size: 0.9em;
+    padding: 2rem 1rem;
+    margin-top: 2rem;
     color: #888;
+    border-top: 1px solid var(--border-color);
+}
+
+/* --- Mobilanpassning --- */
+@media (max-width: 700px) {
+    h1 {
+        font-size: 2.5rem;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    /* NYTT: Regler för mobilmeny */
+    .nav-toggle {
+        display: block; /* Visa hamburgarknappen */
+        z-index: 1001; /* Se till att den är överst */
+    }
+
+    .nav-links {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        position: fixed;
+        top: 0;
+        right: -100%; /* Börja utanför skärmen */
+        width: 100%;
+        height: 100vh;
+        
+        background-color: var(--card-bg);
+        transition: right 0.4s ease-in-out;
+    }
+
+    .nav-links.nav-open { /* Klassen som JS lägger till */
+        right: 0;
+    }
+
+    .nav-links li {
+        margin: 1.5rem 0;
+    }
+
+    .nav-links a {
+        font-size: 1.5rem;
+    }
+    
+    /* NYTT: Animera hamburgare till ett "X" */
+    .nav-open .hamburger {
+        background-color: transparent; /* Mellersta linjen försvinner */
+    }
+    .nav-open .hamburger::before {
+        transform: rotate(45deg) translate(5px, 8px);
+    }
+    .nav-open .hamburger::after {
+        transform: rotate(-45deg) translate(5px, -8px);
+    }
 }
