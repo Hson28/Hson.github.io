@@ -192,6 +192,11 @@ img {
         transition-duration: 0.01ms !important;
         scroll-behavior: auto !important;
     }
+    
+    /* Stäng av blink-animationen specifikt */
+    .typing-effect::after {
+        animation: none !important;
+    }
 }
 
 /* ========================================
@@ -459,6 +464,37 @@ section:nth-of-type(odd) {
     border: 5px solid var(--color-border);
     box-shadow: var(--shadow-md);
 }
+
+/* ========================================
+   SKRIVMASKINSEFFEKT (Typing Effect)
+   ======================================== */
+
+/* Säkerställer att H1-elementet behåller sin höjd även när det är tomt */
+.hero-text h1[data-lang-key="hero_h1"] {
+    min-height: 1.2em; /* 1.2 * font-size (justera vid behov) */
+    position: relative; /* För att ::after ska placeras korrekt */
+}
+
+/* Lägger till en blinkande markör efter texten */
+.typing-effect::after {
+    content: '|'; /* Markören */
+    display: inline-block;
+    margin-left: 0.15em;
+    color: var(--color-text);
+    /* Animation för att blinka */
+    animation: blink 0.7s infinite;
+}
+
+/* Keyframes för blink-animationen */
+@keyframes blink {
+    0%, 100% { 
+        opacity: 1; 
+    }
+    50% { 
+        opacity: 0; 
+    }
+}
+
 
 /* Om-sektion */
 .cert-list {
