@@ -2,6 +2,43 @@
 document.addEventListener('DOMContentLoaded', () => {
 
     /* =============================================
+       NYTT: SKRIVMASKIN-EFFEKT FÖR H1
+    ============================================= */
+    const heroTitle = document.getElementById('hero-title');
+    if (heroTitle) {
+        const textToType = heroTitle.textContent.trim(); // Hämta texten från HTML
+        heroTitle.textContent = ''; // Töm elementet
+
+        // Skapa cursorn och lägg inuti H1
+        const cursor = document.createElement('span');
+        cursor.className = 'typing-cursor';
+        heroTitle.appendChild(cursor);
+
+        let i = 0;
+        const typingSpeed = 100; // Millisekunder per tecken
+
+        function typeWriter() {
+            if (i < textToType.length) {
+                // Skriv tecknet *före* cursorn
+                heroTitle.insertBefore(document.createTextNode(textToType.charAt(i)), cursor);
+                i++;
+                setTimeout(typeWriter, typingSpeed);
+            } else {
+                // Klart! Ta bort animationen från cursorn
+                cursor.style.animation = 'none';
+                cursor.style.opacity = '0';
+                
+                // Valfritt: Ta bort cursorn helt efter 2 sekunder
+                setTimeout(() => cursor.remove(), 2000);
+            }
+        }
+        
+        // Starta effekten efter en kort fördröjning
+        setTimeout(typeWriter, 500);
+    }
+
+
+    /* =============================================
        1. MOBILNAVIGERING (HAMBURGERMENY)
     ============================================= */
     const navToggle = document.querySelector('.nav-toggle');
@@ -92,8 +129,6 @@ document.addEventListener('DOMContentLoaded', () => {
         // Om vi är väldigt nära toppen, avmarkera allt.
         if (pageYOffset < 150) {
              navAnchors.forEach(a => a.classList.remove('active'));
-             // Om du vill att "Startsida"-länken ska vara aktiv högst upp,
-             // hitta den och lägg till .active här istället.
         }
     });
 
