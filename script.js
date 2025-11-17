@@ -1,208 +1,170 @@
-// --- 1. Ordbok för översättningar ---
-const translations = {
-    "sv": {
-        "nav_about": "Om Mig",
-        "nav_skills": "Kompetenser",
-        "nav_projects": "Projekt",
-        "nav_contact": "Kontakt",
-        "hero_title": "Hej, jag är Jehanni Halvarsson.",
-        "hero_subtitle": "Studerande IT-säkerhetsspecialist med passion för att bygga och skydda digitala system.",
-        "hero_desc": "Jag studerar just nu IT-SÄKERHETSPECIALIST på TUC Yrkeshögskola och fokuserar på att utveckla praktiska färdigheter inom nätverkssäkerhet, penetrationstestning och incidenthantering. Jag letar ständigt efter nya utmaningar och möjligheter att tillämpa mina kunskaper i praktiken.",
-        "hero_cta": "Se mina projekt",
-        "about_title": "Om Mig",
-        "about_p1": "Mitt intresse för IT-säkerhet började när [skriv din korta personliga story...]. Det som driver mig är problemlösningen och den ständiga utmaningen i att ligga steget före hotaktörer.",
-        "about_p2": "Efter min examen är mitt mål att arbeta som [t.ex. \"SOC-analytiker\"...]. Jag är särskilt intresserad av molnsäkerhet och incidenthantering.",
-        "about_cta": "Ladda ner mitt CV (PDF)",
-        "skills_title": "Kompetenser & Verktyg",
-        "skills_cat1_title": "Tekniska Områden",
-        "skills_cat1_li1": "Nätverkssäkerhet (IDS/IPS, VPN)",
-        "skills_cat1_li2": "Penetrationstestning",
-        "skills_cat1_li3": "Incidenthantering & Forensik",
-        "skills_cat1_li4": "Säkerhetsanalys (SIEM)",
-        "skills_cat1_li5": "Sårbarhetsanalys",
-        "skills_cat1_li6": "Molnsäkerhet (Grundläggande)",
-        "skills_cat2_title": "Verktyg & Plattformar",
-        "skills_cat2_li1": "Kali Linux",
-        "skills_cat2_li2": "Wireshark",
-        "skills_cat2_li3": "Nmap",
-        "skills_cat2_li4": "Burp Suite",
-        "skills_cat2_li5": "Metasploit",
-        "skills_cat2_li6": "Splunk (Grundläggande)",
-        "skills_cat3_title": "Språk & Skripting",
-        "skills_cat3_li1": "Python",
-        "skills_cat3_li2": "Bash",
-        "skills_cat3_li3": "PowerShell",
-        "projects_title": "Mina Projekt",
-        "projects_desc": "Det bästa sättet att lära sig är att bygga (och bryta). Här är några projekt jag arbetat med.",
-        "project1_title": "Projekt 1: Säkert Hemmalabb",
-        "project1_desc": "Jag har byggt ett segmenterat hemnätverk med pfSense som brandvägg för att isolera IoT-enheter från mitt primära nätverk. Projektet inkluderade uppsättning av VLAN, brandväggsregler och en centraliserad loggserver.",
-        "project1_tech": "<strong>Tekniker:</strong> pfSense, VLAN, Suricata (IDS), Syslog.",
-        "project2_title": "Projekt 2: \"Capture The Flag\" (CTF) Write-ups",
-        "project2_desc": "Jag deltar aktivt i CTF-tävlingar på plattformar som TryHackMe och Hack The Box. Här har jag samlat mina \"write-ups\" (genomgångar) för några av de maskiner jag har klarat.",
-        "project2_tech": "<strong>Tekniker:</strong> Nmap, Metasploit, Burp Suite, Python.",
-        "project2_cta": "Läs mina write-ups här",
-        "project3_title": "Projekt 3: Sårbarhetsanalys (Skolprojekt)",
-        "project3_desc": "Genomförde en sårbarhetsanalys (enligt OWASP Top 10) av en test-webbapplikation. Identifierade och rapporterade flera sårbarheter, inklusive XSS och SQL-injektion.",
-        "project3_tech": "<strong>Tekniker:</strong> OWASP ZAP, Burp Suite, SQLMap.",
-        "contact_title": "Kontakta mig",
-        "contact_desc": "Jag är alltid öppen för att diskutera nya möjligheter. Tveka inte att höra av dig!",
-        "contact_email": "din.email@exempel.com",
-        "contact_linkedin": "LinkedIn",
-        "contact_github": "GitHub",
-        "footer_text": "&copy; 2025 Jehanni Halvarsson. Byggd med HTML, CSS och GitHub Pages."
-    },
-    "en": {
-        "nav_about": "About Me",
-        "nav_skills": "Skills",
-        "nav_projects": "Projects",
-        "nav_contact": "Contact",
-        "hero_title": "Hi, I'm Jehanni Halvarsson.",
-        "hero_subtitle": "Aspiring IT Security Specialist with a passion for building and protecting digital systems.",
-        "hero_desc": "I am currently studying IT SECURITY SPECIALIST at TUC Yrkeshögskola, focusing on developing practical skills in network security, penetration testing, and incident response. I am constantly seeking new challenges and opportunities to apply my knowledge.",
-        "hero_cta": "View my projects",
-        "about_title": "About Me",
-        "about_p1": "My interest in IT security began when [write your short personal story...]. What drives me is the problem-solving and the constant challenge of staying one step ahead of threat actors.",
-        "about_p2": "After graduation, my goal is to work as a [e.g., \"SOC Analyst\", \"Penetration Tester\"...]. I am particularly interested in cloud security and incident response.",
-        "about_cta": "Download my CV (PDF)",
-        "skills_title": "Skills & Tools",
-        "skills_cat1_title": "Technical Areas",
-        "skills_cat1_li1": "Network Security (IDS/IPS, VPN)",
-        "skills_cat1_li2": "Penetration Testing",
-        "skills_cat1_li3": "Incident Response & Forensics",
-        "skills_cat1_li4": "Security Analysis (SIEM)",
-        "skills_cat1_li5": "Vulnerability Analysis",
-        "skills_cat1_li6": "Cloud Security (Basic)",
-        "skills_cat2_title": "Tools & Platforms",
-        "skills_cat2_li1": "Kali Linux",
-        "skills_cat2_li2": "Wireshark",
-        "skills_cat2_li3": "Nmap",
-        "skills_cat2_li4": "Burp Suite",
-        "skills_cat2_li5": "Metasploit",
-        "skills_cat2_li6": "Splunk (Basic)",
-        "skills_cat3_title": "Languages & Scripting",
-        "skills_cat3_li1": "Python",
-        "skills_cat3_li2": "Bash",
-        "skills_cat3_li3": "PowerShell",
-        "projects_title": "My Projects",
-        "projects_desc": "The best way to learn is by building (and breaking). Here are some projects I've worked on.",
-        "project1_title": "Project 1: Secure Home Lab",
-        "project1_desc": "I built a segmented home network using pfSense as a firewall to isolate IoT devices from my primary network. The project included setting up VLANs, firewall rules, and a centralized log server.",
-        "project1_tech": "<strong>Technologies:</strong> pfSense, VLAN, Suricata (IDS), Syslog.",
-        "project2_title": "Project 2: \"Capture The Flag\" (CTF) Write-ups",
-        "project2_desc": "I actively participate in CTF competitions on platforms like TryHackMe and Hack The Box. Here, I've collected my write-ups for some of the machines I have completed.",
-        "project2_tech": "<strong>Technologies:</strong> Nmap, Metasploit, Burp Suite, Python.",
-        "project2_cta": "Read my write-ups here",
-        "project3_title": "Project 3: Vulnerability Analysis (School Project)",
-        "project3_desc": "Performed a vulnerability analysis (based on OWASP Top 10) of a test web application. Identified and reported several vulnerabilities, including XSS and SQL injection.",
-        "project3_tech": "<strong>Technologies:</strong> OWASP ZAP, Burp Suite, SQLMap.",
-        "contact_title": "Contact Me",
-        "contact_desc": "I'm always open to discussing new opportunities. Feel free to get in touch!",
-        "contact_email": "your.email@example.com",
-        "contact_linkedin": "LinkedIn",
-        "contact_github": "GitHub",
-        "footer_text": "&copy; 2025 Jehanni Halvarsson. Built with HTML, CSS and GitHub Pages."
-    }
-};
-
-// --- Funktion för att byta språk (ENKEL OCH STABIL VERSION) ---
-
-const setLanguage = (lang) => {
-    document.documentElement.lang = lang; 
-
-    // Loopa igenom ALLA element och sätt texten direkt
-    document.querySelectorAll('[data-key]').forEach(element => {
-        const key = element.getAttribute('data-key');
-        const translation = translations[lang][key];
-        
-        if (translation) {
-            element.innerHTML = translation;
-        }
-    });
-
-    localStorage.setItem('language', lang); 
-
-    document.getElementById('lang-sv').classList.toggle('active-lang', lang === 'sv');
-    document.getElementById('lang-en').classList.toggle('active-lang', lang === 'en');
-};
-
-
-// --- All annan JS körs när sidan laddats ---
-
+// Vänta tills hela sidan har laddats
 document.addEventListener('DOMContentLoaded', () => {
 
-    // --- 1. Hantering av Hamburgermeny ---
-    const navToggle = document.querySelector('.nav-toggle');
-    const navLinks = document.querySelector('.nav-links');
+    /* =============================================
+       SPRÅKHANTERING (SV/EN)
+    ============================================= */
 
-    navToggle.addEventListener('click', () => {
-        navLinks.classList.toggle('nav-open');
-        const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
-        navToggle.setAttribute('aria-expanded', !isExpanded);
-        document.body.classList.toggle('no-scroll');
-    });
+    // 1. Definiera alla våra text-strängar
+    const translations = {
+        sv: {
+            logo: "Ditt Namn_",
+            nav_home: "Hem",
+            nav_about: "Om mig",
+            nav_projects: "Projekt",
+            nav_contact: "Kontakt",
+            hero_title: "IT-Säkerhetsspecialist",
+            hero_subtitle_static: "Student med fokus på >", // Statisk del av texten
+            hero_subtitle_dynamic: ["Penetrationstestning", "Nätverksanalys", "Säker Kod"], // Roterande ord
+            about_title: "Om Mig",
+            about_text: "Här skriver du en professionell sammanfattning. Jag är en driven student inom IT-säkerhet vid [Din Skola]... Mina intresseområden inkluderar penetrationstestning, nätverkssäkerhet och säker kodutveckling.",
+            projects_title: "Projekt",
+            project1_title: "CTF Writeups",
+            project1_desc: "En samling av mina lösningar från diverse Capture The Flag-tävlingar (t.ex. Hack The Box).",
+            project_link: "Läs mer →",
+            project2_title: "Säkerhetsanalys-Verktyg",
+            project2_desc: "Ett Python-script som automatiserar rekognosering av nätverk och identifierar vanliga sårbarheter.",
+            contact_title: "Kontakt",
+            contact_text: "Låt oss komma i kontakt. Du hittar mig på följande plattformar:",
+            footer_text: "© 2025 Ditt Namn. Byggd från grunden."
+        },
+        en: {
+            logo: "Your Name_",
+            nav_home: "Home",
+            nav_about: "About",
+            nav_projects: "Projects",
+            nav_contact: "Contact",
+            hero_title: "IT Security Specialist",
+            hero_subtitle_static: "Student focusing on >", // Static part
+            hero_subtitle_dynamic: ["Penetration Testing", "Network Analysis", "Secure Code"], // Rotating words
+            about_title: "About Me",
+            about_text: "Write your professional summary here. I am a dedicated IT Security student at [Your School]... My areas of interest include penetration testing, network security, and secure code development.",
+            projects_title: "Projects",
+            project1_title: "CTF Writeups",
+            project1_desc: "A collection of my solutions from various Capture The Flag competitions (e.g., Hack The Box).",
+            project_link: "Read more →",
+            project2_title: "Security Analysis Tool",
+            project2_desc: "A Python script that automates network reconnaissance and identifies common vulnerabilities.",
+            contact_title: "Contact",
+            contact_text: "Let's get in touch. You can find me on the following platforms:",
+            footer_text: "© 2025 Your Name. Built from scratch."
+        }
+    };
 
-    navLinks.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('nav-open');
-            navToggle.setAttribute('aria-expanded', 'false');
-            document.body.classList.remove('no-scroll');
-        });
-    });
+    // 2. Hämta knapparna
+    const langSV = document.getElementById('lang-sv');
+    const langEN = document.getElementById('lang-en');
 
+    // 3. Funktion för att byta språk
+    const setLanguage = (lang) => {
+        // Uppdatera 'lang'-attributet på <html>-taggen
+        document.documentElement.lang = lang;
 
-    // --- 2. Aktiv nav-länk vid scroll ---
-    const sections = document.querySelectorAll('section[id]');
-    const navLinksA = document.querySelectorAll('nav .nav-links a');
+        // Markera aktiv knapp
+        langSV.classList.toggle('active', lang === 'sv');
+        langEN.classList.toggle('active', lang === 'en');
 
-    const sectionObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const id = entry.target.getAttribute('id');
-                
-                navLinksA.forEach(link => {
-                    link.classList.remove('active');
-                    if (link.getAttribute('href') === `#${id}`) {
-                        link.classList.add('active');
-                    }
-                });
+        // Loopa igenom alla element som har ett 'data-key' attribut
+        document.querySelectorAll('[data-key]').forEach(element => {
+            const key = element.getAttribute('data-key');
+            
+            // Kolla om nyckeln finns i vår översättningsfil
+            if (translations[lang][key]) {
+                // Undantag för skrivmaskins-effekten
+                if (key === 'hero_subtitle') {
+                    // Starta om skrivmaskins-effekten med de nya orden
+                    const staticText = translations[lang].hero_subtitle_static;
+                    const dynamicWords = translations[lang].hero_subtitle_dynamic;
+                    startTypingEffect(staticText, dynamicWords);
+                } else {
+                    // Uppdatera texten för alla andra element
+                    element.textContent = translations[lang][key];
+                }
             }
         });
-    }, {
-        rootMargin: '-30% 0px -60% 0px'
-    });
-    sections.forEach(sec => sectionObserver.observe(sec));
+    };
+
+    // 4. Lägg till klick-lyssnare på knapparna
+    langSV.addEventListener('click', () => setLanguage('sv'));
+    langEN.addEventListener('click', () => setLanguage('en'));
+
+    // 5. Sätt standardspråket (Svenska) vid sidladdning
+    setLanguage('sv');
 
 
-    // --- 3. Språkväxlings-logik ---
-    const langSvButton = document.getElementById('lang-sv');
-    const langEnButton = document.getElementById('lang-en');
-
-    langSvButton.addEventListener('click', () => {
-        setLanguage('sv');
-        navLinks.classList.remove('nav-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('no-scroll');
-    });
-
-    langEnButton.addEventListener('click', () => {
-        setLanguage('en');
-        navLinks.classList.remove('nav-open');
-        navToggle.setAttribute('aria-expanded', 'false');
-        document.body.classList.remove('no-scroll');
-    });
-
-    // Sätt språket när sidan laddas
-    const savedLang = localStorage.getItem('language') || 'sv';
-    setLanguage(savedLang);
-
+    /* =============================================
+       "COOL EFFEKT": SKRIVMASKIN
+    ============================================= */
     
-    // --- 4. ROBUST KOD FÖR "NO-SCROLL" ---
-    const noScrollStyle = document.createElement('style');
-    noScrollStyle.innerHTML = `
-        body.no-scroll {
-            overflow: hidden;
+    const typingElement = document.querySelector('.typing-effect');
+    let typingCursor; // Vi skapar markören med JS
+
+    function createCursor() {
+        if (!typingCursor) {
+            typingCursor = document.createElement('span');
+            typingCursor.className = 'typing-cursor';
+            typingElement.appendChild(typingCursor);
         }
-    `;
-    document.head.appendChild(noScrollStyle);
+    }
+
+    async function typeWriter(text, isDeleting = false) {
+        const speed = isDeleting ? 50 : 150; // Snabbar upp radering
+        const currentText = typingElement.textContent;
+        
+        // Ta bort markören innan vi ändrar text
+        if (typingCursor) typingCursor.remove();
+
+        if (isDeleting) {
+            typingElement.textContent = currentText.slice(0, -1);
+        } else {
+            typingElement.textContent = text.slice(0, currentText.length + 1);
+        }
+
+        // Lägg tillbaka markören
+        createCursor();
+        typingElement.appendChild(typingCursor);
+        
+        return new Promise(resolve => setTimeout(resolve, speed));
+    }
+
+    // Huvudloop för skrivmaskinen
+    async function startTypingEffect(staticText, dynamicWords) {
+        // Rensa befintlig text (om vi byter språk)
+        typingElement.textContent = '';
+        createCursor();
+
+        // Skriv ut den statiska delen
+        for (let i = 0; i < staticText.length; i++) {
+            await typeWriter(staticText);
+        }
+
+        // Pausa
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Loopa de dynamiska orden
+        let wordIndex = 0;
+        while (true) {
+            const word = dynamicWords[wordIndex];
+
+            // Skriv ordet
+            for (let i = 0; i < word.length; i++) {
+                await typeWriter(staticText + word);
+            }
+            await new Promise(resolve => setTimeout(resolve, 2000)); // Pausa med fullt ord
+
+            // Radera ordet
+            for (let i = 0; i < word.length; i++) {
+                await typeWriter(staticText + word, true);
+            }
+            await new Promise(resolve => setTimeout(resolve, 500)); // Kort paus innan nästa
+
+            wordIndex = (wordIndex + 1) % dynamicWords.length;
+        }
+    }
+
+    // Starta effekten (initialt med svenska)
+    const initialStatic = translations.sv.hero_subtitle_static;
+    const initialDynamic = translations.sv.hero_subtitle_dynamic;
+    startTypingEffect(initialStatic, initialDynamic);
 
 });
