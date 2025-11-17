@@ -376,27 +376,3 @@ footer {
 
     .nav-links a {
         font-size: 1.5rem;
-    }
-    
-    .nav-open .hamburger {
-        background-color: transparent;
-    }
-    .nav-open .hamburger::before {
-        transform: rotate(45deg) translate(5px, 8px);
-    }
-    .nav-open .hamburger::after {
-        transform: rotate(-45deg) translate(5px, -8px);
-    }
-
-    .lang-toggle {
-        margin-left: 0;
-        margin-top: 1.5rem;
-    }
-
-    .lang-toggle button {
-        font-size: 1.5rem;
-    }
-}
-
-/* SKRIVMASKINSEFFEKTEN ÄR HELT BORTTAGEN HÄRIFRÅN 
-*/
