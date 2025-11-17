@@ -349,20 +349,41 @@ img {
     gap: var(--spacing-lg);
 }
 
+/* --- UPPDATERADE REGLER FÖR ANIMERAD SCROLLSPY --- */
 .nav-link {
     font-size: 1.25rem;
     font-weight: 600;
     color: var(--color-text);
-    text-decoration: none; /* Säkerställ att ingen understrykning finns från start */
+    text-decoration: none; 
     transition: color var(--transition-fast);
+    position: relative; /* Behövs för ::after-elementet */
+    padding-bottom: var(--spacing-xs); /* Ger lite utrymme för linjen */
 }
 
-/* --- UPPDATERADE/NYA REGLER FÖR SCROLLSPY --- */
+/* Skapar den animerade linjen */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0; /* Placerar linjen längst ner på länken */
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: var(--color-primary);
+    transform: scaleX(0); /* Börjar som "osynlig" (noll bredd) */
+    transform-origin: left; /* Animationen växer från vänster */
+    transition: transform 0.3s ease-out; /* Animera! */
+}
+
+/* När vi hovrar ELLER länken är aktiv... */
+.nav-link:hover::after,
+.nav-link.is-active::after {
+    transform: scaleX(1); /* ...väx ut linjen till full bredd */
+}
+
+/* Vi vill fortfarande att färgen ändras också */
 .nav-link:hover,
 .nav-link.is-active {
     color: var(--color-primary);
-    text-decoration: underline;
-    text-underline-offset: 4px;
 }
 /* --- SLUT PÅ UPPDATERING --- */
 
