@@ -1,92 +1,75 @@
 <!DOCTYPE html>
-<html lang="sv">
-<head>
+<html lang="sv"> <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jehanni Halvarsson - IT-Säkerhetsspecialist</title>
-    
+    <title>Ditt Namn - Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Jehanni Halvarsson, studerande IT-säkerhetsspecialist. Välkommen till min portfölj.">
-    <meta property="og:title" content="Jehanni Halvarsson - Portfölj">
-    <meta property="og:description" content="Studerande IT-säkerhetsspecialist med passion för att bygga och skydda digitala system.">
-    <meta property="og:type" content="website">
-
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
     <header>
+        <div class="logo" data-key="logo">Ditt Namn_</div>
         <nav>
-            <a href="#startsida" class="nav-logo">Jehanni Halvarsson</a>
-            <ul class="nav-links">
-                <li><a href="#om-mig" data-key="nav_about">Om Mig</a></li>
-                <li><a href="#kompetenser" data-key="nav_skills">Kompetenser</a></li>
-                <li><a href="#projekt" data-key="nav_projects">Projekt</a></li>
-                <li><a href="#kontakt" data-key="nav_contact">Kontakt</a></li>
-                
-                <li class="lang-toggle">
-                    <button id="lang-sv" class="active-lang" aria-label="Byt till svenska">SV</button>
-                    <span>|</span>
-                    <button id="lang-en" aria-label="Byt till engelska">EN</button>
-                </li>
+            <ul>
+                <li><a href="#hero" data-key="nav_home">Hem</a></li>
+                <li><a href="#about" data-key="nav_about">Om mig</a></li>
+                <li><a href="#projects" data-key="nav_projects">Projekt</a></li>
+                <li><a href="#contact" data-key="nav_contact">Kontakt</a></li>
             </ul>
-            <button class="nav-toggle" aria-label="Växla meny" aria-expanded="false">
-                <span class="hamburger"></span>
-            </button>
         </nav>
+        <div class="lang-switcher">
+            <button id="lang-sv">SV</button>
+            <span>|</span>
+            <button id="lang-en">EN</button>
+        </div>
     </header>
 
     <main>
-        <section id="startsida">
-            <h1 data-key="hero_title">Hej, jag är Jehanni Halvarsson.</h1>
-            <p style="font-size: 1.3rem; font-style: italic;" data-key="hero_subtitle">Studerande IT-säkerhetsspecialist...</p>
-            <p data-key="hero_desc">Jag studerar just nu IT-SÄKERHETSPECIALIST...</p>
-            <a href="#projekt" class="cta-knapp" data-key="hero_cta">Se mina projekt</a>
+        <section id="hero">
+            <h1 data-key="hero_title">IT-Säkerhetsspecialist</h1>
+            <p class="typing-effect" data-key="hero_subtitle">Student med fokus på ></p>
         </section>
 
-        <section id="om-mig">
+        <section id="about">
             <h2 data-key="about_title">Om Mig</h2>
-            <p data-key="about_p1">Mitt intresse för IT-säkerhet började...</p>
-            <p data-key="about_p2">Efter min examen är mitt mål...</p>
-            <a href="cv.pdf" class="cta-knapp" target="_blank" rel="noopener noreferrer" data-key="about_cta">Ladda ner mitt CV (PDF)</a>
+            <p data-key="about_text">
+                Här skriver du en professionell sammanfattning. Jag är en driven student inom IT-säkerhet vid [Din Skola]... 
+                Mina intresseområden inkluderar penetrationstestning, nätverkssäkerhet och säker kodutveckling.
+            </p>
         </section>
 
-        <section id="kompetenser">
-            <h2 data-key="skills_title">Kompetenser & Verktyg</h2>
-            
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3 data-key="skills_cat1_title">Tekniska Områden</h3>
-                    <ul>
-                        <li data-key="skills_cat1_li1">Nätverkssäkerhet...</li>
-                        <li data-key="skills_cat1_li2">Penetrationstestning</li>
-                        </ul>
+        <section id="projects">
+            <h2 data-key="projects_title">Projekt</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3 data-key="project1_title">CTF Writeups</h3>
+                    <p data-key="project1_desc">En samling av mina lösningar från diverse Capture The Flag-tävlingar (t.ex. Hack The Box).</p>
+                    <a href="#" data-key="project_link">Läs mer &rarr;</a>
                 </div>
-                <div class="skill-category">
-                    <h3 data-key="skills_cat2_title">Verktyg & Plattformar</h3>
-                    <ul>
-                        <li data-key="skills_cat2_li1">Kali Linux</li>
-                        </ul>
+                <div class="project-card">
+                    <h3 data-key="project2_title">Säkerhetsanalys-Verktyg</h3>
+                    <p data-key="project2_desc">Ett Python-script som automatiserar rekognosering av nätverk och identifierar vanliga sårbarheter.</p>
+                    <a href="#" data-key="project_link">Se på GitHub &rarr;</a>
                 </div>
-                <div class="skill-category">
-                    <h3 data-key="skills_cat3_title">Språk & Skripting</h3>
-                    <ul>
-                        <li data-key="skills_cat3_li1">Python</li>
-                        </ul>
                 </div>
+        </section>
+
+        <section id="contact">
+            <h2 data-key="contact_title">Kontakt</h2>
+            <p data-key="contact_text">Låt oss komma i kontakt. Du hittar mig på följande plattformar:</p>
+            <div class="contact-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="mailto:din@email.com">Email</a>
             </div>
         </section>
+    </main>
 
-        <section id="projekt">
-            <h2 data-key="projects_title">Mina Projekt</h2>
-            <p data-key="projects_desc">Det bästa sättet att lära sig...</p>
+    <footer>
+        <p data-key="footer_text">&copy; 2025 Ditt Namn. Byggd från grunden.</p>
+    </footer>
 
-            <article class="project-card">
-                <h3 data-key="project1_title">Projekt 1: Säkert Hemmalabb</h3>
-                <p data-key="project1_desc">Jag har byggt ett segmenterat hemnätverk...</p>
-                <p data-key="project1_tech"><strong>Tekniker:</strong> pfSense...</p>
-            </article>
-
-            </section>
-
-        <section id="kontakt">
-            <h2 data-key="contact_title">Kontakta mig</h2>
+    <script src="script.js"></script>
+</body>
+</html>
