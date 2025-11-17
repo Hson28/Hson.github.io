@@ -147,10 +147,6 @@ section:last-of-type {
     border-bottom: none;
 }
 
-/*
-    FADE-IN REGLERNA HAR TAGITS BORT HÄRIFRÅN FÖR ATT FIXA BUGGEN
-*/
-
 h1, h2, h3 {
     color: var(--primary-text);
     margin-bottom: 1.5rem;
@@ -402,31 +398,5 @@ footer {
     }
 }
 
-
-/* --- Skrivmaskinseffekt & Markör --- */
-h1[data-key="hero_title"] {
-    min-height: 1.2em; 
-    position: relative; 
-    display: inline-block;
-    line-height: 1; 
-}
-
-h1[data-key="hero_title"]::after {
-    content: '|';
-    position: absolute;
-    right: -0.1em;
-    bottom: 0.05em;
-    color: var(--accent-color);
-    font-weight: 300;
-    animation: blink 0.7s infinite;
-}
-
-h1[data-key="hero_title"].typing-done::after {
-    animation: none;
-    display: none;
-}
-
-@keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
-}
+/* SKRIVMASKINSEFFEKTEN ÄR HELT BORTTAGEN HÄRIFRÅN 
+*/
