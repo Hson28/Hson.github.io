@@ -3,148 +3,153 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portföljsida för en student i IT-säkerhet, visar projekt, färdigheter och erfarenhet.">
-    <meta property="og:title" content="NAME - IT-Säkerhetsstudent">
-    <meta property="og:description" content="Utforska min portfölj inom IT-säkerhet, inklusive projekt och färdigheter.">
-    <meta property="og:image" content="https://via.placeholder.com/1200x630?text=Portfolio+Image">
+    <title>Alex Johansson - IT-Säkerhetsstudent</title>
+    <meta name="description" content="Portföljsida för Alex Johansson, student i IT-säkerhet. Utforska mina projekt, kompetenser och kontakta mig.">
+    <meta name="keywords" content="IT-säkerhet, portfölj, student, projekt, Alex Johansson">
+    <meta name="author" content="Alex Johansson">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Alex Johansson - IT-Säkerhetsstudent">
+    <meta property="og:description" content="Portföljsida för Alex Johansson, student i IT-säkerhet.">
+    <meta property="og:image" content="https://alexjohansson.github.io/portfolio/images/og-image.jpg">
+    <meta property="og:url" content="https://alexjohansson.github.io/portfolio/">
     <meta property="og:type" content="website">
-    <title>NAME - IT-Säkerhetsstudent</title>
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Alex Johansson - IT-Säkerhetsstudent">
+    <meta name="twitter:description" content="Portföljsida för Alex Johansson, student i IT-säkerhet.">
+    <meta name="twitter:image" content="https://alexjohansson.github.io/portfolio/images/og-image.jpg">
+    
+    <!-- Preconnect för typsnitt -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Alex Johansson",
+        "jobTitle": "IT-Säkerhetsstudent",
+        "sameAs": [
+            "https://www.linkedin.com/in/alexjohansson",
+            "https://github.com/alexjohansson"
+        ]
+    }
+    </script>
+    
     <link rel="stylesheet" href="style.css">
-    <!-- Preconnect för font om nödvändigt, men använder systemfont för prestanda -->
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <a href="#main" class="skip-link">Hoppa till huvudinnehåll</a>
     <header>
-        <nav>
+        <nav id="navbar">
             <div class="nav-container">
-                <a href="#hero" class="logo">NAME</a>
-                <button class="menu-toggle" aria-label="Öppna meny" aria-expanded="false">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                <a href="#hero" class="logo">Alex Johansson</a>
+                <button id="hamburger" aria-label="Öppna meny" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
-                <ul class="nav-menu">
-                    <li><a href="#hero">Hem</a></li>
-                    <li><a href="#about">Om mig</a></li>
-                    <li><a href="#projects">Projekt</a></li>
-                    <li><a href="#skills">Färdigheter</a></li>
-                    <li><a href="#experience">Erfarenhet</a></li>
-                    <li><a href="#contact">Kontakt</a></li>
+                <ul id="nav-menu" role="menu">
+                    <li><a href="#hero" role="menuitem">Hem</a></li>
+                    <li><a href="#about" role="menuitem">Om mig</a></li>
+                    <li><a href="#skills" role="menuitem">Kompetenser</a></li>
+                    <li><a href="#projects" role="menuitem">Projekt</a></li>
+                    <li><a href="#cv" role="menuitem">CV/Utbildning</a></li>
+                    <li><a href="#contact" role="menuitem">Kontakt</a></li>
                 </ul>
-                <button class="theme-toggle" aria-label="Växla tema">🌙</button>
             </div>
         </nav>
     </header>
-    <main id="main">
+    
+    <main>
         <section id="hero" class="hero">
             <div class="hero-content">
-                <h1>NAME</h1>
-                <p class="title">Student i IT-Säkerhet</p>
-                <p class="pitch">Passionerad för cybersäkerhet, med fokus på att skydda digitala tillgångar genom innovativa lösningar.</p>
-                <a href="#contact" class="cta-button">Kontakta mig</a>
+                <h1>Hej, jag är Alex Johansson</h1>
+                <p>Student i IT-säkerhet med passion för cybersäkerhet och programmering.</p>
+                <a href="#projects" class="btn btn-primary">Se mina projekt</a>
             </div>
-            <img src="https://via.placeholder.com/400x400?text=Profile+Image" alt="Profilbild av NAME" srcset="https://via.placeholder.com/200x200?text=Profile+Image 200w, https://via.placeholder.com/400x400?text=Profile+Image 400w" loading="lazy">
         </section>
-        <section id="about" class="about fade-in">
+        
+        <section id="about" class="about">
             <h2>Om mig</h2>
-            <p>Kort bio: Jag är en student i IT-säkerhet med intresse för nätverkssäkerhet och kryptering. Jag har erfarenhet av praktiska projekt och söker möjligheter att växa inom branschen.</p>
-            <ul class="key-skills">
+            <p>Jag är en driven student vid [Universitet] som specialiserar mig på IT-säkerhet. Med erfarenhet från praktik och personliga projekt strävar jag efter att skydda digitala system mot hot.</p>
+        </section>
+        
+        <section id="skills" class="skills">
+            <h2>Kompetenser</h2>
+            <ul class="skills-list">
+                <li>Penetration Testing</li>
+                <li>Kryptografi</li>
                 <li>Nätverkssäkerhet</li>
-                <li>Kryptering</li>
-                <li>Incidenthantering</li>
+                <li>Python, JavaScript</li>
+                <li>SQL Injection Prevention</li>
             </ul>
         </section>
-        <section id="projects" class="projects fade-in">
+        
+        <section id="projects" class="projects">
             <h2>Projekt</h2>
             <div class="projects-grid">
                 <article class="project-card">
-                    <h3>Projekt 1: Säker VPN-Setup</h3>
-                    <p>Kort beskrivning: Implementerade en säker VPN-lösning med OpenVPN för små företag.</p>
-                    <p>Teknologier: OpenVPN, Linux, Bash</p>
-                    <a href="https://github.com/example/project1" target="_blank">Se projekt</a>
+                    <img src="images/project1.jpg" alt="Miniatyrbild för Penetration Testing Tool" loading="lazy">
+                    <h3>Penetration Testing Tool</h3>
+                    <p>Ett verktyg för att simulera attacker och identifiera sårbarheter i nätverk.</p>
+                    <div class="tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Security</span>
+                    </div>
+                    <a href="https://github.com/alexjohansson/pen-test-tool" class="btn btn-secondary">Repo</a>
+                    <a href="https://alexjohansson.github.io/pen-test-tool" class="btn btn-secondary">Live</a>
                 </article>
                 <article class="project-card">
-                    <h3>Projekt 2: Penetrationstest</h3>
-                    <p>Kort beskrivning: Utförde penetrationstest på en webbapplikation med hjälp av Kali Linux.</p>
-                    <p>Teknologier: Kali Linux, Metasploit, Burp Suite</p>
-                    <a href="https://github.com/example/project2" target="_blank">Se projekt</a>
+                    <img src="images/project2.jpg" alt="Miniatyrbild för Secure Chat App" loading="lazy">
+                    <h3>Secure Chat App</h3>
+                    <p>En krypterad chattapplikation byggd med end-to-end-kryptering.</p>
+                    <div class="tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">Encryption</span>
+                    </div>
+                    <a href="https://github.com/alexjohansson/secure-chat" class="btn btn-secondary">Repo</a>
+                    <a href="https://alexjohansson.github.io/secure-chat" class="btn btn-secondary">Live</a>
                 </article>
-                <article class="project-card">
-                    <h3>Projekt 3: Krypteringsverktyg</h3>
-                    <p>Kort beskrivning: Byggde ett enkelt krypteringsverktyg i Python för filskydd.</p>
-                    <p>Teknologier: Python, Cryptography Library</p>
-                    <a href="https://github.com/example/project3" target="_blank">Se projekt</a>
-                </article>
-            </div>
-            <button class="load-more" aria-label="Ladda fler projekt">Ladda fler projekt</button>
-        </section>
-        <section id="skills" class="skills fade-in">
-            <h2>Färdigheter</h2>
-            <div class="skills-list">
-                <div class="skill">
-                    <span class="skill-name">Python</span>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 80%;"></div></div>
-                </div>
-                <div class="skill">
-                    <span class="skill-name">Nätverk</span>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 75%;"></div></div>
-                </div>
-                <div class="skill">
-                    <span class="skill-name">Kryptering</span>
-                    <div class="skill-bar"><div class="skill-fill" style="width: 70%;"></div></div>
-                </div>
+                <!-- Lägg till fler projekt om nödvändigt -->
             </div>
         </section>
-        <section id="experience" class="experience fade-in">
-            <h2>Erfarenhet</h2>
-            <div class="timeline">
-                <div class="timeline-item">
-                    <h3>2023 - Nu: Studentprojekt</h3>
-                    <p>Arbetade med säkerhetsprojekt på universitetet.</p>
-                </div>
-                <div class="timeline-item">
-                    <h3>2022: Praktik inom IT</h3>
-                    <p>Assisterade i nätverksunderhåll och säkerhetsrevisioner.</p>
-                </div>
-            </div>
+        
+        <section id="cv" class="cv">
+            <h2>CV / Utbildning</h2>
+            <p>Jag studerar IT-säkerhet vid [Universitet]. Här kan du ladda ner mitt CV.</p>
+            <a href="cv.pdf" class="btn btn-primary" target="_blank" rel="noopener">Ladda ner CV</a>
         </section>
-        <section id="contact" class="contact fade-in">
+        
+        <section id="contact" class="contact">
             <h2>Kontakt</h2>
-            <form id="contact-form">
+            <p>Kontakta mig via e-post: <a href="mailto:alex@example.com">alex@example.com</a></p>
+            <form id="contact-form" action="" method="post">
                 <label for="name">Namn</label>
                 <input type="text" id="name" name="name" required aria-describedby="name-error">
-                <span id="name-error" class="error" role="alert"></span>
+                <span id="name-error" class="error" aria-live="polite"></span>
                 
                 <label for="email">E-post</label>
                 <input type="email" id="email" name="email" required aria-describedby="email-error">
-                <span id="email-error" class="error" role="alert"></span>
+                <span id="email-error" class="error" aria-live="polite"></span>
                 
                 <label for="message">Meddelande</label>
                 <textarea id="message" name="message" required aria-describedby="message-error"></textarea>
-                <span id="message-error" class="error" role="alert"></span>
+                <span id="message-error" class="error" aria-live="polite"></span>
                 
-                <button type="submit">Skicka</button>
+                <button type="submit" class="btn btn-primary">Skicka</button>
             </form>
-            <button class="copy-email" data-email="example@email.com">Kopiera e-post</button>
-            <!-- Säkerhetsnotering: Detta formulär kräver server-side hantering i produktion. Lägg inte upp känslig data i klientkod. -->
         </section>
     </main>
+    
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2023 NAME. Alla rättigheter förbehållna.</p>
-            <ul class="social-links">
-                <li><a href="https://linkedin.com/in/example" target="_blank" aria-label="LinkedIn">LinkedIn</a></li>
-                <li><a href="https://github.com/example" target="_blank" aria-label="GitHub">GitHub</a></li>
-            </ul>
-        </div>
+        <p>&copy; 2023 Alex Johansson. Alla rättigheter förbehållna.</p>
+        <a href="https://github.com/alexjohansson" aria-label="GitHub">GitHub</a>
+        <a href="https://www.linkedin.com/in/alexjohansson" aria-label="LinkedIn">LinkedIn</a>
     </footer>
-    <div id="modal" class="modal" role="dialog" aria-labelledby="modal-title" aria-hidden="true">
-        <div class="modal-content">
-            <h3 id="modal-title">Tack!</h3>
-            <p>Ditt meddelande har skickats (simulerat).</p>
-            <button class="close-modal">Stäng</button>
-        </div>
-    </div>
-    <script src="script.js"></script>
 </body>
 </html>
