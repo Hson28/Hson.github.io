@@ -2,8 +2,8 @@
 :root {
     --bg-color: #1a1a1d;
     --primary-text: #e0e0e0;
-    --accent-color: #4682B4; /* Byt till en modernare blå, t.ex. #007bff eller #4A90E2 */
-    --green-accent: #5dcf61; /* Behåll din gröna hover */
+    --accent-color: #4682B4; 
+    --green-accent: #5dcf61;
     --card-bg: #2c2c30;
     --border-color: #444;
 }
@@ -14,7 +14,6 @@
     padding: 0;
 }
 
-/* NYTT: Mjuk scroll-beteende */
 html {
     scroll-behavior: smooth;
 }
@@ -56,6 +55,7 @@ nav {
 .nav-links {
     list-style: none;
     display: flex;
+    align-items: center; /* NYTT: Centrera språkväljaren vertikalt */
 }
 
 .nav-links li {
@@ -67,11 +67,10 @@ nav {
     color: var(--primary-text);
     font-weight: bold;
     transition: color 0.3s ease;
-    padding: 0.5rem 0; /* NYTT: Ger mer klickyta */
-    position: relative; /* NYTT: För hover-effekt */
+    padding: 0.5rem 0;
+    position: relative;
 }
 
-/* NYTT: Avancerad hover-effekt för nav-länkar */
 .nav-links a::after {
     content: '';
     position: absolute;
@@ -86,17 +85,16 @@ nav {
 }
 
 .nav-links a:hover::after,
-.nav-links a.active::after { /* NYTT: .active-klass */
+.nav-links a.active::after {
     transform: scaleX(1);
     transform-origin: bottom left;
 }
 
 .nav-links a:hover,
-.nav-links a.active { /* NYTT: .active-klass */
+.nav-links a.active {
     color: var(--accent-color);
 }
 
-/* NYTT: Styling för hamburgarknapp (dold på desktop) */
 .nav-toggle {
     display: none;
     background: none;
@@ -149,7 +147,6 @@ section:last-of-type {
     border-bottom: none;
 }
 
-/* NYTT: Animation för infädning vid scroll */
 .fade-in {
     opacity: 0;
     transform: translateY(20px);
@@ -194,13 +191,13 @@ p {
     font-weight: bold;
     border-radius: 5px;
     margin-top: 1rem;
-    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease; /* NYTT: Box-shadow */
+    transition: transform 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .cta-knapp:hover {
     background-color: var(--green-accent);
     transform: translateY(-3px);
-    box-shadow: 0 4px 10px rgba(93, 207, 97, 0.3); /* NYTT: Lägg till skugga */
+    box-shadow: 0 4px 10px rgba(93, 207, 97, 0.3);
 }
 
 a {
@@ -210,7 +207,7 @@ a {
 /* --- Sektion: Kompetenser --- */
 .skills-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* NYTT: Lite bredare kort */
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
 }
@@ -220,10 +217,9 @@ a {
     padding: 1.5rem;
     border-radius: 8px;
     border: 1px solid var(--border-color);
-    transition: transform 0.3s ease, box-shadow 0.3s ease; /* NYTT */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* NYTT: Hover-effekt för kompetenskort */
 .skill-category:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
@@ -259,12 +255,12 @@ a {
     border-radius: 8px;
     margin-bottom: 2rem;
     border: 1px solid var(--border-color);
-    transition: box-shadow 0.3s ease, transform 0.3s ease; /* NYTT: Transform */
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
 .project-card:hover {
-    transform: translateY(-5px); /* NYTT: "Lyft"-effekt */
-    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4); /* NYTT: Starkare skugga */
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(76, 175, 80, 0.4);
 }
 
 .project-card h3 {
@@ -280,26 +276,26 @@ a {
 .contact-links li {
     margin-bottom: 1rem;
     font-size: 1.2rem;
-    display: flex; /* NYTT: För ikoner */
-    align-items: center; /* NYTT: För ikoner */
+    display: flex;
+    align-items: center;
 }
 
-/* NYTT: Styling för SVG-ikoner */
 .contact-links svg {
     width: 24px;
     height: 24px;
     margin-right: 12px;
     fill: var(--primary-text);
     transition: fill 0.3s ease;
+    flex-shrink: 0; /* NYTT: Hindrar ikonen från att krympa */
 }
 
 .contact-links a {
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
+    word-break: break-all; /* NYTT: Bryter långa e-postadresser/länkar */
 }
 
-/* NYTT: Ändra färg på både text och ikon vid hover */
 .contact-links a:hover {
     color: var(--green-accent);
 }
@@ -308,108 +304,36 @@ a {
 }
 
 
-/* --- Sidfot --- */
-footer {
-    text-align: center;
-    padding: 2rem 1rem;
-    margin-top: 2rem;
-    color: #888;
-    border-top: 1px solid var(--border-color);
+/* --- NYTT: Styling för språkväxlare --- */
+.lang-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    /* margin-left är redan satt av 'li' */
 }
 
-/* --- Mobilanpassning --- */
-@media (max-width: 700px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-    h2 {
-        font-size: 1.8rem;
-    }
-
-    /* NYTT: Regler för mobilmeny */
-    .nav-toggle {
-        display: block; /* Visa hamburgarknappen */
-        z-index: 1001; /* Se till att den är överst */
-    }
-
-    .nav-links {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        
-        position: fixed;
-        top: 0;
-        right: -100%; /* Börja utanför skärmen */
-        width: 100%;
-        height: 100vh;
-        
-        background-color: var(--card-bg);
-        transition: right 0.4s ease-in-out;
-    }
-
-    .nav-links.nav-open { /* Klassen som JS lägger till */
-        right: 0;
-    }
-
-    .nav-links li {
-        margin: 1.5rem 0;
-    }
-
-    .nav-links a {
-        font-size: 1.5rem;
-    }
-    
-    /* NYTT: Animera hamburgare till ett "X" */
-    .nav-open .hamburger {
-        background-color: transparent; /* Mellersta linjen försvinner */
-    }
-    .nav-open .hamburger::before {
-        transform: rotate(45deg) translate(5px, 8px);
-    }
-    .nav-open .hamburger::after {
-        transform: rotate(-45deg) translate(5px, -8px);
-    }
-    .lang-toggle {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        margin-left: 2rem; /* Samma som andra nav-objekt */  
-    }
-    .lang-toggle button {
-        background: none;
-        border: none;
-        color: var(--primary-text);
-        font-family: inherit; /* Använd samma typsnitt */
-        font-weight: bold;
-        font-size: 1rem;
-        cursor: pointer;
-        padding: 0;
-        transition: color 0.3s ease;
-    }
-    .lang-toggle button:hover {
-        color: var(--accent-color);
-    }
-
-    .lang-toggle span {
-        color: var(--border-color);
-    }
-
-/* Denna klass visar vilket språk som är aktivt */
-    .lang-toggle button.active-lang {
-        color: var(--green-accent); /* Använder din hover-färg */
-        text-decoration: underline;
-        text-underline-offset: 4px;
-    }
-
-/* --- Justering för mobilmeny --- */
-    @media (max-width: 700px) {
-        .lang-toggle {
-            margin-left: 0;
-            margin-top: 1.5rem; /* Ge den lite utrymme */
-    }
-
-        .lang-toggle button {
-            font-size: 1.5rem; /* Matcha de andra mobillänkarna */
-    }
+.lang-toggle button {
+    background: none;
+    border: none;
+    color: var(--primary-text);
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0;
+    transition: color 0.3s ease;
 }
+
+.lang-toggle button:hover {
+    color: var(--accent-color);
+}
+
+.lang-toggle span {
+    color: var(--border-color);
+    user-select: none; /* Hindrar texten från att markeras */
+}
+
+.lang-toggle button.active-lang {
+    color: var(--green-accent);
+    text-decoration: underline;
+    text
