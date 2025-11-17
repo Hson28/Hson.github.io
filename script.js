@@ -104,62 +104,25 @@ const translations = {
     }
 };
 
-// --- FUNKTION: Skrivmaskinseffekt ---
-let typewriterTimeout; 
-
-function typewriterEffect(element, text, speed = 50) {
-    clearTimeout(typewriterTimeout);
-    let i = 0;
-    element.innerHTML = ''; 
-    element.classList.remove('typing-done'); 
-
-    function type() {
-        if (i < text.length) {
-            element.innerHTML += text.charAt(i);
-            i++;
-            typewriterTimeout = setTimeout(type, speed); 
-        } else {
-            element.classList.add('typing-done');
-        }
-    }
-    type();
-}
+/* SKRIVMASKINS-FUNKTIONEN ÄR HELT BORTTAGEN HÄRIFRÅN
+*/
 
 
-// --- Funktion för att byta språk (MODIFIERAD OCH ROBUST) ---
+// --- Funktion för att byta språk (ENKEL OCH STABIL VERSION) ---
 
 const setLanguage = (lang) => {
     document.documentElement.lang = lang; 
 
-    // Hämta rubriken och dess översättning
-    const heroTitleElement = document.querySelector('h1[data-key="hero_title"]');
-    const heroTitleTranslation = translations[lang]['hero_title'];
-
-    // 1. UPPPDATERA ALL ANNAN TEXT FÖRST
+    // Loopa igenom ALLA element och sätt texten direkt
     document.querySelectorAll('[data-key]').forEach(element => {
         const key = element.getAttribute('data-key');
-        
-        // Hoppa över rubriken, vi tar den separat
-        if (key === 'hero_title') {
-            return; 
-        }
-
         const translation = translations[lang][key];
+        
         if (translation) {
             element.innerHTML = translation;
         }
     });
 
-    // 2. KÖR SKRIVMASKINSEFFEKTEN SEPARAT (SIST)
-    // Detta gör att även om typewriterEffect kraschar, har resten av sidan laddats.
-    if (heroTitleElement && heroTitleTranslation) {
-        // Kör bara om texten faktiskt behöver ändras
-        if (heroTitleElement.textContent !== heroTitleTranslation) {
-            typewriterEffect(heroTitleElement, heroTitleTranslation);
-        }
-    }
-
-    // 3. Spara val och uppdatera knappar
     localStorage.setItem('language', lang); 
 
     document.getElementById('lang-sv').classList.toggle('active-lang', lang === 'sv');
