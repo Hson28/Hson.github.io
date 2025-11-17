@@ -370,49 +370,46 @@ footer {
     .nav-open .hamburger::after {
         transform: rotate(-45deg) translate(5px, -8px);
     }
-    /* --- Styling för språkväxlare --- */
-.lang-toggle {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    margin-left: 2rem; /* Samma som andra nav-objekt */
-}
-
-.lang-toggle button {
-    background: none;
-    border: none;
-    color: var(--primary-text);
-    font-family: inherit; /* Använd samma typsnitt */
-    font-weight: bold;
-    font-size: 1rem;
-    cursor: pointer;
-    padding: 0;
-    transition: color 0.3s ease;
-}
-
-.lang-toggle button:hover {
-    color: var(--accent-color);
-}
-
-.lang-toggle span {
-    color: var(--border-color);
-}
-
-/* Denna klass visar vilket språk som är aktivt */
-.lang-toggle button.active-lang {
-    color: var(--green-accent); /* Använder din hover-färg */
-    text-decoration: underline;
-    text-underline-offset: 4px;
-}
-
-/* --- Justering för mobilmeny --- */
-@media (max-width: 700px) {
     .lang-toggle {
-        margin-left: 0;
-        margin-top: 1.5rem; /* Ge den lite utrymme */
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-left: 2rem; /* Samma som andra nav-objekt */  
+    }
+    .lang-toggle button {
+        background: none;
+        border: none;
+        color: var(--primary-text);
+        font-family: inherit; /* Använd samma typsnitt */
+        font-weight: bold;
+        font-size: 1rem;
+        cursor: pointer;
+        padding: 0;
+        transition: color 0.3s ease;
+    }
+    .lang-toggle button:hover {
+        color: var(--accent-color);
     }
 
-    .lang-toggle button {
-        font-size: 1.5rem; /* Matcha de andra mobillänkarna */
+    .lang-toggle span {
+        color: var(--border-color);
+    }
+
+/* Denna klass visar vilket språk som är aktivt */
+    .lang-toggle button.active-lang {
+        color: var(--green-accent); /* Använder din hover-färg */
+        text-decoration: underline;
+        text-underline-offset: 4px;
+    }
+
+/* --- Justering för mobilmeny --- */
+    @media (max-width: 700px) {
+        .lang-toggle {
+            margin-left: 0;
+            margin-top: 1.5rem; /* Ge den lite utrymme */
+    }
+
+        .lang-toggle button {
+            font-size: 1.5rem; /* Matcha de andra mobillänkarna */
     }
 }
