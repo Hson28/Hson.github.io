@@ -833,9 +833,15 @@ section:nth-of-type(odd) {
 
 .packet {
     position: absolute;
-    background-color: var(--packet-color);
-    /* --- UPPDATERING: Borttagen border-radius --- */
-    /* border-radius: 50%; */ 
+    
+    /* --- UPPDATERING: Byt till Gradient --- */
+    /* Tar bort 'background-color' och 'border-radius' */
+    background-image: linear-gradient(
+        var(--packet-color) 30%, 
+        transparent 100%
+    );
+    /* --- SLUT PÅ UPPDATERING --- */
+
     opacity: 0; 
     
     animation-timing-function: linear;
@@ -896,7 +902,7 @@ section:nth-of-type(odd) {
     }
 }
 
-/* --- NY ANIMATION: Horisontell (Höger -> Vänster) --- */
+/* Animation: Horisontell (Höger -> Vänster) */
 @keyframes movePacketHorizontalRTL {
     0% {
         /* Startar som en fyrkant (relativt till 'right: -50px') */
