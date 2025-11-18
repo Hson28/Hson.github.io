@@ -26,13 +26,12 @@
     --color-card-bg: #f7fafc; /* Ljus bakgrund för kort */
     --color-badge-bg: #e2e8f0;
     --color-badge-text: #4a5568;
-    --color-focus-ring: #4299e1; /* Blå fokusring */
+    --color-focus-ring: #429e1; /* Blå fokusring */
 
-    /* --- UPPDATERING #1: Mjukare Skuggor & Glas-effekt --- */
+    /* Mjukare Skuggor & Glas-effekt */
     --color-bg-transparent: rgba(255, 255, 255, 0.85); /* För "glas"-effekt */
     --color-shadow: rgba(45, 55, 72, 0.08); /* Mjukare skugga */
     --color-shadow-hover: rgba(45, 55, 72, 0.12); /* Något mörkare vid hovring */
-    /* --- SLUT PÅ UPPDATERING --- */
 
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
@@ -42,10 +41,22 @@
 
     --border-radius: 8px;
 
-    /* --- UPPDATERING #1: Mjukare Skuggor --- */
+    /* Mjukare Skuggor */
     --shadow-md: 0 5px 15px var(--color-shadow);
     --shadow-lg: 0 10px 25px var(--color-shadow-hover);
-    /* --- SLUT PÅ UPPDATERING --- */
+    
+    /* --- NYA VARIABLER: Spotlight-effekt --- */
+    --mouseX: 50vw; /* Standardposition i mitten (horisontellt) */
+    --mouseY: 50vh; /* Standardposition i mitten (vertikalt) */
+    --spotlight-size-light: 400px; /* Storlek för ljust läge (subtil) */
+    --spotlight-color-light: rgba(0, 0, 0, 0.03); /* Färg för ljust läge */
+    --spotlight-size-dark: 500px; /* Storlek för mörkt läge (mer dramatisk) */
+    --spotlight-color-dark: rgba(255, 255, 255, 0.04); /* Färg för mörkt läge */
+
+    /* Standardvärden (ljust läge) */
+    --spotlight-size: var(--spotlight-size-light);
+    --spotlight-color: var(--spotlight-color-light);
+    /* --- SLUT PÅ NYA VARIABLER --- */
 
     --transition-fast: 0.2s ease-in-out;
 }
@@ -64,10 +75,14 @@
     --color-badge-text: #e2e8f0;
     --color-focus-ring: #63b3ed; /* Ljusblå fokusring */
 
-    /* --- UPPDATERING #1: Skuggor & Glas-effekt (Mörkt Läge) --- */
+    /* Skuggor & Glas-effekt (Mörkt Läge) */
     --color-bg-transparent: rgba(26, 32, 44, 0.85); /* 1a202c med alpha */
     --color-shadow: rgba(0, 0, 0, 0.3); /* Mörka skuggor behövs i mörkt läge */
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
+    
+    /* --- UPPDATERING: Spotlight (Mörkt läge) --- */
+    --spotlight-size: var(--spotlight-size-dark);
+    --spotlight-color: var(--spotlight-color-dark);
     /* --- SLUT PÅ UPPDATERING --- */
 }
 
@@ -101,51 +116,52 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
 
-    /* --- UPPDATERING #3: Subtil Bakgrundsgradient --- */
-    /* Detta skapar en extremt subtil gradient över hela sidan */
+    /* --- UPPDATERING: Spotlight + Gradient --- */
     background-color: var(--color-bg); /* Fallback */
-    /* Blandar 95% bakgrundsfärg med 5% textfärg för en subtil toning */
-    background-image: linear-gradient(180deg, 
-        var(--color-bg) 0%, 
-        color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
-    );
+    /* * Lägger till radial-gradient FÖRE linear-gradient.
+     * Spotlighten skapas här och centreras runt --mouseX och --mouseY.
+    */
+    background-image: 
+        radial-gradient(
+            circle at var(--mouseX) var(--mouseY), 
+            var(--spotlight-color) 0, 
+            transparent var(--spotlight-size)
+        ),
+        linear-gradient(
+            180deg, 
+            var(--color-bg) 0%, 
+            color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
+        );
     background-repeat: no-repeat;
+    
+    /* Mjukar upp spotlightens rörelse när den följer musen */
+    transition: background 0.1s ease-out; 
+    overflow-x: hidden; /* Förhindra horisontell scroll */
     /* --- SLUT PÅ UPPDATERING --- */
 }
 
 body {
-    /* --- UPPDATERING #3: Ta bort body-bakgrund --- */
     background-color: transparent; /* Låter html-gradienten lysa igenom */
-    /* --- SLUT PÅ UPPDATERING --- */
-
     color: var(--color-text);
     font-family: var(--font-family-base);
-
-    /* --- UPPDATERING #2: Typografi --- */
     line-height: 1.7; /* Ökat radavstånd för luftighet */
     font-weight: 400; /* Standardvikt för brödtext */
-    /* --- SLUT PÅ UPPDATERING --- */
-
     transition: background-color var(--transition-fast), color var(--transition-fast);
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-family-heading);
     font-weight: 700;
-
-    /* --- UPPDATERING #2: Typografi (Rubriker) --- */
     line-height: 1.3; /* Något luftigare rubriker */
     margin-top: var(--spacing-lg); /* Mer luft ovanför rubriker */
     margin-bottom: var(--spacing-sm); /* Mindre luft under (för att binda till texten) */
-    /* --- SLUT PÅ UPPDATERING --- */
 }
 
-/* --- UPPDATERING #2: Återställ margin för första rubriken i en sektion --- */
+/* Återställ margin för första rubriken i en sektion */
 h1:first-child, h2:first-child, h3:first-child,
 section h1:first-child, section h2:first-child, section h3:first-child {
     margin-top: 0;
 }
-/* --- SLUT PÅ UPPDATERING --- */
 
 
 h1 { font-size: 2.5rem; }
@@ -163,13 +179,7 @@ a {
     transition: color var(--transition-fast);
 }
 
-/* Ta bort den allmänna :hover-regeln, hanteras av .nav-link specifikt */
-/*
-a:hover {
-    color: var(--color-primary-hover);
-    text-decoration: underline;
-}
-*/
+/* a:hover borttagen (hanteras av .nav-link, .project-link etc.) */
 
 ul, ol {
     list-style: none;
@@ -254,11 +264,23 @@ img {
         transition-delay: 0ms !important;
     }
 
-    /* --- UPPDATERING #1: Stäng av glas-effekt vid reduce-motion --- */
+    /* Stäng av glas-effekt vid reduce-motion */
     .site-header, .site-nav {
         backdrop-filter: none !important;
         -webkit-backdrop-filter: none !important;
         background-color: var(--color-bg) !important; /* Använd solid färg */
+    }
+
+    /* --- UPPDATERING: Stäng av spotlight-effekten --- */
+    html {
+        /* Ta bort spotlighten men behåll gradienten */
+        background-image: 
+            linear-gradient(
+                180deg, 
+                var(--color-bg) 0%, 
+                color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
+            );
+        transition: none;
     }
     /* --- SLUT PÅ UPPDATERING --- */
 }
@@ -327,12 +349,11 @@ img {
     top: 0;
     z-index: 1000;
     
-    /* --- UPPDATERING #1: Glas-effekt --- */
+    /* Glas-effekt */
     background-color: var(--color-bg-transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px); /* Stöd för Safari */
     transition: background-color var(--transition-fast);
-    /* --- SLUT PÅ UPPDATERING --- */
 }
 
 .header-container {
@@ -398,11 +419,10 @@ img {
     transition: transform 0.3s ease-in-out;
     padding-top: var(--spacing-xl);
     
-    /* --- UPPDATERING #1: Glas-effekt (Mobilmeny) --- */
+    /* Glas-effekt (Mobilmeny) */
     background-color: var(--color-bg-transparent);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    /* --- SLUT PÅ UPPDATERING --- */
 }
 
 .site-nav[data-visible="true"] {
@@ -505,11 +525,10 @@ img {
         padding-top: 0;
         transition: none;
 
-        /* --- UPPDATERING #1: Ta bort glas-effekt från desktop-menyn --- */
+        /* Ta bort glas-effekt från desktop-menyn */
         background-color: transparent;
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
-        /* --- SLUT PÅ UPPDATERING --- */
     }
 
     .nav-list {
@@ -531,17 +550,16 @@ section {
     padding: var(--spacing-xl) 0;
 }
 
-/* --- UPPDATERING #3: Ta bort alternerande bakgrunder (hanteras av body-gradient) --- */
+/* Ta bort alternerande bakgrunder (hanteras av body-gradient) */
 section:nth-of-type(odd) {
-    background-color: transparent; /* var(--color-card-bg); */
+    background-color: transparent; 
 }
 [data-theme="dark"] section:nth-of-type(odd) {
-    background-color: transparent; /* var(--color-bg); */
+    background-color: transparent; 
 }
 [data-theme="dark"] section:nth-of-type(even) {
-    background-color: transparent; /* var(--color-card-bg); */
+    background-color: transparent; 
 }
-/* --- SLUT PÅ UPPDATERING --- */
 
 
 /* Hero-sektion */
@@ -629,14 +647,11 @@ section:nth-of-type(odd) {
 }
 
 .project-card {
-    /* --- UPPDATERING #1: Bakgrund & Skugga --- */
-    /* Ge korten en solid bakgrundsfärg för att stå ut mot gradienten */
+    /* Bakgrund & Skugga */
     background-color: var(--color-card-bg);
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-md); /* Använder den nya mjukare skuggan */
-    /* --- SLUT PÅ UPPDATERING --- */
-
     overflow: hidden;
     
     /* --- FADE-IN STILAR (Inga ändringar) --- */
@@ -715,12 +730,11 @@ section:nth-of-type(odd) {
 }
 
 .skill-badge {
-    /* --- UPPDATERING #1: Mjukare utseende --- */
+    /* Mjukare utseende */
     background-color: var(--color-card-bg);
     border: 1px solid var(--color-border);
     color: var(--color-text);
     box-shadow: var(--shadow-md);
-    /* --- SLUT PÅ UPPDATERING --- */
 
     padding: var(--spacing-sm) var(--spacing-md);
     border-radius: var(--border-radius);
@@ -756,9 +770,7 @@ section:nth-of-type(odd) {
 
 .site-footer {
     padding: var(--spacing-lg) 0;
-    /* --- UPPDATERING #1: Mjukare utseende --- */
     background-color: var(--color-card-bg);
-    /* --- SLUT PÅ UPPDATERING --- */
     border-top: 1px solid var(--color-border);
     font-size: 0.875rem;
 }
