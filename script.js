@@ -9,6 +9,7 @@
  * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
  * 6. "Staggered" fade-in på projektkort (IntersectionObserver)
  * 7. "Scrollspy" för aktiv meny-länk (IntersectionObserver)
+ * 8. Subtil bakgrundsanimation med "paket"
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -77,12 +78,12 @@
         langToggle: document.querySelector(".lang-toggle"),
         navToggle: document.querySelector(".nav-toggle"),
         navMenu: document.querySelector("#primary-navigation"),
-        navLinks: document.querySelectorAll(".nav-link"), // Används av Scrollspy
+        navLinks: document.querySelectorAll(".nav-link"),
         langElements: document.querySelectorAll("[data-lang-key]"),
         anchorLinks: document.querySelectorAll('a[href^="#"]'),
         heroH1: document.querySelector(".hero-text h1"),
         heroTagline: document.querySelector(".hero-tagline"),
-        projectCards: document.querySelectorAll(".project-card") // Används av Staggered-fade
+        projectCards: document.querySelectorAll(".project-card")
     };
 
     // --- 3. Variabler ---
@@ -399,7 +400,55 @@
     }
 
     
-    // --- 11. Initiering & Händelselyssnare ---
+    // --- 11. NY FUNKTION: Bakgrundsanimation (Paket) ---
+    
+    /**
+     * Skapar och animerar de subtila bakgrunds"paketen".
+     */
+    function initPacketBackground() {
+        // Respektera användarens val
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            return;
+        }
+
+        try {
+            const container = document.createElement('div');
+            container.className = 'packet-background';
+            const numPackets = 20; // Antal paket på skärmen
+
+            for (let i = 0; i < numPackets; i++) {
+                const packet = document.createElement('span');
+                packet.className = 'packet';
+                
+                // Slumpmässig startposition (vänster/höger)
+                packet.style.left = `${Math.random() * 100}vw`;
+                
+                // Slumpmässig storlek (1px till 4px)
+                const size = Math.random() * 3 + 1;
+                packet.style.width = `${size}px`;
+                packet.style.height = `${size}px`;
+
+                // Slumpmässig animationslängd (10s till 30s)
+                packet.style.animationDuration = `${Math.random() * 20 + 10}s`;
+                
+                // Slumpmässig fördröjning (0s till 20s)
+                packet.style.animationDelay = `${Math.random() * 20}s`;
+
+                container.appendChild(packet);
+            }
+            
+            // Lägg till behållaren i body
+            document.body.appendChild(container);
+
+        } catch (e) {
+            // Ignorera tyst om något går fel
+        }
+    }
+
+
+    // --- 12. Initiering & Händelselyssnare --- (Tidigare Sektion 11)
+
     function bindEvents() {
         if (dom.themeToggle) {
             dom.themeToggle.addEventListener("click", toggleTheme);
@@ -434,7 +483,7 @@
         bindEvents();
         initScrollObserver(); 
         initScrollspy();    
-        // initMouseSpotlight(); // <--- Borttagen
+        initPacketBackground(); // NY RAD: Startar paket-animationen
     }
 
     document.addEventListener("DOMContentLoaded", init);
