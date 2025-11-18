@@ -9,6 +9,7 @@
  * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
  * 6. "Staggered" fade-in på projektkort (IntersectionObserver)
  * 7. "Scrollspy" för aktiv meny-länk (IntersectionObserver)
+ * 8. "Spotlight"-effekt för muspekare
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -78,7 +79,7 @@
         langToggle: document.querySelector(".lang-toggle"),
         navToggle: document.querySelector(".nav-toggle"),
         navMenu: document.querySelector("#primary-navigation"),
-        navLinks: document.querySelectorAll(".nav-link"), // Används nu av Scrollspy
+        navLinks: document.querySelectorAll(".nav-link"), 
         langElements: document.querySelectorAll("[data-lang-key]"),
         anchorLinks: document.querySelectorAll('a[href^="#"]'),
         heroH1: document.querySelector(".hero-text h1"),
@@ -337,11 +338,10 @@
 
 
     // --- 9. Scroll-animation (Staggered Fade-in) ---
-    // UPPDATERAD: LÄGGER TILL "STAGGER" (fördröjning)
+    // (Inga ändringar i denna sektion)
     function initScrollObserver() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        // Fallback för gamla webbläsare eller om användaren vill ha minskad rörelse
         if (!('IntersectionObserver' in window) || prefersReducedMotion) {
             dom.projectCards.forEach(card => card.classList.add('is-visible'));
             return;
@@ -350,7 +350,7 @@
         const observerOptions = {
             root: null, 
             rootMargin: '0px',
-            threshold: 0.1 // Utlös när 10% är synligt
+            threshold: 0.1 
         };
 
         const observerCallback = (entries, observer) => {
@@ -364,49 +364,36 @@
 
         const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
 
-        // Sätt observatören att titta på varje projektkort
         dom.projectCards.forEach((card, index) => {
-            // --- NY RAD FÖR "STAGGERED" EFFEKT ---
-            // Lägger till en fördröjning (0s, 0.1s, 0.2s, etc.)
             card.style.transitionDelay = `${index * 100}ms`;
-            // --- SLUT PÅ NY RAD ---
-
             scrollObserver.observe(card);
         });
     }
 
     
-    // --- 10. Scrollspy (Aktiv meny-länk) --- (NY SEKTION)
-    
-    /**
-     * Initialiserar en IntersectionObserver för att markera aktiv länk i menyn.
-     */
+    // --- 10. Scrollspy (Aktiv meny-länk) ---
+    // (Inga ändringar i denna sektion)
     function initScrollspy() {
         if (!('IntersectionObserver' in window)) {
-            return; // Scrollspy är "nice to have", funkar inte i gamla webbläsare
+            return; 
         }
         
         const sections = document.querySelectorAll("main section[id]");
         
         const observerOptions = {
             root: null,
-            // "rootMargin" definierar en horisontell "linje" i mitten av skärmen
-            // -40% från toppen, -60% från botten = en 20% hög zon i mitten
             rootMargin: "-40% 0px -60% 0px",
-            threshold: 0 // Utlös så fort zonen träffas
+            threshold: 0 
         };
 
         const observerCallback = (entries) => {
             entries.forEach(entry => {
-                // När en sektion träffar vår "linje" i mitten...
                 if (entry.isIntersecting) {
                     const id = entry.target.getAttribute('id');
                     const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
 
-                    // Rensa alla andra aktiva länkar
                     dom.navLinks.forEach(link => link.classList.remove('is-active'));
                     
-                    // Lägg till aktiv klass på den rätta
                     if (activeLink) {
                         activeLink.classList.add('is-active');
                     }
@@ -416,14 +403,37 @@
 
         const scrollspyObserver = new IntersectionObserver(observerCallback, observerOptions);
 
-        // Observera alla sektioner
         sections.forEach(section => {
             scrollspyObserver.observe(section);
         });
     }
 
+    
+    // --- 11. Spotlight-effekt för muspekare --- (NY SEKTION)
 
-    // --- 11. Initiering & Händelselyssnare --- (Tidigare Sektion 10)
+    /**
+     * Initialiserar en 'mousemove'-lyssnare för att uppdatera spotlight-positionen.
+     */
+    function initMouseSpotlight() {
+        // Respektera användarens val
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (prefersReducedMotion) {
+            return; // Avbryt om användaren vill ha minskad rörelse
+        }
+
+        // Lyssna på musrörelser över hela fönstret
+        window.addEventListener('mousemove', (e) => {
+            // Uppdatera CSS-variablerna med musens X- och Y-position
+            // Vi använder requestAnimationFrame för att optimera prestanda
+            window.requestAnimationFrame(() => {
+                dom.html.style.setProperty('--mouseX', `${e.clientX}px`);
+                dom.html.style.setProperty('--mouseY', `${e.clientY}px`);
+            });
+        });
+    }
+
+
+    // --- 12. Initiering & Händelselyssnare --- (Tidigare Sektion 11)
 
     function bindEvents() {
         if (dom.themeToggle) {
@@ -457,8 +467,9 @@
         initTheme();
         initLanguage(); 
         bindEvents();
-        initScrollObserver(); // Startar "staggered fade-in"
-        initScrollspy();    // NY RAD: Startar "scrollspy"
+        initScrollObserver(); 
+        initScrollspy();    
+        initMouseSpotlight(); // NY RAD: Startar spotlight-effekten
     }
 
     document.addEventListener("DOMContentLoaded", init);
