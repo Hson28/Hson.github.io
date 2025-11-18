@@ -45,9 +45,9 @@
     --shadow-md: 0 5px 15px var(--color-shadow);
     --shadow-lg: 0 10px 25px var(--color-shadow-hover);
     
-    /* --- Paket-animation --- */
+    /* --- Paket-animation (UPPDATERAD) --- */
     --packet-color: var(--color-primary); /* Paketen får primärfärgen */
-    --packet-opacity: 0.2; /* Något mer synlig */
+    --packet-opacity: 0.15; /* Mer genomskinlig */
     
     --transition-fast: 0.2s ease-in-out;
 }
@@ -71,9 +71,9 @@
     --color-shadow: rgba(0, 0, 0, 0.3); /* Mörka skuggor behövs i mörkt läge */
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
     
-    /* --- Paket-animation (Mörkt läge) --- */
+    /* --- Paket-animation (Mörkt läge) (UPPDATERAD) --- */
     --packet-color: var(--color-primary);
-    --packet-opacity: 0.4; /* Lite tydligare i mörkt läge */
+    --packet-opacity: 0.3; /* Mer genomskinlig */
 }
 
 /* Uppdatera webbläsartema vid byte */
@@ -817,7 +817,7 @@ section:nth-of-type(odd) {
 
 
 /* ========================================
-   NY SEKTION: Paket-animation (med Svans/Sträckning)
+   Paket-animation (med Svans/Sträckning)
    ======================================== */
 
 .packet-background {
@@ -850,18 +850,22 @@ section:nth-of-type(odd) {
 /* Animation för Vertikal rörelse (med stretch-svans) */
 @keyframes movePacketVertical {
     0% {
-        transform: translate(0, 0) scaleY(1);
+        /* Startar som en prick */
+        transform: translate(var(--tx), 0) scaleY(1);
         opacity: 0;
     }
     10% {
+        /* Blir synlig som en prick */
         opacity: var(--packet-opacity);
     }
     /* Sträcker ut sig i mitten av resan för att simulera en svans */
     50% {
-        transform: translate(var(--tx-mid), -55vh) scaleY(8);
-        opacity: var(--packet-opacity);
+        transform: translate(var(--tx), -55vh) scaleY(25); /* LÄNGRE SVANS */
+        opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
     }
     90% {
+        /* Återgår till en prick innan den försvinner */
+        transform: translate(var(--tx), -100vh) scaleY(1);
         opacity: var(--packet-opacity);
     }
     100% {
@@ -873,18 +877,22 @@ section:nth-of-type(odd) {
 /* Animation för Horisontell rörelse (med stretch-svans) */
 @keyframes movePacketHorizontal {
     0% {
-        transform: translate(0, 0) scaleX(1);
+        /* Startar som en prick */
+        transform: translate(0, var(--ty)) scaleX(1);
         opacity: 0;
     }
     10% {
+        /* Blir synlig som en prick */
         opacity: var(--packet-opacity);
     }
     /* Sträcker ut sig horisontellt */
     50% {
-        transform: translate(55vw, var(--ty-mid)) scaleX(8);
-        opacity: var(--packet-opacity);
+        transform: translate(55vw, var(--ty-mid)) scaleX(25); /* LÄNGRE SVANS */
+        opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
     }
     90% {
+        /* Återgår till en prick innan den försvinner */
+        transform: translate(100vw, var(--ty)) scaleX(1);
         opacity: var(--packet-opacity);
     }
     100% {
