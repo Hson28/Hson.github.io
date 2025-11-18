@@ -9,7 +9,6 @@
  * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
  * 6. "Staggered" fade-in på projektkort (IntersectionObserver)
  * 7. "Scrollspy" för aktiv meny-länk (IntersectionObserver)
- * 8. "Spotlight"-effekt för muspekare
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -18,7 +17,6 @@
     "use strict";
 
     // --- 1. Språkdata ---
-    // (Inga ändringar i denna sektion)
     const translations = {
         en: {
             meta_title: "Jehanni — IT Security Specialist Student",
@@ -79,12 +77,12 @@
         langToggle: document.querySelector(".lang-toggle"),
         navToggle: document.querySelector(".nav-toggle"),
         navMenu: document.querySelector("#primary-navigation"),
-        navLinks: document.querySelectorAll(".nav-link"), 
+        navLinks: document.querySelectorAll(".nav-link"), // Används av Scrollspy
         langElements: document.querySelectorAll("[data-lang-key]"),
         anchorLinks: document.querySelectorAll('a[href^="#"]'),
         heroH1: document.querySelector(".hero-text h1"),
         heroTagline: document.querySelector(".hero-tagline"),
-        projectCards: document.querySelectorAll(".project-card")
+        projectCards: document.querySelectorAll(".project-card") // Används av Staggered-fade
     };
 
     // --- 3. Variabler ---
@@ -94,7 +92,6 @@
     let typingTimeout = null; 
 
     // --- 4. Temahantering ---
-    // (Inga ändringar i denna sektion)
     function applyTheme(theme) {
         dom.html.setAttribute("data-theme", theme);
         if (dom.themeToggle) {
@@ -112,7 +109,7 @@
             document.querySelector('meta[name="theme-color"][media="(prefers-color-scheme: dark)"]')
                     .setAttribute("content", theme === "dark" ? "#1a202c" : "#ffffff");
         } catch (e) {
-            // Ignorera tyst om meta-taggar inte finns
+            // Ignorera tyst
         }
     }
 
@@ -122,7 +119,7 @@
         try {
             localStorage.setItem("theme", newTheme);
         } catch (e) {
-            // localStorage kan misslyckas (t.ex. privat läge)
+            // localStorage kan misslyckas
         }
     }
 
@@ -159,7 +156,6 @@
     }
 
     // --- 5. Språkhantering ---
-    // (Inga ändringar i denna sektion)
     function storeDefaultLanguage() {
         dom.langElements.forEach(el => {
             el.dataset.defaultSv = el.textContent.trim();
@@ -187,7 +183,6 @@
         
         if (dom.heroH1) dom.heroH1.classList.remove("typing-effect");
         if (dom.heroTagline) dom.heroTagline.classList.remove("typing-effect");
-
 
         const h1Text = (lang === 'en' && translations.en['hero_h1']) 
             ? translations.en['hero_h1'] 
@@ -251,7 +246,6 @@
     }
 
     // --- 6. Mobilnavigation ---
-    // (Inga ändringar i denna sektion)
     function toggleMenu() {
         if (!dom.navMenu || !dom.navToggle) return;
         
@@ -273,7 +267,6 @@
     }
 
     // --- 7. Mjuk Scrollning ---
-    // (Inga ändringar i denna sektion)
     function smoothScroll(e) {
         try {
             const hash = e.currentTarget.hash;
@@ -296,7 +289,6 @@
     }
 
     // --- 8. Skrivmaskinseffekt ---
-    // (Inga ändringar i denna sektion)
     function startTypeEffect(element, text, speed = 150, callback = null) {
         if (!element || !text) {
             if(callback) callback(); 
@@ -338,7 +330,6 @@
 
 
     // --- 9. Scroll-animation (Staggered Fade-in) ---
-    // (Inga ändringar i denna sektion)
     function initScrollObserver() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -372,7 +363,6 @@
 
     
     // --- 10. Scrollspy (Aktiv meny-länk) ---
-    // (Inga ändringar i denna sektion)
     function initScrollspy() {
         if (!('IntersectionObserver' in window)) {
             return; 
@@ -409,32 +399,7 @@
     }
 
     
-    // --- 11. Spotlight-effekt för muspekare --- (NY SEKTION)
-
-    /**
-     * Initialiserar en 'mousemove'-lyssnare för att uppdatera spotlight-positionen.
-     */
-    function initMouseSpotlight() {
-        // Respektera användarens val
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) {
-            return; // Avbryt om användaren vill ha minskad rörelse
-        }
-
-        // Lyssna på musrörelser över hela fönstret
-        window.addEventListener('mousemove', (e) => {
-            // Uppdatera CSS-variablerna med musens X- och Y-position
-            // Vi använder requestAnimationFrame för att optimera prestanda
-            window.requestAnimationFrame(() => {
-                dom.html.style.setProperty('--mouseX', `${e.clientX}px`);
-                dom.html.style.setProperty('--mouseY', `${e.clientY}px`);
-            });
-        });
-    }
-
-
-    // --- 12. Initiering & Händelselyssnare --- (Tidigare Sektion 11)
-
+    // --- 11. Initiering & Händelselyssnare ---
     function bindEvents() {
         if (dom.themeToggle) {
             dom.themeToggle.addEventListener("click", toggleTheme);
@@ -469,7 +434,7 @@
         bindEvents();
         initScrollObserver(); 
         initScrollspy();    
-        initMouseSpotlight(); // NY RAD: Startar spotlight-effekten
+        // initMouseSpotlight(); // <--- Borttagen
     }
 
     document.addEventListener("DOMContentLoaded", init);
