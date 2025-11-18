@@ -44,9 +44,9 @@
     --shadow-md: 0 5px 15px var(--color-shadow);
     --shadow-lg: 0 10px 25px var(--color-shadow-hover);
     
-    /* Animationer */
-    --attack-line-color: #ff0000; 
-    --attack-pulse-color: #ffff00; 
+    /* --- Animationer (JUSTERAD FÄRG FÖR LJUST LÄGE) --- */
+    --attack-line-color: #4a5568;   /* Mörkgrå för ljust läge */
+    --attack-pulse-color: #a0aec0;  /* Subtil glöd i ljust läge */
     --map-blend-mode: multiply; 
     
     --transition-fast: 0.2s ease-in-out;
@@ -70,7 +70,7 @@
     --color-shadow: rgba(0, 0, 0, 0.3);
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
     
-    --attack-line-color: #ff3333; 
+    --attack-line-color: #ff3333; /* Behåll röd/gul i mörkt läge */
     --attack-pulse-color: #ffea00; 
     --map-blend-mode: lighten; 
 }
@@ -479,7 +479,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 /* --- Paketen omgjorda till Pulser/Attacker (Använder gamla packet-klassen) --- */
 
 .packet-background {
-    /* FIXED: Täcker hela skärmen även vid scroll */
     position: fixed; height: 100%; z-index: -1; top: 0; left: 0; width: 100vw;
     pointer-events: none; overflow: hidden;
     background: none; 
@@ -492,8 +491,9 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     width: 4px !important;
     height: 4px !important;
     border-radius: 50%;
+    /* Använder de nya variablerna för färg och glöd */
     background-color: var(--attack-line-color);
-    box-shadow: 0 0 10px var(--attack-line-color), 0 0 5px var(--attack-line-color);
+    box-shadow: 0 0 10px var(--attack-pulse-color), 0 0 5px var(--attack-pulse-color);
     
     animation-timing-function: linear;
     animation-iteration-count: infinite;
