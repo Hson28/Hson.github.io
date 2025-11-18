@@ -4,7 +4,7 @@
  * 1. Mörkt/Ljust Téma
  * 2. Språkväxling
  * 3. Mobilmeny (FIXAD)
- * 4. Animationer
+ * 4. Animationer (Snabbare paket)
  */
 
 (function () {
@@ -70,7 +70,6 @@
         themeToggle: document.querySelector(".theme-toggle"),
         langToggle: document.querySelector(".lang-toggle"),
         navToggle: document.querySelector(".nav-toggle"),
-        // HÄR ÄR FIXEN: Vi väljer .site-nav istället för #primary-navigation
         navMenu: document.querySelector(".site-nav"), 
         navLinks: document.querySelectorAll(".nav-link"),
         langElements: document.querySelectorAll("[data-lang-key]"),
@@ -245,12 +244,8 @@
         if (!dom.navMenu || !dom.navToggle) return;
         
         const isVisible = dom.navMenu.getAttribute("data-visible") === "true";
-        
-        // Växla attributet på själva <nav>-elementet (site-nav)
         dom.navMenu.setAttribute("data-visible", !isVisible);
         dom.navToggle.setAttribute("aria-expanded", !isVisible);
-        
-        // Lås scrollning på body när menyn är öppen
         dom.html.style.overflow = !isVisible ? "hidden" : "auto";
     }
     
@@ -275,14 +270,12 @@
                 target.scrollIntoView({
                     behavior: "smooth"
                 });
-                
                 closeMenu();
-
                 target.setAttribute("tabindex", "-1");
                 target.focus();
             }
         } catch (err) {
-            // Fallback till standardbeteende
+            // Fallback
         }
     }
 
@@ -327,7 +320,7 @@
     }
 
 
-    // --- 9. Scroll-animation (Staggered Fade-in) ---
+    // --- 9. Scroll-animation ---
     function initScrollObserver() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -360,7 +353,7 @@
     }
 
     
-    // --- 10. Scrollspy (Aktiv meny-länk) ---
+    // --- 10. Scrollspy ---
     function initScrollspy() {
         if (!('IntersectionObserver' in window)) {
             return; 
@@ -399,9 +392,6 @@
     
     // --- 11. Bakgrundsanimation (Komet-effekt) ---
     
-    /**
-     * Skapar och animerar de subtila bakgrunds"paketen".
-     */
     function initPacketBackground() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) {
@@ -411,25 +401,25 @@
         try {
             const container = document.createElement('div');
             container.className = 'packet-background';
-            const numPackets = 25; // Antal paket på skärmen
+            const numPackets = 25; 
 
             for (let i = 0; i < numPackets; i++) {
                 const packet = document.createElement('span');
-                packet.className = 'packet'; // Grundläggande klass
+                packet.className = 'packet'; 
                 
-                const duration = Math.random() * 12 + 8; // 8s till 20s
-                const delay = Math.random() * 20; // 0-20s fördröjning
+                // --- ÄNDRING HÄR: Snabbare hastighet (3s - 8s) ---
+                const duration = Math.random() * 5 + 3; 
+                // -------------------------------------------------
+                
+                const delay = Math.random() * 10; // Kortare fördröjning vid start
 
                 packet.style.animationDuration = `${duration}s`;
                 packet.style.animationDelay = `${delay}s`;
                 
-                // Slumpmässig storlek (1-3px)
                 const size = Math.random() * 2 + 1;
-
-                // Slumpa en typ: 0 (Vertikal), 1 (Horisontell LTR), 2 (Horisontell RTL)
                 const type = Math.floor(Math.random() * 3);
 
-                if (type === 0) { // Vertikal (Botten -> Topp)
+                if (type === 0) { // Vertikal
                     packet.classList.add('packet--vertical'); 
                     packet.style.width = `${size}px`;
                     packet.style.height = `${size}px`; 
@@ -437,7 +427,7 @@
                     packet.style.bottom = '-50px'; 
                     packet.style.animationName = 'movePacketVertical';
 
-                } else if (type === 1) { // Horisontell (Vänster -> Höger)
+                } else if (type === 1) { // Horisontell LTR
                     packet.classList.add('packet--horizontal-ltr'); 
                     packet.style.width = `${size}px`; 
                     packet.style.height = `${size}px`;
@@ -445,7 +435,7 @@
                     packet.style.top = `${Math.random() * 100}%`; 
                     packet.style.animationName = 'movePacketHorizontal';
 
-                } else { // Horisontell (Höger -> Vänster)
+                } else { // Horisontell RTL
                     packet.classList.add('packet--horizontal-rtl'); 
                     packet.style.width = `${size}px`; 
                     packet.style.height = `${size}px`;
@@ -457,42 +447,23 @@
                 container.appendChild(packet);
             }
             
-            // Lägg till behållaren i body
             document.body.appendChild(container);
 
         } catch (e) {
-            // Ignorera tyst om något går fel
+            // Ignorera tyst
         }
     }
 
 
-    // --- 12. Initiering & Händelselyssnare ---
+    // --- 12. Initiering ---
     function bindEvents() {
-        if (dom.themeToggle) {
-            dom.themeToggle.addEventListener("click", toggleTheme);
-        }
+        if (dom.themeToggle) dom.themeToggle.addEventListener("click", toggleTheme);
+        if (dom.langToggle) dom.langToggle.addEventListener("click", toggleLanguage);
+        if (dom.navToggle) dom.navToggle.addEventListener("click", toggleMenu);
         
-        if (dom.langToggle) {
-            dom.langToggle.addEventListener("click", toggleLanguage);
-        }
-
-        if (dom.navToggle) {
-            dom.navToggle.addEventListener("click", toggleMenu);
-        }
-        
-        dom.navLinks.forEach(link => {
-            link.addEventListener("click", closeMenu);
-        });
-
-        document.addEventListener("keydown", (e) => {
-            if (e.key === "Escape") {
-                closeMenu();
-            }
-        });
-
-        dom.anchorLinks.forEach(link => {
-            link.addEventListener("click", smoothScroll);
-        });
+        dom.navLinks.forEach(link => link.addEventListener("click", closeMenu));
+        document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+        dom.anchorLinks.forEach(link => link.addEventListener("click", smoothScroll));
     }
 
     function init() {
