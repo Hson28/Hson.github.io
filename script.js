@@ -9,7 +9,7 @@
  * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
  * 6. "Staggered" fade-in på projektkort (IntersectionObserver)
  * 7. "Scrollspy" för aktiv meny-länk (IntersectionObserver)
- * 8. Subtil bakgrundsanimation med "paket"
+ * 8. Subtil bakgrundsanimation med "paket" (med riktning & svans)
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -400,13 +400,12 @@
     }
 
     
-    // --- 11. NY FUNKTION: Bakgrundsanimation (Paket) ---
+    // --- 11. Bakgrundsanimation (Paket med Riktning & Svans) ---
     
     /**
      * Skapar och animerar de subtila bakgrunds"paketen".
      */
     function initPacketBackground() {
-        // Respektera användarens val
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
         if (prefersReducedMotion) {
             return;
@@ -435,6 +434,13 @@
                 // Slumpmässig fördröjning (0s till 20s)
                 packet.style.animationDelay = `${Math.random() * 20}s`;
 
+                // --- NYHET: Slumpmässig horisontell drift ---
+                // Sätter en CSS-variabel '--tx' för varje paket
+                // Mellan -200px och +200px
+                const horizontalDrift = (Math.random() - 0.5) * 400;
+                packet.style.setProperty('--tx', `${horizontalDrift}px`);
+                // --- SLUT PÅ NYHET ---
+
                 container.appendChild(packet);
             }
             
@@ -447,8 +453,7 @@
     }
 
 
-    // --- 12. Initiering & Händelselyssnare --- (Tidigare Sektion 11)
-
+    // --- 12. Initiering & Händelselyssnare ---
     function bindEvents() {
         if (dom.themeToggle) {
             dom.themeToggle.addEventListener("click", toggleTheme);
@@ -483,7 +488,7 @@
         bindEvents();
         initScrollObserver(); 
         initScrollspy();    
-        initPacketBackground(); // NY RAD: Startar paket-animationen
+        initPacketBackground(); // Startar paket-animationen
     }
 
     document.addEventListener("DOMContentLoaded", init);
