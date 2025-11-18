@@ -843,19 +843,21 @@ section:nth-of-type(odd) {
     animation-iteration-count: infinite;
 }
 
-/* --- RIKTNINGS-GRADIENTER --- */
+/* --- RIKTNINGS-GRADIENTER (UPPDATERAD) --- */
 .packet--vertical {
     /* 'to bottom' är standard, pekar "bakåt" när paketet åker upp */
     background-image: linear-gradient(
-        var(--packet-color) 30%, 
-        transparent 100%
+        var(--packet-color) 0%, 
+        var(--packet-color) 5%,  /* Ett litet, 5% solitt "huvud" */
+        transparent 100%       /* Resten är en mjuk toning */
     );
 }
 .packet--horizontal-ltr {
     /* pekar "bakåt" (åt vänster) när paketet åker åt höger */
     background-image: linear-gradient(
         to left,
-        var(--packet-color) 30%, 
+        var(--packet-color) 0%, 
+        var(--packet-color) 5%, 
         transparent 100%
     );
 }
@@ -863,7 +865,8 @@ section:nth-of-type(odd) {
     /* pekar "bakåt" (åt höger) när paketet åker åt vänster */
      background-image: linear-gradient(
         to right,
-        var(--packet-color) 30%, 
+        var(--packet-color) 0%, 
+        var(--packet-color) 5%, 
         transparent 100%
     );
 }
