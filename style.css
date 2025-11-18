@@ -45,6 +45,9 @@
     --shadow-md: 0 5px 15px var(--color-shadow);
     --shadow-lg: 0 10px 25px var(--color-shadow-hover);
     
+    /* --- NY VARIABEL: Paket-animation --- */
+    --packet-opacity: 0.15; /* Subtil i ljust läge */
+    
     --transition-fast: 0.2s ease-in-out;
 }
 
@@ -66,6 +69,9 @@
     --color-bg-transparent: rgba(26, 32, 44, 0.85); /* 1a202c med alpha */
     --color-shadow: rgba(0, 0, 0, 0.3); /* Mörka skuggor behövs i mörkt läge */
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
+    
+    /* --- NY VARIABEL: Paket-animation (Mörkt läge) --- */
+    --packet-opacity: 0.3; /* Lite tydligare i mörkt läge */
 }
 
 /* Uppdatera webbläsartema vid byte */
@@ -239,7 +245,11 @@ img {
         background-color: var(--color-bg) !important; /* Använd solid färg */
     }
     
-    /* Spotlight-effekten är redan borttagen i denna version */
+    /* --- NY REGEL: Stäng av paket-animationen --- */
+    .packet {
+        animation: none !important;
+        display: none !important;
+    }
 }
 
 /* ========================================
@@ -800,5 +810,50 @@ section:nth-of-type(odd) {
     
     .hero-image-wrapper {
         max-width: 400px;
+    }
+}
+
+
+/* ========================================
+   NY SEKTION: Paket-animation
+   ======================================== */
+
+.packet-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0; /* Bakom headern (1000) men framför body-gradienten */
+    pointer-events: none; /* Gör lagret icke-klickbart */
+    overflow: hidden;
+}
+
+.packet {
+    position: absolute;
+    bottom: -50px; /* Startar utanför skärmen */
+    background-color: var(--color-primary);
+    border-radius: 50%;
+    
+    /* Börjar osynlig, får opacitet från keyframes */
+    opacity: 0; 
+    
+    animation-name: movePacket;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes movePacket {
+    0% {
+        transform: translateY(0);
+        opacity: 0;
+    }
+    /* Tona in och stanna synlig under större delen av resan */
+    10%, 90% {
+        opacity: var(--packet-opacity); /* Använder CSS-variabeln */
+    }
+    100% {
+        transform: translateY(-110vh); /* Rör sig 110% av skärmhöjden */
+        opacity: 0;
     }
 }
