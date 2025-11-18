@@ -420,9 +420,12 @@
                 const packet = document.createElement('span');
                 packet.className = 'packet'; // Grundläggande klass
                 
-                // Slumpmässig varaktighet (10-25s) och fördröjning (0-25s)
-                const duration = Math.random() * 15 + 10;
-                const delay = Math.random() * 25; 
+                // --- UPPDATERING: Snabbare hastighetsintervall ---
+                // Tidigare: 10-25s. Nu: 8-20s.
+                const duration = Math.random() * 12 + 8; // 8s (snabbast) till 20s (långsammast)
+                const delay = Math.random() * 20; // 0-20s fördröjning
+                // --- SLUT PÅ UPPDATERING ---
+
                 packet.style.animationDuration = `${duration}s`;
                 packet.style.animationDelay = `${delay}s`;
                 
@@ -437,7 +440,7 @@
                     packet.style.width = `${size}px`;
                     packet.style.height = `${size}px`; 
                     packet.style.left = `${Math.random() * 100}vw`;
-                    packet.style.bottom = '-50px'; // Startar längst ner i containern
+                    packet.style.bottom = '-50px'; 
                     packet.style.animationName = 'movePacketVertical';
 
                 } else if (type === 1) { // Horisontell (Vänster -> Höger)
@@ -445,8 +448,7 @@
                     packet.style.width = `${size}px`; 
                     packet.style.height = `${size}px`;
                     packet.style.left = '-50px';
-                    /* --- ÄNDRING: vh -> % --- */
-                    packet.style.top = `${Math.random() * 100}%`; // Startar på slumpmässig %-höjd
+                    packet.style.top = `${Math.random() * 100}%`; 
                     packet.style.animationName = 'movePacketHorizontal';
 
                 } else { // Horisontell (Höger -> Vänster)
@@ -454,8 +456,7 @@
                     packet.style.width = `${size}px`; 
                     packet.style.height = `${size}px`;
                     packet.style.right = '-50px';
-                    /* --- ÄNDRING: vh -> % --- */
-                    packet.style.top = `${Math.random() * 100}%`; // Startar på slumpmässig %-höjd
+                    packet.style.top = `${Math.random() * 100}%`; 
                     packet.style.animationName = 'movePacketHorizontalRTL';
                 }
 
