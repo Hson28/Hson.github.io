@@ -414,7 +414,7 @@
         try {
             const container = document.createElement('div');
             container.className = 'packet-background';
-            const numPackets = 25; // Ökat antal för fler riktningar
+            const numPackets = 25; // Antal paket på skärmen
 
             for (let i = 0; i < numPackets; i++) {
                 const packet = document.createElement('span');
@@ -426,8 +426,8 @@
                 packet.style.animationDuration = `${duration}s`;
                 packet.style.animationDelay = `${delay}s`;
                 
-                // Slumpmässig storlek (1-4px)
-                const size = Math.random() * 3 + 1;
+                // Slumpmässig storlek (1-3px)
+                const size = Math.random() * 2 + 1;
                 packet.style.width = `${size}px`;
                 packet.style.height = `${size}px`;
 
@@ -439,10 +439,8 @@
                     packet.style.bottom = '-50px';
                     packet.style.animationName = 'movePacketVertical';
                     
-                    // Slumpmässig horisontell drift (-150px till +150px)
-                    const horizontalDrift = (Math.random() - 0.5) * 300;
-                    packet.style.setProperty('--tx', `${horizontalDrift}px`);
-                    packet.style.setProperty('--tx-mid', `${horizontalDrift / 2}px`);
+                    // --- BORTTAGEN horisontell drift för vertikala paket ---
+                    // De kommer nu att använda default '0' för --tx och --tx-mid
 
                 } else if (type === 1) { // Horisontell (Vänster -> Höger)
                     packet.style.left = '-50px';
