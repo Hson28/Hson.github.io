@@ -1,36 +1,32 @@
 /* ========================================
-   1. GLOBAL SETUP & CSS-VARIABLER
+   GLOBAL SETUP & CSS-VARIABLER
    ======================================== */
 
-/* Hämtar typsnittet Inter från Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
-    --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    
-    /* Huvudtypsnitt */
+    --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     --font-family-base: 'Inter', var(--font-family-system);
     --font-family-heading: 'Inter', var(--font-family-system);
 
-    /* --- FÄRGPALETT (Ljust läge) --- */
-    --color-text: #2d3748;           /* Mörkgrå text */
-    --color-bg: #ffffff;             /* Vit bakgrund */
-    --color-primary: #2b6cb0;        /* Primärblå */
-    --color-primary-hover: #2c5282;  /* Mörkare blå vid hover */
-    --color-secondary: #e2e8f0;      /* Ljusgrå (knappar/badges) */
-    --color-secondary-hover: #cbd5e0;
-    --color-border: #cbd5e0;         /* Kantlinjer */
-    --color-card-bg: #f7fafc;        /* Bakgrund för kort */
+    /* Ljust tema */
+    --color-text: #2d3748; 
+    --color-bg: #ffffff; 
+    --color-primary: #2b6cb0; 
+    --color-primary-hover: #2c5282; 
+    --color-secondary: #e2e8f0; 
+    --color-secondary-hover: #cbd5e0; 
+    --color-border: #cbd5e0; 
+    --color-card-bg: #f7fafc; 
     --color-badge-bg: #e2e8f0;
     --color-badge-text: #4a5568;
-    --color-focus-ring: #4299e1;     /* Fokus-färg (tillgänglighet) */
+    --color-focus-ring: #4299e1; 
 
-    /* Effekter */
-    --color-bg-transparent: rgba(255, 255, 255, 0.85); /* Glas-effekt */
-    --color-shadow: rgba(45, 55, 72, 0.08);
-    --color-shadow-hover: rgba(45, 55, 72, 0.12);
+    --color-bg-transparent: rgba(255, 255, 255, 0.85); 
+    --color-shadow: rgba(45, 55, 72, 0.08); 
+    --color-shadow-hover: rgba(45, 55, 72, 0.12); 
 
-    /* Avstånd (Spacing) */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -38,40 +34,37 @@
     --spacing-xl: 4rem;
 
     --border-radius: 8px;
-
-    /* Skuggor */
     --shadow-md: 0 5px 15px var(--color-shadow);
     --shadow-lg: 0 10px 25px var(--color-shadow-hover);
     
-    /* Animationer */
-    --packet-color: var(--color-primary);
-    --packet-opacity: 0.15;
+    --packet-color: var(--color-primary); 
+    --packet-opacity: 0.15; 
+    
     --transition-fast: 0.2s ease-in-out;
 }
 
-/* --- FÄRGPALETT (Mörkt läge) --- */
+/* Mörkt tema */
 [data-theme="dark"] {
-    --color-text: #e2e8f0;           /* Ljusgrå text */
-    --color-bg: #1a202c;             /* Mörk kol-bakgrund */
-    --color-primary: #63b3ed;        /* Ljusblå/Cyan */
-    --color-primary-hover: #90cdf4;
-    --color-secondary: #2d3748;
-    --color-secondary-hover: #4a5568;
-    --color-border: #4a5568;
-    --color-card-bg: #2d3748;
+    --color-text: #e2e8f0; 
+    --color-bg: #1a202c; 
+    --color-primary: #63b3ed; 
+    --color-primary-hover: #90cdf4; 
+    --color-secondary: #2d3748; 
+    --color-secondary-hover: #4a5568; 
+    --color-border: #4a5568; 
+    --color-card-bg: #2d3748; 
     --color-badge-bg: #4a5568;
     --color-badge-text: #e2e8f0;
-    --color-focus-ring: #63b3ed;
+    --color-focus-ring: #63b3ed; 
 
-    --color-bg-transparent: rgba(26, 32, 44, 0.85);
-    --color-shadow: rgba(0, 0, 0, 0.3);
+    --color-bg-transparent: rgba(26, 32, 44, 0.85); 
+    --color-shadow: rgba(0, 0, 0, 0.3); 
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
     
     --packet-color: var(--color-primary);
-    --packet-opacity: 0.3;
+    --packet-opacity: 0.3; 
 }
 
-/* Webbläsarstöd för automatiskt mörkt läge */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
         meta[name="theme-color"][media="(prefers-color-scheme: dark)"] { display: block; }
@@ -79,9 +72,8 @@
     }
 }
 
-
 /* ========================================
-   2. GRUNDLÄGGANDE STYLING (Reset)
+   GRUNDLÄGGANDE STYLING
    ======================================== */
 
 *, *::before, *::after {
@@ -91,38 +83,36 @@
 }
 
 html {
-    font-size: 100%; /* 16px */
+    font-size: 100%; 
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    /* Bakgrundsgradient */
-    background-color: var(--color-bg);
+    background-color: var(--color-bg); 
     background-image: linear-gradient(180deg, 
         var(--color-bg) 0%, 
         color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
     );
     background-repeat: no-repeat;
-    overflow-x: hidden;
+    overflow-x: hidden; 
 }
 
 body {
-    background-color: transparent;
+    background-color: transparent; 
     color: var(--color-text);
     font-family: var(--font-family-base);
-    line-height: 1.7;
-    font-weight: 400;
+    line-height: 1.7; 
+    font-weight: 400; 
     transition: background-color var(--transition-fast), color var(--transition-fast);
-    position: relative;
+    position: relative; 
 }
 
 h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-family-heading);
     font-weight: 700;
-    line-height: 1.3;
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-sm);
+    line-height: 1.3; 
+    margin-top: var(--spacing-lg); 
+    margin-bottom: var(--spacing-sm); 
 }
 
-/* Ta bort margin på första rubriken i varje sektion */
 h1:first-child, h2:first-child, h3:first-child,
 section h1:first-child, section h2:first-child, section h3:first-child {
     margin-top: 0;
@@ -134,7 +124,7 @@ h3 { font-size: 1.5rem; }
 
 p {
     margin-bottom: var(--spacing-md);
-    max-width: 75ch; /* Optimal läsbredd */
+    max-width: 75ch; 
 }
 
 a {
@@ -146,9 +136,8 @@ a {
 ul, ol { list-style: none; }
 img { max-width: 100%; height: auto; display: block; }
 
-
 /* ========================================
-   3. TILLGÄNGLIGHET
+   TILLGÄNGLIGHET
    ======================================== */
 
 .sr-only {
@@ -174,7 +163,6 @@ img { max-width: 100%; height: auto; display: block; }
 }
 :focus:not(:focus-visible) { outline: none; }
 
-/* "Reduced Motion" support */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
@@ -190,9 +178,8 @@ img { max-width: 100%; height: auto; display: block; }
     .hero-image-wrapper::before, .hero-image-wrapper::after { animation: none !important; display: none !important; }
 }
 
-
 /* ========================================
-   4. HJÄLPKLASSER & KNAPPAR
+   HJÄLPKLASSER
    ======================================== */
 
 .container {
@@ -217,9 +204,8 @@ img { max-width: 100%; height: auto; display: block; }
 .button-secondary { background-color: var(--color-secondary); color: var(--color-text); border-color: var(--color-border); }
 .button-secondary:hover { background-color: var(--color-secondary-hover); color: var(--color-text); }
 
-
 /* ========================================
-   5. SIDHUVUD (HEADER) & NAVIGATION
+   HEADER & NAV
    ======================================== */
 
 .site-header {
@@ -233,6 +219,8 @@ img { max-width: 100%; height: auto; display: block; }
 
 .header-container {
     display: flex; justify-content: space-between; align-items: center;
+    /* NYTT: Relative för att kunna centrera knappen */
+    position: relative; 
 }
 
 .logo { display: flex; align-items: center; gap: var(--spacing-md); }
@@ -247,10 +235,19 @@ img { max-width: 100%; height: auto; display: block; }
 .header-social-link:hover { color: var(--color-primary); transform: translateY(-2px); }
 .social-icon-svg { width: 1.25rem; height: 1.25rem; }
 
-/* --- Mobilmeny-knapp --- */
+/* --- Mobilmeny-knapp (CENTRERAD FIX) --- */
 .nav-toggle {
-    display: block; background: transparent; border: none;
-    padding: var(--spacing-sm); cursor: pointer; z-index: 9999;
+    display: block; 
+    background: transparent; border: none;
+    padding: 0.75rem; /* Lite större klickyta */
+    cursor: pointer; 
+    z-index: 9999;
+    
+    /* ABSOLUT CENTRERING */
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .hamburger-line {
@@ -262,7 +259,7 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* --- Navigationsmeny (Mobil) --- */
+/* Navigationsmeny (Mobil) */
 .site-nav {
     position: fixed; top: 0; right: 0; width: 100%; height: 100vh;
     transform: translateX(100%); transition: transform 0.3s ease-in-out;
@@ -279,7 +276,6 @@ img { max-width: 100%; height: auto; display: block; }
     text-decoration: none; transition: color var(--transition-fast);
     position: relative; padding-bottom: var(--spacing-xs);
 }
-/* Linje-animation vid hover */
 .nav-link::after {
     content: ''; position: absolute; bottom: 0; left: 0;
     width: 100%; height: 2px; background-color: var(--color-primary);
@@ -288,7 +284,6 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-link:hover::after, .nav-link.is-active::after { transform: scaleX(1); }
 .nav-link:hover, .nav-link.is-active { color: var(--color-primary); }
 
-/* --- Toggles (Tema & Språk) --- */
 .header-toggles { display: flex; align-items: center; gap: var(--spacing-sm); }
 .theme-toggle, .lang-toggle {
     background: transparent; border: none; cursor: pointer;
@@ -305,16 +300,13 @@ img { max-width: 100%; height: auto; display: block; }
     width: 2rem; height: auto;
     border-radius: 4px; box-shadow: 0 2px 4px var(--color-shadow);
     transition: transform var(--transition-fast);
-    display: none; /* Dölj båda som standard */
+    display: none; 
 }
 .lang-toggle:hover .flag-icon { transform: scale(1.1); }
-
-/* Visa rätt flagga beroende på sidans språk */
 html[lang="sv"] .flag-en { display: block; }
 html[lang="en"] .flag-sv { display: block; }
 
 
-/* --- DESKTOP MENY --- */
 @media (min-width: 768px) {
     .nav-toggle { display: none; }
     .site-nav {
@@ -326,20 +318,18 @@ html[lang="en"] .flag-sv { display: block; }
     .nav-link { font-size: 1rem; }
 }
 
-
 /* ========================================
-   6. SEKTIONER & INNEHÅLL
+   SEKTIONER
    ======================================== */
 
 section { padding: var(--spacing-xl) 0; }
 section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(even) { background-color: transparent; }
 
-/* --- Hero --- */
+/* Hero */
 .hero { padding-top: var(--spacing-lg); padding-bottom: var(--spacing-xl); text-align: center; }
 .hero-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg); }
 .hero-tagline { font-size: 1.25rem; margin-bottom: var(--spacing-lg); color: var(--color-text); opacity: 0.9; }
 
-/* Förhindra layout-hopp vid skrivmaskinseffekt */
 .hero-text h1[data-lang-key="hero_h1"] { min-height: 1.3em; position: relative; }
 .hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 1.7em; }
 
@@ -349,7 +339,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* --- Projekt --- */
+/* Projekt */
 .cert-list { list-style: disc; padding-left: var(--spacing-lg); }
 .cert-list li { margin-bottom: var(--spacing-sm); }
 
@@ -362,7 +352,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 .project-card.is-visible { opacity: 1; transform: translateY(0); }
 .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
-
 .card-content { padding: var(--spacing-lg); }
 .project-role { font-size: 0.875rem; font-weight: 600; color: var(--color-primary); margin-bottom: var(--spacing-sm); text-transform: uppercase; }
 .project-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
@@ -376,7 +365,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .project-link span { transition: transform var(--transition-fast); display: inline-block; }
 .project-link:hover span { transform: translateX(4px); }
 
-/* --- Färdigheter --- */
+/* Färdigheter */
 .skill-list { display: flex; flex-wrap: wrap; gap: var(--spacing-md); }
 .skill-badge {
     background-color: var(--color-card-bg); border: 1px solid var(--color-border); color: var(--color-text);
@@ -384,30 +373,29 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     border-radius: var(--border-radius); font-size: 1rem; font-weight: 600;
 }
 
-/* --- CV --- */
+/* CV */
 .cv .button { margin-right: var(--spacing-md); margin-bottom: var(--spacing-md); }
 
-/* --- Reflektion --- */
+/* Reflektion */
 .reflection blockquote {
     border-left: 5px solid var(--color-primary); padding-left: var(--spacing-lg);
     margin: var(--spacing-lg) 0; font-style: italic; font-size: 1.125rem;
 }
 .reflection cite { display: block; margin-top: var(--spacing-md); font-style: normal; font-weight: 600; }
 
-/* --- Footer --- */
+/* Footer */
 .site-footer { padding: var(--spacing-lg) 0; background-color: var(--color-card-bg); border-top: 1px solid var(--color-border); font-size: 0.875rem; }
 .footer-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-md); text-align: center; }
 .social-links { display: flex; gap: var(--spacing-lg); }
 .social-links a { font-weight: 600; text-decoration: none; }
 .social-links a:hover { text-decoration: underline; }
 
-/* --- Media Queries (Större skärmar) --- */
 @media (min-width: 768px) {
     h1 { font-size: 3rem; }
     .hero { text-align: left; }
     .hero-container { flex-direction: row; justify-content: space-between; }
     .hero-text { flex: 2; }
-    .hero-image-wrapper { width: 320px; height: 320px; }
+    .hero-image-wrapper { width: 280px; height: 280px; }
     .project-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
     .footer-container { flex-direction: row; justify-content: space-between; text-align: left; }
 }
@@ -416,7 +404,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     .hero-tagline { font-size: 1.5rem; }
     .hero-image-wrapper { width: 400px; height: 400px; }
 }
-
 
 /* ========================================
    7. PAKET-ANIMATION (Komet-effekt)
@@ -442,7 +429,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
      background-image: linear-gradient(to right, var(--packet-color) 0%, var(--packet-color) 5%, transparent 100%);
 }
 
-/* --- KEYFRAMES (Går långt utanför kanten) --- */
+/* --- KEYFRAMES (Passera kanten) --- */
 
 @keyframes movePacketVertical {
     0% { bottom: -10vh; transform: scaleY(1); opacity: 0; }
@@ -465,7 +452,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     100% { right: 120vw; transform: scaleX(40); opacity: var(--packet-opacity); }
 }
 
-
 /* ========================================
    8. MOVIE RADAR ANIMATION
    ======================================== */
@@ -474,13 +460,11 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     position: relative; z-index: 1; display: flex; justify-content: center; align-items: center;
     width: 280px; height: 280px; margin: 0 auto;
 }
-/* Bilden */
 .hero-image {
     width: 80%; height: 80%; border-radius: 50%; object-fit: cover;
     position: relative; z-index: 5; border: 2px solid var(--color-primary);
     box-shadow: 0 0 15px var(--color-primary);
 }
-/* Radar Grid (Rutnät) */
 .hero-image-wrapper::before {
     content: ''; position: absolute; inset: 0; border-radius: 50%;
     border: 2px solid var(--color-primary);
@@ -491,7 +475,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
         radial-gradient(transparent 60%, var(--color-primary) 61%, transparent 62%);
     opacity: 0.3; z-index: 1;
 }
-/* Radar Sweep (Svepande stråle) */
 .hero-image-wrapper::after {
     content: ''; position: absolute; inset: 0; border-radius: 50%;
     background: conic-gradient(from 0deg, transparent 0deg, transparent 260deg, var(--color-primary) 360deg);
