@@ -1,32 +1,37 @@
 /* ========================================
-   GLOBAL SETUP & CSS-VARIABLER
+   1. GLOBAL SETUP & CSS-VARIABLER
    ======================================== */
 
+/* Hämtar typsnittet Inter från Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
     --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    
+    /* Huvudtypsnitt */
     --font-family-base: 'Inter', var(--font-family-system);
     --font-family-heading: 'Inter', var(--font-family-system);
 
-    /* Ljust tema */
-    --color-text: #2d3748; 
-    --color-bg: #ffffff; 
-    --color-primary: #2b6cb0; 
-    --color-primary-hover: #2c5282; 
-    --color-secondary: #e2e8f0; 
-    --color-secondary-hover: #cbd5e0; 
-    --color-border: #cbd5e0; 
-    --color-card-bg: #f7fafc; 
+    /* --- FÄRGPALETT (Ljust läge) --- */
+    --color-text: #2d3748;           /* Mörkgrå text */
+    --color-bg: #ffffff;             /* Vit bakgrund */
+    --color-primary: #2b6cb0;        /* Primärblå */
+    --color-primary-hover: #2c5282;  /* Mörkare blå vid hover */
+    --color-secondary: #e2e8f0;      /* Ljusgrå (knappar/badges) */
+    --color-secondary-hover: #cbd5e0;
+    --color-border: #cbd5e0;         /* Kantlinjer */
+    --color-card-bg: #f7fafc;        /* Bakgrund för kort */
     --color-badge-bg: #e2e8f0;
     --color-badge-text: #4a5568;
-    --color-focus-ring: #4299e1; 
+    --color-focus-ring: #4299e1;     /* Fokus-färg (tillgänglighet) */
 
-    --color-bg-transparent: rgba(255, 255, 255, 0.85); 
-    --color-shadow: rgba(45, 55, 72, 0.08); 
-    --color-shadow-hover: rgba(45, 55, 72, 0.12); 
+    /* Effekter */
+    --color-bg-transparent: rgba(255, 255, 255, 0.85); /* Glas-effekt */
+    --color-shadow: rgba(45, 55, 72, 0.08);
+    --color-shadow-hover: rgba(45, 55, 72, 0.12);
 
+    /* Avstånd (Spacing) */
     --spacing-xs: 0.25rem;
     --spacing-sm: 0.5rem;
     --spacing-md: 1rem;
@@ -34,37 +39,40 @@
     --spacing-xl: 4rem;
 
     --border-radius: 8px;
+
+    /* Skuggor */
     --shadow-md: 0 5px 15px var(--color-shadow);
     --shadow-lg: 0 10px 25px var(--color-shadow-hover);
     
+    /* Animationer */
     --packet-color: var(--color-primary); 
-    --packet-opacity: 0.15; 
-    
+    --packet-opacity: 0.15;
     --transition-fast: 0.2s ease-in-out;
 }
 
-/* Mörkt tema */
+/* --- FÄRGPALETT (Mörkt läge) --- */
 [data-theme="dark"] {
-    --color-text: #e2e8f0; 
-    --color-bg: #1a202c; 
-    --color-primary: #63b3ed; 
-    --color-primary-hover: #90cdf4; 
-    --color-secondary: #2d3748; 
-    --color-secondary-hover: #4a5568; 
-    --color-border: #4a5568; 
-    --color-card-bg: #2d3748; 
+    --color-text: #e2e8f0;           /* Ljusgrå text */
+    --color-bg: #1a202c;             /* Mörk kol-bakgrund */
+    --color-primary: #63b3ed;        /* Ljusblå/Cyan */
+    --color-primary-hover: #90cdf4;
+    --color-secondary: #2d3748;
+    --color-secondary-hover: #4a5568;
+    --color-border: #4a5568;
+    --color-card-bg: #2d3748;
     --color-badge-bg: #4a5568;
     --color-badge-text: #e2e8f0;
-    --color-focus-ring: #63b3ed; 
+    --color-focus-ring: #63b3ed;
 
-    --color-bg-transparent: rgba(26, 32, 44, 0.85); 
-    --color-shadow: rgba(0, 0, 0, 0.3); 
+    --color-bg-transparent: rgba(26, 32, 44, 0.85);
+    --color-shadow: rgba(0, 0, 0, 0.3);
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
     
     --packet-color: var(--color-primary);
-    --packet-opacity: 0.3; 
+    --packet-opacity: 0.3;
 }
 
+/* Webbläsarstöd för automatiskt mörkt läge */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme="light"]) {
         meta[name="theme-color"][media="(prefers-color-scheme: dark)"] { display: block; }
@@ -72,8 +80,9 @@
     }
 }
 
+
 /* ========================================
-   GRUNDLÄGGANDE STYLING
+   2. GRUNDLÄGGANDE STYLING (Reset)
    ======================================== */
 
 *, *::before, *::after {
@@ -83,10 +92,11 @@
 }
 
 html {
-    font-size: 100%; 
+    font-size: 100%; /* 16px */
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
-    background-color: var(--color-bg); 
+    /* Bakgrundsgradient */
+    background-color: var(--color-bg);
     background-image: linear-gradient(180deg, 
         var(--color-bg) 0%, 
         color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
@@ -103,6 +113,20 @@ body {
     font-weight: 400; 
     transition: background-color var(--transition-fast), color var(--transition-fast);
     position: relative; 
+    
+    /* NYTT: Subtle Grid Overlay (Threat Map) */
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(43, 108, 176, 0.1) 50px),
+        repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(43, 108, 176, 0.1) 50px);
+    background-size: 50px 50px;
+    background-blend-mode: overlay; /* Blandar med HTML-gradienten snyggt */
+}
+
+/* DARK MODE GRID COLOR */
+[data-theme="dark"] body {
+    background-image: 
+        repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(99, 179, 237, 0.1) 50px),
+        repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(99, 179, 237, 0.1) 50px);
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -113,6 +137,7 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: var(--spacing-sm); 
 }
 
+/* Ta bort margin på första rubriken i varje sektion */
 h1:first-child, h2:first-child, h3:first-child,
 section h1:first-child, section h2:first-child, section h3:first-child {
     margin-top: 0;
@@ -124,7 +149,7 @@ h3 { font-size: 1.5rem; }
 
 p {
     margin-bottom: var(--spacing-md);
-    max-width: 75ch; 
+    max-width: 75ch; /* Optimal läsbredd */
 }
 
 a {
@@ -136,8 +161,9 @@ a {
 ul, ol { list-style: none; }
 img { max-width: 100%; height: auto; display: block; }
 
+
 /* ========================================
-   TILLGÄNGLIGHET
+   3. TILLGÄNGLIGHET
    ======================================== */
 
 .sr-only {
@@ -163,6 +189,7 @@ img { max-width: 100%; height: auto; display: block; }
 }
 :focus:not(:focus-visible) { outline: none; }
 
+/* "Reduced Motion" support */
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
     *, *::before, *::after {
@@ -178,8 +205,9 @@ img { max-width: 100%; height: auto; display: block; }
     .hero-image-wrapper::before, .hero-image-wrapper::after { animation: none !important; display: none !important; }
 }
 
+
 /* ========================================
-   HJÄLPKLASSER
+   4. HJÄLPKLASSER & KNAPPAR
    ======================================== */
 
 .container {
@@ -204,8 +232,9 @@ img { max-width: 100%; height: auto; display: block; }
 .button-secondary { background-color: var(--color-secondary); color: var(--color-text); border-color: var(--color-border); }
 .button-secondary:hover { background-color: var(--color-secondary-hover); color: var(--color-text); }
 
+
 /* ========================================
-   HEADER & NAV
+   5. SIDHUVUD (HEADER) & NAVIGATION
    ======================================== */
 
 .site-header {
@@ -219,7 +248,6 @@ img { max-width: 100%; height: auto; display: block; }
 
 .header-container {
     display: flex; justify-content: space-between; align-items: center;
-    /* NYTT: Relative för att kunna centrera knappen */
     position: relative; 
 }
 
@@ -239,7 +267,7 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-toggle {
     display: block; 
     background: transparent; border: none;
-    padding: 0.75rem; /* Lite större klickyta */
+    padding: 0.75rem; 
     cursor: pointer; 
     z-index: 9999;
     
@@ -269,7 +297,7 @@ img { max-width: 100%; height: auto; display: block; }
     /* FADE IN istället för SLIDE IN */
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-20px); /* Liten rörelse nedåt */
+    transform: translateY(-20px); 
     transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
 
@@ -330,7 +358,7 @@ html[lang="en"] .flag-sv { display: block; }
 }
 
 /* ========================================
-   SEKTIONER
+   6. SEKTIONER & INNEHÅLL
    ======================================== */
 
 section { padding: var(--spacing-xl) 0; }
@@ -363,6 +391,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 .project-card.is-visible { opacity: 1; transform: translateY(0); }
 .project-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); }
+
 .card-content { padding: var(--spacing-lg); }
 .project-role { font-size: 0.875rem; font-weight: 600; color: var(--color-primary); margin-bottom: var(--spacing-sm); text-transform: uppercase; }
 .project-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
@@ -416,54 +445,57 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     .hero-image-wrapper { width: 400px; height: 400px; }
 }
 
+
 /* ========================================
-   Paket-animation (Komet-effekt)
+   7. PAKET-ANIMATION (Threat Map Pulses)
    ======================================== */
 
 .packet-background {
     position: fixed; height: 100%; z-index: -1; top: 0; left: 0; width: 100vw;
     pointer-events: none; overflow: hidden;
+    background: none; /* Ta bort gammal styling */
 }
 .packet {
-    position: absolute; opacity: 0; 
-    animation-timing-function: linear; animation-iteration-count: infinite;
+    position: absolute;
+    opacity: 0; 
+    
+    /* NYTT: Liten, ljus puls */
+    width: 4px !important;
+    height: 4px !important;
+    border-radius: 50%;
+    background-color: var(--packet-color);
+    box-shadow: 0 0 10px var(--packet-color), 0 0 5px var(--packet-color);
+    
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
 }
 
-.packet--vertical {
-    background-image: linear-gradient(var(--packet-color) 0%, var(--packet-color) 5%, transparent 100%);
-}
-.packet--horizontal-ltr {
-    background-image: linear-gradient(to left, var(--packet-color) 0%, var(--packet-color) 5%, transparent 100%);
-}
-.packet--horizontal-rtl {
-     background-image: linear-gradient(to right, var(--packet-color) 0%, var(--packet-color) 5%, transparent 100%);
-}
-
-/* --- KEYFRAMES (Passera kanten) --- */
+/* --- KEYFRAMES (Gör pulserna snabba och låter dem passera) --- */
 
 @keyframes movePacketVertical {
-    0% { bottom: -10vh; transform: scaleY(1); opacity: 0; }
-    10% { transform: scaleY(1); opacity: var(--packet-opacity); }
-    30% { transform: scaleY(40); opacity: var(--packet-opacity); }
-    100% { bottom: 120vh; transform: scaleY(40); opacity: var(--packet-opacity); }
+    0% { bottom: -10vh; opacity: 0; }
+    5% { opacity: 1; } /* Tona in snabbt */
+    95% { opacity: 1; }
+    100% { bottom: 120vh; opacity: 0; } /* Tona ut sist */
 }
 
 @keyframes movePacketHorizontal {
-    0% { left: -10vw; transform: scaleX(1); opacity: 0; }
-    10% { transform: scaleX(1); opacity: var(--packet-opacity); }
-    30% { transform: scaleX(40); opacity: var(--packet-opacity); }
-    100% { left: 120vw; transform: scaleX(40); opacity: var(--packet-opacity); }
+    0% { left: -10vw; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { left: 120vw; opacity: 0; }
 }
 
 @keyframes movePacketHorizontalRTL {
-    0% { right: -10vw; transform: scaleX(1); opacity: 0; }
-    10% { transform: scaleX(1); opacity: var(--packet-opacity); }
-    30% { transform: scaleX(40); opacity: var(--packet-opacity); }
-    100% { right: 120vw; transform: scaleX(40); opacity: var(--packet-opacity); }
+    0% { right: -10vw; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { right: 120vw; opacity: 0; }
 }
 
+
 /* ========================================
-   MOVIE RADAR ANIMATION
+   8. MOVIE RADAR ANIMATION
    ======================================== */
 
 .hero-image-wrapper {
