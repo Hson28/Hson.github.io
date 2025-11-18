@@ -259,15 +259,25 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* Navigationsmeny (Mobil) */
+/* Navigationsmeny (Mobil - NY ANIMATION) */
 .site-nav {
-    position: fixed; top: 0; right: 0; width: 100%; height: 100vh;
-    transform: translateX(100%); transition: transform 0.3s ease-in-out;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
     padding-top: var(--spacing-xl);
     background-color: var(--color-bg-transparent);
     backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+    
+    /* FADE IN istället för SLIDE IN */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-20px); /* Liten rörelse nedåt */
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s;
 }
-.site-nav[data-visible="true"] { transform: translateX(0); }
+
+.site-nav[data-visible="true"] { 
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0); 
+}
 
 .nav-list { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg); }
 
@@ -313,6 +323,7 @@ html[lang="en"] .flag-sv { display: block; }
         position: static; width: auto; height: auto; transform: none;
         padding-top: 0; transition: none;
         background-color: transparent; backdrop-filter: none; -webkit-backdrop-filter: none;
+        opacity: 1; visibility: visible;
     }
     .nav-list { flex-direction: row; gap: var(--spacing-lg); data-visible: "true"; }
     .nav-link { font-size: 1rem; }
@@ -406,11 +417,10 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 
 /* ========================================
-   7. PAKET-ANIMATION (Komet-effekt)
+   Paket-animation (Komet-effekt)
    ======================================== */
 
 .packet-background {
-    /* FIXED: Täcker hela skärmen även vid scroll */
     position: fixed; height: 100%; z-index: -1; top: 0; left: 0; width: 100vw;
     pointer-events: none; overflow: hidden;
 }
@@ -453,7 +463,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 
 /* ========================================
-   8. MOVIE RADAR ANIMATION
+   MOVIE RADAR ANIMATION
    ======================================== */
 
 .hero-image-wrapper {
