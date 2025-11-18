@@ -338,21 +338,45 @@ img {
     align-items: center;
 }
 
-.logo a {
+.logo {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+}
+
+.logo a[data-lang-key="nav_home"] {
     font-size: 1.25rem;
     font-weight: 700;
     color: var(--color-text);
     text-decoration: none;
 }
-.logo a:hover {
+.logo a[data-lang-key="nav_home"]:hover {
     color: var(--color-primary);
 }
 
-.logo-title {
-    display: none; /* Dold på mobil */
-    font-size: 0.875rem;
-    margin-left: var(--spacing-sm);
+
+/* --- Header Social Icons --- */
+.header-socials {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.header-social-link {
+    display: flex; /* Centrera SVG */
+    align-items: center;
     color: var(--color-text);
+    transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.header-social-link:hover {
+    color: var(--color-primary);
+    transform: translateY(-2px);
+}
+
+.social-icon-svg {
+    width: 1.25rem; /* 20px */
+    height: 1.25rem;
 }
 
 /* Mobilmeny-knapp (Hamburger) */
@@ -485,9 +509,6 @@ img {
    ======================================== */
 
 @media (min-width: 768px) {
-    .logo-title {
-        display: inline;
-    }
 
     .nav-toggle {
         display: none;
