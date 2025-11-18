@@ -3,8 +3,8 @@
  * * Hanterar:
  * 1. Mörkt/Ljust Téma
  * 2. Språkväxling (FIXAD för flaggor)
- * 3. Mobilmeny
- * 4. Animationer
+ * 3. Mobilmeny (FIXAD)
+ * 4. Animationer (Snabbare paket)
  */
 
 (function () {
@@ -24,15 +24,15 @@
             nav_cv: "CV",
             nav_reflection: "Reflection",
             hero_h1: "Jehanni",
-            hero_tagline: "I build secure networks and deploy robust backup solutions.",
+            hero_tagline: "From preschool teacher to IT security. Protecting systems instead of sandboxes.",
             hero_cta: "View my projects",
             about_h2: "About Me",
-            about_p1: "I am a driven IT security student with a deep interest in defensive security, network architecture, and Linux administration. My focus is on building robust and resilient systems from the ground up. I strongly believe in 'security by design' and that proactive measures are key to a secure digital environment.",
-            about_p2: "Currently, I am studying [Your Program Name] at [Your School], where I specialize in [Area 1] and [Area 2]. I am always looking for new challenges where I can apply and expand my knowledge in practice.",
+            about_p1: "I am currently studying to become an IT Security Specialist at TUC Vocational School. However, my professional journey began in a completely different environment: as a preschool teacher educated at Stockholm University. After four years in education, I decided to channel my curiosity for technology into a career where I build and protect digital infrastructure.",
+            about_p2: "My background has given me a unique perspective. The ability to create secure environments, identify risks, and communicate clearly is just as crucial in a server room as it is in a classroom. I am passionate about understanding technology at a deep level – from routing protocols to security auditing – and translating complex security issues into understandable solutions.",
             about_h3: "Certificates & Education",
-            about_cert1: "Cisco Certified Network Associate (CCNA) - In Progress",
-            about_cert2: "Example Certificate (e.g., CompTIA Security+) - 2024",
-            about_cert3: "Introduction to Cybersecurity (Cisco NetAcad) - 2023",
+            about_cert1: "Networking Devices and Initial Configuration (Cisco)",
+            about_cert2: "Networking Basics (Cisco)",
+            about_cert3: "Introduction to Cybersecurity (Cisco)",
             projects_h2: "Featured Projects",
             project1_title: "Backup Server with LUKS",
             project1_role: "Personal Project",
@@ -43,13 +43,14 @@
             project2_desc: "Implementation of VLANs and strict firewall rules (using pfSense) in a homelab environment to isolate IoT devices from the primary network and block suspicious traffic.",
             project_link_writeup: "Read Write-up",
             skills_h2: "Core Competencies",
-            skill_linux: "Linux Administration",
-            skill_network: "Network Configuration & Troubleshooting",
-            skill_automation: "Automation (Bash/Ansible)",
-            skill_security: "Security Principles",
-            skill_crypto: "Encryption Technologies",
-            skill_vm: "Virtualization (KVM/Proxmox)",
-            skill_incident: "Incident Handling (Basic)",
+            skill_linux: "Linux & Hardening",
+            skill_network: "Network & TCP/IP",
+            skill_firewall: "Firewalls (UFW/pfSense)",
+            skill_security: "Defense in Depth",
+            skill_risk: "Risk Analysis (RSA)",
+            skill_vm: "Virtualization (Hypervisor)",
+            skill_audit: "Security Auditing",
+            skill_wordpress: "Wordpress",
             cv_h2: "CV / Resume",
             cv_p: "My full CV, containing detailed information about my education, experience, and technical skills, is available for download.",
             cv_button_sv: "Download CV (SV)",
@@ -160,9 +161,6 @@
         dom.html.setAttribute("lang", lang);
         
         if (dom.langToggle) {
-            // BORTTAGET: dom.langToggle.textContent = ...
-            // Vi låter CSS sköta flaggvisningen baserat på lang-attributet
-            
             dom.langToggle.setAttribute("lang", lang === "sv" ? "sv" : "en");
             dom.langToggle.setAttribute("aria-label",
                 lang === "sv"
