@@ -831,8 +831,8 @@ section:nth-of-type(odd) {
    ======================================== */
 
 .packet-background {
-    /* Fäster vid 'body' och täcker hela sidans höjd */
-    position: absolute; 
+    /* FIX: Ändrat från absolute till fixed så den stannar på skärmen vid scroll */
+    position: fixed; 
     height: 100%; 
     z-index: -1; /* Bakom allt innehåll */
     top: 0;
