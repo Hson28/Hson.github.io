@@ -834,11 +834,9 @@ section:nth-of-type(odd) {
 .packet {
     position: absolute;
     background-color: var(--packet-color);
-    border-radius: 50%;
+    /* --- UPPDATERING: Borttagen border-radius --- */
+    /* border-radius: 50%; */ 
     opacity: 0; 
-    
-    /* Standardvärden för CSS-variabler som JS kommer att sätta */
-    /* Notera: tx, ty, etc. är nu borttagna för raka linjer */
     
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -847,12 +845,12 @@ section:nth-of-type(odd) {
 /* Animation för Vertikal rörelse (med stretch-svans) */
 @keyframes movePacketVertical {
     0% {
-        /* Startar som en prick */
+        /* Startar som en fyrkant */
         transform: translate(0, 0) scaleY(1);
         opacity: 0;
     }
     10% {
-        /* Blir synlig som en prick */
+        /* Blir synlig som en fyrkant */
         opacity: var(--packet-opacity);
     }
     /* Sträcker ut sig i mitten av resan för att simulera en svans */
@@ -861,7 +859,7 @@ section:nth-of-type(odd) {
         opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
     }
     90% {
-        /* Återgår till en prick innan den försvinner */
+        /* Återgår till en fyrkant innan den försvinner */
         transform: translate(0, -100vh) scaleY(1);
         opacity: var(--packet-opacity);
     }
@@ -874,12 +872,12 @@ section:nth-of-type(odd) {
 /* Animation för Horisontell rörelse (Vänster -> Höger) */
 @keyframes movePacketHorizontal {
     0% {
-        /* Startar som en prick */
+        /* Startar som en fyrkant */
         transform: translate(0, 0) scaleX(1);
         opacity: 0;
     }
     10% {
-        /* Blir synlig som en prick */
+        /* Blir synlig som en fyrkant */
         opacity: var(--packet-opacity);
     }
     /* Sträcker ut sig horisontellt */
@@ -888,7 +886,7 @@ section:nth-of-type(odd) {
         opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
     }
     90% {
-        /* Återgår till en prick innan den försvinner */
+        /* Återgår till en fyrkant innan den försvinner */
         transform: translate(100vw, 0) scaleX(1);
         opacity: var(--packet-opacity);
     }
@@ -901,12 +899,12 @@ section:nth-of-type(odd) {
 /* --- NY ANIMATION: Horisontell (Höger -> Vänster) --- */
 @keyframes movePacketHorizontalRTL {
     0% {
-        /* Startar som en prick (relativt till 'right: -50px') */
+        /* Startar som en fyrkant (relativt till 'right: -50px') */
         transform: translate(0, 0) scaleX(1);
         opacity: 0;
     }
     10% {
-        /* Blir synlig som en prick */
+        /* Blir synlig som en fyrkant */
         opacity: var(--packet-opacity);
     }
     /* Sträcker ut sig horisontellt (negativ riktning) */
@@ -915,7 +913,7 @@ section:nth-of-type(odd) {
         opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
     }
     90% {
-        /* Återgår till en prick innan den försvinner */
+        /* Återgår till en fyrkant innan den försvinner */
         transform: translate(-100vw, 0) scaleX(1);
         opacity: var(--packet-opacity);
     }
