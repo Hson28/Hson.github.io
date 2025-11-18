@@ -9,7 +9,7 @@
  * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
  * 6. "Staggered" fade-in på projektkort (IntersectionObserver)
  * 7. "Scrollspy" för aktiv meny-länk (IntersectionObserver)
- * 8. Subtil bakgrundsanimation med "paket" (med riktning & svans/stretch)
+ * 8. Subtil bakgrundsanimation med "paket" (Komet-effekt)
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -400,7 +400,7 @@
     }
 
     
-    // --- 11. Bakgrundsanimation (Paket med Riktning & Svans/Sträckning) ---
+    // --- 11. Bakgrundsanimation (Paket med Komet-effekt) ---
     
     /**
      * Skapar och animerar de subtila bakgrunds"paketen".
@@ -418,7 +418,7 @@
 
             for (let i = 0; i < numPackets; i++) {
                 const packet = document.createElement('span');
-                packet.className = 'packet';
+                packet.className = 'packet'; // Grundläggande klass
                 
                 // Slumpmässig varaktighet (10-25s) och fördröjning (0-25s)
                 const duration = Math.random() * 15 + 10;
@@ -428,29 +428,33 @@
                 
                 // Slumpmässig storlek (1-3px)
                 const size = Math.random() * 2 + 1;
-                packet.style.width = `${size}px`;
-                packet.style.height = `${size}px`;
 
                 // Slumpa en typ: 0 (Vertikal), 1 (Horisontell LTR), 2 (Horisontell RTL)
                 const type = Math.floor(Math.random() * 3);
 
                 if (type === 0) { // Vertikal (Botten -> Topp)
+                    packet.classList.add('packet--vertical'); // Lägg till riktningsklass
+                    packet.style.width = `${size}px`;
+                    packet.style.height = `${size}px`; // Fyrkantig bas
                     packet.style.left = `${Math.random() * 100}vw`;
                     packet.style.bottom = '-50px';
                     packet.style.animationName = 'movePacketVertical';
-                    // Ingen horisontell drift
 
                 } else if (type === 1) { // Horisontell (Vänster -> Höger)
+                    packet.classList.add('packet--horizontal-ltr'); // Lägg till riktningsklass
+                    packet.style.width = `${size}px`; // Fyrkantig bas
+                    packet.style.height = `${size}px`;
                     packet.style.left = '-50px';
                     packet.style.top = `${Math.random() * 100}vh`;
                     packet.style.animationName = 'movePacketHorizontal';
-                    // Ingen vertikal drift
 
                 } else { // Horisontell (Höger -> Vänster)
+                    packet.classList.add('packet--horizontal-rtl'); // Lägg till riktningsklass
+                    packet.style.width = `${size}px`; // Fyrkantig bas
+                    packet.style.height = `${size}px`;
                     packet.style.right = '-50px';
                     packet.style.top = `${Math.random() * 100}vh`;
-                    packet.style.animationName = 'movePacketHorizontalRTL'; // <-- Använder den nya animationen
-                    // Ingen vertikal drift
+                    packet.style.animationName = 'movePacketHorizontalRTL';
                 }
 
                 container.appendChild(packet);
@@ -500,7 +504,7 @@
         bindEvents();
         initScrollObserver(); 
         initScrollspy();    
-        initPacketBackground(); // Startar den uppdaterade paket-animationen
+        initPacketBackground(); // Startar den uppdaterade komet-animationen
     }
 
     document.addEventListener("DOMContentLoaded", init);
