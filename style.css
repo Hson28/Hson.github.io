@@ -833,14 +833,13 @@ section:nth-of-type(odd) {
 
 .packet {
     position: absolute;
-    /* --- BORTTAGEN: background-color --- */
     opacity: 0; 
     
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
-/* --- NYA REGLER: Definiera gradient-riktning per klass --- */
+/* --- RIKTNINGS-GRADIENTER --- */
 .packet--vertical {
     /* 'to bottom' är standard, pekar "bakåt" när paketet åker upp */
     background-image: linear-gradient(
@@ -864,8 +863,9 @@ section:nth-of-type(odd) {
         transparent 100%
     );
 }
-/* --- SLUT PÅ NYA REGLER --- */
 
+
+/* --- UPPDATERADE KEYFRAMES --- */
 
 /* Animation för Vertikal rörelse (med stretch-svans) */
 @keyframes movePacketVertical {
@@ -873,17 +873,21 @@ section:nth-of-type(odd) {
         transform: translate(0, 0) scaleY(1);
         opacity: 0;
     }
+    /* Tona in som en prick */
     10% {
+        transform: translate(0, -5vh) scaleY(1);
         opacity: var(--packet-opacity);
     }
-    50% {
-        transform: translate(0, -55vh) scaleY(25); /* LÄNGRE SVANS */
-        opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
+    /* Håll utsträckt svans under nästan hela resan */
+    20% {
+        transform: translate(0, -10vh) scaleY(25); 
+        opacity: calc(var(--packet-opacity) / 2);
     }
     90% {
-        transform: translate(0, -100vh) scaleY(1);
-        opacity: var(--packet-opacity);
+        transform: translate(0, -100vh) scaleY(25);
+        opacity: calc(var(--packet-opacity) / 2);
     }
+    /* Tona ut som en prick */
     100% {
         transform: translate(0, -110vh) scaleY(1); 
         opacity: 0;
@@ -897,15 +901,16 @@ section:nth-of-type(odd) {
         opacity: 0;
     }
     10% {
+        transform: translate(5vw, 0) scaleX(1);
         opacity: var(--packet-opacity);
     }
-    50% {
-        transform: translate(55vw, 0) scaleX(25); /* LÄNGRE SVANS */
-        opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
+    20% {
+        transform: translate(10vw, 0) scaleX(25);
+        opacity: calc(var(--packet-opacity) / 2);
     }
     90% {
-        transform: translate(100vw, 0) scaleX(1);
-        opacity: var(--packet-opacity);
+        transform: translate(100vw, 0) scaleX(25);
+        opacity: calc(var(--packet-opacity) / 2);
     }
     100% {
         transform: translate(110vw, 0) scaleX(1);
@@ -920,15 +925,16 @@ section:nth-of-type(odd) {
         opacity: 0;
     }
     10% {
+        transform: translate(-5vw, 0) scaleX(1);
         opacity: var(--packet-opacity);
     }
-    50% {
-        transform: translate(-55vw, 0) scaleX(25); /* LÄNGRE SVANS */
-        opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
+    20% {
+        transform: translate(-10vw, 0) scaleX(25);
+        opacity: calc(var(--packet-opacity) / 2);
     }
     90% {
-        transform: translate(-100vw, 0) scaleX(1);
-        opacity: var(--packet-opacity);
+        transform: translate(-100vw, 0) scaleX(25);
+        opacity: calc(var(--packet-opacity) / 2);
     }
     100% {
         transform: translate(-110vw, 0) scaleX(1);
