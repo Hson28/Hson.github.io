@@ -45,8 +45,10 @@
     --shadow-md: 0 5px 15px var(--color-shadow);
     --shadow-lg: 0 10px 25px var(--color-shadow-hover);
     
-    /* --- NY VARIABEL: Paket-animation --- */
+    /* --- Paket-animation --- */
+    --packet-color: var(--color-primary); /* Paketen får primärfärgen */
     --packet-opacity: 0.15; /* Subtil i ljust läge */
+    --packet-tail-color: rgba(43, 108, 176, 0.05); /* Mycket subtil svans i ljust läge */
     
     --transition-fast: 0.2s ease-in-out;
 }
@@ -70,8 +72,10 @@
     --color-shadow: rgba(0, 0, 0, 0.3); /* Mörka skuggor behövs i mörkt läge */
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
     
-    /* --- NY VARIABEL: Paket-animation (Mörkt läge) --- */
+    /* --- Paket-animation (Mörkt läge) --- */
+    --packet-color: var(--color-primary);
     --packet-opacity: 0.3; /* Lite tydligare i mörkt läge */
+    --packet-tail-color: rgba(99, 179, 237, 0.1); /* Mer synlig svans i mörkt läge */
 }
 
 /* Uppdatera webbläsartema vid byte */
@@ -245,7 +249,7 @@ img {
         background-color: var(--color-bg) !important; /* Använd solid färg */
     }
     
-    /* --- NY REGEL: Stäng av paket-animationen --- */
+    /* Stäng av paket-animationen */
     .packet {
         animation: none !important;
         display: none !important;
@@ -815,7 +819,7 @@ section:nth-of-type(odd) {
 
 
 /* ========================================
-   NY SEKTION: Paket-animation
+   NY SEKTION: Paket-animation (med Svans)
    ======================================== */
 
 .packet-background {
@@ -832,28 +836,45 @@ section:nth-of-type(odd) {
 .packet {
     position: absolute;
     bottom: -50px; /* Startar utanför skärmen */
-    background-color: var(--color-primary);
+    background-color: var(--packet-color);
     border-radius: 50%;
     
     /* Börjar osynlig, får opacitet från keyframes */
     opacity: 0; 
     
+    /* Variabel för horisontell drift (sätts av JS) */
+    --tx: 0; 
+    
     animation-name: movePacket;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+
+    /* Startar utan svans */
+    box-shadow: none;
 }
 
 @keyframes movePacket {
     0% {
-        transform: translateY(0);
+        transform: translate(0, 0);
         opacity: 0;
+        box-shadow: none;
     }
-    /* Tona in och stanna synlig under större delen av resan */
-    10%, 90% {
-        opacity: var(--packet-opacity); /* Använder CSS-variabeln */
+    10% {
+        opacity: var(--packet-opacity);
+        /* Skapa en svans som pekar "neråt" (positiv y) */
+        box-shadow: 0 5px 10px var(--packet-tail-color),
+                    0 10px 20px var(--packet-tail-color);
+    }
+    90% {
+        opacity: var(--packet-opacity);
+        /* Svansen finns kvar nästan hela vägen */
+        box-shadow: 0 5px 10px var(--packet-tail-color),
+                    0 10px 20px var(--packet-tail-color);
     }
     100% {
-        transform: translateY(-110vh); /* Rör sig 110% av skärmhöjden */
+        /* Rörelse: Slumpmässig X-drift + full Y-höjd */
+        transform: translate(var(--tx), -110vh); 
         opacity: 0;
+        box-shadow: none;
     }
 }
