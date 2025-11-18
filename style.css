@@ -26,7 +26,7 @@
     --color-card-bg: #f7fafc; /* Ljus bakgrund för kort */
     --color-badge-bg: #e2e8f0;
     --color-badge-text: #4a5568;
-    --color-focus-ring: #429e1; /* Blå fokusring */
+    --color-focus-ring: #4299e1; /* Blå fokusring */
 
     /* Mjukare Skuggor & Glas-effekt */
     --color-bg-transparent: rgba(255, 255, 255, 0.85); /* För "glas"-effekt */
@@ -45,19 +45,6 @@
     --shadow-md: 0 5px 15px var(--color-shadow);
     --shadow-lg: 0 10px 25px var(--color-shadow-hover);
     
-    /* --- NYA VARIABLER: Spotlight-effekt --- */
-    --mouseX: 50vw; /* Standardposition i mitten (horisontellt) */
-    --mouseY: 50vh; /* Standardposition i mitten (vertikalt) */
-    --spotlight-size-light: 400px; /* Storlek för ljust läge (subtil) */
-    --spotlight-color-light: rgba(0, 0, 0, 0.03); /* Färg för ljust läge */
-    --spotlight-size-dark: 500px; /* Storlek för mörkt läge (mer dramatisk) */
-    --spotlight-color-dark: rgba(255, 255, 255, 0.04); /* Färg för mörkt läge */
-
-    /* Standardvärden (ljust läge) */
-    --spotlight-size: var(--spotlight-size-light);
-    --spotlight-color: var(--spotlight-color-light);
-    /* --- SLUT PÅ NYA VARIABLER --- */
-
     --transition-fast: 0.2s ease-in-out;
 }
 
@@ -79,11 +66,6 @@
     --color-bg-transparent: rgba(26, 32, 44, 0.85); /* 1a202c med alpha */
     --color-shadow: rgba(0, 0, 0, 0.3); /* Mörka skuggor behövs i mörkt läge */
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
-    
-    /* --- UPPDATERING: Spotlight (Mörkt läge) --- */
-    --spotlight-size: var(--spotlight-size-dark);
-    --spotlight-color: var(--spotlight-color-dark);
-    /* --- SLUT PÅ UPPDATERING --- */
 }
 
 /* Uppdatera webbläsartema vid byte */
@@ -116,28 +98,14 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
 
-    /* --- UPPDATERING: Spotlight + Gradient --- */
+    /* Subtil Bakgrundsgradient */
     background-color: var(--color-bg); /* Fallback */
-    /* * Lägger till radial-gradient FÖRE linear-gradient.
-     * Spotlighten skapas här och centreras runt --mouseX och --mouseY.
-    */
-    background-image: 
-        radial-gradient(
-            circle at var(--mouseX) var(--mouseY), 
-            var(--spotlight-color) 0, 
-            transparent var(--spotlight-size)
-        ),
-        linear-gradient(
-            180deg, 
-            var(--color-bg) 0%, 
-            color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
-        );
+    background-image: linear-gradient(180deg, 
+        var(--color-bg) 0%, 
+        color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
+    );
     background-repeat: no-repeat;
-    
-    /* Mjukar upp spotlightens rörelse när den följer musen */
-    transition: background 0.1s ease-out; 
     overflow-x: hidden; /* Förhindra horisontell scroll */
-    /* --- SLUT PÅ UPPDATERING --- */
 }
 
 body {
@@ -270,19 +238,8 @@ img {
         -webkit-backdrop-filter: none !important;
         background-color: var(--color-bg) !important; /* Använd solid färg */
     }
-
-    /* --- UPPDATERING: Stäng av spotlight-effekten --- */
-    html {
-        /* Ta bort spotlighten men behåll gradienten */
-        background-image: 
-            linear-gradient(
-                180deg, 
-                var(--color-bg) 0%, 
-                color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
-            );
-        transition: none;
-    }
-    /* --- SLUT PÅ UPPDATERING --- */
+    
+    /* Spotlight-effekten är redan borttagen i denna version */
 }
 
 /* ========================================
