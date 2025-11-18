@@ -838,18 +838,21 @@ section:nth-of-type(odd) {
 .packet {
     position: absolute;
     opacity: 0; 
+    
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
 /* --- RIKTNINGS-GRADIENTER --- */
 .packet--vertical {
+    /* 'to bottom' är standard, pekar "bakåt" när paketet åker upp */
     background-image: linear-gradient(
         var(--packet-color) 30%, 
         transparent 100%
     );
 }
 .packet--horizontal-ltr {
+    /* pekar "bakåt" (åt vänster) när paketet åker åt höger */
     background-image: linear-gradient(
         to left,
         var(--packet-color) 30%, 
@@ -857,6 +860,7 @@ section:nth-of-type(odd) {
     );
 }
 .packet--horizontal-rtl {
+    /* pekar "bakåt" (åt höger) när paketet åker åt vänster */
      background-image: linear-gradient(
         to right,
         var(--packet-color) 30%, 
@@ -865,28 +869,37 @@ section:nth-of-type(odd) {
 }
 
 
-/* --- UPPDATERADE KEYFRAMES (Mjukare svans) --- */
+/* --- UPPDATERADE KEYFRAMES (Längre svans & Mjukare hastighet) --- */
 
 /* Animation för Vertikal rörelse (Botten -> Topp) */
 @keyframes movePacketVertical {
     0% {
-        bottom: 0%; /* Startar vid botten */
+        bottom: 0%; 
         transform: scaleY(1);
         opacity: 0;
     }
-    /* Tona in och börja växa */
-    20% {
-        transform: scaleY(15);
+    /* Tona in som en prick */
+    10% {
+        transform: scaleY(1);
         opacity: var(--packet-opacity);
     }
-    /* Behåll svans och transparens */
-    80% {
-        transform: scaleY(15);
+    /* Börja sträcka ut sig gradvis */
+    30% {
+        transform: scaleY(40); /* Längre svans */
         opacity: calc(var(--packet-opacity) / 2);
     }
-    /* Krymp och försvinn */
+    /* Håll sig utsträckt */
+    80% {
+        transform: scaleY(40); /* Längre svans */
+        opacity: calc(var(--packet-opacity) / 2);
+    }
+    /* Krymp tillbaka till en prick */
+    95% {
+        transform: scaleY(1);
+        opacity: var(--packet-opacity);
+    }
     100% {
-        bottom: 100%; /* Slutar vid toppen */
+        bottom: 100%; 
         transform: scaleY(1); 
         opacity: 0;
     }
@@ -895,20 +908,28 @@ section:nth-of-type(odd) {
 /* Animation för Horisontell rörelse (Vänster -> Höger) */
 @keyframes movePacketHorizontal {
     0% {
-        left: 0%; /* Startar vid vänster */
+        left: 0%; 
         transform: scaleX(1);
         opacity: 0;
     }
-    20% {
-        transform: scaleX(15);
+    10% {
+        transform: scaleX(1);
         opacity: var(--packet-opacity);
     }
-    80% {
-        transform: scaleX(15);
+    30% {
+        transform: scaleX(40); /* Längre svans */
         opacity: calc(var(--packet-opacity) / 2);
     }
+    80% {
+        transform: scaleX(40); /* Längre svans */
+        opacity: calc(var(--packet-opacity) / 2);
+    }
+    95% {
+        transform: scaleX(1);
+        opacity: var(--packet-opacity);
+    }
     100% {
-        left: 100%; /* Slutar vid höger */
+        left: 100%; 
         transform: scaleX(1);
         opacity: 0;
     }
@@ -917,20 +938,28 @@ section:nth-of-type(odd) {
 /* Animation: Horisontell (Höger -> Vänster) */
 @keyframes movePacketHorizontalRTL {
     0% {
-        right: 0%; /* Startar vid höger */
+        right: 0%; 
         transform: scaleX(1);
         opacity: 0;
     }
-    20% {
-        transform: scaleX(15);
+    10% {
+        transform: scaleX(1);
         opacity: var(--packet-opacity);
     }
-    80% {
-        transform: scaleX(15);
+    30% {
+        transform: scaleX(40); /* Längre svans */
         opacity: calc(var(--packet-opacity) / 2);
     }
+    80% {
+        transform: scaleX(40); /* Längre svans */
+        opacity: calc(var(--packet-opacity) / 2);
+    }
+    95% {
+        transform: scaleX(1);
+        opacity: var(--packet-opacity);
+    }
     100% {
-        right: 100%; /* Slutar vid vänster */
+        right: 100%; 
         transform: scaleX(1);
         opacity: 0;
     }
