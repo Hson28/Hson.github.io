@@ -817,7 +817,7 @@ section:nth-of-type(odd) {
 
 
 /* ========================================
-   Paket-animation (med Svans/Sträckning)
+   Paket-animation (med Komet-effekt)
    ======================================== */
 
 .packet-background {
@@ -833,39 +833,54 @@ section:nth-of-type(odd) {
 
 .packet {
     position: absolute;
-    
-    /* --- UPPDATERING: Byt till Gradient --- */
-    /* Tar bort 'background-color' och 'border-radius' */
-    background-image: linear-gradient(
-        var(--packet-color) 30%, 
-        transparent 100%
-    );
-    /* --- SLUT PÅ UPPDATERING --- */
-
+    /* --- BORTTAGEN: background-color --- */
     opacity: 0; 
     
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
+/* --- NYA REGLER: Definiera gradient-riktning per klass --- */
+.packet--vertical {
+    /* 'to bottom' är standard, pekar "bakåt" när paketet åker upp */
+    background-image: linear-gradient(
+        var(--packet-color) 30%, 
+        transparent 100%
+    );
+}
+.packet--horizontal-ltr {
+    /* pekar "bakåt" (åt vänster) när paketet åker åt höger */
+    background-image: linear-gradient(
+        to left,
+        var(--packet-color) 30%, 
+        transparent 100%
+    );
+}
+.packet--horizontal-rtl {
+    /* pekar "bakåt" (åt höger) när paketet åker åt vänster */
+     background-image: linear-gradient(
+        to right,
+        var(--packet-color) 30%, 
+        transparent 100%
+    );
+}
+/* --- SLUT PÅ NYA REGLER --- */
+
+
 /* Animation för Vertikal rörelse (med stretch-svans) */
 @keyframes movePacketVertical {
     0% {
-        /* Startar som en fyrkant */
         transform: translate(0, 0) scaleY(1);
         opacity: 0;
     }
     10% {
-        /* Blir synlig som en fyrkant */
         opacity: var(--packet-opacity);
     }
-    /* Sträcker ut sig i mitten av resan för att simulera en svans */
     50% {
         transform: translate(0, -55vh) scaleY(25); /* LÄNGRE SVANS */
         opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
     }
     90% {
-        /* Återgår till en fyrkant innan den försvinner */
         transform: translate(0, -100vh) scaleY(1);
         opacity: var(--packet-opacity);
     }
@@ -878,21 +893,17 @@ section:nth-of-type(odd) {
 /* Animation för Horisontell rörelse (Vänster -> Höger) */
 @keyframes movePacketHorizontal {
     0% {
-        /* Startar som en fyrkant */
         transform: translate(0, 0) scaleX(1);
         opacity: 0;
     }
     10% {
-        /* Blir synlig som en fyrkant */
         opacity: var(--packet-opacity);
     }
-    /* Sträcker ut sig horisontellt */
     50% {
         transform: translate(55vw, 0) scaleX(25); /* LÄNGRE SVANS */
         opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
     }
     90% {
-        /* Återgår till en fyrkant innan den försvinner */
         transform: translate(100vw, 0) scaleX(1);
         opacity: var(--packet-opacity);
     }
@@ -905,21 +916,17 @@ section:nth-of-type(odd) {
 /* Animation: Horisontell (Höger -> Vänster) */
 @keyframes movePacketHorizontalRTL {
     0% {
-        /* Startar som en fyrkant (relativt till 'right: -50px') */
         transform: translate(0, 0) scaleX(1);
         opacity: 0;
     }
     10% {
-        /* Blir synlig som en fyrkant */
         opacity: var(--packet-opacity);
     }
-    /* Sträcker ut sig horisontellt (negativ riktning) */
     50% {
         transform: translate(-55vw, 0) scaleX(25); /* LÄNGRE SVANS */
         opacity: calc(var(--packet-opacity) / 2); /* MER GENOMSKINLIG SVANS */
     }
     90% {
-        /* Återgår till en fyrkant innan den försvinner */
         transform: translate(-100vw, 0) scaleX(1);
         opacity: var(--packet-opacity);
     }
