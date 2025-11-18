@@ -50,10 +50,6 @@
     --packet-opacity: 0.15; /* Mer genomskinlig */
     
     --transition-fast: 0.2s ease-in-out;
-
-    /* --- Sköld-animation --- */
-    --shield-border: rgba(43, 108, 176, 0.3);
-    --shield-glow: rgba(43, 108, 176, 0.2);
 }
 
 /* Mörkt tema */
@@ -78,10 +74,6 @@
     /* --- Paket-animation (Mörkt läge) --- */
     --packet-color: var(--color-primary);
     --packet-opacity: 0.3; /* Mer genomskinlig */
-
-    /* --- Sköld-animation (Mörkt läge) --- */
-    --shield-border: rgba(99, 179, 237, 0.3);
-    --shield-glow: rgba(99, 179, 237, 0.15);
 }
 
 /* Uppdatera webbläsartema vid byte */
@@ -262,10 +254,10 @@ img {
         display: none !important;
     }
     
-    /* Stäng av sköld-scanning */
-    .hero-image-shield-wrapper::after {
+    /* Stäng av ring-animation */
+    .hero-image-wrapper::before, .hero-image-wrapper::after {
         animation: none !important;
-        background: transparent !important;
+        display: none !important;
     }
 }
 
@@ -567,7 +559,7 @@ section:nth-of-type(odd) {
     opacity: 0.9;
 }
 
-/* Se avsnittet SKÖLD-ANIMATION nedan för .hero-image-shield-wrapper */
+/* Se avsnittet TECH RING-ANIMATION nedan för .hero-image-wrapper */
 
 /* ========================================
    SKRIVMASKINSEFFEKT (Typing Effect)
@@ -793,10 +785,10 @@ section:nth-of-type(odd) {
         flex: 2;
     }
     
-    /* Uppdaterad för att matcha sköld-wrappern */
-    .hero-image-shield-wrapper {
+    .hero-image-wrapper {
         flex: 1;
-        /* Justera positionering om det behövs */
+        max-width: 350px;
+        margin: 0 auto; /* Centrera om nödvändigt */
     }
     
     .project-grid {
@@ -818,9 +810,8 @@ section:nth-of-type(odd) {
         font-size: 1.5rem;
     }
     
-    .hero-image-shield-wrapper {
-        /* Se till att skölden har plats */
-        min-width: 350px;
+    .hero-image-wrapper {
+        max-width: 400px;
     }
 }
 
@@ -974,89 +965,57 @@ section:nth-of-type(odd) {
     }
 }
 
+
 /* ========================================
-   === SKÖLD-ANIMATION ===
+   === TECH RING / RADAR ANIMATION ===
    ======================================== */
 
-/* Wrappern centrerar allt och sätter storleken */
-.hero-image-shield-wrapper {
+.hero-image-wrapper {
     position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    /* Justera storleken på "scenen" för skölden */
-    width: 320px;
-    height: 360px;
-    margin: 0 auto;
+    z-index: 1;
+    /* Gör så att wrappern följer bildens storlek, men lämnar plats för ringen */
+    display: inline-block;
+}
+
+.hero-image {
+    border-radius: 50%;
+    border: 3px solid var(--color-card-bg); /* Tunn ram för separation */
+    box-shadow: var(--shadow-md);
+    position: relative;
+    z-index: 2;
+}
+
+/* Den roterande tekniska ringen */
+.hero-image-wrapper::before {
+    content: '';
+    position: absolute;
+    /* Gör ringen lite större än bilden */
+    inset: -10px; 
+    border-radius: 50%;
+    
+    /* En streckad linje i primärfärgen */
+    border: 2px dashed var(--color-primary);
+    opacity: 0.5;
+    
+    /* Rotation */
+    animation: spin-slow 20s linear infinite;
     z-index: 0;
 }
 
-/* Den faktiska profilbilds-behållaren */
-.hero-image-wrapper {
-    position: relative;
-    z-index: 2; /* Ligger ovanpå skölden */
-    width: 250px; /* Lite mindre än skölden */
-    max-width: 100%;
-}
-
-/* Ta bort den gamla kantlinjen från bilden, skölden blir ramen */
-.hero-image {
-    border: none;
-    box-shadow: none;
-    /* Vi kan behålla en tunn inre ring om vi vill */
-    border: 3px solid var(--color-bg);
-}
-
-/* SKÖLDENS BAKGRUND (FORMEN)
-   Vi använder clip-path för att skapa en klassisk sköld/hexagon-form
-*/
-.hero-image-shield-wrapper::before {
+/* En subtil glöd bakom allt */
+.hero-image-wrapper::after {
     content: '';
     position: absolute;
     inset: 0;
-    background-color: var(--color-card-bg);
-    /* En långsmal hexagon-liknande sköldform */
-    clip-path: polygon(50% 0, 100% 20%, 100% 80%, 50% 100%, 0 80%, 0 20%);
-    z-index: -2; /* Längst bak */
-    
-    /* Skapar en "glödande" kant runt formen med drop-shadow */
-    filter: drop-shadow(0 0 10px var(--shield-glow));
-}
-
-/*
-   SKANNER-EFFEKTEN (ANIMATION)
-   Detta lager ligger ovanpå sköld-bakgrunden men under bilden.
-   Det är också klippt som en sköld och har en gradient som rör sig.
-*/
-.hero-image-shield-wrapper::after {
-    content: '';
-    position: absolute;
-    inset: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 30px var(--color-primary);
+    opacity: 0.2;
     z-index: -1;
-    
-    /* Samma form som bakgrunden */
-    clip-path: polygon(50% 0, 100% 20%, 100% 80%, 50% 100%, 0 80%, 0 20%);
-    
-    /* En gradient som agerar "scanner" */
-    background: linear-gradient(
-        to bottom,
-        transparent 40%,
-        var(--color-primary) 50%, /* Scanner-linjen */
-        transparent 60%
-    );
-    background-size: 100% 200%;
-    opacity: 0.4;
-    
-    /* Animationen */
-    animation: shieldScan 3s linear infinite;
 }
 
-/* Keyframes för skanner-rörelsen (uppifrån och ner) */
-@keyframes shieldScan {
-    0% {
-        background-position: 0% 0%;
-    }
-    100% {
-        background-position: 0% 200%;
-    }
+
+/* Animation för rotation */
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
 }
