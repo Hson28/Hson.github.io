@@ -124,9 +124,8 @@ body {
     font-weight: 400; /* Standardvikt för brödtext */
     transition: background-color var(--transition-fast), color var(--transition-fast);
     
-    /* --- UPPDATERING: Positionera body --- */
+    /* --- Positionera body --- */
     position: relative; /* Gör 'body' till positionerings-kontext */
-    /* --- SLUT PÅ UPPDATERING --- */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -825,37 +824,32 @@ section:nth-of-type(odd) {
    ======================================== */
 
 .packet-background {
-    /* --- UPPDATERING: Ändrad positionering --- */
-    position: absolute; /* Ändrad från 'fixed' */
-    height: 100%; /* Ändrad från '100vh' */
-    z-index: -1; /* Flyttad bakom allt innehåll */
-    /* --- SLUT PÅ UPPDATERING --- */
-    
+    /* Fäster vid 'body' och täcker hela sidans höjd */
+    position: absolute; 
+    height: 100%; 
+    z-index: -1; /* Bakom allt innehåll */
     top: 0;
     left: 0;
     width: 100vw;
-    pointer-events: none; /* Gör lagret icke-klickbart */
+    pointer-events: none; 
     overflow: hidden;
 }
 
 .packet {
     position: absolute;
     opacity: 0; 
-    
     animation-timing-function: linear;
     animation-iteration-count: infinite;
 }
 
 /* --- RIKTNINGS-GRADIENTER --- */
 .packet--vertical {
-    /* 'to bottom' är standard, pekar "bakåt" när paketet åker upp */
     background-image: linear-gradient(
         var(--packet-color) 30%, 
         transparent 100%
     );
 }
 .packet--horizontal-ltr {
-    /* pekar "bakåt" (åt vänster) när paketet åker åt höger */
     background-image: linear-gradient(
         to left,
         var(--packet-color) 30%, 
@@ -863,7 +857,6 @@ section:nth-of-type(odd) {
     );
 }
 .packet--horizontal-rtl {
-    /* pekar "bakåt" (åt höger) när paketet åker åt vänster */
      background-image: linear-gradient(
         to right,
         var(--packet-color) 30%, 
@@ -874,34 +867,27 @@ section:nth-of-type(odd) {
 
 /* --- UPPDATERADE KEYFRAMES (Mjukare svans) --- */
 
-/* Animation för Vertikal rörelse (med stretch-svans) */
+/* Animation för Vertikal rörelse (Botten -> Topp) */
 @keyframes movePacketVertical {
     0% {
-        transform: translate(0, 0vh) scaleY(1);
+        bottom: 0%; /* Startar vid botten */
+        transform: scaleY(1);
         opacity: 0;
     }
-    /* Tona in som en prick */
-    10% {
-        transform: translate(0, -11vh) scaleY(1);
+    /* Tona in och börja växa */
+    20% {
+        transform: scaleY(15);
         opacity: var(--packet-opacity);
     }
-    /* Börja sträcka ut sig */
-    30% {
-        transform: translate(0, -33vh) scaleY(25);
-        opacity: calc(var(--packet-opacity) / 2);
-    }
-    /* Håll sig utsträckt */
+    /* Behåll svans och transparens */
     80% {
-        transform: translate(0, -88vh) scaleY(25);
+        transform: scaleY(15);
         opacity: calc(var(--packet-opacity) / 2);
     }
-    /* Krymp tillbaka till en prick */
-    95% {
-        transform: translate(0, -104.5vh) scaleY(1);
-        opacity: var(--packet-opacity);
-    }
+    /* Krymp och försvinn */
     100% {
-        transform: translate(0, -110vh) scaleY(1); 
+        bottom: 100%; /* Slutar vid toppen */
+        transform: scaleY(1); 
         opacity: 0;
     }
 }
@@ -909,27 +895,21 @@ section:nth-of-type(odd) {
 /* Animation för Horisontell rörelse (Vänster -> Höger) */
 @keyframes movePacketHorizontal {
     0% {
-        transform: translate(0vw, 0) scaleX(1);
+        left: 0%; /* Startar vid vänster */
+        transform: scaleX(1);
         opacity: 0;
     }
-    10% {
-        transform: translate(11vw, 0) scaleX(1);
+    20% {
+        transform: scaleX(15);
         opacity: var(--packet-opacity);
-    }
-    30% {
-        transform: translate(33vw, 0) scaleX(25);
-        opacity: calc(var(--packet-opacity) / 2);
     }
     80% {
-        transform: translate(88vw, 0) scaleX(25);
+        transform: scaleX(15);
         opacity: calc(var(--packet-opacity) / 2);
     }
-    95% {
-        transform: translate(104.5vw, 0) scaleX(1);
-        opacity: var(--packet-opacity);
-    }
     100% {
-        transform: translate(110vw, 0) scaleX(1);
+        left: 100%; /* Slutar vid höger */
+        transform: scaleX(1);
         opacity: 0;
     }
 }
@@ -937,27 +917,21 @@ section:nth-of-type(odd) {
 /* Animation: Horisontell (Höger -> Vänster) */
 @keyframes movePacketHorizontalRTL {
     0% {
-        transform: translate(0vw, 0) scaleX(1);
+        right: 0%; /* Startar vid höger */
+        transform: scaleX(1);
         opacity: 0;
     }
-    10% {
-        transform: translate(-11vw, 0) scaleX(1);
+    20% {
+        transform: scaleX(15);
         opacity: var(--packet-opacity);
-    }
-    30% {
-        transform: translate(-33vw, 0) scaleX(25);
-        opacity: calc(var(--packet-opacity) / 2);
     }
     80% {
-        transform: translate(-88vw, 0) scaleX(25);
+        transform: scaleX(15);
         opacity: calc(var(--packet-opacity) / 2);
     }
-    95% {
-        transform: translate(-104.5vw, 0) scaleX(1);
-        opacity: var(--packet-opacity);
-    }
     100% {
-        transform: translate(-110vw, 0) scaleX(1);
+        right: 100%; /* Slutar vid vänster */
+        transform: scaleX(1);
         opacity: 0;
     }
 }
