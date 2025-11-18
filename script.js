@@ -9,7 +9,7 @@
  * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
  * 6. "Staggered" fade-in på projektkort (IntersectionObserver)
  * 7. "Scrollspy" för aktiv meny-länk (IntersectionObserver)
- * 8. Subtil bakgrundsanimation med "paket" (med riktning & svans)
+ * 8. Subtil bakgrundsanimation med "paket" (med riktning & svans/stretch)
  *
  * Inga externa bibliotek, inga trackers, ingen console.log.
  */
@@ -400,7 +400,7 @@
     }
 
     
-    // --- 11. Bakgrundsanimation (Paket med Riktning & Svans) ---
+    // --- 11. Bakgrundsanimation (Paket med Riktning & Svans/Sträckning) ---
     
     /**
      * Skapar och animerar de subtila bakgrunds"paketen".
@@ -414,32 +414,57 @@
         try {
             const container = document.createElement('div');
             container.className = 'packet-background';
-            const numPackets = 20; // Antal paket på skärmen
+            const numPackets = 25; // Ökat antal för fler riktningar
 
             for (let i = 0; i < numPackets; i++) {
                 const packet = document.createElement('span');
                 packet.className = 'packet';
                 
-                // Slumpmässig startposition (vänster/höger)
-                packet.style.left = `${Math.random() * 100}vw`;
+                // Slumpmässig varaktighet (10-25s) och fördröjning (0-25s)
+                const duration = Math.random() * 15 + 10;
+                const delay = Math.random() * 25; 
+                packet.style.animationDuration = `${duration}s`;
+                packet.style.animationDelay = `${delay}s`;
                 
-                // Slumpmässig storlek (1px till 4px)
+                // Slumpmässig storlek (1-4px)
                 const size = Math.random() * 3 + 1;
                 packet.style.width = `${size}px`;
                 packet.style.height = `${size}px`;
 
-                // Slumpmässig animationslängd (10s till 30s)
-                packet.style.animationDuration = `${Math.random() * 20 + 10}s`;
-                
-                // Slumpmässig fördröjning (0s till 20s)
-                packet.style.animationDelay = `${Math.random() * 20}s`;
+                // Slumpa en typ: 0 (Vertikal), 1 (Horisontell LTR), 2 (Horisontell RTL)
+                const type = Math.floor(Math.random() * 3);
 
-                // --- NYHET: Slumpmässig horisontell drift ---
-                // Sätter en CSS-variabel '--tx' för varje paket
-                // Mellan -200px och +200px
-                const horizontalDrift = (Math.random() - 0.5) * 400;
-                packet.style.setProperty('--tx', `${horizontalDrift}px`);
-                // --- SLUT PÅ NYHET ---
+                if (type === 0) { // Vertikal (Botten -> Topp)
+                    packet.style.left = `${Math.random() * 100}vw`;
+                    packet.style.bottom = '-50px';
+                    packet.style.animationName = 'movePacketVertical';
+                    
+                    // Slumpmässig horisontell drift (-150px till +150px)
+                    const horizontalDrift = (Math.random() - 0.5) * 300;
+                    packet.style.setProperty('--tx', `${horizontalDrift}px`);
+                    packet.style.setProperty('--tx-mid', `${horizontalDrift / 2}px`);
+
+                } else if (type === 1) { // Horisontell (Vänster -> Höger)
+                    packet.style.left = '-50px';
+                    packet.style.top = `${Math.random() * 100}vh`;
+                    packet.style.animationName = 'movePacketHorizontal';
+
+                    // Slumpmässig vertikal drift (-100px till +100px)
+                    const verticalDrift = (Math.random() - 0.5) * 200;
+                    packet.style.setProperty('--ty', `${verticalDrift}px`);
+                    packet.style.setProperty('--ty-mid', `${verticalDrift / 2}px`);
+
+                } else { // Horisontell (Höger -> Vänster)
+                    packet.style.right = '-50px';
+                    packet.style.top = `${Math.random() * 100}vh`;
+                    packet.style.animationName = 'movePacketHorizontal';
+                    packet.style.animationDirection = 'reverse'; // Återanvänd samma keyframe
+
+                    // Slumpmässig vertikal drift
+                    const verticalDrift = (Math.random() - 0.5) * 200;
+                    packet.style.setProperty('--ty', `${verticalDrift}px`);
+                    packet.style.setProperty('--ty-mid', `${verticalDrift / 2}px`);
+                }
 
                 container.appendChild(packet);
             }
@@ -488,7 +513,7 @@
         bindEvents();
         initScrollObserver(); 
         initScrollspy();    
-        initPacketBackground(); // Startar paket-animationen
+        initPacketBackground(); // Startar den uppdaterade paket-animationen
     }
 
     document.addEventListener("DOMContentLoaded", init);
