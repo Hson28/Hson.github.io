@@ -123,6 +123,10 @@ body {
     line-height: 1.7; /* Ökat radavstånd för luftighet */
     font-weight: 400; /* Standardvikt för brödtext */
     transition: background-color var(--transition-fast), color var(--transition-fast);
+    
+    /* --- UPPDATERING: Positionera body --- */
+    position: relative; /* Gör 'body' till positionerings-kontext */
+    /* --- SLUT PÅ UPPDATERING --- */
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -821,12 +825,15 @@ section:nth-of-type(odd) {
    ======================================== */
 
 .packet-background {
-    position: fixed;
+    /* --- UPPDATERING: Ändrad positionering --- */
+    position: absolute; /* Ändrad från 'fixed' */
+    height: 100%; /* Ändrad från '100vh' */
+    z-index: -1; /* Flyttad bakom allt innehåll */
+    /* --- SLUT PÅ UPPDATERING --- */
+    
     top: 0;
     left: 0;
     width: 100vw;
-    height: 100vh;
-    z-index: 0; /* Bakom headern (1000) men framför body-gradienten */
     pointer-events: none; /* Gör lagret icke-klickbart */
     overflow: hidden;
 }
