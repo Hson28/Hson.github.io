@@ -865,29 +865,34 @@ section:nth-of-type(odd) {
 }
 
 
-/* --- UPPDATERADE KEYFRAMES --- */
+/* --- UPPDATERADE KEYFRAMES (Mjukare svans) --- */
 
 /* Animation för Vertikal rörelse (med stretch-svans) */
 @keyframes movePacketVertical {
     0% {
-        transform: translate(0, 0) scaleY(1);
+        transform: translate(0, 0vh) scaleY(1);
         opacity: 0;
     }
     /* Tona in som en prick */
     10% {
-        transform: translate(0, -5vh) scaleY(1);
+        transform: translate(0, -11vh) scaleY(1);
         opacity: var(--packet-opacity);
     }
-    /* Håll utsträckt svans under nästan hela resan */
-    20% {
-        transform: translate(0, -10vh) scaleY(25); 
+    /* Börja sträcka ut sig */
+    30% {
+        transform: translate(0, -33vh) scaleY(25);
         opacity: calc(var(--packet-opacity) / 2);
     }
-    90% {
-        transform: translate(0, -100vh) scaleY(25);
+    /* Håll sig utsträckt */
+    80% {
+        transform: translate(0, -88vh) scaleY(25);
         opacity: calc(var(--packet-opacity) / 2);
     }
-    /* Tona ut som en prick */
+    /* Krymp tillbaka till en prick */
+    95% {
+        transform: translate(0, -104.5vh) scaleY(1);
+        opacity: var(--packet-opacity);
+    }
     100% {
         transform: translate(0, -110vh) scaleY(1); 
         opacity: 0;
@@ -897,20 +902,24 @@ section:nth-of-type(odd) {
 /* Animation för Horisontell rörelse (Vänster -> Höger) */
 @keyframes movePacketHorizontal {
     0% {
-        transform: translate(0, 0) scaleX(1);
+        transform: translate(0vw, 0) scaleX(1);
         opacity: 0;
     }
     10% {
-        transform: translate(5vw, 0) scaleX(1);
+        transform: translate(11vw, 0) scaleX(1);
         opacity: var(--packet-opacity);
     }
-    20% {
-        transform: translate(10vw, 0) scaleX(25);
+    30% {
+        transform: translate(33vw, 0) scaleX(25);
         opacity: calc(var(--packet-opacity) / 2);
     }
-    90% {
-        transform: translate(100vw, 0) scaleX(25);
+    80% {
+        transform: translate(88vw, 0) scaleX(25);
         opacity: calc(var(--packet-opacity) / 2);
+    }
+    95% {
+        transform: translate(104.5vw, 0) scaleX(1);
+        opacity: var(--packet-opacity);
     }
     100% {
         transform: translate(110vw, 0) scaleX(1);
@@ -921,20 +930,24 @@ section:nth-of-type(odd) {
 /* Animation: Horisontell (Höger -> Vänster) */
 @keyframes movePacketHorizontalRTL {
     0% {
-        transform: translate(0, 0) scaleX(1);
+        transform: translate(0vw, 0) scaleX(1);
         opacity: 0;
     }
     10% {
-        transform: translate(-5vw, 0) scaleX(1);
+        transform: translate(-11vw, 0) scaleX(1);
         opacity: var(--packet-opacity);
     }
-    20% {
-        transform: translate(-10vw, 0) scaleX(25);
+    30% {
+        transform: translate(-33vw, 0) scaleX(25);
         opacity: calc(var(--packet-opacity) / 2);
     }
-    90% {
-        transform: translate(-100vw, 0) scaleX(25);
+    80% {
+        transform: translate(-88vw, 0) scaleX(25);
         opacity: calc(var(--packet-opacity) / 2);
+    }
+    95% {
+        transform: translate(-104.5vw, 0) scaleX(1);
+        opacity: var(--packet-opacity);
     }
     100% {
         transform: translate(-110vw, 0) scaleX(1);
