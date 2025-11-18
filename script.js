@@ -438,23 +438,19 @@
                     packet.style.left = `${Math.random() * 100}vw`;
                     packet.style.bottom = '-50px';
                     packet.style.animationName = 'movePacketVertical';
-                    
-                    // --- Raderad horisontell drift ---
+                    // Ingen horisontell drift
 
                 } else if (type === 1) { // Horisontell (Vänster -> Höger)
                     packet.style.left = '-50px';
                     packet.style.top = `${Math.random() * 100}vh`;
                     packet.style.animationName = 'movePacketHorizontal';
-
-                    // --- Raderad vertikal drift ---
+                    // Ingen vertikal drift
 
                 } else { // Horisontell (Höger -> Vänster)
                     packet.style.right = '-50px';
                     packet.style.top = `${Math.random() * 100}vh`;
-                    packet.style.animationName = 'movePacketHorizontal';
-                    packet.style.animationDirection = 'reverse'; // Återanvänd samma keyframe
-
-                    // --- Raderad vertikal drift ---
+                    packet.style.animationName = 'movePacketHorizontalRTL'; // <-- Använder den nya animationen
+                    // Ingen vertikal drift
                 }
 
                 container.appendChild(packet);
