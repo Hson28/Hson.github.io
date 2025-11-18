@@ -50,6 +50,10 @@
     --packet-opacity: 0.15; /* Mer genomskinlig */
     
     --transition-fast: 0.2s ease-in-out;
+
+    /* --- Sköld-animation --- */
+    --shield-border: rgba(43, 108, 176, 0.3);
+    --shield-glow: rgba(43, 108, 176, 0.2);
 }
 
 /* Mörkt tema */
@@ -74,6 +78,10 @@
     /* --- Paket-animation (Mörkt läge) --- */
     --packet-color: var(--color-primary);
     --packet-opacity: 0.3; /* Mer genomskinlig */
+
+    /* --- Sköld-animation (Mörkt läge) --- */
+    --shield-border: rgba(99, 179, 237, 0.3);
+    --shield-glow: rgba(99, 179, 237, 0.15);
 }
 
 /* Uppdatera webbläsartema vid byte */
@@ -157,8 +165,6 @@ a {
     text-decoration: none;
     transition: color var(--transition-fast);
 }
-
-/* a:hover borttagen (hanteras av .nav-link, .project-link etc.) */
 
 ul, ol {
     list-style: none;
@@ -254,6 +260,12 @@ img {
     .packet {
         animation: none !important;
         display: none !important;
+    }
+    
+    /* Stäng av sköld-scanning */
+    .hero-image-shield-wrapper::after {
+        animation: none !important;
+        background: transparent !important;
     }
 }
 
@@ -555,15 +567,7 @@ section:nth-of-type(odd) {
     opacity: 0.9;
 }
 
-.hero-image-wrapper {
-    max-width: 300px;
-}
-
-.hero-image {
-    border-radius: 50%;
-    border: 5px solid var(--color-border);
-    box-shadow: var(--shadow-md);
-}
+/* Se avsnittet SKÖLD-ANIMATION nedan för .hero-image-shield-wrapper */
 
 /* ========================================
    SKRIVMASKINSEFFEKT (Typing Effect)
@@ -789,9 +793,10 @@ section:nth-of-type(odd) {
         flex: 2;
     }
     
-    .hero-image-wrapper {
+    /* Uppdaterad för att matcha sköld-wrappern */
+    .hero-image-shield-wrapper {
         flex: 1;
-        max-width: 350px;
+        /* Justera positionering om det behövs */
     }
     
     .project-grid {
@@ -813,8 +818,9 @@ section:nth-of-type(odd) {
         font-size: 1.5rem;
     }
     
-    .hero-image-wrapper {
-        max-width: 400px;
+    .hero-image-shield-wrapper {
+        /* Se till att skölden har plats */
+        min-width: 350px;
     }
 }
 
@@ -965,5 +971,92 @@ section:nth-of-type(odd) {
         right: 100%; 
         transform: scaleX(1);
         opacity: 0;
+    }
+}
+
+/* ========================================
+   === SKÖLD-ANIMATION ===
+   ======================================== */
+
+/* Wrappern centrerar allt och sätter storleken */
+.hero-image-shield-wrapper {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Justera storleken på "scenen" för skölden */
+    width: 320px;
+    height: 360px;
+    margin: 0 auto;
+    z-index: 0;
+}
+
+/* Den faktiska profilbilds-behållaren */
+.hero-image-wrapper {
+    position: relative;
+    z-index: 2; /* Ligger ovanpå skölden */
+    width: 250px; /* Lite mindre än skölden */
+    max-width: 100%;
+}
+
+/* Ta bort den gamla kantlinjen från bilden, skölden blir ramen */
+.hero-image {
+    border: none;
+    box-shadow: none;
+    /* Vi kan behålla en tunn inre ring om vi vill */
+    border: 3px solid var(--color-bg);
+}
+
+/* SKÖLDENS BAKGRUND (FORMEN)
+   Vi använder clip-path för att skapa en klassisk sköld/hexagon-form
+*/
+.hero-image-shield-wrapper::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-card-bg);
+    /* En långsmal hexagon-liknande sköldform */
+    clip-path: polygon(50% 0, 100% 20%, 100% 80%, 50% 100%, 0 80%, 0 20%);
+    z-index: -2; /* Längst bak */
+    
+    /* Skapar en "glödande" kant runt formen med drop-shadow */
+    filter: drop-shadow(0 0 10px var(--shield-glow));
+}
+
+/*
+   SKANNER-EFFEKTEN (ANIMATION)
+   Detta lager ligger ovanpå sköld-bakgrunden men under bilden.
+   Det är också klippt som en sköld och har en gradient som rör sig.
+*/
+.hero-image-shield-wrapper::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    
+    /* Samma form som bakgrunden */
+    clip-path: polygon(50% 0, 100% 20%, 100% 80%, 50% 100%, 0 80%, 0 20%);
+    
+    /* En gradient som agerar "scanner" */
+    background: linear-gradient(
+        to bottom,
+        transparent 40%,
+        var(--color-primary) 50%, /* Scanner-linjen */
+        transparent 60%
+    );
+    background-size: 100% 200%;
+    opacity: 0.4;
+    
+    /* Animationen */
+    animation: shieldScan 3s linear infinite;
+}
+
+/* Keyframes för skanner-rörelsen (uppifrån och ner) */
+@keyframes shieldScan {
+    0% {
+        background-position: 0% 0%;
+    }
+    100% {
+        background-position: 0% 200%;
     }
 }
