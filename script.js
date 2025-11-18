@@ -1,17 +1,10 @@
 /**
  * Portfölj-skript (Vanilla JS)
- *
- * Hanterar:
- * 1. Mörkt/Ljust Téma (med localStorage & prefers-color-scheme)
- * 2. Språkväxling SV/EN (med localStorage)
- * 3. Åtkomstvänlig mobilmeny
- * 4. Mjuk scrollning för ankar-länkar
- * 5. Skrivmaskinseffekt för H1 och Tagline (kedjad)
- * 6. "Staggered" fade-in på projektkort (IntersectionObserver)
- * 7. "Scrollspy" för aktiv meny-länk (IntersectionObserver)
- * 8. Subtil bakgrundsanimation med "paket" (Komet-effekt)
- *
- * Inga externa bibliotek, inga trackers, ingen console.log.
+ * * Hanterar:
+ * 1. Mörkt/Ljust Téma
+ * 2. Språkväxling
+ * 3. Mobilmeny (FIXAD)
+ * 4. Animationer
  */
 
 (function () {
@@ -77,7 +70,8 @@
         themeToggle: document.querySelector(".theme-toggle"),
         langToggle: document.querySelector(".lang-toggle"),
         navToggle: document.querySelector(".nav-toggle"),
-        navMenu: document.querySelector("#primary-navigation"),
+        // HÄR ÄR FIXEN: Vi väljer .site-nav istället för #primary-navigation
+        navMenu: document.querySelector(".site-nav"), 
         navLinks: document.querySelectorAll(".nav-link"),
         langElements: document.querySelectorAll("[data-lang-key]"),
         anchorLinks: document.querySelectorAll('a[href^="#"]'),
@@ -251,9 +245,12 @@
         if (!dom.navMenu || !dom.navToggle) return;
         
         const isVisible = dom.navMenu.getAttribute("data-visible") === "true";
+        
+        // Växla attributet på själva <nav>-elementet (site-nav)
         dom.navMenu.setAttribute("data-visible", !isVisible);
         dom.navToggle.setAttribute("aria-expanded", !isVisible);
         
+        // Lås scrollning på body när menyn är öppen
         dom.html.style.overflow = !isVisible ? "hidden" : "auto";
     }
     
@@ -420,11 +417,8 @@
                 const packet = document.createElement('span');
                 packet.className = 'packet'; // Grundläggande klass
                 
-                // --- UPPDATERING: Snabbare hastighetsintervall ---
-                // Tidigare: 10-25s. Nu: 8-20s.
-                const duration = Math.random() * 12 + 8; // 8s (snabbast) till 20s (långsammast)
+                const duration = Math.random() * 12 + 8; // 8s till 20s
                 const delay = Math.random() * 20; // 0-20s fördröjning
-                // --- SLUT PÅ UPPDATERING ---
 
                 packet.style.animationDuration = `${duration}s`;
                 packet.style.animationDelay = `${delay}s`;
@@ -507,7 +501,7 @@
         bindEvents();
         initScrollObserver(); 
         initScrollspy();    
-        initPacketBackground(); // Startar den uppdaterade komet-animationen
+        initPacketBackground(); 
     }
 
     document.addEventListener("DOMContentLoaded", init);
