@@ -400,7 +400,7 @@
     }
 
     
-    // --- 11. Bakgrundsanimation (Paket med Komet-effekt) ---
+    // --- 11. Bakgrundsanimation (Komet-effekt) ---
     
     /**
      * Skapar och animerar de subtila bakgrunds"paketen".
@@ -433,27 +433,29 @@
                 const type = Math.floor(Math.random() * 3);
 
                 if (type === 0) { // Vertikal (Botten -> Topp)
-                    packet.classList.add('packet--vertical'); // Lägg till riktningsklass
+                    packet.classList.add('packet--vertical'); 
                     packet.style.width = `${size}px`;
-                    packet.style.height = `${size}px`; // Fyrkantig bas
+                    packet.style.height = `${size}px`; 
                     packet.style.left = `${Math.random() * 100}vw`;
-                    packet.style.bottom = '-50px';
+                    packet.style.bottom = '-50px'; // Startar längst ner i containern
                     packet.style.animationName = 'movePacketVertical';
 
                 } else if (type === 1) { // Horisontell (Vänster -> Höger)
-                    packet.classList.add('packet--horizontal-ltr'); // Lägg till riktningsklass
-                    packet.style.width = `${size}px`; // Fyrkantig bas
+                    packet.classList.add('packet--horizontal-ltr'); 
+                    packet.style.width = `${size}px`; 
                     packet.style.height = `${size}px`;
                     packet.style.left = '-50px';
-                    packet.style.top = `${Math.random() * 100}vh`;
+                    /* --- ÄNDRING: vh -> % --- */
+                    packet.style.top = `${Math.random() * 100}%`; // Startar på slumpmässig %-höjd
                     packet.style.animationName = 'movePacketHorizontal';
 
                 } else { // Horisontell (Höger -> Vänster)
-                    packet.classList.add('packet--horizontal-rtl'); // Lägg till riktningsklass
-                    packet.style.width = `${size}px`; // Fyrkantig bas
+                    packet.classList.add('packet--horizontal-rtl'); 
+                    packet.style.width = `${size}px`; 
                     packet.style.height = `${size}px`;
                     packet.style.right = '-50px';
-                    packet.style.top = `${Math.random() * 100}vh`;
+                    /* --- ÄNDRING: vh -> % --- */
+                    packet.style.top = `${Math.random() * 100}%`; // Startar på slumpmässig %-höjd
                     packet.style.animationName = 'movePacketHorizontalRTL';
                 }
 
