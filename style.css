@@ -344,17 +344,6 @@ img {
     gap: var(--spacing-md);
 }
 
-.logo a[data-lang-key="nav_home"] {
-    font-size: 1.25rem;
-    font-weight: 700;
-    color: var(--color-text);
-    text-decoration: none;
-}
-.logo a[data-lang-key="nav_home"]:hover {
-    color: var(--color-primary);
-}
-
-
 /* --- Header Social Icons --- */
 .header-socials {
     display: flex;
