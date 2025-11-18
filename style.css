@@ -254,7 +254,7 @@ img {
         display: none !important;
     }
     
-    /* Stäng av ring-animation */
+    /* Stäng av radar-animation */
     .hero-image-wrapper::before, .hero-image-wrapper::after {
         animation: none !important;
         display: none !important;
@@ -569,7 +569,7 @@ section:nth-of-type(odd) {
     opacity: 0.9;
 }
 
-/* Se avsnittet TECH RING-ANIMATION nedan för .hero-image-wrapper */
+/* Se avsnittet RADAR ANIMATION nedan för .hero-image-wrapper */
 
 /* ========================================
    SKRIVMASKINSEFFEKT (Typing Effect)
@@ -796,9 +796,10 @@ section:nth-of-type(odd) {
     }
     
     .hero-image-wrapper {
-        flex: 1;
-        max-width: 350px;
-        margin: 0 auto; /* Centrera om nödvändigt */
+        /* Fast storlek för att radarn ska se bra ut */
+        width: 320px;
+        height: 320px;
+        /* Ingen flex-grow här, vi vill ha kontroll på cirkeln */
     }
     
     .project-grid {
@@ -821,7 +822,8 @@ section:nth-of-type(odd) {
     }
     
     .hero-image-wrapper {
-        max-width: 400px;
+        width: 400px;
+        height: 400px;
     }
 }
 
@@ -952,55 +954,79 @@ section:nth-of-type(odd) {
 
 
 /* ========================================
-   === TECH RING / RADAR ANIMATION ===
+   === MOVIE RADAR ANIMATION ===
    ======================================== */
 
+/* Behållaren som agerar "radarskärm" */
 .hero-image-wrapper {
     position: relative;
     z-index: 1;
-    /* Gör så att wrappern följer bildens storlek, men lämnar plats för ringen */
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Standardstorlek för mobil */
+    width: 280px;
+    height: 280px;
+    margin: 0 auto;
 }
 
+/* Själva bilden */
 .hero-image {
+    width: 80%; /* Bilden är något mindre än radarn */
+    height: 80%;
     border-radius: 50%;
-    border: 3px solid var(--color-card-bg); /* Tunn ram för separation */
-    box-shadow: var(--shadow-md);
+    object-fit: cover;
     position: relative;
-    z-index: 2;
+    z-index: 5; /* Ligger ovanpå allt */
+    border: 2px solid var(--color-primary);
+    box-shadow: 0 0 15px var(--color-primary); /* Inre glöd */
 }
 
-/* Den roterande tekniska ringen */
+/* RADAR-RUTNÄTET (Grid) */
 .hero-image-wrapper::before {
     content: '';
     position: absolute;
-    /* Gör ringen lite större än bilden */
-    inset: -10px; 
+    inset: 0;
     border-radius: 50%;
+    border: 2px solid var(--color-primary); /* Yttre ring */
     
-    /* En streckad linje i primärfärgen */
-    border: 2px dashed var(--color-primary);
-    opacity: 0.5;
-    
-    /* Rotation */
-    animation: spin-slow 20s linear infinite;
-    z-index: 0;
+    /* Skapa rutnätet med gradients */
+    background-image:
+        /* Vertikalt streck (hårkors) */
+        linear-gradient(90deg, transparent 49.5%, var(--color-primary) 50%, transparent 50.5%),
+        /* Horisontellt streck (hårkors) */
+        linear-gradient(0deg, transparent 49.5%, var(--color-primary) 50%, transparent 50.5%),
+        /* Inre ringar */
+        radial-gradient(transparent 30%, var(--color-primary) 31%, transparent 32%),
+        radial-gradient(transparent 60%, var(--color-primary) 61%, transparent 62%);
+        
+    opacity: 0.3; /* Gör det svagt synligt */
+    z-index: 1;
 }
 
-/* En subtil glöd bakom allt */
+/* RADAR-SVEPET (Sweep) */
 .hero-image-wrapper::after {
     content: '';
     position: absolute;
     inset: 0;
     border-radius: 50%;
-    box-shadow: 0 0 30px var(--color-primary);
-    opacity: 0.2;
-    z-index: -1;
+    
+    /* Skapar "strålen" */
+    background: conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        transparent 260deg, /* Det mesta är genomskinligt */
+        var(--color-primary) 360deg /* Färgen kommer på slutet */
+    );
+    
+    opacity: 0.4;
+    z-index: 2; /* Ligger ovanpå rutnätet */
+    
+    /* Animationen */
+    animation: radar-sweep 3s linear infinite;
 }
 
-
-/* Animation för rotation */
-@keyframes spin-slow {
+@keyframes radar-sweep {
     from { transform: rotate(0deg); }
     to { transform: rotate(360deg); }
 }
