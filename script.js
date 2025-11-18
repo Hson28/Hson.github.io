@@ -2,9 +2,9 @@
  * Portfölj-skript (Vanilla JS)
  * * Hanterar:
  * 1. Mörkt/Ljust Téma
- * 2. Språkväxling
- * 3. Mobilmeny (FIXAD)
- * 4. Animationer (Snabbare paket)
+ * 2. Språkväxling (FIXAD för flaggor)
+ * 3. Mobilmeny
+ * 4. Animationer
  */
 
 (function () {
@@ -160,7 +160,9 @@
         dom.html.setAttribute("lang", lang);
         
         if (dom.langToggle) {
-            dom.langToggle.textContent = lang === "sv" ? "EN" : "SV";
+            // BORTTAGET: dom.langToggle.textContent = ...
+            // Vi låter CSS sköta flaggvisningen baserat på lang-attributet
+            
             dom.langToggle.setAttribute("lang", lang === "sv" ? "sv" : "en");
             dom.langToggle.setAttribute("aria-label",
                 lang === "sv"
@@ -407,11 +409,10 @@
                 const packet = document.createElement('span');
                 packet.className = 'packet'; 
                 
-                // --- ÄNDRING HÄR: Snabbare hastighet (3s - 8s) ---
+                // Snabbare hastighet (3s - 8s)
                 const duration = Math.random() * 5 + 3; 
-                // -------------------------------------------------
                 
-                const delay = Math.random() * 10; // Kortare fördröjning vid start
+                const delay = Math.random() * 10; 
 
                 packet.style.animationDuration = `${duration}s`;
                 packet.style.animationDelay = `${delay}s`;
