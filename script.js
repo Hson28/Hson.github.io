@@ -439,18 +439,14 @@
                     packet.style.bottom = '-50px';
                     packet.style.animationName = 'movePacketVertical';
                     
-                    // --- BORTTAGEN horisontell drift för vertikala paket ---
-                    // De kommer nu att använda default '0' för --tx och --tx-mid
+                    // --- Raderad horisontell drift ---
 
                 } else if (type === 1) { // Horisontell (Vänster -> Höger)
                     packet.style.left = '-50px';
                     packet.style.top = `${Math.random() * 100}vh`;
                     packet.style.animationName = 'movePacketHorizontal';
 
-                    // Slumpmässig vertikal drift (-100px till +100px)
-                    const verticalDrift = (Math.random() - 0.5) * 200;
-                    packet.style.setProperty('--ty', `${verticalDrift}px`);
-                    packet.style.setProperty('--ty-mid', `${verticalDrift / 2}px`);
+                    // --- Raderad vertikal drift ---
 
                 } else { // Horisontell (Höger -> Vänster)
                     packet.style.right = '-50px';
@@ -458,10 +454,7 @@
                     packet.style.animationName = 'movePacketHorizontal';
                     packet.style.animationDirection = 'reverse'; // Återanvänd samma keyframe
 
-                    // Slumpmässig vertikal drift
-                    const verticalDrift = (Math.random() - 0.5) * 200;
-                    packet.style.setProperty('--ty', `${verticalDrift}px`);
-                    packet.style.setProperty('--ty-mid', `${verticalDrift / 2}px`);
+                    // --- Raderad vertikal drift ---
                 }
 
                 container.appendChild(packet);
