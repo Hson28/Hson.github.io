@@ -3,171 +3,245 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" data-lang-key="meta_description" content="Jehanni, IT Security Specialist Student med passion för att skydda digital infrastruktur. Utforska projekt, kompetenser och CV.">
-    <meta name="keywords" content="Jehanni, IT-säkerhet, cybersäkerhet, utvecklare, portfölj, TUC, IT Security Specialist, Homelab, Linux, Nätverkssäkerhet">
-    <meta name="author" content="Jehanni">
+    <title data-lang-key="meta_title">Jehanni — IT-säkerhetsspecialiststudent</title>
     
-    <meta property="og:title" data-lang-key="meta_title" content="Jehanni — IT Security Specialist Student">
-    <meta property="og:description" data-lang-key="meta_description" content="Jehanni, IT Security Specialist Student med passion för att skydda digital infrastruktur. Utforska projekt, kompetenser och CV.">
-    <meta property="og:image" content="https://www.yourportfolio.com/social-share.jpg"> <meta property="og:url" content="https://www.yourportfolio.com"> <meta property="og:type" content="website">
-
-    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#ffffff">
-    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1a202c">
-
-    <link rel="icon" href="favicon.ico" sizes="any">
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="apple-touch-icon.png"> <link rel="manifest" href="site.webmanifest">
-
-    <title data-lang-key="meta_title">Jehanni — IT Security Specialist Student</title>
-
+    <meta name="description" lang="sv" content="Portfölj för Jehanni, student inom IT-säkerhet vid TUC Yrkeshögskola. Bakgrund inom pedagogik, nu specialiserad på infrastruktur och defensiv säkerhet.">
+    
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#1a202c" media="(prefers-color-scheme: dark)">
+    
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    
     <a href="#main-content" class="skip-link" data-lang-key="skip_link">Hoppa till huvudinnehåll</a>
+
+    <div class="threatmap-container">
+        <div class="threatmap-background"></div>
+    </div>
 
     <header class="site-header">
         <div class="container header-container">
-            <a href="#hero" class="logo" aria-label="Jehanni logo, go to home" data-lang-key="nav_home">Jehanni</a>
-            
-            <nav class="site-nav" aria-label="Huvudnavigation">
-                <ul class="nav-list">
-                    <li><a href="#about" class="nav-link" data-lang-key="nav_about">Om mig</a></li>
+            <div class="logo">
+                <div class="header-socials">
+                    <a href="https://github.com/DIN-ANVÄNDARE" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="header-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon-svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+                    </a>
+                    
+                    <a href="https://linkedin.com/in/DIN-ANVÄNDARE" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="header-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon-svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                    </a>
+
+                    <a href="https://instagram.com/DIN-ANVÄNDARE" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="header-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon-svg"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                    </a>
+
+                    <a href="https://discord.com/users/DIN-ANVÄNDARE" target="_blank" rel="noopener noreferrer" aria-label="Discord" class="header-social-link">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon-svg"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037 19.018 19.018 0 0 0-3.361 1.775.074.074 0 0 0-.005.003 19.02 19.02 0 0 0-3.365-1.777.074.074 0 0 0-.079-.037 19.793 19.793 0 0 0-4.885 1.515.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028 14.09 14.09 0 0 0 1.226-1.994.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
+                <span class="sr-only" data-lang-key="aria_menu">Meny</span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+                <span class="hamburger-line"></span>
+            </button>
+
+            <nav class="site-nav">
+                <ul id="primary-navigation" class="nav-list" data-visible="false">
+                    <li><a href="#about" class="nav-link" data-lang-key="nav_about">Om</a></li>
                     <li><a href="#projects" class="nav-link" data-lang-key="nav_projects">Projekt</a></li>
-                    <li><a href="#skills" class="nav-link" data-lang-key="nav_skills">Kompetenser</a></li>
+                    <li><a href="#skills" class="nav-link" data-lang-key="nav_skills">Färdigheter</a></li>
                     <li><a href="#cv" class="nav-link" data-lang-key="nav_cv">CV</a></li>
                     <li><a href="#reflection" class="nav-link" data-lang-key="nav_reflection">Reflektion</a></li>
                 </ul>
             </nav>
 
             <div class="header-toggles">
-                <button class="theme-toggle" aria-label="Växla till mörkt läge">
-                    <svg class="theme-icon-light" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
-                    <svg class="theme-icon-dark" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-5-9a1 1 0 11-2 0V3a1 1 0 011-1zm-4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM3 11a1 1 0 100-2H2a1 1 0 100 2h1zm9 5a1 1 0 11-2 0v-1a1 1 0 112 0v1zm.707.707a1 1 0 001.414 0l.707-.707a1 1 0 00-1.414-1.414l-.707.707a1 1 0 000 1.414zM7 16a1 1 0 100-2h-1a1 1 0 100 2h1zm-1.293-1.293a1 1 0 00-1.414 0l-.707.707a1 1 0 001.414 1.414l.707-.707a1 1 0 000-1.414zM12 9a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zm-4 0a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1z" clip-rule="evenodd" fill-rule="evenodd"></path></svg>
+                <button class="theme-toggle" aria-label="Växla mörkt/ljust läge">
+                    <span class="theme-icon-light" aria-hidden="true">☀️</span>
+                    <span class="theme-icon-dark" aria-hidden="true">🌙</span>
                 </button>
-                <button class="lang-toggle" aria-label="Byt språk till engelska" lang="sv">
-                    <img src="flag-en.svg" alt="English flag" class="flag-icon flag-en">
-                    <img src="flag-sv.svg" alt="Svensk flagga" class="flag-icon flag-sv">
+                
+                <button class="lang-toggle" lang="sv" aria-label="Växla språk / Switch language">
+                    <svg class="flag-icon flag-en" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
+                        <clipPath id="s">
+                            <path d="M0,0 v30 h60 v-30 z"/>
+                        </clipPath>
+                        <clipPath id="t">
+                            <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
+                        </clipPath>
+                        <g clip-path="url(#s)">
+                            <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
+                            <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
+                            <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
+                            <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
+                            <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
+                        </g>
+                    </svg>
+
+                    <svg class="flag-icon flag-sv" viewBox="0 0 16 10" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="16" height="10" fill="#006aa7"/>
+                        <rect width="2" height="10" x="5" fill="#fecc00"/>
+                        <rect width="16" height="2" y="4" fill="#fecc00"/>
+                    </svg>
                 </button>
             </div>
-
-            <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false" aria-label="Meny">
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-                <span class="hamburger-line"></span>
-            </button>
         </div>
     </header>
 
     <main id="main-content">
-        <section id="hero" class="hero container">
-            <div class="hero-container">
+
+        <section class="hero">
+            <div class="container hero-container">
                 <div class="hero-text">
-                    <h1 data-lang-key="hero_h1">Jehanni</h1>
-                    <p class="hero-tagline" data-lang-key="hero_tagline">Från förskolelärare till IT-säkerhet. Skyddar system istället för sandlådor.</p>
+                    <h1 data-lang-key="hero_h1">Jehanni Halvarsson</h1>
+                    <p class="hero-tagline" data-lang-key="hero_tagline">
+                        Från förskollärare till IT-säkerhet. Jag skyddar system istället för sandlådor.
+                    </p>
                     <a href="#projects" class="button button-primary" data-lang-key="hero_cta">Se mina projekt</a>
                 </div>
+                
                 <div class="hero-image-wrapper">
-                    <div class="hero-shield"></div> <img src="profile.jpg" alt="Porträtt av Jehanni" class="hero-image">
+                    <img src="profile.jpg" 
+                         alt="Porträttbild på Jehanni Halvarsson" 
+                         class="hero-image">
                 </div>
             </div>
         </section>
 
-        <section id="about" class="about container">
-            <h2 data-lang-key="about_h2">Om mig</h2>
-            <p data-lang-key="about_p1">Jag studerar för närvarande till IT Security Specialist på TUC Yrkeshögskola. Min professionella resa började dock i en helt annan miljö: som förskolelärare utbildad vid Stockholms universitet. Efter fyra år inom pedagogik valde jag att kanalisera min nyfikenhet för teknik till en karriär där jag bygger och skyddar digital infrastruktur.</p>
-            <p data-lang-key="about_p2">Min bakgrund har gett mig ett unikt perspektiv. Förmågan att skapa säkra miljöer, identifiera risker och kommunicera tydligt är lika avgörande i ett serverrum som i ett klassrum. Jag brinner för att förstå teknik på djupet – från routingprotokoll till säkerhetsrevision – och att översätta komplexa säkerhetsfrågor till förståeliga lösningar.</p>
-            <h3 data-lang-key="about_h3">Certifikat & Utbildningar</h3>
-            <ul class="cert-list">
-                <li data-lang-key="about_cert1">Networking Devices and Initial Configuration (Cisco)</li>
-                <li data-lang-key="about_cert2">Networking Basics (Cisco)</li>
-                <li data-lang-key="about_cert3">Introduction to Cybersecurity (Cisco)</li>
-            </ul>
-        </section>
-
-        <section id="projects" class="projects container">
-            <h2 data-lang-key="projects_h2">Utvalda Projekt</h2>
-            <div class="project-grid">
-                <article class="project-card">
-                    <img src="project-backup.jpg" alt="Skärmbild från backup server" class="card-image">
-                    <div class="card-content">
-                        <h3 data-lang-key="project1_title">Backup Server med LUKS</h3>
-                        <p class="project-role" data-lang-key="project1_role">Personligt Projekt</p>
-                        <p data-lang-key="project1_desc">Design och driftsättning av en säker, automatiserad backup server på en Debian-maskin. Använder full diskkryptering med LUKS och rsync över SSH för dataöverföring.</p>
-                        <div class="project-tags">
-                            <span class="tag">Linux</span>
-                            <span class="tag">LUKS</span>
-                            <span class="tag">rsync</span>
-                            <span class="tag">SSH</span>
-                            <span class="tag">Scripting</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link" aria-label="Länk till GitHub repo för Backup Server" data-lang-key="project_link_repo">GitHub Repo <span>&rarr;</span></a>
-                        </div>
-                    </div>
-                </article>
-                <article class="project-card">
-                    <img src="project-network.jpg" alt="Nätverksdiagram" class="card-image">
-                    <div class="card-content">
-                        <h3 data-lang-key="project2_title">Nätverkssegmentering (Homelab)</h3>
-                        <p class="project-role" data-lang-key="project2_role">Studieprojekt</p>
-                        <p data-lang-key="project2_desc">Implementering av VLAN och strikta brandväggsregler (med pfSense) i en homelab-miljö för att isolera IoT-enheter från primärnätverket och blockera misstänkt trafik.</p>
-                        <div class="project-tags">
-                            <span class="tag">VLAN</span>
-                            <span class="tag">pfSense</span>
-                            <span class="tag">Brandväggar</span>
-                            <span class="tag">Nätverk</span>
-                            <span class="tag">IoT Security</span>
-                        </div>
-                        <div class="project-links">
-                            <a href="#" class="project-link" aria-label="Länk till project write-up för nätverkssegmentering" data-lang-key="project_link_writeup">Läs write-up <span>&rarr;</span></a>
-                        </div>
-                    </div>
-                </article>
+        <section id="about" class="about">
+            <div class="container">
+                <h2 data-lang-key="about_h2">Om mig</h2>
+                <p data-lang-key="about_p1">
+                    Just nu studerar jag till IT-säkerhetsspecialist på TUC Yrkeshögskola. Min yrkesresa började dock i en helt annan miljö: som utbildad förskollärare från Stockholms universitet. Efter fyra år i pedagogikens värld bestämde jag mig för att kanalisera min nyfikenhet för teknik till ett yrkesliv där jag bygger och skyddar digital infrastruktur.
+                </p>
+                <p data-lang-key="about_p2">
+                    Min bakgrund har gett mig ett unikt perspektiv. Förmågan att skapa trygga miljöer, identifiera risker och kommunicera tydligt är lika avgörande i ett serverrum som i ett klassrum. Jag brinner för att förstå tekniken på djupet – från routningsprotokoll till säkerhetsgranskning – och att översätta komplexa säkerhetsfrågor till begripliga lösningar.
+                </p>
+                <h3 data-lang-key="about_h3">Certifikat & Utbildning</h3>
+                <ul class="cert-list">
+                    <li data-lang-key="about_cert1">Networking Devices and Initial Configuration (Cisco)</li>
+                    <li data-lang-key="about_cert2">Networking Basics (Cisco)</li>
+                    <li data-lang-key="about_cert3">Introduction to Cybersecurity (Cisco)</li>
+                </ul>
             </div>
         </section>
 
-        <section id="skills" class="skills container">
-            <h2 data-lang-key="skills_h2">Kärnkompetenser</h2>
-            <div class="skill-list">
-                <span class="skill-badge" data-lang-key="skill_linux">Linux & Hardening</span>
-                <span class="skill-badge" data-lang-key="skill_network">Nätverk & TCP/IP</span>
-                <span class="skill-badge" data-lang-key="skill_firewall">Brandväggar (UFW/pfSense)</span>
-                <span class="skill-badge" data-lang-key="skill_security">Defense in Depth</span>
-                <span class="skill-badge" data-lang-key="skill_risk">Riskanalys (RSA)</span>
-                <span class="skill-badge" data-lang-key="skill_vm">Virtualisering (Hypervisor)</span>
-                <span class="skill-badge" data-lang-key="skill_audit">Säkerhetsrevision</span>
-                <span class="skill-badge" data-lang-key="skill_wordpress">Wordpress</span>
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 data-lang-key="projects_h2">Utvalda Projekt</h2>
+                <div class="project-grid">
+                    
+                    <article class="project-card">
+                        <div class="card-content">
+                            <h3 data-lang-key="project1_title">Backup-server med LUKS</h3>
+                            <p class="project-role" data-lang-key="project1_role">Eget projekt</p>
+                            <p data-lang-key="project1_desc">
+                                Design och driftsättning av en säker, automatiserad backup-server på en Debian-maskin. Använder full disk-kryptering med LUKS och rsync över SSH för dataöverföring.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">Linux</span>
+                                <span class="tag">LUKS</span>
+                                <span class="tag">Bash</span>
+                                <span class="tag">Ansible</span>
+                                <span class="tag">rsync</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link" data-lang-key="project_link_repo">
+                                    GitHub Repo
+                                    <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <article class="project-card">
+                        <div class="card-content">
+                            <h3 data-lang-key="project2_title">Nätverkssegmentering (Homelab)</h3>
+                            <p class="project-role" data-lang-key="project2_role">Studieprojekt</p>
+                            <p data-lang-key="project2_desc">
+                                Implementering av VLAN och strikta brandväggsregler (med pfSense) i en hemmalabbmiljö för att isolera IoT-enheter från det primära nätverket och blockera misstänkt trafik.
+                            </p>
+                            <div class="project-tags">
+                                <span class="tag">pfSense</span>
+                                <span class="tag">VLAN</span>
+                                <span class="tag">Nätverk</span>
+                                <span class="tag">Brandvägg</span>
+                            </div>
+                            <div class="project-links">
+                                <a href="https://github.com" target="_blank" rel="noopener noreferrer" class="project-link" data-lang-key="project_link_writeup">
+                                    Läs rapport
+                                    <span aria-hidden="true">→</span>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 data-lang-key="skills_h2">Kärnkompetenser</h2>
+                <div class="skill-list">
+                    <span class="skill-badge" data-lang-key="skill_linux">Linux & Härdning</span>
+                    <span class="skill-badge" data-lang-key="skill_network">Nätverk & TCP/IP</span>
+                    <span class="skill-badge" data-lang-key="skill_firewall">Brandväggar (UFW/pfSense)</span>
+                    <span class="skill-badge" data-lang-key="skill_security">Defense in Depth</span>
+                    <span class="skill-badge" data-lang-key="skill_risk">Riskanalys (RSA)</span>
+                    <span class="skill-badge" data-lang-key="skill_vm">Virtualisering (Hypervisor)</span>
+                    <span class="skill-badge" data-lang-key="skill_audit">Säkerhetsgranskning</span>
+                    <span class="skill-badge" data-lang-key="skill_wordpress">Wordpress</span>
                 </div>
+            </div>
+        </section>
+        
+        <section id="cv" class="cv">
+             <div class="container">
+                <h2 data-lang-key="cv_h2">CV</h2>
+                <p data-lang-key="cv_p">
+                    Mitt fullständiga CV, som innehåller detaljerad information om min utbildning, erfarenhet och tekniska färdigheter, finns tillgängligt för nedladdning.
+                </p>
+                <a href="Jehanni_CV_SV.pdf" class="button button-secondary" data-lang-key="cv_button_sv">Ladda ner CV (SV)</a>
+                <a href="Jehanni_CV_EN.pdf" class="button button-secondary" data-lang-key="cv_button_en">Ladda ner CV (EN)</a>
+            </div>
         </section>
 
-        <section id="cv" class="cv container">
-            <h2 data-lang-key="cv_h2">CV / Resumé</h2>
-            <p data-lang-key="cv_p">Mitt fullständiga CV, innehållande detaljerad information om min utbildning, erfarenhet och tekniska färdigheter, finns tillgängligt för nedladdning.</p>
-            <a href="Jehanni_CV_SV.pdf" target="_blank" class="button button-primary" data-lang-key="cv_button_sv">Ladda ner CV (SV)</a>
-            <a href="Jehanni_CV_EN.pdf" target="_blank" class="button button-secondary" data-lang-key="cv_button_en">Download CV (EN)</a>
+        <section id="reflection" class="reflection">
+            <div class="container">
+                <h2 data-lang-key="reflection_h2">En säkerhetsmedveten portfölj</h2>
+                <blockquote>
+                    <p data-lang-key="reflection_p1">
+                        Denna portfölj är medvetet byggd utan tredjeparts-ramverk, spårningsskript eller analysverktyg. Den körs helt på klientsidan (client-side) och gör inga nätverksanrop förutom att ladda de nödvändiga filerna.
+                    </p>
+                    <p data-lang-key="reflection_p2">
+                        Genom att använda ren, semantisk HTML, modern CSS och minimal JavaScript (vanilla JS) minimeras attackytan, laddningstiden förbättras och din integritet som besökare respekteras. Inga cookies, ingen `localStorage` för spårning (endast för dina tema- och språkval), och inga data skickas till en server.
+                    </p>
+                    <cite data-lang-key="reflection_cite">— Jehanni</cite>
+                </blockquote>
+            </div>
         </section>
 
-        <section id="reflection" class="reflection container">
-            <h2 data-lang-key="reflection_h2">En Säkerhetsmedveten Portfölj</h2>
-            <p data-lang-key="reflection_p1">Denna portfölj är medvetet byggd utan tredjepartsramverk, spårningsskript eller analysverktyg. Den körs helt klientbaserat och gör inga nätverksanrop utöver att ladda nödvändiga filer.</p>
-            <p data-lang-key="reflection_p2">Genom att använda ren, semantisk HTML, modern CSS och minimal vanilla JavaScript minimeras attackytan, laddningstider förbättras och din integritet som besökare respekteras. Inga kakor, ingen `localStorage` för spårning (endast för dina tema- och språkpreferenser) och ingen data skickas till en server.</p>
-            <blockquote>
-                <p>"The only truly secure system is one that is powered off, locked in a titanium safe, buried in 20 feet of concrete, and surrounded by a moat of piranhas. Even then, I'm not so sure."</p>
-                <cite data-lang-key="reflection_cite">— Jehanni</cite>
-            </blockquote>
-        </section>
     </main>
 
     <footer class="site-footer">
         <div class="container footer-container">
-            <p data-lang-key="footer_copy">© 2025 Jehanni. Alla rättigheter reserverade.</p>
-            <div class="social-links">
-                <a href="https://github.com/yourgithub" target="_blank" rel="noopener noreferrer" data-lang-key="footer_github">GitHub</a>
-                <a href="https://linkedin.com/in/yourlinkedin" target="_blank" rel="noopener noreferrer" data-lang-key="footer_linkedin">LinkedIn</a>
-            </div>
+            <p data-lang-key="footer_copy">&copy; 2025 Jehanni. Alla rättigheter förbehållna.</p>
+            <ul class="social-links">
+                <li>
+                    <a href="https://github.com/ditt-anvandarnamn" target="_blank" rel="noopener noreferrer" data-lang-key="footer_github">GitHub</a>
+                </li>
+                <li>
+                    <a href="https://linkedin.com/in/ditt-anvandarnamn" target="_blank" rel="noopener noreferrer" data-lang-key="footer_linkedin">LinkedIn</a>
+                </li>
+            </ul>
         </div>
     </footer>
-
-    <script src="script.js"></script>
+    
+    <script src="script.js" defer></script>
 </body>
 </html>
