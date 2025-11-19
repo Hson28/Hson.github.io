@@ -4,7 +4,7 @@
  * 1. Mörkt/Ljust Téma
  * 2. Språkväxling (FIXAD för flaggor)
  * 3. Mobilmeny (FIXAD)
- * 4. Animationer (Snabbare paket)
+ * 4. Animationer (Snabbare paket & Snabbare text)
  */
 
 (function () {
@@ -201,8 +201,11 @@
             }
         });
         
-        startTypeEffect(dom.heroH1, h1Text, 100, () => {
-            startTypeEffect(dom.heroTagline, taglineText, 50, null);
+        // --- HÄR ÄR HASTIGHETSÄNDRINGEN ---
+        // H1: 50ms (var 100)
+        // Tagline: 25ms (var 50)
+        startTypeEffect(dom.heroH1, h1Text, 50, () => {
+            startTypeEffect(dom.heroTagline, taglineText, 25, null);
         });
 
         currentLang = lang;
