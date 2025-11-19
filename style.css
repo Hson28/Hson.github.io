@@ -373,8 +373,27 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .hero-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg); }
 .hero-tagline { font-size: 1.25rem; margin-bottom: var(--spacing-lg); color: var(--color-text); opacity: 0.9; }
 
-.hero-text h1[data-lang-key="hero_h1"] { min-height: 1.3em; position: relative; }
-.hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 1.7em; }
+
+/* --- SKRIVMASKINSEFFEKT (FIXAD HÖJD) --- */
+
+/* Vi sätter en min-height som motsvarar max antal rader texten kan ta upp */
+/* Detta förhindrar att sidan "hoppar" när texten skrivs fram */
+
+/* Mobil (smala skärmar) */
+.hero-text h1[data-lang-key="hero_h1"] { 
+    min-height: 2.6em; /* Plats för ca 2 rader */
+    position: relative; 
+}
+.hero-text p.hero-tagline[data-lang-key="hero_tagline"] { 
+    min-height: 6em; /* Plats för ca 3-4 rader */
+}
+
+/* Desktop (breda skärmar) */
+@media (min-width: 768px) {
+    .hero-text h1[data-lang-key="hero_h1"] { min-height: 1.3em; } /* 1 rad */
+    .hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 1.7em; } /* 1 rad */
+}
+
 
 .typing-effect::after {
     content: '|'; display: inline-block; margin-left: 0.15em; color: var(--color-text);
@@ -534,9 +553,4 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .hero-image-wrapper::after {
     content: ''; position: absolute; inset: 0; border-radius: 50%;
     background: conic-gradient(from 0deg, transparent 0deg, transparent 260deg, var(--color-primary) 360deg);
-    opacity: 0.4; z-index: 2; animation: radar-sweep 3s linear infinite;
-}
-@keyframes radar-sweep {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-        }
+    opacity: 0.4; z
