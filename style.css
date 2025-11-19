@@ -5,8 +5,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
-    --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     
     --font-family-base: 'Inter', var(--font-family-system);
     --font-family-heading: 'Inter', var(--font-family-system);
@@ -45,6 +44,7 @@
     /* Animationer */
     --attack-line-color: #4a5568;   
     --attack-pulse-color: #a0aec0;  
+    --map-opacity: 0.15;
     
     --transition-fast: 0.2s ease-in-out;
 }
@@ -69,6 +69,7 @@
     
     --attack-line-color: #ff3333; 
     --attack-pulse-color: #ffea00; 
+    --map-opacity: 0.25;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -80,7 +81,7 @@
 
 
 /* ========================================
-   2. GRUNDLÄGGANDE STYLING (Reset)
+   2. GRUNDLÄGGANDE STYLING & BAKGRUND
    ======================================== */
 
 *, *::before, *::after {
@@ -94,18 +95,14 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     background-color: var(--color-bg);
+    /* Grundgradient */
     background-image: linear-gradient(180deg, 
         var(--color-bg) 0%, 
         color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
     );
     background-repeat: no-repeat;
-    
-    /* FIX: Förhindra horisontell scroll/hopp */
-    overflow-x: hidden;
+    overflow-x: hidden; 
     width: 100%;
-    
-    /* FIX: Förhindra "gummiband"-effekt vid scrollstopp på mobil */
-    overscroll-behavior-x: none;
 }
 
 body {
@@ -116,13 +113,10 @@ body {
     font-weight: 400; 
     transition: background-color var(--transition-fast), color var(--transition-fast);
     position: relative; 
-    
-    /* FIX: Säkerställ att body inte breddar sidan */
     overflow-x: hidden;
     width: 100%;
-    max-width: 100%;
-
-    /* Threat Map Grid */
+    
+    /* Threat Map Grid (Rutnät) */
     background-image: 
         repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(43, 108, 176, 0.1) 50px),
         repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(43, 108, 176, 0.1) 50px);
@@ -153,10 +147,7 @@ h1 { font-size: 2.5rem; }
 h2 { font-size: 2rem; }
 h3 { font-size: 1.5rem; }
 
-p {
-    margin-bottom: var(--spacing-md);
-    max-width: 75ch; 
-}
+p { margin-bottom: var(--spacing-md); max-width: 75ch; }
 
 a {
     color: var(--color-primary);
@@ -173,8 +164,7 @@ img { max-width: 100%; height: auto; display: block; }
    ======================================== */
 
 .sr-only {
-    position: absolute;
-    width: 1px; height: 1px; padding: 0; margin: -1px;
+    position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
     overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border-width: 0;
 }
 
@@ -268,7 +258,7 @@ img { max-width: 100%; height: auto; display: block; }
 .header-social-link:hover { color: var(--color-primary); transform: translateY(-2px); }
 .social-icon-svg { width: 1.25rem; height: 1.25rem; }
 
-/* Mobilmeny-knapp */
+/* Mobilmeny-knapp (Centrerad) */
 .nav-toggle {
     display: block; 
     background: transparent; border: none;
@@ -276,9 +266,7 @@ img { max-width: 100%; height: auto; display: block; }
     cursor: pointer; 
     z-index: 9999;
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    left: 50%; top: 50%; transform: translate(-50%, -50%);
 }
 
 .hamburger-line {
@@ -290,7 +278,7 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* Navigationsmeny */
+/* Navigationsmeny (Fade in animation) */
 .site-nav {
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
     padding-top: var(--spacing-xl);
@@ -335,14 +323,16 @@ img { max-width: 100%; height: auto; display: block; }
 [data-theme="dark"] .theme-icon-dark { display: block; }
 [data-theme="dark"] .theme-icon-light { display: none; }
 
-/* Flaggor */
+/* --- FLAGGOR (Fixad logik) --- */
 .flag-icon {
     width: 2rem; height: auto;
     border-radius: 4px; box-shadow: 0 2px 4px var(--color-shadow);
     transition: transform var(--transition-fast);
-    display: none; 
+    display: none; /* Dölj som standard */
 }
 .lang-toggle:hover .flag-icon { transform: scale(1.1); }
+
+/* Visa RÄTT flagga baserat på html-attributet */
 html[lang="sv"] .flag-en { display: block; }
 html[lang="en"] .flag-sv { display: block; }
 
@@ -371,21 +361,14 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .hero-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg); }
 .hero-tagline { font-size: 1.25rem; margin-bottom: var(--spacing-lg); color: var(--color-text); opacity: 0.9; }
 
-
-/* --- SKRIVMASKINSEFFEKT (FIXAD HÖJD) --- */
-.hero-text h1[data-lang-key="hero_h1"] { 
-    min-height: 2.6em; 
-    position: relative; 
-}
-.hero-text p.hero-tagline[data-lang-key="hero_tagline"] { 
-    min-height: 6em; 
-}
+/* Skrivmaskins-höjd fix */
+.hero-text h1[data-lang-key="hero_h1"] { min-height: 2.6em; position: relative; }
+.hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 6em; }
 
 @media (min-width: 768px) {
     .hero-text h1[data-lang-key="hero_h1"] { min-height: 1.3em; } 
     .hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 1.7em; } 
 }
-
 
 .typing-effect::after {
     content: '|'; display: inline-block; margin-left: 0.15em; color: var(--color-text);
@@ -462,27 +445,35 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 
 
 /* ========================================
-   7. THREAT MAP & ATTACK PULSES
+   7. THREAT MAP & ATTACK PULSES (BAKGRUND)
    ======================================== */
 
+/* Behållare för världskartan */
 .threatmap-container {
     position: fixed; 
     top: 0; left: 0; width: 100vw; height: 100vh;
-    z-index: -2; pointer-events: none; overflow: hidden;
+    /* Z-index 0 gör att den ligger över body-gradienten (-1 hade kunnat gömma den) 
+       men under huvudinnehållet (som är default eller 1) */
+    z-index: 0; 
+    pointer-events: none; 
+    overflow: hidden;
 }
 
+/* Själva kartbilden */
 .threatmap-background {
     position: absolute; top: 0; left: 0; width: 100%; height: 100%;
     background-image: url('threatmap_background.png'); 
     background-size: cover; background-position: center;
-    opacity: 0.15; 
+    opacity: var(--map-opacity); /* Variabel för ljus/mörk */
 }
 
+/* Behållare för pulserna */
 .packet-background {
-    position: fixed; height: 100%; z-index: -1; top: 0; left: 0; width: 100vw;
+    position: fixed; height: 100%; z-index: 0; top: 0; left: 0; width: 100vw;
     pointer-events: none; overflow: hidden; background: none; 
 }
 
+/* Pulserna */
 .packet {
     position: absolute; opacity: 0; 
     width: 4px !important; height: 4px !important; border-radius: 50%;
@@ -490,42 +481,43 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     box-shadow: 0 0 10px var(--attack-pulse-color), 0 0 5px var(--attack-pulse-color);
     animation-timing-function: linear; animation-iteration-count: infinite;
     
-    /* FIX: Prestanda på mobil (GPU-rendering) */
     will-change: transform, opacity;
     transform: translateZ(0);
 }
 
-/* --- KEYFRAMES (Med TRANSFORM för att undvika layout thrashing) --- */
-
+/* Animationer för pulser */
 @keyframes movePacketVertical {
     0% { transform: translate3d(0, 0, 0); opacity: 0; }
-    5% { opacity: 1; } 
-    95% { opacity: 1; }
+    5% { opacity: 1; } 95% { opacity: 1; }
     100% { transform: translate3d(0, -120vh, 0); opacity: 0; } 
 }
 
 @keyframes movePacketHorizontal {
     0% { transform: translate3d(0, 0, 0); opacity: 0; }
-    5% { opacity: 1; }
-    95% { opacity: 1; }
+    5% { opacity: 1; } 95% { opacity: 1; }
     100% { transform: translate3d(120vw, 0, 0); opacity: 0; }
 }
 
 @keyframes movePacketHorizontalRTL {
     0% { transform: translate3d(0, 0, 0); opacity: 0; }
-    5% { opacity: 1; }
-    95% { opacity: 1; }
+    5% { opacity: 1; } 95% { opacity: 1; }
     100% { transform: translate3d(-120vw, 0, 0); opacity: 0; }
+}
+
+/* Huvudinnehållet måste ligga ÖVER kartan */
+.site-header, #main-content, .site-footer {
+    position: relative;
+    z-index: 5;
 }
 
 
 /* ========================================
-   8. MOVIE RADAR ANIMATION
+   8. MOVIE RADAR ANIMATION (FÖR PROFILBILD)
    ======================================== */
 
 .hero-image-wrapper {
     position: relative; 
-    z-index: 10; /* Säkerställer att den ligger över bakgrunden */
+    z-index: 10; /* Högsta prioritet så den inte täcks */
     display: flex; justify-content: center; align-items: center;
     width: 280px; height: 280px; margin: 0 auto;
 }
