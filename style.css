@@ -5,7 +5,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 :root {
-    --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
     
     --font-family-base: 'Inter', var(--font-family-system);
     --font-family-heading: 'Inter', var(--font-family-system);
@@ -95,7 +96,6 @@ html {
     scroll-behavior: smooth;
     -webkit-text-size-adjust: 100%;
     background-color: var(--color-bg);
-    /* Grundgradient */
     background-image: linear-gradient(180deg, 
         var(--color-bg) 0%, 
         color-mix(in srgb, var(--color-bg) 95%, var(--color-text)) 200vh
