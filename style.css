@@ -45,7 +45,6 @@
     /* Animationer */
     --attack-line-color: #4a5568;   
     --attack-pulse-color: #a0aec0;  
-    --map-blend-mode: multiply; 
     
     --transition-fast: 0.2s ease-in-out;
 }
@@ -70,7 +69,6 @@
     
     --attack-line-color: #ff3333; 
     --attack-pulse-color: #ffea00; 
-    --map-blend-mode: lighten; 
 }
 
 @media (prefers-color-scheme: dark) {
@@ -375,23 +373,17 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 
 
 /* --- SKRIVMASKINSEFFEKT (FIXAD HÖJD) --- */
-
-/* Vi sätter en min-height som motsvarar max antal rader texten kan ta upp */
-/* Detta förhindrar att sidan "hoppar" när texten skrivs fram */
-
-/* Mobil (smala skärmar) */
 .hero-text h1[data-lang-key="hero_h1"] { 
-    min-height: 2.6em; /* Plats för ca 2 rader */
+    min-height: 2.6em; 
     position: relative; 
 }
 .hero-text p.hero-tagline[data-lang-key="hero_tagline"] { 
-    min-height: 6em; /* Plats för ca 3-4 rader */
+    min-height: 6em; 
 }
 
-/* Desktop (breda skärmar) */
 @media (min-width: 768px) {
-    .hero-text h1[data-lang-key="hero_h1"] { min-height: 1.3em; } /* 1 rad */
-    .hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 1.7em; } /* 1 rad */
+    .hero-text h1[data-lang-key="hero_h1"] { min-height: 1.3em; } 
+    .hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 1.7em; } 
 }
 
 
@@ -532,7 +524,9 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
    ======================================== */
 
 .hero-image-wrapper {
-    position: relative; z-index: 1; display: flex; justify-content: center; align-items: center;
+    position: relative; 
+    z-index: 10; /* Säkerställer att den ligger över bakgrunden */
+    display: flex; justify-content: center; align-items: center;
     width: 280px; height: 280px; margin: 0 auto;
 }
 .hero-image {
@@ -553,4 +547,9 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .hero-image-wrapper::after {
     content: ''; position: absolute; inset: 0; border-radius: 50%;
     background: conic-gradient(from 0deg, transparent 0deg, transparent 260deg, var(--color-primary) 360deg);
-    opacity: 0.4; z
+    opacity: 0.4; z-index: 2; animation: radar-sweep 3s linear infinite;
+}
+@keyframes radar-sweep {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
