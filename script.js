@@ -15,7 +15,7 @@
         en: {
             meta_title: "Jehanni — IT Security Specialist Student",
             skip_link: "Skip to main content",
-            nav_home: "Jehanni",
+            nav_home: "Jehanni Halvarsson",
             header_title: "IT Security Specialist Student",
             aria_menu: "Menu",
             nav_about: "About",
