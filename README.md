@@ -42,3 +42,23 @@ Projektet är byggt med "Vanilla" teknologier för att minimera attackytan och m
 ├── script.js       # Logik för språk, tema och interaktion
 ├── profile.jpg     # Profilbild
 └── README.md       # Dokumentation
+```
+
+## 🔧 Installation & Körning
+
+Eftersom detta är en statisk webbplats behövs ingen backend, byggprocess eller kompilator.
+
+1.  **Klona repot:**
+    ```bash
+    git clone [https://github.com/DITT-ANVÄNDARNAMN/DITT-REPO-NAMN.git](https://github.com/DITT-ANVÄNDARNAMN/DITT-REPO-NAMN.git)
+    ```
+
+2.  **Öppna:**
+    Navigera in i mappen och öppna `index.html` i din webbläsare.
+
+## 📜 Licens
+
+Detta projekt är öppen källkod. Du får gärna titta på koden för inspiration, men innehållet (texter, bilder och personlig information) tillhör upphovspersonen.
+
+---
+*© 2025 Jehanni Halvarsson*
