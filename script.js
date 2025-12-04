@@ -33,15 +33,27 @@
             about_cert1: "Networking Devices and Initial Configuration (Cisco)",
             about_cert2: "Networking Basics (Cisco)",
             about_cert3: "Introduction to Cybersecurity (Cisco)",
+            
+            // --- UPPDATERADE PROJEKTTEXTER (ENGELSKA) ---
             projects_h2: "Featured Projects",
-            project1_title: "Backup Server with LUKS",
-            project1_role: "Personal Project",
-            project1_desc: "Design and deployment of a secure, automated backup server on a Debian machine. Utilizes full disk encryption with LUKS and rsync over SSH for data transfer.",
-            project_link_repo: "GitHub Repo",
-            project2_title: "Network Segmentation (Homelab)",
-            project2_role: "Study Project",
-            project2_desc: "Implementation of VLANs and strict firewall rules (using pfSense) in a homelab environment to isolate IoT devices from the primary network and block suspicious traffic.",
-            project_link_writeup: "Read Write-up",
+            
+            // Projekt 1: Windows Hardening
+            project1_title: "Windows Hardening & Security",
+            project1_role: "Technical Guide",
+            project1_desc: "Detailed guide and checklist for manually securing a Windows 10/11 environment. Includes configuration of BitLocker, audit logs, GPO (Group Policy), and service hardening.",
+            
+            // Projekt 2: IR Playbooks
+            project2_title: "Incident Response Playbooks",
+            project2_role: "Process & Documentation",
+            project2_desc: "Development of standardized procedures (playbooks) for handling security incidents. Covers scenarios such as Ransomware, Phishing, and DDoS for rapid response (IR).",
+            
+            // Projekt 3: GRC Case Study
+            project3_title: "GRC & Risk Analysis (Case Study)",
+            project3_role: "Case Study",
+            project3_desc: "Establishment of a governance structure for a fictitious company. Includes risk analysis, policy development, and compliance checks according to ISO 27001.",
+            
+            project_link_status: "View on GitHub",
+
             skills_h2: "Core Competencies",
             skill_linux: "Linux & Hardening",
             skill_network: "Network & TCP/IP",
