@@ -2,7 +2,7 @@
 
 Välkommen till källkoden för min personliga portfölj. Denna webbplats fungerar som en hubb för mina projekt, färdigheter och min yrkesresa från förskollärare till IT-säkerhetsspecialist.
 
-Sidan är live här: **[LÄNK TILL DIN GITHUB PAGES HÄR]**
+Sidan är live här: **https://www.jehanni.tech/**
 
 ## 🛡️ Om projektet
 
