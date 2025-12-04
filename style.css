@@ -12,7 +12,7 @@
     --font-family-heading: 'Inter', var(--font-family-system);
 
     /* --- FÄRGPALETT (Ljust läge) --- */
-    --color-text: #2d3748;           
+    --color-text: #2d3748;            
     --color-bg: #ffffff;             
     --color-primary: #2b6cb0;        
     --color-primary-hover: #2c5282;  
@@ -42,9 +42,7 @@
     --shadow-md: 0 5px 15px var(--color-shadow);
     --shadow-lg: 0 10px 25px var(--color-shadow-hover);
     
-    /* Animationer */
-    --attack-line-color: #4a5568;   
-    --attack-pulse-color: #a0aec0;  
+    /* Animationer / Map */
     --map-opacity: 0.15;
     
     --transition-fast: 0.2s ease-in-out;
@@ -52,8 +50,8 @@
 
 /* --- FÄRGPALETT (Mörkt läge) --- */
 [data-theme="dark"] {
-    --color-text: #e2e8f0;           
-    --color-bg: #1a202c;             
+    --color-text: #e2e8f0;            
+    --color-bg: #1a202c;              
     --color-primary: #63b3ed;        
     --color-primary-hover: #90cdf4;
     --color-secondary: #2d3748;
@@ -68,8 +66,6 @@
     --color-shadow: rgba(0, 0, 0, 0.3);
     --color-shadow-hover: rgba(0, 0, 0, 0.4);
     
-    --attack-line-color: #ff3333; 
-    --attack-pulse-color: #ffea00; 
     --map-opacity: 0.25;
 }
 
@@ -196,7 +192,6 @@ img { max-width: 100%; height: auto; display: block; }
     .typing-effect::after { animation: none !important; }
     .project-card { opacity: 1 !important; transform: translateY(0) !important; transition-delay: 0ms !important; }
     .site-header, .site-nav { backdrop-filter: none !important; background-color: var(--color-bg) !important; }
-    .packet { animation: none !important; display: none !important; }
     .hero-image-wrapper::before, .hero-image-wrapper::after { animation: none !important; display: none !important; }
 }
 
@@ -445,15 +440,13 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 
 
 /* ========================================
-   7. THREAT MAP & ATTACK PULSES (BAKGRUND)
+   7. THREAT MAP (BAKGRUND)
    ======================================== */
 
 /* Behållare för världskartan */
 .threatmap-container {
     position: fixed; 
     top: 0; left: 0; width: 100vw; height: 100vh;
-    /* Z-index 0 gör att den ligger över body-gradienten (-1 hade kunnat gömma den) 
-       men under huvudinnehållet (som är default eller 1) */
     z-index: 0; 
     pointer-events: none; 
     overflow: hidden;
@@ -465,43 +458,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     background-image: url('threatmap_background.png'); 
     background-size: cover; background-position: center;
     opacity: var(--map-opacity); /* Variabel för ljus/mörk */
-}
-
-/* Behållare för pulserna */
-.packet-background {
-    position: fixed; height: 100%; z-index: 0; top: 0; left: 0; width: 100vw;
-    pointer-events: none; overflow: hidden; background: none; 
-}
-
-/* Pulserna */
-.packet {
-    position: absolute; opacity: 0; 
-    width: 4px !important; height: 4px !important; border-radius: 50%;
-    background-color: var(--attack-line-color);
-    box-shadow: 0 0 10px var(--attack-pulse-color), 0 0 5px var(--attack-pulse-color);
-    animation-timing-function: linear; animation-iteration-count: infinite;
-    
-    will-change: transform, opacity;
-    transform: translateZ(0);
-}
-
-/* Animationer för pulser */
-@keyframes movePacketVertical {
-    0% { transform: translate3d(0, 0, 0); opacity: 0; }
-    5% { opacity: 1; } 95% { opacity: 1; }
-    100% { transform: translate3d(0, -120vh, 0); opacity: 0; } 
-}
-
-@keyframes movePacketHorizontal {
-    0% { transform: translate3d(0, 0, 0); opacity: 0; }
-    5% { opacity: 1; } 95% { opacity: 1; }
-    100% { transform: translate3d(120vw, 0, 0); opacity: 0; }
-}
-
-@keyframes movePacketHorizontalRTL {
-    0% { transform: translate3d(0, 0, 0); opacity: 0; }
-    5% { opacity: 1; } 95% { opacity: 1; }
-    100% { transform: translate3d(-120vw, 0, 0); opacity: 0; }
 }
 
 /* Huvudinnehållet måste ligga ÖVER kartan */
