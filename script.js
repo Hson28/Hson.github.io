@@ -54,15 +54,33 @@
             
             project_link_status: "View on GitHub",
 
+            // --- UPPDATERADE SKILLS (HOVER) TEXTER ---
             skills_h2: "Core Competencies",
-            skill_linux: "Linux & Hardening",
-            skill_network: "Network & TCP/IP",
-            skill_firewall: "Firewalls (UFW/pfSense)",
-            skill_security: "Defense in Depth",
-            skill_risk: "Risk Analysis (RSA)",
-            skill_vm: "Virtualization (Hypervisor)",
-            skill_audit: "Security Auditing",
-            skill_wordpress: "Wordpress",
+            
+            skill_linux_title: "Linux & Hardening",
+            skill_linux_desc: "Familiarity with CLI environments (Debian/Ubuntu). Managing permissions (chmod/chown), SSH hardening, and service management (systemd).",
+            
+            skill_network_title: "Network & TCP/IP",
+            skill_network_desc: "Deep understanding of the OSI model. Traffic analysis with Wireshark/tcpdump and segmentation via VLAN/Subnetting.",
+            
+            skill_firewall_title: "Firewalls",
+            skill_firewall_desc: "Rule configuration in pfSense and UFW. Default 'Deny All' principle and stateful inspection.",
+            
+            skill_security_title: "Defense in Depth",
+            skill_security_desc: "Applying security in layers: from physical access and perimeter protection to application security and user awareness.",
+            
+            skill_risk_title: "Risk Analysis (GRC)",
+            skill_risk_desc: "Asset identification and threat modeling. Working with risk assessments (RSA) and compliance with frameworks like ISO 27001.",
+            
+            skill_vm_title: "Virtualization",
+            skill_vm_desc: "Building secure lab environments using Hyper-V and VirtualBox to safely test malware or configure isolated servers.",
+            
+            skill_audit_title: "Security Auditing",
+            skill_audit_desc: "Reviewing logs (syslog/auth.log), vulnerability scanning, and verifying configuration files.",
+            
+            skill_wordpress_title: "Web Security",
+            skill_wordpress_desc: "Securing CMS (WordPress), implementing HTTPS/TLS, and mitigating common OWASP Top 10 vulnerabilities.",
+
             cv_h2: "CV / Resume",
             cv_p: "My full CV, containing detailed information about my education, experience, and technical skills, is available for download.",
             cv_button_sv: "Download CV (SV)",
