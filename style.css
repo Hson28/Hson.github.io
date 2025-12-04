@@ -19,7 +19,12 @@
     --color-secondary: #e2e8f0;      
     --color-secondary-hover: #cbd5e0;
     --color-border: #cbd5e0;         
-    --color-card-bg: #f7fafc;        
+    --color-card-bg: #f7fafc; /* Behåller denna som fallback */
+    
+    /* NYA VARIABLER FÖR KORT-GRADIENT (Ljust) */
+    --color-card-grad-start: #ebf4ff; /* En mycket ljus blå ton */
+    --color-card-grad-end: #f7fafc;   /* Den vanliga ljusa kortfärgen */
+    
     --color-badge-bg: #e2e8f0;
     --color-badge-text: #4a5568;
     --color-focus-ring: #4299e1;     
@@ -56,8 +61,14 @@
     --color-primary-hover: #90cdf4;
     --color-secondary: #2d3748;
     --color-secondary-hover: #4a5568;
-    --color-border: #4a5568;
+    --color-border: #3b4c63; /* Något mörkare/blåare kant i mörkt läge */
     --color-card-bg: #2d3748;
+    
+    /* NYA VARIABLER FÖR KORT-GRADIENT (Mörkt) */
+    /* En mörkare, djupare blå-grå gradient */
+    --color-card-grad-start: #2c3e50; 
+    --color-card-grad-end: #1a202c;
+    
     --color-badge-bg: #4a5568;
     --color-badge-text: #e2e8f0;
     --color-focus-ring: #63b3ed;
@@ -93,16 +104,14 @@ html {
     -webkit-text-size-adjust: 100%;
     background-color: var(--color-bg);
     
-    /* --- NY GRADIENT --- */
-    /* En subtil blandning av primärfärgen (blå) i toppen som tonas ut */
+    /* Bakgrundsgradient för hela sidan */
     background-image: linear-gradient(
         to bottom,
-        color-mix(in srgb, var(--color-primary) 8%, var(--color-bg)) 0%, /* Lite färg i toppen */
-        var(--color-bg) 60%, /* Ren bakgrund i mitten */
-        color-mix(in srgb, var(--color-bg) 92%, var(--color-text)) 100% /* Något mörkare i botten */
+        color-mix(in srgb, var(--color-primary) 8%, var(--color-bg)) 0%, 
+        var(--color-bg) 60%, 
+        color-mix(in srgb, var(--color-bg) 92%, var(--color-text)) 100% 
     );
     
-    /* Se till att gradienten täcker hela höjden och stannar vid scroll */
     min-height: 100vh;
     background-attachment: fixed; 
     background-repeat: no-repeat;
@@ -385,8 +394,12 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .cert-list li { margin-bottom: var(--spacing-sm); }
 
 .project-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-lg); }
+
+/* --- UPPDATERAD PROJEKTKORT-STYLING --- */
 .project-card {
-    background-color: var(--color-card-bg); border: 1px solid var(--color-border);
+    /* Använder nu en gradient istället för solid färg */
+    background-image: linear-gradient(to bottom right, var(--color-card-grad-start), var(--color-card-grad-end));
+    border: 1px solid var(--color-border);
     border-radius: var(--border-radius); box-shadow: var(--shadow-md); overflow: hidden;
     opacity: 0; transform: translateY(20px);
     transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow var(--transition-fast);
