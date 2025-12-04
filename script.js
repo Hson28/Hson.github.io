@@ -4,7 +4,7 @@
  * 1. Mörkt/Ljust Téma
  * 2. Språkväxling (FIXAD för flaggor)
  * 3. Mobilmeny (FIXAD)
- * 4. Animationer (Snabbare paket & Snabbare text)
+ * 4. Animationer (Endast skrivmaskin & scroll)
  */
 
 (function () {
@@ -201,9 +201,7 @@
             }
         });
         
-        // --- HÄR ÄR HASTIGHETSÄNDRINGEN ---
-        // H1: 50ms (var 100)
-        // Tagline: 25ms (var 50)
+        // H1: 50ms, Tagline: 25ms
         startTypeEffect(dom.heroH1, h1Text, 50, () => {
             startTypeEffect(dom.heroTagline, taglineText, 25, null);
         });
@@ -392,72 +390,8 @@
         });
     }
 
-    
-    // --- 11. Bakgrundsanimation (Komet-effekt) ---
-    
-    function initPacketBackground() {
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (prefersReducedMotion) {
-            return;
-        }
 
-        try {
-            const container = document.createElement('div');
-            container.className = 'packet-background';
-            const numPackets = 25; 
-
-            for (let i = 0; i < numPackets; i++) {
-                const packet = document.createElement('span');
-                packet.className = 'packet'; 
-                
-                // Snabbare hastighet (3s - 8s)
-                const duration = Math.random() * 5 + 3; 
-                
-                const delay = Math.random() * 10; 
-
-                packet.style.animationDuration = `${duration}s`;
-                packet.style.animationDelay = `${delay}s`;
-                
-                const size = Math.random() * 2 + 1;
-                const type = Math.floor(Math.random() * 3);
-
-                if (type === 0) { // Vertikal
-                    packet.classList.add('packet--vertical'); 
-                    packet.style.width = `${size}px`;
-                    packet.style.height = `${size}px`; 
-                    packet.style.left = `${Math.random() * 100}vw`;
-                    packet.style.bottom = '-50px'; 
-                    packet.style.animationName = 'movePacketVertical';
-
-                } else if (type === 1) { // Horisontell LTR
-                    packet.classList.add('packet--horizontal-ltr'); 
-                    packet.style.width = `${size}px`; 
-                    packet.style.height = `${size}px`;
-                    packet.style.left = '-50px';
-                    packet.style.top = `${Math.random() * 100}%`; 
-                    packet.style.animationName = 'movePacketHorizontal';
-
-                } else { // Horisontell RTL
-                    packet.classList.add('packet--horizontal-rtl'); 
-                    packet.style.width = `${size}px`; 
-                    packet.style.height = `${size}px`;
-                    packet.style.right = '-50px';
-                    packet.style.top = `${Math.random() * 100}%`; 
-                    packet.style.animationName = 'movePacketHorizontalRTL';
-                }
-
-                container.appendChild(packet);
-            }
-            
-            document.body.appendChild(container);
-
-        } catch (e) {
-            // Ignorera tyst
-        }
-    }
-
-
-    // --- 12. Initiering ---
+    // --- 11. Initiering ---
     function bindEvents() {
         if (dom.themeToggle) dom.themeToggle.addEventListener("click", toggleTheme);
         if (dom.langToggle) dom.langToggle.addEventListener("click", toggleLanguage);
@@ -474,7 +408,6 @@
         bindEvents();
         initScrollObserver(); 
         initScrollspy();    
-        initPacketBackground(); 
     }
 
     document.addEventListener("DOMContentLoaded", init);
