@@ -86,8 +86,11 @@
             cv_button_sv: "Download CV (SV)",
             cv_button_en: "Download CV (EN)",
             reflection_h2: "A Security-Conscious Portfolio",
-            reflection_p1: "This portfolio is intentionally built without third-party frameworks, tracking scripts, or analytics tools. It runs entirely client-side and makes no network requests other than loading the necessary files.",
-            reflection_p2: "By using clean, semantic HTML, modern CSS, and minimal vanilla JavaScript, the attack surface is minimized, loading times are improved, and your privacy as a visitor is respected. No cookies, no `localStorage` for tracking (only for your theme and language preferences), and no data is sent to a server.",
+            
+            // UPPDATERAD TEXT OM GOATCOUNTER (ENGELSKA)
+            reflection_p1: "This portfolio is intentionally built without heavy third-party frameworks. It uses GoatCounter for anonymous visitor statistics, which does not use cookies or track personal data. It runs primarily client-side.",
+            reflection_p2: "By using clean, semantic HTML, modern CSS, and minimal vanilla JavaScript, the attack surface is minimized, loading times are improved, and your privacy as a visitor is respected. No tracking cookies are set.",
+            
             reflection_cite: "— Jehanni",
             footer_copy: "© 2025 Jehanni. All rights reserved.",
             footer_github: "GitHub",
