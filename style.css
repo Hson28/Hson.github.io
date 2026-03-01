@@ -520,13 +520,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 /* CV */
 .cv .button { margin-right: var(--spacing-md); margin-bottom: var(--spacing-md); }
 
-/* Reflektion */
-.reflection blockquote {
-    border-left: 5px solid var(--color-primary); padding-left: var(--spacing-lg);
-    margin: var(--spacing-lg) 0; font-style: italic; font-size: 1.125rem;
-}
-.reflection cite { display: block; margin-top: var(--spacing-md); font-style: normal; font-weight: 600; }
-
 /* Footer */
 .site-footer { padding: var(--spacing-lg) 0; background-color: var(--color-card-bg); border-top: 1px solid var(--color-border); font-size: 0.875rem; }
 .footer-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-md); text-align: center; }
