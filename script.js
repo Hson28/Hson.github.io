@@ -22,9 +22,8 @@
             nav_projects: "Courses",
             nav_skills: "Skills",
             nav_cv: "CV",
-            nav_reflection: "Reflection",
             hero_h1: "Jehanni",
-            hero_tagline: "From preschool teacher to IT security. Protecting systems instead of sandboxes.",
+            hero_tagline: "From education to IT security. With a structured approach and analytical mindset, I focus on securing and building robust IT infrastructure.",
             hero_cta: "View my courses",
             about_h2: "About Me",
             about_p1: "I am currently studying to become an IT Security Specialist at TUC Vocational School. However, my professional journey began in a completely different environment: as a preschool teacher educated at Stockholm University. After four years in education, I decided to channel my curiosity for technology into a career where I build and protect digital infrastructure.",
@@ -123,13 +122,7 @@
             cv_p: "My full CV, containing detailed information about my education, experience, and technical skills, is available for download.",
             cv_button_sv: "Download CV (SV)",
             cv_button_en: "Download CV (EN)",
-            reflection_h2: "A Security-Conscious Portfolio",
             
-            // UPPDATERAD TEXT OM GOATCOUNTER (ENGELSKA)
-            reflection_p1: "This portfolio is intentionally built without heavy third-party frameworks. It uses GoatCounter for anonymous visitor statistics, which does not use cookies or track personal data. It runs primarily client-side.",
-            reflection_p2: "By using clean, semantic HTML, modern CSS, and minimal vanilla JavaScript, the attack surface is minimized, loading times are improved, and your privacy as a visitor is respected. No tracking cookies are set.",
-            
-            reflection_cite: "— Jehanni",
             footer_copy: "© 2025 Jehanni. All rights reserved.",
             footer_github: "GitHub",
             footer_linkedin: "LinkedIn"
