@@ -19,13 +19,13 @@
             header_title: "IT Security Specialist Student",
             aria_menu: "Menu",
             nav_about: "About",
-            nav_projects: "Projects",
+            nav_projects: "Courses",
             nav_skills: "Skills",
             nav_cv: "CV",
             nav_reflection: "Reflection",
             hero_h1: "Jehanni",
             hero_tagline: "From preschool teacher to IT security. Protecting systems instead of sandboxes.",
-            hero_cta: "View my projects",
+            hero_cta: "View my courses",
             about_h2: "About Me",
             about_p1: "I am currently studying to become an IT Security Specialist at TUC Vocational School. However, my professional journey began in a completely different environment: as a preschool teacher educated at Stockholm University. After four years in education, I decided to channel my curiosity for technology into a career where I build and protect digital infrastructure.",
             about_p2: "My background has given me a unique perspective. The ability to create secure environments, identify risks, and communicate clearly is just as crucial in a server room as it is in a classroom. I am passionate about understanding technology at a deep level – from routing protocols to security auditing – and translating complex security issues into understandable solutions.",
@@ -34,25 +34,28 @@
             about_cert2: "Networking Basics (Cisco)",
             about_cert3: "Introduction to Cybersecurity (Cisco)",
             
-            // --- UPPDATERADE PROJEKTTEXTER (ENGELSKA) ---
-            projects_h2: "Featured Projects",
+            // --- KURS-TEXTER (ENGELSKA) ---
+            courses_h2: "Completed Courses",
             
-            // Projekt 1: Windows Hardening
-            project1_title: "Windows Hardening & Security",
-            project1_role: "Technical Guide",
-            project1_desc: "Detailed guide and checklist for manually securing a Windows 10/11 environment. Includes configuration of BitLocker, audit logs, GPO (Group Policy), and service hardening.",
+            // Kurs 1
+            course1_title: "Network Technology and Security",
+            course1_points: "30 YH Credits",
+            course1_desc: "Thorough review of network architecture, protocols, and traffic buses. Practical work with designing, configuring, and securing network equipment, segmentation (VLAN), and firewall rules.",
             
-            // Projekt 2: IR Playbooks
-            project2_title: "Incident Response Playbooks",
-            project2_role: "Process & Documentation",
-            project2_desc: "Development of standardized procedures (playbooks) for handling security incidents. Covers scenarios such as Ransomware, Phishing, and DDoS for rapid response (IR).",
+            // Kurs 2
+            course2_title: "Client and Server Security",
+            course2_points: "40 YH Credits",
+            course2_desc: "Administration and security hardening of Windows and Linux operating systems. Focus on access management, Active Directory, Group Policies (GPO), and secure service configuration.",
             
-            // Projekt 3: GRC Case Study
-            project3_title: "GRC & Risk Analysis (Case Study)",
-            project3_role: "Case Study",
-            project3_desc: "Establishment of a governance structure for a fictitious company. Includes risk analysis, policy development, and compliance checks according to ISO 27001.",
+            // Kurs 3
+            course3_title: "IT Security and Law (GRC)",
+            course3_points: "25 YH Credits",
+            course3_desc: "Information security frameworks and legislation governing IT environments. Work with risk assessments, business continuity planning (BCP), GDPR, the NIS2 directive, and the ISO 27000 series.",
             
-            project_link_status: "View on GitHub",
+            // Kurs 4
+            course4_title: "Incident Response & Defensive Security",
+            course4_points: "35 YH Credits",
+            course4_desc: "Methods for detecting, analyzing, and responding to cyber attacks. Monitoring via SIEM systems, log analysis, and development of action plans (Playbooks).",
 
             // --- UPPDATERADE SKILLS (HOVER) TEXTER ---
             skills_h2: "Core Competencies",
