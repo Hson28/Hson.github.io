@@ -135,7 +135,7 @@
             contact_h2: "Looking for a driven LIA intern?",
             contact_p: "I am currently looking for an internship (LIA) where I can put my studies into practice. If you are looking for someone who combines technical knowledge with methodical thinking and pedagogical skills, let's grab a coffee!",
             contact_btn_email: "Email me",
-            contact_btn_tel: "Call +46 76-836 66 09",
+            contact_btn_linkedin: "Message on LinkedIn",
             
             footer_copy: "© 2026 Jehanni Halvarsson. All rights reserved.",
             footer_github: "GitHub",
