@@ -43,32 +43,32 @@
             // Kurs 1
             course1_title: "Network Technology",
             course1_points: "25 YH Credits",
-            course1_desc: "Basic understanding of networks, the OSI and TCP/IP models. Working with routing, switching, and physical infrastructure.",
+            course1_desc: "Configuration of routers and switches, VLANs, and access lists. Also covers access control in wireless networks and troubleshooting with protocol analyzers.",
             
             // Kurs 2
             course2_title: "IT Infrastructure",
             course2_points: "25 YH Credits",
-            course2_desc: "Design and management of modern IT infrastructure, including server environments, virtualization, and storage solutions.",
+            course2_desc: "Building highly available and secure IT infrastructures. Includes PC, server, data, and application virtualization as well as backup platforms.",
             
             // Kurs 3
             course3_title: "Basic IT Security",
             course3_points: "30 YH Credits",
-            course3_desc: "Introduction to threat landscapes, vulnerabilities, cryptography, and fundamental security principles like the CIA triad.",
+            course3_desc: "Protecting systems and data through risk analysis, Zero Trust architecture, and firewall configuration. Management of PKI, digital certificates, SSO, and MFA.",
             
             // Kurs 4
             course4_title: "Information Security and IT Law",
             course4_points: "25 YH Credits",
-            course4_desc: "GRC focus. Application of frameworks like the ISO 27000 series, as well as laws and directives such as GDPR and NIS2.",
+            course4_desc: "Application of GDPR and NIS2. Practical work with risk assessments, creating incident response plans, and standards like ISO 27000 and NIST.",
             
             // Kurs 5
             course5_title: "IT Security Windows",
             course5_points: "20 YH Credits",
-            course5_desc: "Security hardening of Windows environments. Covers Active Directory management, Group Policy (GPO), and permission structures.",
+            course5_desc: "Minimizing attack surfaces through hardening. Covers LDAP management, Identity and Access (IDA) Control, password policies, and logging/auditing.",
             
             // Kurs 6
             course6_title: "IT Security Linux, Unix and Mac",
             course6_points: "20 YH Credits",
-            course6_desc: "Administration, securing, and in-depth permission management in Unix-based systems.",
+            course6_desc: "Administration and configuration of systems according to security standards. Focus on system hardening and minimizing possible attack surfaces for installed services.",
             
             // Kurs 7
             course7_title: "Network Security",
