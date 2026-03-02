@@ -22,16 +22,17 @@
             nav_projects: "Courses",
             nav_skills: "Skills",
             nav_cv: "CV",
+            nav_contact: "Contact",
             hero_h1: "Jehanni",
-            hero_tagline: "From education to IT security. With a structured approach and analytical mindset, I focus on securing and building robust IT infrastructure.",
-            hero_cta: "View my courses",
+            hero_tagline: "Future IT Security Specialist with a pedagogical background. I make the complex understandable and build robust solutions. Looking for an internship (LIA)!",
+            hero_cta: "Contact me",
             about_h2: "About Me",
-            about_p1: "I am currently studying to become an IT Security Specialist at TUC Vocational School. However, my professional journey began in a completely different environment: as a preschool teacher educated at Stockholm University. After four years in education, I decided to channel my curiosity for technology into a career where I build and protect digital infrastructure.",
-            about_p2: "My background has given me a unique perspective. The ability to create secure environments, identify risks, and communicate clearly is just as crucial in a server room as it is in a classroom. I am passionate about understanding technology at a deep level – from routing protocols to security auditing – and translating complex security issues into understandable solutions.",
+            about_p1: "I am transitioning from a preschool teacher and workplace leader to an IT Security Specialist via TUC Vocational School. In a world where the human factor is often the crucial link, I bring skills that are central to a successful security organization.",
+            about_p2: "My pedagogical leadership means I am used to making the complex understandable – a key when implementing security routines and security awareness training. I work methodically with documentation and incident management, and I am driven to act as a link between technical specialists and the rest of the organization.",
             about_h3: "Certificates & Education",
-            about_cert1: "Networking Devices and Initial Configuration (Cisco)",
-            about_cert2: "Networking Basics (Cisco)",
-            about_cert3: "Introduction to Cybersecurity (Cisco)",
+            about_cert1: "Networking Basics (Cisco)",
+            about_cert2: "Networking Devices and Initial Configuration (Cisco)",
+            about_cert3: "Endpoint Security (Cisco)",
             
             // --- KURS-TEXTER (ENGELSKA) ---
             courses_h2: "Academic Courses",
@@ -91,30 +92,22 @@
             course11_points: "XX YH Credits",
             course11_desc: "Final project work that ties together theory and practice within a chosen specialization area of IT security.",
 
-            // --- UPPDATERADE SKILLS (HOVER) TEXTER ---
+            // --- SKILLS (HOVER) TEXTER ---
             skills_h2: "Core Competencies",
-            
             skill_linux_title: "Linux & Hardening",
             skill_linux_desc: "Familiarity with CLI environments (Debian/Ubuntu). Managing permissions (chmod/chown), SSH hardening, and service management (systemd).",
-            
             skill_network_title: "Network & TCP/IP",
             skill_network_desc: "Deep understanding of the OSI model. Traffic analysis with Wireshark/tcpdump and segmentation via VLAN/Subnetting.",
-            
             skill_firewall_title: "Firewalls",
             skill_firewall_desc: "Rule configuration in pfSense and UFW. Default 'Deny All' principle and stateful inspection.",
-            
             skill_security_title: "Defense in Depth",
             skill_security_desc: "Applying security in layers: from physical access and perimeter protection to application security and user awareness.",
-            
             skill_risk_title: "Risk Analysis (GRC)",
             skill_risk_desc: "Asset identification and threat modeling. Working with risk assessments (RSA) and compliance with frameworks like ISO 27001.",
-            
             skill_vm_title: "Virtualization",
             skill_vm_desc: "Building secure lab environments using Hyper-V and VirtualBox to safely test malware or configure isolated servers.",
-            
             skill_audit_title: "Security Auditing",
             skill_audit_desc: "Reviewing logs (syslog/auth.log), vulnerability scanning, and verifying configuration files.",
-            
             skill_wordpress_title: "Web Security",
             skill_wordpress_desc: "Securing CMS (WordPress), implementing HTTPS/TLS, and mitigating common OWASP Top 10 vulnerabilities.",
 
@@ -122,8 +115,13 @@
             cv_p: "My full CV, containing detailed information about my education, experience, and technical skills, is available for download.",
             cv_button_sv: "Download CV (SV)",
             cv_button_en: "Download CV (EN)",
+
+            contact_h2: "Looking for a driven LIA intern?",
+            contact_p: "I am currently looking for an internship (LIA) where I can put my studies into practice. If you are looking for someone who combines technical knowledge with methodical thinking and pedagogical skills, let's grab a coffee!",
+            contact_btn_email: "Email me",
+            contact_btn_tel: "Call 076-836 66 09",
             
-            footer_copy: "© 2025 Jehanni. All rights reserved.",
+            footer_copy: "© 2026 Jehanni Halvarsson. All rights reserved.",
             footer_github: "GitHub",
             footer_linkedin: "LinkedIn"
         }
