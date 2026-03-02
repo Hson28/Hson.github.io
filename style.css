@@ -414,11 +414,21 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
+/* Underrubriker (Ny) */
+.section-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-text);
+    margin-bottom: var(--spacing-md);
+    border-bottom: 2px solid var(--color-primary);
+    display: inline-block;
+    padding-bottom: var(--spacing-xs);
+}
+
 /* Projekt */
 .cert-list { list-style: disc; padding-left: var(--spacing-lg); }
 .cert-list li { margin-bottom: var(--spacing-sm); }
 
-.project-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-lg); }
+.project-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-lg); margin-top: var(--spacing-md); }
 
 /* --- PROJEKTKORT --- */
 .project-card {
@@ -446,6 +456,14 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     border-radius: 99px; 
     font-size: 0.75rem; font-weight: 600;
     box-shadow: 0 1px 2px rgba(0,0,0,0.05); 
+}
+
+/* Specifik tagg för kommande kurser */
+.tag-upcoming {
+    background-color: var(--color-secondary);
+    color: var(--color-text);
+    border: 1px dashed var(--color-primary);
+    font-style: italic;
 }
 
 .project-links { margin-top: var(--spacing-lg); }
