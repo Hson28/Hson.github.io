@@ -24,7 +24,7 @@
             nav_cv: "CV",
             nav_contact: "Contact",
             hero_h1: "Jehanni",
-            hero_tagline: "Future IT Security Specialist with a pedagogical background. I make the complex understandable and build robust solutions. Looking for an internship (LIA)!",
+            hero_tagline: "Future IT Security Specialist with a pedagogical background. I make the complex understandable, identify risks, and strengthen security culture. Looking for an internship (LIA)!",
             hero_cta: "Contact me",
             about_h2: "About Me",
             about_p1: "I am transitioning from a preschool teacher and workplace leader to an IT Security Specialist via TUC Vocational School. In a world where the human factor is often the crucial link, I bring skills that are central to a successful security organization.",
