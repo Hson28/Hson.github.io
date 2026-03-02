@@ -96,7 +96,10 @@
             course11_desc: "Final project work that ties together theory and practice within a chosen specialization area of IT security.",
 
             // --- SKILLS (HOVER) TEXTER ---
-            skills_h2: "Core Competencies",
+            skills_h2: "Skills & Competencies",
+            skills_tech: "Technical Skills",
+            skills_soft: "Soft Skills & Traits",
+            
             skill_linux_title: "Linux & Hardening",
             skill_linux_desc: "Familiarity with CLI environments (Debian/Ubuntu). Managing permissions (chmod/chown), SSH hardening, and service management (systemd).",
             skill_network_title: "Network & TCP/IP",
@@ -113,6 +116,16 @@
             skill_audit_desc: "Reviewing logs (syslog/auth.log), vulnerability scanning, and verifying configuration files.",
             skill_wordpress_title: "Web Security",
             skill_wordpress_desc: "Securing CMS (WordPress), implementing HTTPS/TLS, and mitigating common OWASP Top 10 vulnerabilities.",
+
+            // Mjuka färdigheter
+            soft_leadership: "Leadership",
+            soft_systematic: "Systematic Approach",
+            soft_communication: "Communication Skills",
+            soft_problem_solving: "Problem Solving",
+            soft_organization: "Organizational Skills",
+            soft_responsibility: "Sense of Responsibility",
+            soft_adaptability: "Adaptability",
+            soft_integrity: "High Integrity",
 
             cv_h2: "CV / Resume",
             cv_p: "My full CV, containing detailed information about my education, experience, and technical skills, is available for download.",
