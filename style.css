@@ -414,7 +414,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* Underrubriker (Ny) */
+/* Underrubriker */
 .section-subtitle {
     font-size: 1.5rem;
     color: var(--color-text);
@@ -472,7 +472,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .project-link span { transition: transform var(--transition-fast); display: inline-block; }
 .project-link:hover span { transform: translateX(4px); }
 
-/* Färdigheter (Skills) - Hover Expand Effekt */
+/* --- FÄRDIGHETER (SKILLS) --- */
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
@@ -496,6 +496,15 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     cursor: default; 
     
     min-height: 80px;
+}
+
+/* Ny ikonstyling */
+.skill-icon {
+    width: 32px;
+    height: 32px;
+    margin-bottom: var(--spacing-sm);
+    color: var(--color-primary);
+    transition: transform 0.3s ease;
 }
 
 .skill-card h3 {
@@ -525,8 +534,12 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     background-color: var(--color-card-bg); 
 }
 
+.skill-card:hover .skill-icon {
+    transform: scale(1.1) translateY(-2px);
+}
+
 .skill-card:hover h3 {
-    transform: translateY(-5px); 
+    transform: translateY(-2px); 
 }
 
 .skill-card:hover p {
@@ -534,6 +547,33 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     opacity: 1;
     margin-top: var(--spacing-sm); 
 }
+
+/* MJUKA FÄRDIGHETER (NY) */
+.soft-skills-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.soft-tag {
+    font-size: 1rem;
+    padding: var(--spacing-sm) var(--spacing-md);
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    border-radius: 99px;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-fast), border-color var(--transition-fast);
+    cursor: default;
+}
+
+.soft-tag:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
 
 /* CV */
 .cv .button { margin-right: var(--spacing-md); margin-bottom: var(--spacing-md); }
