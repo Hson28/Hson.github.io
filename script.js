@@ -42,57 +42,57 @@
             
             // Kurs 1
             course1_title: "Network Technology",
-            course1_points: "XX YH Credits",
+            course1_points: "25 YH Credits",
             course1_desc: "Basic understanding of networks, the OSI and TCP/IP models. Working with routing, switching, and physical infrastructure.",
             
             // Kurs 2
             course2_title: "IT Infrastructure",
-            course2_points: "XX YH Credits",
+            course2_points: "25 YH Credits",
             course2_desc: "Design and management of modern IT infrastructure, including server environments, virtualization, and storage solutions.",
             
             // Kurs 3
             course3_title: "Basic IT Security",
-            course3_points: "XX YH Credits",
+            course3_points: "30 YH Credits",
             course3_desc: "Introduction to threat landscapes, vulnerabilities, cryptography, and fundamental security principles like the CIA triad.",
             
             // Kurs 4
             course4_title: "Information Security and IT Law",
-            course4_points: "XX YH Credits",
+            course4_points: "25 YH Credits",
             course4_desc: "GRC focus. Application of frameworks like the ISO 27000 series, as well as laws and directives such as GDPR and NIS2.",
             
             // Kurs 5
             course5_title: "IT Security Windows",
-            course5_points: "XX YH Credits",
+            course5_points: "20 YH Credits",
             course5_desc: "Security hardening of Windows environments. Covers Active Directory management, Group Policy (GPO), and permission structures.",
             
             // Kurs 6
             course6_title: "IT Security Linux, Unix and Mac",
-            course6_points: "XX YH Credits",
+            course6_points: "20 YH Credits",
             course6_desc: "Administration, securing, and in-depth permission management in Unix-based systems.",
             
             // Kurs 7
             course7_title: "Network Security",
-            course7_points: "XX YH Credits",
+            course7_points: "30 YH Credits",
             course7_desc: "Deep dive into firewalls, VPNs, segmentation, IDS/IPS, and advanced network traffic analysis.",
             
             // Kurs 8
             course8_title: "Ethical Hacking",
-            course8_points: "XX YH Credits",
+            course8_points: "25 YH Credits",
             course8_desc: "Methods for penetration testing, vulnerability scanning, and exploitation to offensively identify flaws.",
             
             // Kurs 9
             course9_title: "Advanced IT Security",
-            course9_points: "XX YH Credits",
+            course9_points: "25 YH Credits",
             course9_desc: "Managing complex security architectures, incident response (IR), log analysis in SIEM, and SOC tools.",
             
             // Kurs 10
             course10_title: "Cloud Security",
-            course10_points: "XX YH Credits",
+            course10_points: "25 YH Credits",
             course10_desc: "Security configuration and architecture in cloud environments (e.g., Azure/AWS), identity management (IAM), and Zero Trust.",
             
             // Kurs 11
             course11_title: "Thesis / Degree Project",
-            course11_points: "XX YH Credits",
+            course11_points: "20 YH Credits",
             course11_desc: "Final project work that ties together theory and practice within a chosen specialization area of IT security.",
 
             // --- SKILLS (HOVER) TEXTER ---
