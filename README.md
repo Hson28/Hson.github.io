@@ -9,7 +9,7 @@ Välkommen till källkoden för min personliga portfölj! Jag är en blivande IT
 
 Den här sidan fungerar som mitt digitala CV och en samlingsplats för mina kunskaper, certifieringar och kommande projekt.
 
-👉 **[Se portföljen live här](https://Hson28.github.io)**
+👉 **[Se portföljen live här](https://github.com/Hson28/Hson.github.io)**
 
 ---
 
