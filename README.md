@@ -1,64 +1,46 @@
-# Jehanni — IT-säkerhetsspecialist (Student)
+# 🛡️ Jehanni Halvarsson | Portfölj & IT-säkerhet
 
-Välkommen till källkoden för min personliga portfölj. Denna webbplats fungerar som en hubb för mina projekt, färdigheter och min yrkesresa från förskollärare till IT-säkerhetsspecialist.
+[![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fditt-github-namn.github.io&label=Portf%C3%B6lj&style=flat-square)](https://ditt-github-namn.github.io)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](#)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](#)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#)
 
-Sidan är live här: **https://www.jehanni.tech/**
+Välkommen till källkoden för min personliga portfölj! [cite_start]Jag är en blivande IT-säkerhetsspecialist som studerar vid TUC Yrkeshögskola (2025–2027)[cite: 38]. 
 
-## 🛡️ Om projektet
+Den här sidan fungerar som mitt digitala CV och en samlingsplats för mina kunskaper, certifieringar och kommande projekt.
 
-Som student inom IT-säkerhet var målet med denna portfölj inte bara att visa upp mitt CV, utan att bygga sidan med ett "Security & Privacy First"-tänk.
-
-Webbplatsen är medvetet byggd utan tunga ramverk eller externa beroenden.
-
-* **Inga trackers:** Inga analysverktyg, ingen spårning.
-* **Inga cookies:** Inga kakor sätts.
-* **Client-Side Only:** All logik körs i webbläsaren.
-* **Prestanda:** Extremt snabb laddningstid tack vare ren kod.
-
-## 🚀 Funktioner
-
-* **Tvåspråkig (i18n):** Fullt stöd för Svenska och Engelska. Språkval sparas lokalt i webbläsaren (`localStorage`).
-* **Mörkt/Ljust läge:** Automatiskt detektering av systeminställningar (`prefers-color-scheme`) med möjlighet att manuellt växla läge.
-* **Interaktiv Design:**
-    * "Threat Map"-inspirerad bakgrund.
-    * Skrivmaskinseffekt i herosektionen.
-    * Scroll-animationer (Fade-in) för projektkort.
-* **Responsiv:** Fullt anpassad för mobil, surfplatta och desktop.
-
-## 🛠️ Teknisk Stack
-
-Projektet är byggt med "Vanilla" teknologier för att minimera attackytan och maximera kontrollen:
-
-* **HTML5:** Semantisk struktur och tillgänglighetsanpassad (A11y).
-* **CSS3:** CSS Variables (Custom Properties) för temahantering, Flexbox & Grid för layout.
-* **JavaScript (ES6+):** Modulär kodstruktur utan externa bibliotek (t.ex. jQuery eller React).
-
-## 📂 Projektstruktur
-
-```text
-/
-├── index.html      # Huvudfilen (Semantisk HTML)
-├── style.css       # All styling, animationer och teman
-├── script.js       # Logik för språk, tema och interaktion
-├── profile.jpg     # Profilbild
-└── README.md       # Dokumentation
-```
-
-## 🔧 Installation & Körning
-
-Eftersom detta är en statisk webbplats behövs ingen backend, byggprocess eller kompilator.
-
-1.  **Klona repot:**
-    ```bash
-    git clone [https://github.com/DITT-ANVÄNDARNAMN/DITT-REPO-NAMN.git](https://github.com/DITT-ANVÄNDARNAMN/DITT-REPO-NAMN.git)
-    ```
-
-2.  **Öppna:**
-    Navigera in i mappen och öppna `index.html` i din webbläsare.
-
-## 📜 Licens
-
-Detta projekt är öppen källkod. Du får gärna titta på koden för inspiration, men innehållet (texter, bilder och personlig information) tillhör upphovspersonen.
+👉 **[Se portföljen live här](https://ditt-github-namn.github.io)** *(Glöm inte att uppdatera länken!)*
 
 ---
-*© 2025 Jehanni Halvarsson*
+
+## 🎯 Söker LIA-praktik
+[cite_start]Just nu letar jag efter en **LIA-plats (Lärande i Arbete)** där jag kan omsätta mina teoretiska studier till praktisk nytta[cite: 5]. [cite_start]Jag söker en miljö där jag kan bidra till att bygga robusta lösningar, arbeta med dokumentation och hjälpa till att stärka säkerhetskulturen[cite: 6, 11, 18].
+
+## 👩‍🏫 Från pedagogik till IT-säkerhet
+[cite_start]Jag skolar om mig från förskollärare och arbetsplatsledare [cite: 53, 57][cite_start], vilket ger mig ett unikt perspektiv inom IT-säkerhet[cite: 8]. [cite_start]I en bransch där den mänskliga faktorn ofta är den svagaste länken, använder jag min pedagogiska bakgrund för att göra komplexa säkerhetskoncept begripliga för alla[cite: 9, 10]. [cite_start]Jag är van att arbeta metodiskt, driva kvalitetsarbete och fungera som en brygga mellan tekniska experter och övrig verksamhet[cite: 11, 12].
+
+## 💻 Om koden (Security & Privacy First)
+Som blivande säkerhetsspecialist var det viktigt för mig att bygga denna portfölj med ett **minimalt attackytemönster (attack surface)** och hög integritet för besökaren.
+
+Sidan är byggd med:
+* **Vanilla HTML5 & CSS3:** Inga tunga externa ramverk (som Bootstrap eller Tailwind) som drar ner prestandan eller introducerar onödiga beroenden.
+* **Vanilla JavaScript:** All interaktivitet (temaväxling, språkväxling, animationer) hanteras klient-sidigt utan externa bibliotek.
+* **Ingen spårning:** Sidan sätter inga personliga spårningskakor (cookies) och respekterar besökarens integritet.
+
+## 🛠️ Tekniska färdigheter
+Under min utbildning och fritid arbetar jag löpande med:
+* **Infrastruktur & Nätverk:** TCP/IP, VLAN, Routing/Switching, Wireshark.
+* **Systemadministration:** Linux (Debian/Ubuntu), Windows Server, Active Directory, GPO.
+* **Säkerhet & GRC:** ISO 27001, NIS2, GDPR, Riskanalys, Defense in Depth.
+* **Skydd & Övervakning:** pfSense, UFW, SIEM-koncept, Sårbarhetsskanning.
+
+## 🎓 Certifieringar
+[cite_start]Jag ser kontinuerligt lärande som en självklarhet och kompletterar mina YH-studier med branschcertifikat[cite: 16]:
+* [cite_start]**Endpoint Security** (Cisco) - Jan 2026 [cite: 76, 77]
+* [cite_start]**Networking Devices and Initial Configuration** (Cisco) - Nov 2025 [cite: 78, 79]
+* [cite_start]**Networking Basics** (Cisco) - Sep 2025 [cite: 65, 66]
+
+## 📬 Kontakt
+Låter min profil intressant för ert företag? Jag tar gärna en kaffe!
+* [cite_start]**Email:** [jehanni.halvarsson@protonmail.com](mailto:jehanni.halvarsson@protonmail.com) [cite: 28, 45]
+* **LinkedIn:** [Din LinkedIn-URL här]
