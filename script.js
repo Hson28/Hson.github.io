@@ -98,7 +98,7 @@
             // --- SKILLS (HOVER) TEXTER ---
             skills_h2: "Skills & Competencies",
             skills_tech: "Technical Skills",
-            skills_soft: "Soft Skills & Traits",
+            skills_soft: "Personal Traits",
             
             skill_linux_title: "Linux & Hardening",
             skill_linux_desc: "Familiarity with CLI environments (Debian/Ubuntu). Managing permissions (chmod/chown), SSH hardening, and service management (systemd).",
