@@ -2,10 +2,10 @@
  * Portfölj-skript (Vanilla JS)
  * * Hanterar:
  * 1. Mörkt/Ljust Téma
- * 2. Språkväxling
- * 3. Mobilmeny
+ * 2. Språkväxling (FIXAD för flaggor)
+ * 3. Mobilmeny (FIXAD)
  * 4. Animationer (Endast skrivmaskin & scroll)
- * 5. Modal / Pop-ups för kurser
+ * 5. Modal / Pop-ups för kurser (NY)
  */
 
 (function () {
@@ -107,22 +107,29 @@
             skills_tech: "Technical Skills",
             skills_soft: "Personal Traits",
             
+            skill_network_title: "Network & Infrastructure",
+            skill_network_desc: "Network design and security (VLANs, ACLs). Experience with Cisco devices, traffic analysis using Wireshark, and secure connections (VPN, Bastion).",
+            
+            skill_windows_title: "Windows & Active Directory",
+            skill_windows_desc: "Hardening of Windows environments (GPO, WDAC, ASR). Secure management of identities and domains via AD DS, LDAP, and Kerberos.",
+            
             skill_linux_title: "Linux & Hardening",
-            skill_linux_desc: "Familiarity with CLI environments (Debian/Ubuntu). Managing permissions (chmod/chown), SSH hardening, and service management (systemd).",
-            skill_network_title: "Network & TCP/IP",
-            skill_network_desc: "Deep understanding of the OSI model. Traffic analysis with Wireshark/tcpdump and segmentation via VLAN/Subnetting.",
-            skill_firewall_title: "Firewalls",
-            skill_firewall_desc: "Rule configuration in pfSense and UFW. Default 'Deny All' principle and stateful inspection.",
-            skill_security_title: "Defense in Depth",
-            skill_security_desc: "Applying security in layers: from physical access and perimeter protection to application security and user awareness.",
-            skill_risk_title: "Risk Analysis (GRC)",
-            skill_risk_desc: "Asset identification and threat modeling. Working with risk assessments (RSA) and compliance with frameworks like ISO 27001.",
-            skill_vm_title: "Virtualization",
-            skill_vm_desc: "Building secure lab environments using Hyper-V and VirtualBox to safely test malware or configure isolated servers.",
-            skill_audit_title: "Security Auditing",
-            skill_audit_desc: "Reviewing logs (syslog/auth.log), vulnerability scanning, and verifying configuration files.",
-            skill_wordpress_title: "Web Security",
-            skill_wordpress_desc: "Securing CMS (WordPress), implementing HTTPS/TLS, and mitigating common OWASP Top 10 vulnerabilities.",
+            skill_linux_desc: "CLI administration (Debian/Ubuntu). Minimizing attack surfaces through service configuration, strict file permissions, and SSH hardening.",
+            
+            skill_iam_title: "IAM & Zero Trust",
+            skill_iam_desc: "Implementation of Zero Trust architecture. Management of PKI, digital certificates, SSO, MFA, and protection technologies like Credential Guard.",
+            
+            skill_vm_title: "Virtualization & Cloud",
+            skill_vm_desc: "Building high-availability environments with Hyper-V and virtual machines. Integration with cloud services (Azure) and Disaster Recovery.",
+            
+            skill_grc_title: "Risk Analysis & GRC",
+            skill_grc_desc: "Application of ISO 27000 and NIST RMF. Practical work with incident response plans, security policies, and compliance (GDPR, NIS2).",
+            
+            skill_monitoring_title: "Monitoring & Logging",
+            skill_monitoring_desc: "Threat and unauthorized activity detection. Configuration of event logs and analysis via tools like Sysmon and Microsoft Sentinel.",
+            
+            skill_endpoint_title: "Endpoint & Data Protection",
+            skill_endpoint_desc: "Device management via Intune. Data encryption (BitLocker, TPM) and hardware-level protection mechanisms (VBS, HVCI, CFG).",
 
             // Mjuka färdigheter
             soft_leadership: "Leadership",
