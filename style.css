@@ -699,3 +699,102 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
         box-shadow: 0 0 15px rgba(99, 179, 237, 0.3);
     }
 }
+
+
+/* ========================================
+   10. MODAL (POP-UP FÖR KURSER)
+   ======================================== */
+
+.project-card.modal-trigger {
+    cursor: pointer;
+}
+
+.read-more {
+    margin-top: var(--spacing-md);
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    transition: transform var(--transition-fast);
+}
+
+.project-card:hover .read-more {
+    transform: translateX(5px);
+}
+
+.course-blog {
+    display: none; 
+}
+
+.modal {
+    position: fixed; inset: 0; z-index: 9999;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.modal[aria-hidden="false"] {
+    opacity: 1; visibility: visible;
+}
+
+.modal-overlay {
+    position: absolute; inset: 0;
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+    cursor: pointer;
+}
+
+.modal-content {
+    position: relative; z-index: 10;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--border-radius);
+    width: 90%; max-width: 600px; max-height: 85vh;
+    padding: var(--spacing-lg);
+    overflow-y: auto;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.modal[aria-hidden="false"] .modal-content {
+    transform: translateY(0);
+}
+
+.modal-close {
+    position: absolute; top: 1rem; right: 1rem;
+    background: transparent; border: none;
+    font-size: 2rem; line-height: 1; color: var(--color-text);
+    cursor: pointer; transition: color var(--transition-fast);
+}
+
+.modal-close:hover {
+    color: var(--color-primary);
+}
+
+.modal-header {
+    margin-bottom: var(--spacing-md);
+    padding-right: 2rem;
+    border-bottom: 1px solid var(--color-border);
+    padding-bottom: var(--spacing-sm);
+}
+
+.modal-title {
+    margin: 0;
+    color: var(--color-primary);
+}
+
+.modal-subtitle {
+    font-size: 0.875rem; 
+    font-weight: 600; 
+    color: var(--color-text); 
+    opacity: 0.7; 
+    margin-top: var(--spacing-xs); 
+    margin-bottom: 0;
+    text-transform: uppercase;
+}
+
+.modal-body {
+    color: var(--color-text); 
+    font-size: 1rem; 
+    line-height: 1.6;
+}
