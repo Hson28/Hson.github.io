@@ -2,10 +2,10 @@
  * Portfölj-skript (Vanilla JS)
  * * Hanterar:
  * 1. Mörkt/Ljust Téma
- * 2. Språkväxling (FIXAD för flaggor)
- * 3. Mobilmeny (FIXAD)
+ * 2. Språkväxling
+ * 3. Mobilmeny
  * 4. Animationer (Endast skrivmaskin & scroll)
- * 5. Modal / Pop-ups för kurser (NY)
+ * 5. Modal / Pop-ups för kurser
  */
 
 (function () {
@@ -40,6 +40,7 @@
             courses_completed: "Completed & Ongoing",
             courses_upcoming: "Upcoming Courses",
             tag_upcoming: "Upcoming",
+            tag_ongoing: "Ongoing",
             read_more: "Click to read more →",
             
             // Kurs 1
@@ -76,7 +77,7 @@
             course6_title: "IT Security Linux, Unix and Mac",
             course6_points: "20 YH Credits",
             course6_desc: "Administration and configuration of systems according to security standards. Focus on system hardening and minimizing possible attack surfaces for installed services.",
-            blog_course6: "<p>Since a vast majority of the world's servers run Linux, understanding how to secure them is crucial. We practiced minimizing the attack surface by disabling unnecessary services, carefully configuring file permissions in the terminal, and hardening SSH access according to established security standards.</p>",
+            blog_course6: "<p>Right now, we are working practically with administering and configuring Linux and Unix systems. Since a vast majority of the world's servers run Linux, understanding how to secure them is crucial. We are practicing minimizing the attack surface by disabling unnecessary services, carefully configuring file permissions in the terminal, and hardening SSH access according to established security standards.</p>",
 
             // Kommande kurser
             course7_title: "Network Security",
