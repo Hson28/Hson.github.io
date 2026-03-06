@@ -5,6 +5,7 @@
  * 2. Språkväxling (FIXAD för flaggor)
  * 3. Mobilmeny (FIXAD)
  * 4. Animationer (Endast skrivmaskin & scroll)
+ * 5. Modal / Pop-ups för kurser (NY)
  */
 
 (function () {
@@ -39,61 +40,66 @@
             courses_completed: "Completed & Ongoing",
             courses_upcoming: "Upcoming Courses",
             tag_upcoming: "Upcoming",
+            read_more: "Click to read more →",
             
             // Kurs 1
             course1_title: "Network Technology",
             course1_points: "25 YH Credits",
             course1_desc: "Configuration of routers and switches, VLANs, and access lists. Also covers access control in wireless networks and troubleshooting with protocol analyzers.",
-            
+            blog_course1: "During this course, we built networks from scratch in a lab environment. We gained hands-on experience configuring Cisco routers and switches, and implemented VLANs to separate and secure traffic. A large part of the course also focused on analyzing network traffic with Wireshark to find and fix errors and security flaws in communication.",
+
             // Kurs 2
             course2_title: "IT Infrastructure",
             course2_points: "25 YH Credits",
             course2_desc: "Building highly available and secure IT infrastructures. Includes PC, server, data, and application virtualization as well as backup platforms.",
-            
+            blog_course2: "Here we learned how companies build their IT environments to be both secure and highly available (High Availability). We worked extensively with various virtualization platforms and set up our own servers and services. We also discussed strategies for backups and resource management to ensure high performance and redundancy.",
+
             // Kurs 3
             course3_title: "Basic IT Security",
             course3_points: "30 YH Credits",
             course3_desc: "Protecting systems and data through risk analysis, Zero Trust architecture, and firewall configuration. Management of PKI, digital certificates, SSO, and MFA.",
-            
+            blog_course3: "An incredibly exciting course where we dove into protecting systems against modern threats and malware. We configured firewalls, created and managed digital certificates (PKI) for secure server access, and looked closely at implementing modern authentication like Zero Trust, SSO, and multi-factor authentication (MFA).",
+
             // Kurs 4
             course4_title: "Information Security and IT Law",
             course4_points: "25 YH Credits",
             course4_desc: "Application of GDPR and NIS2. Practical work with risk assessments, creating incident response plans, and standards like ISO 27000 and NIST.",
-            
+            blog_course4: "Technology is only one half of security – rules, laws, and policies are the other. In this course, we learned how directives like GDPR and NIS2 practically affect organizations. I gained valuable practice in conducting formal risk analyses and writing incident response plans based on known standards like the ISO 27000 series and NIST.",
+
             // Kurs 5
             course5_title: "IT Security Windows",
             course5_points: "20 YH Credits",
             course5_desc: "Minimizing attack surfaces through hardening. Covers LDAP management, Identity and Access (IDA) Control, password policies, and logging/auditing.",
-            
+            blog_course5: "This course was primarily about systematically hardening Windows environments. We worked extensively with Active Directory and Group Policies (GPO) to tighten permissions. We implemented secure password policies, managed identity control via LDAP, and configured rigorous logging/auditing to quickly detect unauthorized activity.",
+
             // Kurs 6
             course6_title: "IT Security Linux, Unix and Mac",
             course6_points: "20 YH Credits",
             course6_desc: "Administration and configuration of systems according to security standards. Focus on system hardening and minimizing possible attack surfaces for installed services.",
-            
-            // Kurs 7
+            blog_course6: "Since a vast majority of the world's servers run Linux, understanding how to secure them is crucial. We practiced minimizing the attack surface by disabling unnecessary services, carefully configuring file permissions in the terminal, and hardening SSH access according to established security standards.",
+
+            // Kommande kurser
             course7_title: "Network Security",
             course7_points: "30 YH Credits",
             course7_desc: "Deep dive into firewalls, VPNs, segmentation, IDS/IPS, and advanced network traffic analysis.",
             
-            // Kurs 8
             course8_title: "Ethical Hacking",
             course8_points: "25 YH Credits",
             course8_desc: "Methods for penetration testing, vulnerability scanning, and exploitation to offensively identify flaws.",
             
-            // Kurs 9
             course9_title: "Advanced IT Security",
             course9_points: "25 YH Credits",
             course9_desc: "Managing complex security architectures, incident response (IR), log analysis in SIEM, and SOC tools.",
             
-            // Kurs 10
             course10_title: "Cloud Security",
             course10_points: "25 YH Credits",
             course10_desc: "Security configuration and architecture in cloud environments (e.g., Azure/AWS), identity management (IAM), and Zero Trust.",
             
-            // Kurs 11
             course11_title: "Thesis / Degree Project",
             course11_points: "20 YH Credits",
             course11_desc: "Final project work that ties together theory and practice within a chosen specialization area of IT security.",
+
+            blog_upcoming: "I haven't started this course yet. More information and a summary of my labs and insights will be published here as soon as the course begins!",
 
             // --- SKILLS (HOVER) TEXTER ---
             skills_h2: "Skills & Competencies",
@@ -155,7 +161,15 @@
         anchorLinks: document.querySelectorAll('a[href^="#"]'),
         heroH1: document.querySelector(".hero-text h1"),
         heroTagline: document.querySelector(".hero-tagline"),
-        projectCards: document.querySelectorAll(".project-card")
+        projectCards: document.querySelectorAll(".project-card"),
+        
+        // Modal-element
+        modal: document.getElementById('course-modal'),
+        modalTitle: document.getElementById('modal-title'),
+        modalSubtitle: document.getElementById('modal-subtitle'),
+        modalBody: document.getElementById('modal-body'),
+        modalClosers: document.querySelectorAll('[data-close="modal"]'),
+        modalTriggers: document.querySelectorAll('.modal-trigger')
     };
 
     // --- 3. Variabler ---
@@ -163,6 +177,7 @@
     let currentLang = "sv";
     let isTyping = false; 
     let typingTimeout = null; 
+    let activeCard = null; // För att hålla koll på öppen modal
 
     // --- 4. Temahantering ---
     function applyTheme(theme) {
@@ -279,6 +294,11 @@
             }
         });
         
+        // Uppdatera modalens innehåll om den råkar vara öppen när man byter språk
+        if (activeCard) {
+            openModal(activeCard);
+        }
+
         // H1: 50ms, Tagline: 25ms
         startTypeEffect(dom.heroH1, h1Text, 50, () => {
             startTypeEffect(dom.heroTagline, taglineText, 25, null);
@@ -468,15 +488,55 @@
         });
     }
 
+    // --- 11. Modal Logik (NY) ---
+    function openModal(card) {
+        if (!dom.modal) return;
+        activeCard = card;
+        
+        const titleEl = card.querySelector('h3');
+        const pointsEl = card.querySelector('.project-role');
+        const blogEl = card.querySelector('.course-blog');
+        
+        if (dom.modalTitle && titleEl) dom.modalTitle.textContent = titleEl.textContent;
+        if (dom.modalSubtitle && pointsEl) dom.modalSubtitle.textContent = pointsEl.textContent;
+        if (dom.modalBody && blogEl) dom.modalBody.innerHTML = blogEl.innerHTML;
+        
+        dom.modal.setAttribute('aria-hidden', 'false');
+        dom.html.style.overflow = 'hidden'; 
+    }
 
-    // --- 11. Initiering ---
+    function closeModal() {
+        if (!dom.modal) return;
+        dom.modal.setAttribute('aria-hidden', 'true');
+        dom.html.style.overflow = 'auto';
+        activeCard = null;
+    }
+
+
+    // --- 12. Initiering ---
     function bindEvents() {
         if (dom.themeToggle) dom.themeToggle.addEventListener("click", toggleTheme);
         if (dom.langToggle) dom.langToggle.addEventListener("click", toggleLanguage);
         if (dom.navToggle) dom.navToggle.addEventListener("click", toggleMenu);
         
         dom.navLinks.forEach(link => link.addEventListener("click", closeMenu));
-        document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeMenu(); });
+        
+        // Ny modal-lyssnare
+        dom.modalTriggers.forEach(trigger => {
+            trigger.addEventListener('click', () => openModal(trigger));
+        });
+        dom.modalClosers.forEach(closer => {
+            closer.addEventListener('click', closeModal);
+        });
+
+        // Stäng menyer/modaler med Esc-tangenten
+        document.addEventListener("keydown", (e) => { 
+            if (e.key === "Escape") {
+                closeMenu(); 
+                closeModal();
+            }
+        });
+        
         dom.anchorLinks.forEach(link => link.addEventListener("click", smoothScroll));
     }
 
