@@ -474,6 +474,14 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     font-style: italic;
 }
 
+/* Specifik tagg för pågående kurser */
+.tag-ongoing {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary-hover);
+    box-shadow: 0 0 8px rgba(43, 108, 176, 0.4);
+}
+
 .project-links { margin-top: var(--spacing-lg); }
 .project-link { font-weight: 600; text-decoration: none; }
 .project-link:hover { text-decoration: underline; }
