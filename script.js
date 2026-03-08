@@ -5,7 +5,7 @@
  * 2. Språkväxling (FIXAD för flaggor)
  * 3. Mobilmeny (FIXAD)
  * 4. Animationer (Endast skrivmaskin & scroll)
- * 5. Modal / Pop-ups för kurser (NY)
+ * 5. Pop-ups för kurser (
  */
 
 (function () {
@@ -152,6 +152,7 @@
             contact_btn_linkedin: "Message on LinkedIn",
             
             footer_copy: "© 2026 Jehanni Halvarsson. All rights reserved.",
+            footer_cloudflare: "This site uses Cloudflare for security and anonymous statistics. No tracking cookies are used.",
             footer_github: "GitHub",
             footer_linkedin: "LinkedIn"
         }
