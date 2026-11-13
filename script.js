@@ -1,13 +1,12 @@
 /**
- * Portfölj-skript (Vanilla JS)
- * * Hanterar:
- * 1. Mörkt/Ljust Téma
- * 2. Språkväxling (FIXAD för flaggor)
- * 3. Mobilmeny (FIXAD)
- * 4. Animationer (Endast skrivmaskin & scroll)
- * 5. Pop-ups för kurser (
- */
-
+*  Portfölj-skript (Vanilla JS)
+*  Hanterar:
+*  1. Mörkt/Ljust Tema
+*  2. Språkväxling (FIXAD för flaggor)
+*  3. Mobilmeny (FIXAD)
+*  4. Animationer (Endast skrivmaskin & scroll)
+*  5. Pop-ups för kurser och hemmalabb
+*/
 (function () {
     "use strict";
 
@@ -21,11 +20,12 @@
             aria_menu: "Menu",
             nav_about: "About",
             nav_projects: "Courses",
+            nav_homelab: "Home Lab",
             nav_skills: "Skills",
             nav_cv: "CV",
             nav_contact: "Contact",
             hero_h1: "Jehanni",
-            hero_tagline: "Future IT Security Specialist with a pedagogical background. I make the complex understandable, identify risks, and strengthen security culture. Looking for an internship (LIA)!",
+            hero_tagline: "Future IT Security Specialist with a pedagogical background. I make the complex understandable, identify risks, and strengthen security culture.",
             hero_cta: "Contact me",
             about_h2: "About Me",
             about_p1: "I am transitioning from a preschool teacher and workplace leader to an IT Security Specialist via TUC Vocational School. In a world where the human factor is often the crucial link, I bring skills that are central to a successful security organization.",
@@ -102,6 +102,25 @@
 
             blog_upcoming: "<p>I haven't started this course yet. More information and a summary of my labs and insights will be published here as soon as the course begins!</p>",
 
+            // --- HEMMALABB TEXTER (ENGELSKA) ---
+            homelab_h2: "Home Lab",
+            homelab_intro: "To continuously put theory into practice, I run my own isolated home lab. The environment is used to simulate enterprise networks, test security architecture, and practice both offensive and defensive scenarios under controlled conditions.",
+            
+            lab1_title: "Virtualization & Network Segmentation",
+            lab1_sub: "Infrastructure",
+            lab1_desc: "Building isolated virtual environments with strict traffic control, firewall rules, and separate VLANs to simulate secure network design.",
+            blog_lab1: "<p>The foundation of my home lab consists of a virtualization platform where I can spin up and tear down test environments as needed. The network is strictly segmented using VLANs and a dedicated firewall solution to completely separate the lab environment from other network resources.</p><p>By applying Zero Trust principles and strict Access Control Lists (ACLs) between different subnets, I can test traffic flows and ensure that potential threats in a test machine cannot spread laterally.</p>",
+
+            lab2_title: "Active Directory & System Hardening",
+            lab2_sub: "Identity & OS",
+            lab2_desc: "Simulated domain environment with Windows Server and Linux nodes for practical application of GPO management, access control, and hardening.",
+            blog_lab2: "<p>The lab runs a local domain environment with Active Directory to practice secure identity and access management. Here, I test security baselines, deploy Group Policies (GPOs), and configure protection mechanisms that minimize the attack surface on both clients and servers.</p><p>In parallel, I administer Linux servers focusing on SSH hardening, strict file permissions, automated security updates, and service isolation using containers.</p>",
+
+            lab3_title: "Log Analysis, SIEM & Detection",
+            lab3_sub: "Defensive Security",
+            lab3_desc: "Centralized collection of event logs and network traffic to practice threat hunting, detection rules, and incident response.",
+            blog_lab3: "<p>To strengthen my detection and analysis skills, I collect telemetry and logs from the lab machines into a central monitoring solution. Using tools like Sysmon and built-in audit policies, I analyze system-level activity during various events.</p><p>By generating simulated suspicious activity from a separate test machine, I can study how traces appear in the logs and fine-tune alerting and detection rules.</p>",
+
             // --- SKILLS (HOVER) TEXTER ---
             skills_h2: "Skills & Competencies",
             skills_tech: "Technical Skills",
@@ -146,8 +165,8 @@
             cv_button_sv: "Download CV (SV)",
             cv_button_en: "Download CV (EN)",
 
-            contact_h2: "Looking for a driven LIA intern?",
-            contact_p: "I am currently looking for an internship (LIA) where I can put my studies into practice. If you are looking for someone who combines technical knowledge with methodical thinking and pedagogical skills, let's grab a coffee!",
+            contact_h2: "Want to get in touch?",
+            contact_p: "I am always open to making new connections, discussing IT security, or talking about future opportunities. If you are looking for someone who combines technical knowledge with methodical thinking and pedagogical skills, feel free to reach out!",
             contact_btn_email: "Email me",
             contact_btn_linkedin: "Message on LinkedIn",
             
@@ -358,7 +377,7 @@
         dom.navToggle.setAttribute("aria-expanded", !isVisible);
         dom.html.style.overflow = !isVisible ? "hidden" : "auto";
     }
-    
+
     function closeMenu() {
         if (!dom.navMenu || !dom.navToggle) return;
 
@@ -462,7 +481,7 @@
         });
     }
 
-    
+
     // --- 10. Scrollspy ---
     function initScrollspy() {
         if (!('IntersectionObserver' in window)) {
@@ -499,7 +518,7 @@
         });
     }
 
-    // --- 11. Modal Logik (NY) ---
+    // --- 11. Modal Logik ---
     function openModal(card) {
         if (!dom.modal) return;
         activeCard = card;
@@ -532,7 +551,7 @@
         
         dom.navLinks.forEach(link => link.addEventListener("click", closeMenu));
         
-        // Ny modal-lyssnare
+        // Modal-lyssnare
         dom.modalTriggers.forEach(trigger => {
             trigger.addEventListener('click', () => openModal(trigger));
         });
