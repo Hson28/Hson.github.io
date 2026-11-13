@@ -370,70 +370,70 @@
         <div class="container">
             <h2 data-lang-key="homelab_h2">Hemmalabb</h2>
             <p data-lang-key="homelab_intro">
-                För att kontinuerligt omsätta teori i praktik driver jag ett eget isolerat hemmalabb. Miljön används för att simulera företagsnätverk, testa säkerhetsarkitektur och öva på både offensiva och defensiva scenarier under kontrollerade former.
+                Ett hemmalabb blir aldrig riktigt "klart" – antingen finns det något som kan optimeras eller en ny teknik att testa. Från att tidigare ha stått i en hylla är hela bygget nu inflyttat i ett modifierat IKEA-skåp med ett 10"-rack och temperaturstyrd kylning. Labbet fungerar som min egen testmiljö där jag får arbeta hands-on med klusterhantering, virtualisering och nätverksarkitektur, vilket har fördjupat min tekniska förståelse på ett sätt som är svårt att läsa sig till.
             </p>
             
             <div class="project-grid">
                 
                 <article class="project-card modal-trigger">
                     <div class="card-content">
-                        <h3 data-lang-key="lab1_title">Virtualisering & Nätverkssegmentering</h3>
-                        <p class="project-role" data-lang-key="lab1_sub">Infrastruktur</p>
+                        <h3 data-lang-key="lab1_title">Nätverk & Infrastruktur</h3>
+                        <p class="project-role" data-lang-key="lab1_sub">Hårdvarubrandvägg</p>
                         <p data-lang-key="lab1_desc">
-                            Uppbyggnad av isolerade virtuella miljöer med strikt trafikstyrning, brandväggsregler och separata VLAN för att simulera säker nätverksdesign.
+                            Dedikerad hårdvarubrandvägg och switch-infrastruktur. Planering och förberedelser för strikt VLAN-segmentering.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Hypervisor</span>
-                            <span class="tag">VLAN / Brandvägg</span>
-                            <span class="tag">Segmentering</span>
+                            <span class="tag">Cisco ASA</span>
+                            <span class="tag">Switch</span>
+                            <span class="tag">VLAN</span>
                         </div>
                         <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
                         
                         <div class="course-blog" data-lang-key="blog_lab1">
-                            <p>Grunden i mitt hemmalabb utgörs av en virtualiseringsplattform där jag kan bygga upp och riva ner testmiljöer efter behov. Nätverket är strikt segmenterat med hjälp av VLAN och en dedikerad brandväggslösning för att separera labbmiljön helt från övriga nätverksresurser.</p>
-                            <p>Genom att tillämpa Zero Trust-principer och strikta accesslistor (ACL) mellan olika subnät kan jag testa hur trafik flödar och säkerställa att potentiella hot i en testmaskin inte kan sprida sig vidare (lateral movement).</p>
+                            <p>Labbets nätverk bygger på en dedikerad Cisco ASA-hårdvarubrandvägg som agerar gateway och hanterar inkommande samt utgående trafik. En central switch-lösning distribuerar sedan nätverket vidare till labbets olika fysiska enheter och trådlösa nät.</p>
+                            <p>Ett pågående projekt är att implementera en striktare VLAN-segmentering. Syftet är att isolera publika och internetexponerade tjänster (exempelvis containrar med spelservrar) från det interna management-nätverket, för att på ett säkert sätt tillämpa Zero Trust-koncept i praktiken.</p>
                         </div>
                     </div>
                 </article>
 
                 <article class="project-card modal-trigger">
                     <div class="card-content">
-                        <h3 data-lang-key="lab2_title">Active Directory & Systemhärdning</h3>
-                        <p class="project-role" data-lang-key="lab2_sub">Identitet & OS</p>
+                        <h3 data-lang-key="lab2_title">Proxmox-kluster & Virtualisering</h3>
+                        <p class="project-role" data-lang-key="lab2_sub">Compute & Containrar</p>
                         <p data-lang-key="lab2_desc">
-                            Simulerad domänmiljö med Windows Server- och Linux-noder för praktisk tillämpning av GPO-styrning, behörighetshantering och härdning.
+                            Klustermiljö med tre aktiva noder och en fristående management-nod (QDevice) för kvorum och stabilitet.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">Active Directory</span>
-                            <span class="tag">GPO / Härdning</span>
-                            <span class="tag">Linux / Windows</span>
+                            <span class="tag">Proxmox VE</span>
+                            <span class="tag">LXC / Docker</span>
+                            <span class="tag">High Availability</span>
                         </div>
                         <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
                         
                         <div class="course-blog" data-lang-key="blog_lab2">
-                            <p>I labbet körs en lokal domänmiljö med Active Directory för att öva på säker identitets- och åtkomsthantering. Här testar jag säkerhetsbaslinjer, rullar ut Group Policies (GPO) och konfigurerar skyddsmekanismer som minimerar attackytan på både klienter och servrar.</p>
-                            <p>Parallellt administrerar jag Linux-servrar där fokus ligger på SSH-härdning, strikta filrättigheter, automatiserade säkerhetsuppdateringar och tjänsteisolering genom containrar.</p>
+                            <p>Grundbulten i miljöns beräkningskraft är ett Proxmox-kluster bestående av tre aktiva noder. Genom att integrera en fristående Linux-baserad management-nod som QDevice säkerställer jag att klustret bibehåller kvorum (röstmajoritet) och stabilitet även om en av compute-noderna skulle tas offline för underhåll.</p>
+                            <p>Miljön är uppdelad i resurssnåla LXC-containrar och fullskaliga virtuella maskiner, där jag bland annat driftar en Docker-miljö för isolerade tjänster. Arkitekturen låter mig bygga upp, testa och riva ner komplexa servermiljöer snabbt och effektivt.</p>
                         </div>
                     </div>
                 </article>
 
                 <article class="project-card modal-trigger">
                     <div class="card-content">
-                        <h3 data-lang-key="lab3_title">Logganalys, SIEM & Detektion</h3>
-                        <p class="project-role" data-lang-key="lab3_sub">Defensiv Säkerhet</p>
+                        <h3 data-lang-key="lab3_title">Säkerhet, Åtkomst & Management</h3>
+                        <p class="project-role" data-lang-key="lab3_sub">Härdning & VPN</p>
                         <p data-lang-key="lab3_desc">
-                            Centraliserad insamling av händelseloggar och nätverkstrafik för att öva på hotjakt, detektionsregler och incidenthantering.
+                            Säker fjärråtkomst via VPN, SSH-härdning och MFA-skyddade gränssnitt för att minimera attackytan.
                         </p>
                         <div class="project-tags">
-                            <span class="tag">SIEM / Loggning</span>
-                            <span class="tag">Sysmon</span>
-                            <span class="tag">IDS / Trafikanalys</span>
+                            <span class="tag">Tailscale VPN</span>
+                            <span class="tag">SSH (ed25519)</span>
+                            <span class="tag">MFA / 2FA</span>
                         </div>
                         <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
                         
                         <div class="course-blog" data-lang-key="blog_lab3">
-                            <p>För att stärka min förmåga inom detektion och analys samlar jag in telemetri och loggar från labbets maskiner till en central övervakningslösning. Med verktyg som Sysmon och inbyggda granskningspolicyer analyserar jag vad som händer på systemnivå vid olika typer av händelser.</p>
-                            <p>Genom att generera simulerad misstänkt aktivitet från en separat testmaskin kan jag studera hur spåren ser ut i loggarna och finjustera larm- och detektionsregler.</p>
+                            <p>Säkerheten är en röd tråd genom hela hemmalabbet. För att hålla attackytan minimal exponeras inga kritiska management-portar direkt mot det publika nätet. Istället routas all fjärråtkomst genom en säker VPN-tunnel (Tailscale) som driftas direkt på den dedikerade management-noden.</p>
+                            <p>Autentisering mot webbgränssnitten (som Proxmox) skyddas med tvåfaktorsautentisering (MFA). På systemnivå är traditionell lösenordsinloggning helt avstängd; all SSH-åtkomst till noderna kräver kryptografiska nycklar (ed25519) för att motstå obehöriga intrångsförsök.</p>
                         </div>
                     </div>
                 </article>
@@ -485,7 +485,7 @@
                     </svg>
                     <h3 data-lang-key="skill_iam_title">IAM & Zero Trust</h3>
                     <p data-lang-key="skill_iam_desc">
-                        Implementering av Zero Trust-arkitektur. Hantering av PKI, digitala certifikat, SSO, MFA och skyddstekniker som Credential Guard.
+                        Implementering av Zero Trust-arkitektur. Hantering av PKI, digital certificates, SSO, MFA och skyddstekniker som Credential Guard.
                     </p>
                 </div>
 
