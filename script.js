@@ -108,22 +108,22 @@
 
             // --- HEMMALABB TEXTER (ENGELSKA) ---
             homelab_h2: "Home Lab",
-            homelab_intro: "To continuously put theory into practice, I run my own isolated home lab. The environment is used to simulate enterprise networks, test security architecture, and practice both offensive and defensive scenarios under controlled conditions.",
+            homelab_intro: "A home lab is never really 'finished' – there is always something to optimize or a new technology to test. From previously being spread out on a shelf, the entire build is now housed in a modified IKEA cabinet with a 10\" rack and temperature-controlled cooling. The lab serves as my personal test environment where I work hands-on with cluster management, virtualization, and network architecture, which has deepened my technical understanding in a way that is hard to achieve just by reading.",
             
-            lab1_title: "Virtualization & Network Segmentation",
-            lab1_sub: "Infrastructure",
-            lab1_desc: "Building isolated virtual environments with strict traffic control, firewall rules, and separate VLANs to simulate secure network design.",
-            blog_lab1: "<p>The foundation of my home lab consists of a virtualization platform where I can spin up and tear down test environments as needed. The network is strictly segmented using VLANs and a dedicated firewall solution to completely separate the lab environment from other network resources.</p><p>By applying Zero Trust principles and strict Access Control Lists (ACLs) between different subnets, I can test traffic flows and ensure that potential threats in a test machine cannot spread laterally.</p>",
+            lab1_title: "Network & Infrastructure",
+            lab1_sub: "Hardware Firewall",
+            lab1_desc: "Dedicated hardware firewall and switch infrastructure. Planning and preparations for strict VLAN segmentation.",
+            blog_lab1: "<p>The lab's network is built around a dedicated Cisco ASA hardware firewall that acts as a gateway and handles incoming and outgoing traffic. A central switch solution then distributes the network to the various physical units and wireless access points.</p><p>An ongoing project is implementing strict VLAN segmentation. The purpose is to isolate public-facing services (like containers hosting game servers) from the internal management network, practically applying Zero Trust concepts.</p>",
 
-            lab2_title: "Active Directory & System Hardening",
-            lab2_sub: "Identity & OS",
-            lab2_desc: "Simulated domain environment with Windows Server and Linux nodes for practical application of GPO management, access control, and hardening.",
-            blog_lab2: "<p>The lab runs a local domain environment with Active Directory to practice secure identity and access management. Here, I test security baselines, deploy Group Policies (GPOs), and configure protection mechanisms that minimize the attack surface on both clients and servers.</p><p>In parallel, I administer Linux servers focusing on SSH hardening, strict file permissions, automated security updates, and service isolation using containers.</p>",
+            lab2_title: "Proxmox Cluster & Virtualization",
+            lab2_sub: "Compute & Containers",
+            lab2_desc: "Cluster environment with three active nodes and a standalone management node (QDevice) for quorum and stability.",
+            blog_lab2: "<p>The foundation of the environment's compute power is a Proxmox cluster consisting of three active nodes. By integrating a standalone Linux-based management node as a QDevice, I ensure the cluster maintains quorum (vote majority) and stability even if one of the compute nodes is taken offline for maintenance.</p><p>The environment is divided into resource-efficient LXC containers and full-scale virtual machines, hosting among other things a Docker environment for isolated services. The architecture allows me to spin up, test, and tear down complex server environments quickly and efficiently.</p>",
 
-            lab3_title: "Log Analysis, SIEM & Detection",
-            lab3_sub: "Defensive Security",
-            lab3_desc: "Centralized collection of event logs and network traffic to practice threat hunting, detection rules, and incident response.",
-            blog_lab3: "<p>To strengthen my detection and analysis skills, I collect telemetry and logs from the lab machines into a central monitoring solution. Using tools like Sysmon and built-in audit policies, I analyze system-level activity during various events.</p><p>By generating simulated suspicious activity from a separate test machine, I can study how traces appear in the logs and fine-tune alerting and detection rules.</p>",
+            lab3_title: "Security, Access & Management",
+            lab3_sub: "Hardening & VPN",
+            lab3_desc: "Secure remote access via VPN, SSH hardening, and MFA-protected interfaces to minimize the attack surface.",
+            blog_lab3: "<p>Security is a common thread throughout the home lab. To keep the attack surface minimal, no critical management ports are exposed directly to the public web. Instead, all remote access is routed through a secure VPN tunnel (Tailscale) hosted on the dedicated management node.</p><p>Authentication to web interfaces (like Proxmox) is protected by Two-Factor Authentication (MFA). At the system level, traditional password logins are completely disabled; all SSH access to the nodes requires cryptographic keys (ed25519) to resist unauthorized access attempts.</p>",
 
             // --- SKILLS (HOVER) TEXTER ---
             skills_h2: "Skills & Competencies",
