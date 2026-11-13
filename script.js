@@ -79,15 +79,19 @@
             course6_desc: "Administration and configuration of systems according to security standards. Focus on system hardening and minimizing possible attack surfaces for installed services.",
             blog_course6: "<p>Right now, we are working practically with administering and configuring Linux and Unix systems. Since a vast majority of the world's servers run Linux, understanding how to secure them is crucial. We are practicing minimizing the attack surface by disabling unnecessary services, carefully configuring file permissions in the terminal, and hardening SSH access according to established security standards.</p>",
 
-            // Kommande kurser
+            // Kurs 7 (Nu bland avklarade)
             course7_title: "Network Security",
             course7_points: "30 YH Credits",
-            course7_desc: "Deep dive into firewalls, VPNs, segmentation, IDS/IPS, and advanced network traffic analysis.",
-            
+            course7_desc: "Management of network attacks, intrusion attempts, and malware. Practical work with firewalls, IDS/IPS systems, and secure protocols.",
+            blog_course7: "<p>This course provided an in-depth understanding of technical network security with a strong focus on protecting organizational IT infrastructure and information. We studied and analyzed the most common types of network attacks, including full-scale attacks, web attacks, and malware propagation, as well as how to handle internal breaches of established security policies.</p><p>A central feature was practical work in detecting and responding to intrusion attempts. We delved into intrusion security by implementing and evaluating IDS/IPS systems, firewalls, and antivirus software. Additionally, we practiced analyzing and evaluating networks to independently investigate security flaws, take protective measures, and modify security protocols and encryption.</p>",
+
+            // Kurs 8 (Nu bland avklarade)
             course8_title: "Ethical Hacking",
             course8_points: "25 YH Credits",
-            course8_desc: "Methods for penetration testing, vulnerability scanning, and exploitation to offensively identify flaws.",
-            
+            course8_desc: "Methods for penetration testing, vulnerability scanning, network intrusions, lateral movement, incident response, and digital forensics.",
+            blog_course8: "<p>This course provided an in-depth practical understanding of how an attacker operates and how to proactively identify and remediate vulnerabilities, including hardware-based ones. We started with fundamental methods for reconnaissance, network scanning with Nmap, and traffic analysis via Wireshark. From there, we moved on to advanced concepts such as initial access, payload creation, brute forcing, and establishing persistence in an environment.</p><p>A significant portion of the training focused on post-exploitation and lateral movement, practicing how to navigate through domain environments using tools like Metasploit, Meterpreter, and Responder. The course also effectively bridged the offensive perspective with defensive security by evaluating monitoring and intrusion detection strategies, establishing incident response plans, and applying digital forensics to secure evidence and recover systems after an incident.</p>",
+
+            // Kommande kurser
             course9_title: "Advanced IT Security",
             course9_points: "25 YH Credits",
             course9_desc: "Managing complex security architectures, incident response (IR), log analysis in SIEM, and SOC tools.",
