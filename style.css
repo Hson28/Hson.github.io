@@ -423,10 +423,12 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     align-items: center;
     margin: 3rem 0 4rem 0;
     padding: 2.5rem 1rem;
-    background-color: var(--color-card-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    box-shadow: var(--shadow-sm);
+    
+    /* Uppdaterat för att smälta in i sidans bakgrund: */
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    
     width: 100%;
 }
 
@@ -557,7 +559,12 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     border: 2px dashed var(--color-primary);
     border-radius: var(--border-radius);
     padding: 1.5rem;
-    background: rgba(43, 108, 176, 0.04);
+    
+    /* Uppdaterat för en subtil "glas-effekt" mot bakgrunden */
+    background: rgba(43, 108, 176, 0.05);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    
     width: 100%;
     margin-top: 1rem;
     text-align: center;
@@ -566,7 +573,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 
 .topo-cluster:hover {
-    background: rgba(43, 108, 176, 0.08);
+    background: rgba(43, 108, 176, 0.1);
 }
 
 .topo-cluster > h3 {
