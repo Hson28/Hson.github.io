@@ -338,11 +338,20 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 .skill-icon { width: 32px; height: 32px; margin-bottom: var(--spacing-sm); color: var(--color-primary); transition: transform 0.3s ease; }
 .skill-card h3 { font-size: 1.125rem; margin: 0; color: var(--color-primary); transition: transform 0.3s ease; }
-.skill-card p { font-size: 0.95rem; color: var(--color-text); line-height: 1.5; opacity: 0.9; max-height: 0; opacity: 0; overflow: hidden; margin-top: 0; transition: all 0.4s ease; }
+.skill-card p { font-size: 0.95rem; color: var(--color-text); line-height: 1.5; max-height: 0; opacity: 0; overflow: hidden; margin-top: 0; transition: all 0.4s ease; }
 .skill-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--color-primary); background-color: var(--color-card-bg); }
 .skill-card:hover .skill-icon { transform: scale(1.1) translateY(-2px); }
 .skill-card:hover h3 { transform: translateY(-2px); }
 .skill-card:hover p { max-height: 200px; opacity: 1; margin-top: var(--spacing-sm); }
+
+/* Mobilvänlighet: Visa beskrivningar direkt på pekskärmar */
+@media (hover: none) {
+    .skill-card p {
+        max-height: none;
+        opacity: 0.9;
+        margin-top: var(--spacing-sm);
+    }
+}
 
 /* MJUKA FÄRDIGHETER */
 .soft-skills-container { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
@@ -423,12 +432,9 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     align-items: center;
     margin: 3rem 0 4rem 0;
     padding: 2.5rem 1rem;
-    
-    /* Uppdaterat för att smälta in i sidans bakgrund: */
     background: transparent;
     border: none;
     box-shadow: none;
-    
     width: 100%;
 }
 
@@ -466,9 +472,21 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 
 .topo-icon {
-    font-size: 2.5rem;
     margin-bottom: 0.5rem;
-    line-height: 1;
+    color: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.topo-icon svg {
+    width: 36px;
+    height: 36px;
+    transition: transform 0.3s ease;
+}
+
+.topo-node:hover .topo-icon svg {
+    transform: scale(1.1);
 }
 
 .topo-node h3 {
@@ -513,10 +531,10 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 
 .topo-horizontal-line {
-    width: 66%; /* Anpassad bredd för att binda ihop de tre grenarna */
+    width: 66%;
     height: 4px;
     background-color: var(--color-primary);
-    margin-bottom: -4px; /* Ser till att linjen och pilarna går ihop */
+    margin-bottom: -4px;
 }
 
 /* De 3 grenarna */
@@ -559,12 +577,9 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     border: 2px dashed var(--color-primary);
     border-radius: var(--border-radius);
     padding: 1.5rem;
-    
-    /* Uppdaterat för en subtil "glas-effekt" mot bakgrunden */
     background: rgba(43, 108, 176, 0.05);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
-    
     width: 100%;
     margin-top: 1rem;
     text-align: center;
@@ -626,5 +641,5 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     .topo-horizontal-line { display: none; }
     .topo-branches { flex-direction: column; align-items: center; }
     .topo-branch { width: 100%; max-width: 320px; }
-    .topo-arrow-down-short { height: 35px; } /* Längre pil när de staplas på höjden */
+    .topo-arrow-down-short { height: 35px; }
 }
