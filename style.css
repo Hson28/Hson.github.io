@@ -212,8 +212,9 @@ img { max-width: 100%; height: auto; display: block; }
 .button {
     display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
     padding: var(--spacing-sm) var(--spacing-lg);
-    border: none; border-radius: var(--border-radius); font-weight: 600; text-decoration: none; cursor: pointer;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast);
+    border: none; border-radius: var(--border-radius); font-weight: 600; font-family: inherit; font-size: 1rem;
+    text-decoration: none; cursor: pointer;
+    transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast), border-color var(--transition-fast);
     position: relative; box-shadow: var(--shadow-sm);
 }
 .button:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); filter: brightness(110%); }
@@ -221,6 +222,7 @@ img { max-width: 100%; height: auto; display: block; }
 .button-primary { background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover)); color: #ffffff; }
 .button-secondary { background-color: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border); }
 .button-secondary:hover { background-color: var(--color-secondary); }
+.button-secondary.is-copied { border-color: var(--color-primary); color: var(--color-primary); }
 
 .btn-icon {
     width: 18px;
@@ -246,7 +248,7 @@ img { max-width: 100%; height: auto; display: block; }
 .header-social-link:hover { color: var(--color-primary); transform: translateY(-2px); }
 .social-icon-svg { width: 1.25rem; height: 1.25rem; }
 
-/* Mobilmeny-knapp (Fixad så alla 3 linjer bildar ett perfekt X) */
+/* Mobilmeny-knapp */
 .nav-toggle {
     display: block; background: transparent; border: none; padding: 0.75rem; cursor: pointer; z-index: 10001;
     position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -256,7 +258,7 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-of-type(3) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-of-type(4) { transform: translateY(-8px) rotate(-45deg); }
 
-/* Navigationsmeny på mobil (Täckande bakgrund så texten bakom inte lyser igenom) */
+/* Navigationsmeny på mobil */
 .site-nav {
     position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; height: 100dvh;
     display: flex; flex-direction: column; justify-content: center; align-items: center;
@@ -350,13 +352,13 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     flex-shrink: 0;
 }
 
-/* --- UTBILDNINGSPROGRESS-MÄTARE --- */
+/* --- UTBILDNINGSPROGRESS-MÄTARE & KURSFILTER --- */
 .course-progress-wrapper {
     background-image: linear-gradient(to bottom right, var(--color-card-grad-start), var(--color-card-grad-end));
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     padding: 1rem 1.25rem;
-    margin-bottom: 2rem;
+    margin-bottom: 1.25rem;
     box-shadow: var(--shadow-sm);
 }
 
@@ -402,7 +404,39 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     opacity: 0.65;
 }
 
-/* --- PROJEKTKORT (SNABBARE ANIMATION) --- */
+.course-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+.filter-btn {
+    background-color: var(--color-card-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    padding: 0.45rem 1rem;
+    border-radius: 99px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-btn:hover {
+    border-color: var(--color-primary);
+    color: var(--color-primary);
+}
+
+.filter-btn.is-active {
+    background-color: var(--color-primary);
+    color: #ffffff;
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-sm);
+}
+
+/* --- PROJEKTKORT --- */
 .project-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-lg); margin-top: var(--spacing-md); }
 
 .project-card {
@@ -461,7 +495,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .cv-buttons { display: flex; flex-wrap: wrap; gap: var(--spacing-md); }
 
 /* ========================================
-   7. KONTAKTSEKTION
+   7. KONTAKTSEKTION & TILLBAKA TILL TOPPEN
    ======================================== */
 .contact { text-align: center; background-color: var(--color-card-bg); border-top: 1px solid var(--color-border); padding: var(--spacing-xl) 0; }
 .contact p { margin: 0 auto var(--spacing-lg) auto; font-size: 1.125rem; }
@@ -472,6 +506,39 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .social-links { display: flex; gap: var(--spacing-lg); }
 .social-links a { font-weight: 600; text-decoration: none; }
 .social-links a:hover { text-decoration: underline; }
+
+.back-to-top {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.75rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
+    color: #ffffff;
+    border: none;
+    box-shadow: var(--shadow-md);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 900;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(12px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+.back-to-top.is-visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+}
 
 @media (min-width: 768px) {
     h1 { font-size: 3rem; }
@@ -623,6 +690,16 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     border-color: var(--color-primary) transparent transparent transparent;
 }
 
+/* NY STAM-LINJE: Skapar tydligt mellanrum mellan Huvudswitch och det vågräta strecket */
+.topo-stem {
+    width: 4px;
+    height: 32px;
+    background: linear-gradient(to bottom, var(--color-primary) 50%, rgba(99, 179, 237, 0.25) 50%);
+    background-size: 100% 16px;
+    animation: data-flow 0.8s linear infinite;
+    margin: 0 auto;
+}
+
 /* Horisontell uppdelning för träd-strukturen */
 .topo-split-container {
     width: 100%;
@@ -693,7 +770,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 /* Kort vertikal pil med animerad dataström */
 .topo-arrow-down-short {
     width: 4px;
-    height: 25px;
+    height: 28px;
     background: linear-gradient(to bottom, var(--color-primary) 50%, rgba(99, 179, 237, 0.25) 50%);
     background-size: 100% 16px;
     animation: data-flow 0.8s linear infinite;
@@ -732,6 +809,18 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 
 .topo-cluster:hover {
     background: rgba(43, 108, 176, 0.1);
+}
+
+.qdevice-badge {
+    display: inline-block;
+    font-size: 0.72rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    background-color: var(--color-bg);
+    border: 1px dashed var(--color-primary);
+    padding: 0.2rem 0.65rem;
+    border-radius: 99px;
+    margin-bottom: 0.65rem;
 }
 
 .topo-cluster > h3 {
@@ -781,8 +870,33 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 
 /* Anpassning för mindre skärmar (mobiler) */
 @media (max-width: 900px) {
+    .topo-stem { display: none; }
     .topo-horizontal-line { display: none; }
     .topo-branches { flex-direction: column; align-items: center; }
     .topo-branch { width: 100%; max-width: 320px; }
     .topo-arrow-down-short { height: 35px; }
+}
+
+/* ========================================
+   12. UTSKRIFTSVY (PRINT STYLESHEET)
+   ======================================== */
+@media print {
+    .site-header, .threatmap-container, .course-filters, .back-to-top, .contact-buttons, .read-more {
+        display: none !important;
+    }
+    body, html {
+        background: #ffffff !important;
+        color: #000000 !important;
+    }
+    .project-card, .skill-card, .topo-node, .topo-cluster {
+        opacity: 1 !important;
+        transform: none !important;
+        box-shadow: none !important;
+        border: 1px solid #cccccc !important;
+        break-inside: avoid;
+    }
+    .skill-card p {
+        max-height: none !important;
+        opacity: 1 !important;
+    }
 }
