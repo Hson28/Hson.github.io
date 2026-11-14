@@ -2,10 +2,10 @@
 *  Portfölj-skript (Vanilla JS)
 *  Hanterar:
 *  1. Mörkt/Ljust Tema
-*  2. Språkväxling (FIXAD för flaggor)
-*  3. Mobilmeny (FIXAD)
+*  2. Språkväxling
+*  3. Mobilmeny
 *  4. Animationer (Endast skrivmaskin & scroll)
-*  5. Pop-ups för kurser och hemmalabb
+*  5. Pop-ups för kurser och diagram
 */
 (function () {
     "use strict";
@@ -79,13 +79,13 @@
             course6_desc: "Administration and configuration of systems according to security standards. Focus on system hardening and minimizing possible attack surfaces for installed services.",
             blog_course6: "<p>Right now, we are working practically with administering and configuring Linux and Unix systems. Since a vast majority of the world's servers run Linux, understanding how to secure them is crucial. We are practicing minimizing the attack surface by disabling unnecessary services, carefully configuring file permissions in the terminal, and hardening SSH access according to established security standards.</p>",
 
-            // Kurs 7 (Nu bland avklarade)
+            // Kurs 7 
             course7_title: "Network Security",
             course7_points: "30 YH Credits",
             course7_desc: "Management of network attacks, intrusion attempts, and malware. Practical work with firewalls, IDS/IPS systems, and secure protocols.",
             blog_course7: "<p>This course provided an in-depth understanding of technical network security with a strong focus on protecting organizational IT infrastructure and information. We studied and analyzed the most common types of network attacks, including full-scale attacks, web attacks, and malware propagation, as well as how to handle internal breaches of established security policies.</p><p>A central feature was practical work in detecting and responding to intrusion attempts. We delved into intrusion security by implementing and evaluating IDS/IPS systems, firewalls, and antivirus software. Additionally, we practiced analyzing and evaluating networks to independently investigate security flaws, take protective measures, and modify security protocols and encryption.</p>",
 
-            // Kurs 8 (Nu bland avklarade)
+            // Kurs 8 
             course8_title: "Ethical Hacking",
             course8_points: "25 YH Credits",
             course8_desc: "Methods for penetration testing, vulnerability scanning, network intrusions, lateral movement, incident response, and digital forensics.",
@@ -108,8 +108,48 @@
 
             // --- HEMMALABB TEXTER (ENGELSKA) ---
             homelab_h2: "Home Lab",
-            homelab_intro: "A home lab is never really 'finished' – there is always something to optimize or a new technology to test. From previously being spread out on a shelf, the entire build is now housed in a modified IKEA cabinet with a 10\" rack and temperature-controlled cooling. The lab serves as my personal test environment where I work hands-on with cluster management, virtualization, and network architecture, which has deepened my technical understanding in a way that is hard to achieve just by reading.",
+            homelab_intro: "If there's one thing I've learned from building and running a home lab, it's that it's never really 'finished'. Either there's something to optimize, a quick fix that should be done properly, or a new technology that just has to be tested. It's exactly that feeling of never quite being satisfied and always seeing the next project on the horizon that makes it so much fun.",
+            homelab_intro_2: "From previously sitting scattered on a normal shelf, the entire build has now moved into a modified IKEA cabinet with a 10\" rack and temperature-controlled cooling. On the inside, a simpler home setup has grown into a significantly more robust environment with a dedicated hardware firewall at the front, and a Proxmox cluster with three active nodes. In addition, I have a standalone management node that, among other things, handles the cluster's quorum and secure remote access.",
             
+            // Topologi (Interaktiv diagram)
+            topo_h3: "Interactive Network Topology",
+            topo_click_info: "(Click the nodes to read more)",
+            
+            topo_net_title: "Internet",
+            topo_net_desc: "Upstream network",
+            topo_net_modal: "<p>The internet connection arrives via double-NAT from the upstream equipment. No incoming ports are open to the public; all external access is handled exclusively via encrypted outbound tunnels (Tailscale and Cloudflare Tunnels/playit.gg).</p>",
+            
+            topo_fw_title: "Firewall",
+            topo_fw_desc: "Cisco ASA 5506-X",
+            topo_fw_role: "Gateway & DHCP",
+            topo_fw_modal: "<p>Acts as the homelab's primary line of defense and gateway. The firewall distributes internal IP addresses via DHCP and manages security policies and routing between the network's inside and outside.</p>",
+            
+            topo_sw_title: "Main Switch",
+            topo_sw_desc: "MikroTik hEX",
+            topo_sw_role: "Distribution",
+            topo_sw_modal: "<p>A central distribution switch that routes the connection from the firewall to the remaining physical devices in the 10\" rack. Future logical VLAN segmentation is also being prepared here.</p>",
+            
+            topo_ext_title: "Port Expansion",
+            topo_ext_desc: "Tenda 5-port Switch",
+            topo_ext_role: "Infrastructure",
+            topo_ext_modal: "<p>A simple unmanaged switch used to expand the number of physical ports in the rack, ensuring all server nodes receive a stable wired gigabit connection.</p>",
+            
+            topo_ap_title: "Wireless Lab Net",
+            topo_ap_desc: "Cudy Travel Router (AP)",
+            topo_ap_role: "Access Point",
+            topo_ap_modal: "<p>Functions as a dedicated wireless access point with routing and DHCP disabled. Provides secure wireless access exclusively to the lab's isolated SSID and subnet.</p>",
+            
+            topo_mgmt_title: "Management & VPN",
+            topo_mgmt_desc: "Okdo Radxa 4C",
+            topo_mgmt_role: "Quorum & Access",
+            topo_mgmt_modal: "<p>Critical standalone management node. Runs <strong>Tailscale VPN</strong> as a subnet router, giving me secure remote access to the entire lab no matter where I am.</p><p>Furthermore, it acts as a <strong>QDevice</strong> for the Proxmox cluster. If one of the large servers needs a reboot or goes down, the Radxa ensures the cluster retains its quorum (vote majority) and continues to operate undisturbed.</p>",
+            
+            topo_cluster_title: "Proxmox Cluster (Lab Cluster)",
+            topo_cluster_desc: "High Availability Compute",
+            topo_cluster_role: "Virtualization",
+            topo_cluster_modal: "<p>A hyper-converged cluster consisting of three physical micro-computers. The environment relies entirely on local storage for speed but ensures stability through smart cluster routing and the external quorum support from the management node.</p><p>It hosts a series of isolated LXC containers and virtual machines, including dedicated Docker hosts, monitoring dashboards, and alternative Debian-based management environments.</p>",
+
+            // Homelab Cards
             lab1_title: "Network & Infrastructure",
             lab1_sub: "Hardware Firewall",
             lab1_desc: "Dedicated hardware firewall and switch infrastructure. Planning and preparations for strict VLAN segmentation.",
@@ -555,7 +595,7 @@
         
         dom.navLinks.forEach(link => link.addEventListener("click", closeMenu));
         
-        // Modal-lyssnare
+        // Modal-lyssnare för både diagram och kurskort
         dom.modalTriggers.forEach(trigger => {
             trigger.addEventListener('click', () => openModal(trigger));
         });
