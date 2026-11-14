@@ -232,13 +232,11 @@ img { max-width: 100%; height: auto; display: block; }
 .header-container { display: flex; justify-content: space-between; align-items: center; position: relative; }
 .logo { display: flex; align-items: center; gap: var(--spacing-md); }
 
-/* Header Social Icons */
 .header-socials { display: flex; gap: 0.75rem; align-items: center; }
 .header-social-link { display: flex; align-items: center; color: var(--color-text); transition: color var(--transition-fast), transform var(--transition-fast); }
 .header-social-link:hover { color: var(--color-primary); transform: translateY(-2px); }
 .social-icon-svg { width: 1.25rem; height: 1.25rem; }
 
-/* Mobilmeny-knapp */
 .nav-toggle {
     display: block; background: transparent; border: none; padding: 0.75rem; cursor: pointer; z-index: 9999;
     position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
@@ -248,7 +246,6 @@ img { max-width: 100%; height: auto; display: block; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(2) { opacity: 0; }
 .nav-toggle[aria-expanded="true"] .hamburger-line:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-/* Navigationsmeny */
 .site-nav {
     position: fixed; top: 0; left: 0; width: 100%; height: 100vh; padding-top: var(--spacing-xl);
     background-color: var(--color-bg-transparent); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
@@ -287,12 +284,10 @@ html[lang="en"] .flag-sv { display: block; }
 section { padding: var(--spacing-xl) 0; }
 section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(even) { background-color: transparent; }
 
-/* Hero */
 .hero { padding-top: var(--spacing-lg); padding-bottom: var(--spacing-xl); text-align: center; }
 .hero-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg); }
 .hero-tagline { font-size: 1.25rem; margin-bottom: var(--spacing-lg); color: var(--color-text); opacity: 0.9; }
 
-/* Skrivmaskins-höjd fix */
 .hero-text h1[data-lang-key="hero_h1"] { min-height: 2.6em; position: relative; }
 .hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 6em; }
 @media (min-width: 768px) {
@@ -303,10 +298,8 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .typing-effect::after { content: '|'; display: inline-block; margin-left: 0.15em; color: var(--color-text); animation: blink 0.7s infinite; }
 @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 
-/* Underrubriker */
 .section-subtitle { font-size: 1.5rem; color: var(--color-text); margin-bottom: var(--spacing-md); border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: var(--spacing-xs); }
 
-/* Projekt */
 .cert-list { list-style: disc; padding-left: var(--spacing-lg); }
 .cert-list li { margin-bottom: var(--spacing-sm); }
 .project-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-lg); margin-top: var(--spacing-md); }
@@ -325,7 +318,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .project-role { font-size: 0.875rem; font-weight: 600; color: var(--color-primary); margin-bottom: var(--spacing-sm); text-transform: uppercase; }
 .project-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
 
-/* TAGS */
 .tag { background-color: var(--color-badge-bg); color: var(--color-badge-text); border: 1px solid var(--color-badge-border); padding: var(--spacing-xs) var(--spacing-sm); border-radius: 99px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
 .tag-upcoming { background-color: var(--color-secondary); color: var(--color-text); border: 1px dashed var(--color-primary); font-style: italic; }
 .tag-ongoing { background-color: var(--color-primary); color: #ffffff; border-color: var(--color-primary-hover); box-shadow: 0 0 8px rgba(43, 108, 176, 0.4); }
@@ -357,7 +349,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .soft-tag { font-size: 1rem; padding: var(--spacing-sm) var(--spacing-md); background-color: var(--color-card-bg); border: 1px solid var(--color-border); color: var(--color-text); border-radius: 99px; box-shadow: var(--shadow-sm); transition: transform var(--transition-fast), border-color var(--transition-fast); cursor: default; }
 .soft-tag:hover { transform: translateY(-2px); border-color: var(--color-primary); color: var(--color-primary); }
 
-/* CV */
 .cv .button { margin-right: var(--spacing-md); margin-bottom: var(--spacing-md); }
 
 /* ========================================
@@ -367,7 +358,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .contact p { margin: 0 auto var(--spacing-lg) auto; font-size: 1.125rem; }
 .contact-buttons { display: flex; justify-content: center; gap: var(--spacing-md); flex-wrap: wrap; }
 
-/* Footer */
 .site-footer { padding: var(--spacing-lg) 0; background-color: var(--color-card-bg); border-top: 1px solid var(--color-border); font-size: 0.875rem; }
 .footer-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-md); text-align: center; }
 .social-links { display: flex; gap: var(--spacing-lg); }
@@ -425,7 +415,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .modal-body { color: var(--color-text); font-size: 1rem; line-height: 1.6; }
 
 /* ========================================
-   11. INTERAKTIV NÄTVERKSTOPOLOGI
+   11. INTERAKTIV NÄTVERKSTOPOLOGI (TRÄD-LAYOUT)
    ======================================== */
 .topology-diagram {
     display: flex;
@@ -437,6 +427,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow-sm);
+    width: 100%;
 }
 
 .topo-flow {
@@ -444,14 +435,15 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     flex-direction: column;
     align-items: center;
     width: 100%;
-    max-width: 900px;
+    max-width: 1000px;
 }
 
+/* De klickbara rutorna */
 .topo-node {
     background-image: linear-gradient(to bottom right, var(--color-card-grad-start), var(--color-card-grad-end));
     border: 2px solid var(--color-primary);
     border-radius: var(--border-radius);
-    padding: 1rem 1.5rem;
+    padding: 1.25rem 1.5rem;
     text-align: center;
     min-width: 240px;
     box-shadow: var(--shadow-sm);
@@ -459,6 +451,10 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .topo-node:hover {
@@ -468,14 +464,16 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 
 .topo-icon {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     margin-bottom: 0.5rem;
+    line-height: 1;
 }
 
 .topo-node h3 {
-    font-size: 1.1rem;
+    font-size: 1.15rem;
     margin: 0 0 0.25rem 0;
     color: var(--color-text);
+    border-bottom: none;
 }
 
 .topo-node p {
@@ -484,9 +482,10 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     opacity: 0.85;
 }
 
+/* Långa vertikala pilar mellan noderna */
 .topo-arrow-down {
-    width: 3px;
-    height: 35px;
+    width: 4px;
+    height: 40px;
     background-color: var(--color-primary);
     margin: 0 auto;
     position: relative;
@@ -496,29 +495,71 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     content: '';
     position: absolute;
     bottom: -6px;
-    left: -5.5px;
-    border-width: 7px 7px 0;
+    left: -6px;
+    border-width: 8px 8px 0;
     border-style: solid;
     border-color: var(--color-primary) transparent transparent transparent;
 }
 
+/* Horisontell uppdelning för träd-strukturen */
+.topo-split-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0; 
+}
+
+.topo-horizontal-line {
+    width: 66%; /* Anpassad bredd för att binda ihop de tre grenarna */
+    height: 4px;
+    background-color: var(--color-primary);
+    margin-bottom: -4px; /* Ser till att linjen och pilarna går ihop */
+}
+
+/* De 3 grenarna */
 .topo-branches {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem;
     width: 100%;
-    margin-top: 1.5rem;
+    gap: 1.5rem;
 }
 
+.topo-branch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Kort vertikal pil som faller ned från den horisontella linjen */
+.topo-arrow-down-short {
+    width: 4px;
+    height: 25px;
+    background-color: var(--color-primary);
+    position: relative;
+}
+
+.topo-arrow-down-short::after {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: -6px;
+    border-width: 8px 8px 0;
+    border-style: solid;
+    border-color: var(--color-primary) transparent transparent transparent;
+}
+
+/* Proxmox-klustret (Stor streckad box i botten på switch-grenen) */
 .topo-cluster {
     border: 2px dashed var(--color-primary);
     border-radius: var(--border-radius);
     padding: 1.5rem;
     background: rgba(43, 108, 176, 0.04);
     width: 100%;
-    max-width: 700px;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     text-align: center;
     transition: background-color var(--transition-fast);
     cursor: pointer;
@@ -532,6 +573,8 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     color: var(--color-primary);
     margin-top: 0;
     font-size: 1.25rem;
+    margin-bottom: 0.25rem;
+    border-bottom: none;
 }
 
 .topo-cluster > p {
@@ -542,7 +585,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 
 .cluster-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
     gap: 1rem;
 }
 
@@ -552,6 +595,12 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     border-radius: 8px;
     padding: 0.75rem;
     box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.topo-cluster:hover .cluster-item {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
 }
 
 .cluster-item strong {
@@ -563,4 +612,12 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .cluster-item small {
     font-size: 0.8rem;
     opacity: 0.75;
+}
+
+/* Anpassning för mindre skärmar (mobiler) */
+@media (max-width: 900px) {
+    .topo-horizontal-line { display: none; }
+    .topo-branches { flex-direction: column; align-items: center; }
+    .topo-branch { width: 100%; max-width: 320px; }
+    .topo-arrow-down-short { height: 35px; } /* Längre pil när de staplas på höjden */
 }
