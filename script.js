@@ -4,7 +4,7 @@
 *  1. Mörkt/Ljust Tema
 *  2. Språkväxling
 *  3. Mobilmeny
-*  4. Animationer (Skrivmaskin & scroll)
+*  4. Animationer (Skrivmaskin & snabb scroll)
 *  5. Pop-ups för kurser och diagram (inkl. taggar & tangentbordsstöd)
 */
 (function () {
@@ -495,7 +495,7 @@
     }
 
 
-    // --- 9. Scroll-animation ---
+    // --- 9. Scroll-animation (OPTIMERAD: Ingen kumulativ fördröjning) ---
     function initScrollObserver() {
         const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
@@ -506,14 +506,18 @@
 
         const observerOptions = {
             root: null, 
-            rootMargin: '0px',
-            threshold: 0.1 
+            rootMargin: '0px 0px 60px 0px', // Triggar strax innan kortet når skärmkanten
+            threshold: 0.05 
         };
 
         const observerCallback = (entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
+                    // Rensa fördröjningen efter intåg så att hover-effekten blir omedelbar
+                    setTimeout(() => {
+                        entry.target.style.transitionDelay = '0ms';
+                    }, 450);
                     observer.unobserve(entry.target);
                 }
             });
@@ -521,8 +525,10 @@
 
         const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
 
+        // Nollställer fördröjningen för varje ny rad med 3 kort (0ms, 70ms, 140ms)
         dom.projectCards.forEach((card, index) => {
-            card.style.transitionDelay = `${index * 100}ms`;
+            const columnDelay = (index % 3) * 70;
+            card.style.transitionDelay = `${columnDelay}ms`;
             scrollObserver.observe(card);
         });
     }
