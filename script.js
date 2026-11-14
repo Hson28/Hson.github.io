@@ -3,7 +3,7 @@
 *  Hanterar:
 *  1. Mörkt/Ljust Tema
 *  2. Språkväxling
-*  3. Mobilmeny
+*  3. Mobilmeny (med inline-fallback mot mobil-cache)
 *  4. Animationer (Skrivmaskin & snabb scroll)
 *  5. Pop-ups för kurser och diagram (inkl. taggar & tangentbordsstöd)
 *  6. Kopiera mejladress & Tillbaka till toppen-pil
@@ -232,6 +232,7 @@
     // --- 2. DOM-element ---
     const dom = {
         html: document.documentElement,
+        header: document.querySelector(".site-header"),
         themeToggle: document.querySelector(".theme-toggle"),
         langToggle: document.querySelector(".lang-toggle"),
         navToggle: document.querySelector(".nav-toggle"),
@@ -437,6 +438,12 @@
         if (dom.navList) dom.navList.setAttribute("data-visible", nextState);
         dom.navToggle.setAttribute("aria-expanded", nextState);
         dom.html.style.overflow = nextState ? "hidden" : "auto";
+
+        // Garantifallback om webbläsaren har cachat en äldre CSS-fil på mobil
+        if (window.innerWidth < 768) {
+            if (dom.header) dom.header.style.zIndex = "1000";
+            dom.navMenu.style.backgroundColor = "var(--color-bg)";
+        }
     }
 
     function closeMenu() {
