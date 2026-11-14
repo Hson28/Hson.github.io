@@ -4,8 +4,8 @@
 *  1. Mörkt/Ljust Tema
 *  2. Språkväxling
 *  3. Mobilmeny
-*  4. Animationer (Endast skrivmaskin & scroll)
-*  5. Pop-ups för kurser och diagram
+*  4. Animationer (Skrivmaskin & scroll)
+*  5. Pop-ups för kurser och diagram (inkl. tangentbordsstöd)
 */
 (function () {
     "use strict";
@@ -73,29 +73,31 @@
             course5_desc: "Minimizing attack surfaces through hardening. Covers LDAP management, Identity and Access (IDA) Control, password policies, and logging/auditing.",
             blog_course5: "<p>This intensive course provided an advanced technical specialization in security for Microsoft environments, from the client side to the server level. The training began with a detailed analysis of the current threat landscape and Windows' underlying architecture. I gained in-depth knowledge of the operating system's core (Kernel), LSA, SAM, and boot security. After that, we shifted focus to actively minimizing the attack surface through system hardening. This included working with security baselines, implementing WDAC (Windows Defender Application Control) and ASR (Attack Surface Reduction) rules, as well as securing network protocols like SMB.</p><p>A critical area during the course was identity and access management. I delved into protocols such as Kerberos and LDAP, configured Extended Protection for Authentication (EPA), and learned advanced techniques for protecting credentials and secrets using Credential Guard, HVCI, and DMSA. To be able to detect and respond to threats, great emphasis was placed on logging and monitoring. I was trained in structuring event logs and audit policies, as well as using powerful monitoring tools like Sysmon, Microsoft Defender, and Microsoft Sentinel.</p><p>In the later parts of the course, modern device management and data protection were covered. I learned to control and secure devices via GPO and Intune, and to protect data at rest and in transit using encryption technologies like BitLocker, TPM, TLS, and QUIC. The training concluded with highly advanced security mechanisms, such as Virtualization-Based Security (VBS), Shadow Stack, and Control Flow Guard (CFG). All of this was finally tied together in a comprehensive deep dive into the security architecture of the new Windows Server 2025, where we evaluated security from the hardware and silicon level all the way up to specific workloads.</p>",
 
-            // Kurs 6
+            // Kurs 6 (Nu helt avklarad)
             course6_title: "IT Security Linux, Unix and Mac",
             course6_points: "20 YH Credits",
-            course6_desc: "Administration and configuration of systems according to security standards. Focus on system hardening and minimizing possible attack surfaces for installed services.",
-            blog_course6: "<p>Right now, we are working practically with administering and configuring Linux and Unix systems. Since a vast majority of the world's servers run Linux, understanding how to secure them is crucial. We are practicing minimizing the attack surface by disabling unnecessary services, carefully configuring file permissions in the terminal, and hardening SSH access according to established security standards.</p>",
+            course6_desc: "Administration, configuration, and hardening of Linux, Unix, and Mac environments according to security standards to minimize attack surfaces and secure services.",
+            blog_course6: "<p>This course provided an in-depth understanding of how Linux, Unix, and Mac systems are structured and secured in professional environments. Starting with Ubuntu LTS and Linux-based virtualization (such as KVM), we worked systematically to analyze threat landscapes and implement both foundational and advanced system hardening according to established security standards.</p><p>A major focus was minimizing potential attack surfaces through strict control of users, file permissions, and authentication mechanisms, alongside auditing active processes and installed system services. We also delved into OS-level network security and how to configure robust logging, traceability, and detection to identify anomalies early.</p><p>Finally, the technical aspects were tied together with preventive security work, risk analysis, and advanced defense mechanisms. These skills were tested in an extensive 48-hour practical examination where an entire environment had to be hardened, documented, and defended against specific security requirements.</p>",
 
-            // Kurs 7 
+            // Kurs 7
             course7_title: "Network Security",
             course7_points: "30 YH Credits",
             course7_desc: "Management of network attacks, intrusion attempts, and malware. Practical work with firewalls, IDS/IPS systems, and secure protocols.",
             blog_course7: "<p>This course provided an in-depth understanding of technical network security with a strong focus on protecting organizational IT infrastructure and information. We studied and analyzed the most common types of network attacks, including full-scale attacks, web attacks, and malware propagation, as well as how to handle internal breaches of established security policies.</p><p>A central feature was practical work in detecting and responding to intrusion attempts. We delved into intrusion security by implementing and evaluating IDS/IPS systems, firewalls, and antivirus software. Additionally, we practiced analyzing and evaluating networks to independently investigate security flaws, take protective measures, and modify security protocols and encryption.</p>",
 
-            // Kurs 8 
+            // Kurs 8
             course8_title: "Ethical Hacking",
             course8_points: "25 YH Credits",
             course8_desc: "Methods for penetration testing, vulnerability scanning, network intrusions, lateral movement, incident response, and digital forensics.",
             blog_course8: "<p>This course provided an in-depth practical understanding of how an attacker operates and how to proactively identify and remediate vulnerabilities, including hardware-based ones. We started with fundamental methods for reconnaissance, network scanning with Nmap, and traffic analysis via Wireshark. From there, we moved on to advanced concepts such as initial access, payload creation, brute forcing, and establishing persistence in an environment.</p><p>A significant portion of the training focused on post-exploitation and lateral movement, practicing how to navigate through domain environments using tools like Metasploit, Meterpreter, and Responder. The course also effectively bridged the offensive perspective with defensive security by evaluating monitoring and intrusion detection strategies, establishing incident response plans, and applying digital forensics to secure evidence and recover systems after an incident.</p>",
 
-            // Kommande kurser
+            // Kurs 9 (Pågående)
             course9_title: "Advanced IT Security",
             course9_points: "25 YH Credits",
             course9_desc: "Managing complex security architectures, incident response (IR), log analysis in SIEM, and SOC tools.",
+            blog_course9: "<p>Right now, we are diving deep into advanced IT security with a focus on complex security architectures and practical defensive operations. We are working with log analysis in SIEM systems, monitoring via SOC tools, and structured Incident Response (IR) to effectively detect, analyze, and isolate advanced threats.</p>",
             
+            // Kommande kurser
             course10_title: "Cloud Security",
             course10_points: "25 YH Credits",
             course10_desc: "Security configuration and architecture in cloud environments (e.g., Azure/AWS), identity management (IAM), and Zero Trust.",
@@ -111,7 +113,7 @@
             homelab_intro: "If there's one thing I've learned from building and running a home lab, it's that it's never really 'finished'. Either there's something to optimize, a quick fix that should be done properly, or a new technology that just has to be tested. It's exactly that feeling of never quite being satisfied and always seeing the next project on the horizon that makes it so much fun.",
             homelab_intro_2: "From previously sitting scattered on a normal shelf, the entire build has now moved into a modified IKEA cabinet with a 10\" rack and temperature-controlled cooling. On the inside, a simpler home setup has grown into a significantly more robust environment with a dedicated hardware firewall at the front, and a Proxmox cluster with three active nodes. In addition, I have a standalone management node that, among other things, handles the cluster's quorum and secure remote access.",
             
-            // Topologi (Interaktiv diagram)
+            // Topologi (Interaktivt diagram)
             topo_h3: "Interactive Network Topology",
             topo_click_info: "(Click the nodes to read more)",
             
@@ -170,26 +172,26 @@
             skills_tech: "Technical Skills",
             skills_soft: "Personal Traits",
             
-            skill_network_title: "Network & Infrastructure",
-            skill_network_desc: "Network design and security (VLANs, ACLs). Experience with Cisco devices, traffic analysis using Wireshark, and secure connections (VPN, Bastion).",
+            skill_network_title: "Network & Firewalls",
+            skill_network_desc: "Design and segmentation (VLANs, ACLs), Cisco ASA, IDS/IPS, traffic analysis using Wireshark, and secure VPN solutions (Tailscale, OpenVPN).",
             
             skill_windows_title: "Windows & Active Directory",
             skill_windows_desc: "Hardening of Windows environments (GPO, WDAC, ASR). Secure management of identities and domains via AD DS, LDAP, and Kerberos.",
             
             skill_linux_title: "Linux & Hardening",
-            skill_linux_desc: "CLI administration (Debian/Ubuntu). Minimizing attack surfaces through service configuration, strict file permissions, and SSH hardening.",
+            skill_linux_desc: "Administration and hardening (Ubuntu/Debian). Minimizing attack surfaces, service isolation, strict file permissions, logging, and SSH hardening.",
             
             skill_iam_title: "IAM & Zero Trust",
             skill_iam_desc: "Implementation of Zero Trust architecture. Management of PKI, digital certificates, SSO, MFA, and protection technologies like Credential Guard.",
             
-            skill_vm_title: "Virtualization & Cloud",
-            skill_vm_desc: "Building high-availability environments with Hyper-V and virtual machines. Integration with cloud services (Azure) and Disaster Recovery.",
+            skill_vm_title: "Virtualization & Clusters",
+            skill_vm_desc: "Cluster management with Proxmox VE, KVM, and Hyper-V. Service isolation using LXC containers and Docker, plus cloud integration (Azure) and backup.",
             
             skill_grc_title: "Risk Analysis & GRC",
             skill_grc_desc: "Application of ISO 27000 and NIST RMF. Practical work with incident response plans, security policies, and compliance (GDPR, NIS2).",
             
-            skill_monitoring_title: "Monitoring & Logging",
-            skill_monitoring_desc: "Threat and unauthorized activity detection. Configuration of event logs and analysis via tools like Sysmon and Microsoft Sentinel.",
+            skill_monitoring_title: "Pentesting, SIEM & Forensics",
+            skill_monitoring_desc: "Vulnerability scanning and ethical hacking (Kali, Nmap, Metasploit) combined with log analysis (Sysmon, SIEM) and digital forensics.",
             
             skill_endpoint_title: "Endpoint & Data Protection",
             skill_endpoint_desc: "Device management via Intune. Data encryption (BitLocker, TPM) and hardware-level protection mechanisms (VBS, HVCI, CFG).",
@@ -249,7 +251,7 @@
     let currentLang = "sv";
     let isTyping = false; 
     let typingTimeout = null; 
-    let activeCard = null; // För att hålla koll på öppen modal
+    let activeCard = null;
 
     // --- 4. Temahantering ---
     function applyTheme(theme) {
@@ -368,12 +370,10 @@
             }
         });
         
-        // Uppdatera modalens innehåll om den råkar vara öppen när man byter språk
         if (activeCard) {
             openModal(activeCard);
         }
 
-        // H1: 50ms, Tagline: 25ms
         startTypeEffect(dom.heroH1, h1Text, 50, () => {
             startTypeEffect(dom.heroTagline, taglineText, 25, null);
         });
@@ -583,6 +583,9 @@
         if (!dom.modal) return;
         dom.modal.setAttribute('aria-hidden', 'true');
         dom.html.style.overflow = 'auto';
+        if (activeCard) {
+            activeCard.focus();
+        }
         activeCard = null;
     }
 
@@ -595,9 +598,15 @@
         
         dom.navLinks.forEach(link => link.addEventListener("click", closeMenu));
         
-        // Modal-lyssnare för både diagram och kurskort
+        // Modal-lyssnare (musklick + tangentbord Enter/Mellanslag)
         dom.modalTriggers.forEach(trigger => {
             trigger.addEventListener('click', () => openModal(trigger));
+            trigger.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(trigger);
+                }
+            });
         });
         dom.modalClosers.forEach(closer => {
             closer.addEventListener('click', closeModal);
