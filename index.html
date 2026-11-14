@@ -370,8 +370,125 @@
         <div class="container">
             <h2 data-lang-key="homelab_h2">Hemmalabb</h2>
             <p data-lang-key="homelab_intro">
-                Ett hemmalabb blir aldrig riktigt "klart" – antingen finns det något som kan optimeras eller en ny teknik att testa. Från att tidigare ha stått i en hylla är hela bygget nu inflyttat i ett modifierat IKEA-skåp med ett 10"-rack och temperaturstyrd kylning. Labbet fungerar som min egen testmiljö där jag får arbeta hands-on med klusterhantering, virtualisering och nätverksarkitektur, vilket har fördjupat min tekniska förståelse på ett sätt som är svårt att läsa sig till.
+                Om det är något jag har lärt mig av att bygga och driva ett hemmalabb, så är det att det aldrig blir riktigt "klart". Antingen finns det något som kan optimeras, en fulfix som borde göras om ordentligt, eller en ny teknik som bara måste testas. Det är väl lite det som är grejen, känslan av att aldrig riktigt bli nöjd och alltid se nästa projekt i horisonten som gör det så kul.
             </p>
+            <p data-lang-key="homelab_intro_2">
+                Från att tidigare ha stått utspritt i en vanlig hylla har hela bygget nu flyttat in i ett modifierat IKEA-skåp med ett 10"-rack och temperaturstyrd kylning. På insidan har ett enklare hemmabygge vuxit till en betydligt mer robust miljö med en dedikerad hårdvarubrandvägg i fronten, och ett kluster med tre aktiva noder. Till det har jag en fristående management-nod som bland annat sköter klustrets kvorum och säker fjärråtkomst.
+            </p>
+
+            <!-- INTERAKTIV TOPOLOGI -->
+            <div class="topology-diagram">
+                <h3 class="section-subtitle" style="margin-bottom: 0.5rem;" data-lang-key="topo_h3">Interaktiv Nätverkstopologi</h3>
+                <p style="text-align: center; margin-bottom: 2rem; font-size: 0.9rem; opacity: 0.8;" data-lang-key="topo_click_info">
+                    (Klicka på noderna för att läsa mer)
+                </p>
+                
+                <div class="topo-flow">
+                    <!-- Internet -->
+                    <div class="topo-node modal-trigger">
+                        <div class="topo-icon">🌐</div>
+                        <h3 data-lang-key="topo_net_title">Internet</h3>
+                        <p data-lang-key="topo_net_desc">Uppströms nätverk</p>
+                        <p class="project-role" style="display:none;" data-lang-key="topo_net_title">Internet</p>
+                        <div class="course-blog" data-lang-key="topo_net_modal">
+                            <p>Internetanslutningen anländer via dubbel-NAT från uppströmsutrustningen. Inga inkommande portar är öppna för allmänheten; all extern åtkomst hanteras via krypterade utgående tunnlar (Tailscale och Cloudflare Tunnels/playit.gg).</p>
+                        </div>
+                    </div>
+                    
+                    <div class="topo-arrow-down"></div>
+                    
+                    <!-- Brandvägg -->
+                    <div class="topo-node modal-trigger">
+                        <div class="topo-icon">🧱</div>
+                        <h3 data-lang-key="topo_fw_title">Brandvägg</h3>
+                        <p data-lang-key="topo_fw_desc">Cisco ASA 5506-X</p>
+                        <p class="project-role" style="display:none;" data-lang-key="topo_fw_role">Gateway & DHCP</p>
+                        <div class="course-blog" data-lang-key="topo_fw_modal">
+                            <p>Fungerar som hemmalabbets primära försvarslinje och gateway. Brandväggen delar ut interna IP-adresser via DHCP och hanterar säkerhetspolicyer och routing mellan nätverkets insida och utsida.</p>
+                        </div>
+                    </div>
+
+                    <div class="topo-arrow-down"></div>
+
+                    <!-- Switch -->
+                    <div class="topo-node modal-trigger">
+                        <div class="topo-icon">🔀</div>
+                        <h3 data-lang-key="topo_sw_title">Huvudswitch</h3>
+                        <p data-lang-key="topo_sw_desc">MikroTik hEX</p>
+                        <p class="project-role" style="display:none;" data-lang-key="topo_sw_role">Distribution</p>
+                        <div class="course-blog" data-lang-key="topo_sw_modal">
+                            <p>En central distributionsswitch som delar ut uppkopplingen från brandväggen till det resterande fysiska nätverket i 10"-racket. Här förbereds även framtida logisk VLAN-segmentering.</p>
+                        </div>
+                    </div>
+
+                    <div class="topo-arrow-down"></div>
+                    
+                    <!-- Förgreningar (Branches) -->
+                    <div class="topo-branches">
+                        
+                        <div class="topo-node modal-trigger">
+                            <div class="topo-icon">🔌</div>
+                            <h3 data-lang-key="topo_ext_title">Portutökning</h3>
+                            <p data-lang-key="topo_ext_desc">Tenda 5-ports Switch</p>
+                            <p class="project-role" style="display:none;" data-lang-key="topo_ext_role">Infrastruktur</p>
+                            <div class="course-blog" data-lang-key="topo_ext_modal">
+                                <p>En okomplicerad omanagerad switch som används för att utöka antalet fysiska portar i racket. Den säkerställer att alla server-noder får stabil trådad gigabit-anslutning.</p>
+                            </div>
+                        </div>
+
+                        <div class="topo-node modal-trigger">
+                            <div class="topo-icon">📡</div>
+                            <h3 data-lang-key="topo_ap_title">Trådlöst Labbnät</h3>
+                            <p data-lang-key="topo_ap_desc">Cudy Reserouter (AP)</p>
+                            <p class="project-role" style="display:none;" data-lang-key="topo_ap_role">Accesspunkt</p>
+                            <div class="course-blog" data-lang-key="topo_ap_modal">
+                                <p>Fungerar som en dedikerad trådlös accesspunkt där routing och DHCP-funktioner stängts av. Ger trådlös räckvidd uteslutande till labbets isolerade SSID och subnät.</p>
+                            </div>
+                        </div>
+
+                        <div class="topo-node modal-trigger">
+                            <div class="topo-icon">🖥️</div>
+                            <h3 data-lang-key="topo_mgmt_title">Management & VPN</h3>
+                            <p data-lang-key="topo_mgmt_desc">Okdo Radxa 4C</p>
+                            <p class="project-role" style="display:none;" data-lang-key="topo_mgmt_role">Kvorum & Åtkomst</p>
+                            <div class="course-blog" data-lang-key="topo_mgmt_modal">
+                                <p>Kritisk fristående management-nod. Driver <strong>Tailscale VPN</strong> som subnet router vilket ger mig säker fjärråtkomst till hela labbet oavsett var jag befinner mig.</p>
+                                <p>Utöver detta agerar den <strong>QDevice</strong> för Proxmox-klustret. Om en av de stora servrarna måste startas om eller går ner ser Okdon till att klustret behåller sitt kvorum (röstmajoritet) och fortsätter fungera ostört.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="topo-arrow-down" style="margin-top: 1.5rem;"></div>
+
+                    <!-- Proxmox Kluster -->
+                    <div class="topo-cluster modal-trigger">
+                        <h3 data-lang-key="topo_cluster_title">Proxmox-kluster (Labbkluster)</h3>
+                        <p data-lang-key="topo_cluster_desc">High Availability Compute</p>
+                        <p class="project-role" style="display:none;" data-lang-key="topo_cluster_role">Virtualisering</p>
+                        
+                        <div class="cluster-grid">
+                            <div class="cluster-item">
+                                <strong>Nod 1</strong>
+                                <small>HP EliteDesk</small>
+                            </div>
+                            <div class="cluster-item">
+                                <strong>Nod 2</strong>
+                                <small>Dell OptiPlex</small>
+                            </div>
+                            <div class="cluster-item">
+                                <strong>Nod 3</strong>
+                                <small>Lenovo M700</small>
+                            </div>
+                        </div>
+                        
+                        <div class="course-blog" data-lang-key="topo_cluster_modal">
+                            <p>Ett hyperkonvergerat kluster bestående av tre fysiska micro-datorer. Miljön förlitar sig helt på lokal lagring för hastighet, men säkerställer stabilitet genom smart kluster-routing och det externa kvorum-stödet från management-noden.</p>
+                            <p>Här driftas en rad isolerade LXC-containrar och virtuella maskiner, bland annat dedikerade Docker-värdar, övervakningsdashboards och alternativa management-miljöer baserade på Debian.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
             
             <div class="project-grid">
                 
@@ -485,7 +602,7 @@
                     </svg>
                     <h3 data-lang-key="skill_iam_title">IAM & Zero Trust</h3>
                     <p data-lang-key="skill_iam_desc">
-                        Implementering av Zero Trust-arkitektur. Hantering av PKI, digital certificates, SSO, MFA och skyddstekniker som Credential Guard.
+                        Implementering av Zero Trust-arkitektur. Hantering av PKI, digitala certifikat, SSO, MFA och skyddstekniker som Credential Guard.
                     </p>
                 </div>
 
