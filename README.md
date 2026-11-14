@@ -1,46 +1,67 @@
-# 🛡️ Jehanni Halvarsson | Portfölj & IT-säkerhet
+# Jehanni Halvarsson | IT-säkerhetsspecialist
 
-[![Website Status](https://img.shields.io/website?url=https%3A%2F%2Fditt-github-namn.github.io&label=Portf%C3%B6lj&style=flat-square)](https://ditt-github-namn.github.io)
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=flat-square&logo=html5&logoColor=white)](#)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white)](#)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)](#)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fjehanni.tech&label=jehanni.tech&style=flat-square)](https://jehanni.tech)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Jehanni%20Halvarsson-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/jehanni-halvarsson-9a5a771a8/)
 
-Välkommen till källkoden för min personliga portfölj! Jag är en blivande IT-säkerhetsspecialist som studerar vid TUC Yrkeshögskola (2025–2027). 
+Jag är en IT-säkerhetsspecialist med bakgrund inom pedagogiskt ledarskap och operativ erfarenhet från samhällskritisk och säkerhetskänslig verksamhet. 
 
-Den här sidan fungerar som mitt digitala CV och en samlingsplats för mina kunskaper, certifieringar och kommande projekt.
-
-👉 **[Se portföljen live här](https://github.com/Hson28/Hson.github.io)**
+**[Besök min portfölj och mitt digitala CV på jehanni.tech](https://jehanni.tech)**
 
 ---
 
-## 🎯 Söker LIA-praktik
-Just nu letar jag efter en LIA-plats (Lärande i Arbete) där jag kan omsätta mina teoretiska studier till praktisk nytta. Jag söker en miljö där jag kan bidra till att bygga robusta lösningar, arbeta med dokumentation och hjälpa till att stärka säkerhetskulturen.
+## Om mig & min karriär
+Med en bakgrund som förskollärare och arbetsplatsansvarig har jag skolat om mig till IT-säkerhetsspecialist via TUC Yrkeshögskola (2025–2027). Kombinationen av teknisk djupförståelse och pedagogiskt ledarskap gör att jag trivs i rollen som brygga mellan tekniska specialister, systemägare och övrig verksamhet. För mig handlar IT-säkerhet inte bara om teknik och härdning av system, utan minst lika mycket om att bygga förtroende, skapa tydliga rutiner och göra komplex information begriplig så att alla kan fatta välgrundade beslut.
 
-## 👩‍🏫 Från pedagogik till IT-säkerhet
-Jag skolar om mig från förskollärare och arbetsplatsledare, vilket ger mig ett unikt perspektiv inom IT-säkerhet. I en bransch där den mänskliga faktorn ofta är den svagaste länken, använder jag min pedagogiska bakgrund för att göra komplexa säkerhetskoncept begripliga för alla. Jag är van att arbeta metodiskt, driva kvalitetsarbete och fungera som en brygga mellan tekniska experter och övrig verksamhet.
+## Yrkeserfarenhet
 
-## 💻 Om koden (Security & Privacy First)
-Som blivande säkerhetsspecialist var det viktigt för mig att bygga denna portfölj med ett minimalt attackytemönster (attack surface) och hög integritet för besökaren.
+### **IT-säkerhetsspecialist** — *Folkhälsomyndigheten*
+*Augusti 2026 – Maj 2027*
+Operativt och förebyggande säkerhetsarbete i en samhällskritisk miljö med höga krav på sekretess och spårbarhet:
+* **Logginsamling & SIEM:** Konfigurerar och ansluter loggkällor till SIEM-lösningen för detektering och regelefterlevnad.
+* **Säkerhetsövervakning:** Granskar, prioriterar och analyserar säkerhetslarm i SIEM och EDR, genomför initiala hotbedömningar samt eskalerar och åtgärdar incidenter.
+* **Phishing- & Hotanalys:** Undersöker misstänkta mejl, länkar och bilagor samt extraherar indikatorer (IoC:er) för att kartlägga hotbilden.
+* **Sårbarhetshantering:** Analyserar och prioriterar sårbarheter utifrån risk (CVSS/CVE) och ger rådgivande stöd till driftstekniker och systemägare kring patchning och åtgärder.
 
-Sidan är byggd med:
-* **Vanilla HTML5 & CSS3:** Inga tunga externa ramverk (som Bootstrap eller Tailwind) som drar ner prestandan eller introducerar onödiga beroenden.
-* **Vanilla JavaScript:** All interaktivitet (temaväxling, språkväxling, animationer) hanteras klient-sidigt utan externa bibliotek.
-* **Ingen spårning:** Sidan sätter inga personliga spårningskakor (cookies) och respekterar besökarens integritet.
+### **Förskollärare & Arbetsplatsansvarig** — *TP Förskolor AB*
+*Augusti 2021 – Nuvarande (Tjänstledig för studier)*
+* Ansvarade under två år för operativ ledning, samordning och systematiskt kvalitetsarbete för att säkerställa att verksamheten nådde uppsatta mål och krav.
+* Arbetade strukturerat med dokumentation, avvikelsehantering och kommunikation gentemot både medarbetare och vårdnadshavare.
 
-## 🛠️ Tekniska färdigheter
-Under min utbildning och fritid arbetar jag löpande med:
-* **Infrastruktur & Nätverk:** TCP/IP, VLAN, Routing/Switching, Wireshark.
-* **Systemadministration:** Linux (Debian/Ubuntu), Windows Server, Active Directory, GPO.
-* **Säkerhet & GRC:** ISO 27001, NIS2, GDPR, Riskanalys, Defense in Depth.
-* **Skydd & Övervakning:** pfSense, UFW, SIEM-koncept, Sårbarhetsskanning.
+---
 
-## 🎓 Certifieringar
-Jag ser kontinuerligt lärande som en självklarhet och kompletterar mina YH-studier med branschcertifikat:
-* **Endpoint Security** (Cisco) - Jan 2026
-* **Networking Devices and Initial Configuration** (Cisco) - Nov 2025
-* **Networking Basics** (Cisco) - Sep 2025
+## Hemmalabb & Praktiska Projekt
+På fritiden driver och vidareutvecklar jag ett eget isolerat hemmalabb för att kontinuerligt omsätta teori i praktik:
+* **Nätverk & Brandvägg:** Dedikerad Cisco ASA-hårdvarubrandvägg som gateway, kombinerat med MikroTik-switch och isolerat trådlöst labbnät med fokus på nätverkssegmentering (VLAN) och Zero Trust.
+* **Kluster & Virtualisering:** Ett Proxmox VE-kluster fördelat på tre fysiska noder för LXC-containrar, Docker och virtuella maskiner, uppbackat av en fristående Linux-baserad management-nod (Okdo Radxa 4C) som agerar QDevice för kvorum och hög tillgänglighet.
+* **Härdning & Fjärråtkomst:** Konfigurerat med tvåfaktorsautentisering (MFA/2FA), nyckelbaserad SSH-åtkomst (ed25519) och krypterad fjärråtkomst via Tailscale VPN utan exponerade management-portar. Miljön är fullständigt dokumenterad med nätverkstopologi, IP-plan, riskanalys och rutiner för säkerhetskopiering.
 
-## 📬 Kontakt
-Låter min profil intressant för ert företag? Jag tar gärna en kaffe!
-* **Email:** jehanni.halvarsson@protonmail.com
-* **LinkedIn:** [Min LinkedIn-profil](https://www.linkedin.com/in/jehanni-halvarsson-9a5a771a8/)
+---
+
+## Tekniska kompetenser
+* **Detektion & Analys:** SIEM, EDR, Sysmon, Logghantering, Phishinganalys, IoC-extraktion, Sårbarhetshantering (CVSS/CVE), Nmap, Wireshark, Metasploit.
+* **System & Virtualisering:** Linux (Ubuntu/Debian), Windows Server & Active Directory (GPO, WDAC, ASR, Kerberos/LDAP), Proxmox VE, KVM, Hyper-V, Docker, LXC.
+* **Nätverk & Infrastruktur:** Cisco ASA, Routing & Switching, VLAN/ACL, IDS/IPS, VPN (Tailscale, OpenVPN), PKI, SSO & MFA.
+* **Ramverk & GRC:** ISO 27000, NIST RMF, GDPR, NIS2, Risk- och sårbarhetsanalyser (RSA), Incidenthanteringsplaner.
+
+---
+
+## Utbildning & Certifieringar
+
+**Utbildning**
+* **Yrkeshögskoleexamen, IT-säkerhetsspecialist** — *TUC Yrkeshögskola* (2025–2027)
+* **Kandidatexamen, Förskollärarprogrammet** — *Stockholms universitet* (2018–2021)
+
+**Certifieringar (Cisco)**
+* **Endpoint Security** (Januari 2026)
+* **Networking Devices and Initial Configuration** (November 2025)
+* **Introduction to Cybersecurity** (September 2025)
+* **Networking Basics** (Augusti 2025)
+
+---
+
+## Kontakt
+Jag är alltid öppen för att knyta nya kontakter, diskutera IT-säkerhet eller prata om framtida möjligheter.
+
+* **Hemsida:** [jehanni.tech](https://jehanni.tech)
+* **E-post:** [jehanni.halvarsson@protonmail.com](mailto:jehanni.halvarsson@protonmail.com)
+* **LinkedIn:** [linkedin.com/in/jehanni-halvarsson-9a5a771a8](https://www.linkedin.com/in/jehanni-halvarsson-9a5a771a8/)
