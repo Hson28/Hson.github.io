@@ -6,7 +6,7 @@
 *  3. Mobilmeny
 *  4. Animationer (Skrivmaskin & snabb scroll)
 *  5. Pop-ups för kurser och diagram (inkl. taggar & tangentbordsstöd)
-*  6. Kursfiltrering, Kopiera mejladress & Tillbaka till toppen
+*  6. Kopiera mejladress & Tillbaka till toppen
 */
 (function () {
     "use strict";
@@ -40,10 +40,6 @@
             courses_h2: "Academic Courses",
             progress_label: "Study Progress (Theory & Courses)",
             progress_stats: "8 of 11 courses completed (1 ongoing)",
-            filter_all: "All (11)",
-            filter_completed: "Completed (8)",
-            filter_ongoing: "Ongoing (1)",
-            filter_upcoming: "Upcoming (2)",
             courses_completed: "Completed & Ongoing",
             courses_upcoming: "Upcoming Courses",
             tag_upcoming: "Upcoming",
@@ -246,10 +242,6 @@
         heroH1: document.querySelector(".hero-text h1"),
         heroTagline: document.querySelector(".hero-tagline"),
         projectCards: document.querySelectorAll(".project-card"),
-        filterBtns: document.querySelectorAll(".filter-btn"),
-        courseCards: document.querySelectorAll("#projects .project-card"),
-        courseGroupTitles: document.querySelectorAll(".course-group-title"),
-        courseGroupGrids: document.querySelectorAll("[data-group-grid]"),
         copyEmailBtn: document.getElementById("copy-email-btn"),
         backToTopBtn: document.getElementById("back-to-top"),
         
@@ -576,7 +568,6 @@
             sections.forEach(section => scrollspyObserver.observe(section));
         }
 
-        // Visa/dölj "Tillbaka till toppen"-knapp
         if (dom.backToTopBtn) {
             window.addEventListener('scroll', () => {
                 if (window.scrollY > 500) {
@@ -624,46 +615,7 @@
         activeCard = null;
     }
 
-    // --- 12. Kursfiltrering & Kopiera mejladress ---
-    function filterCourses(filter) {
-        dom.filterBtns.forEach(btn => {
-            btn.classList.toggle('is-active', btn.dataset.filter === filter);
-        });
-
-        dom.courseCards.forEach(card => {
-            const status = card.dataset.status;
-            const match = (filter === 'all') || (status === filter);
-            card.style.display = match ? 'flex' : 'none';
-            if (match) {
-                card.classList.add('is-visible');
-                card.style.transitionDelay = '0ms';
-            }
-        });
-
-        // Dölj underrubriker om en hel grupp filtreras bort
-        dom.courseGroupTitles.forEach(title => {
-            const group = title.dataset.groupTitle;
-            if (filter === 'all') {
-                title.style.display = 'inline-block';
-            } else if (filter === 'upcoming') {
-                title.style.display = (group === 'upcoming') ? 'inline-block' : 'none';
-            } else {
-                title.style.display = (group === 'completed') ? 'inline-block' : 'none';
-            }
-        });
-
-        dom.courseGroupGrids.forEach(grid => {
-            const group = grid.dataset.groupGrid;
-            if (filter === 'all') {
-                grid.style.display = 'grid';
-            } else if (filter === 'upcoming') {
-                grid.style.display = (group === 'upcoming') ? 'grid' : 'none';
-            } else {
-                grid.style.display = (group === 'completed') ? 'grid' : 'none';
-            }
-        });
-    }
-
+    // --- 12. Kopiera mejladress ---
     function copyEmail() {
         if (!dom.copyEmailBtn) return;
         const email = dom.copyEmailBtn.dataset.email;
@@ -693,13 +645,7 @@
         if (dom.navToggle) dom.navToggle.addEventListener("click", toggleMenu);
         
         dom.navLinks.forEach(link => link.addEventListener("click", closeMenu));
-        
-        // Kursfilter-lyssnare
-        dom.filterBtns.forEach(btn => {
-            btn.addEventListener("click", () => filterCourses(btn.dataset.filter));
-        });
 
-        // Kopiera mejl-lyssnare
         if (dom.copyEmailBtn) {
             dom.copyEmailBtn.addEventListener("click", copyEmail);
         }
