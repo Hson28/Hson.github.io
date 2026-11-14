@@ -463,7 +463,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .cv-buttons { display: flex; flex-wrap: wrap; gap: var(--spacing-md); }
 
 /* ========================================
-   7. KONTAKTSEKTION & TILLBAKA TILL TOPPEN
+   7. KONTAKTSEKTION & TILLBAKA TILL TOPPEN-PIL
    ======================================== */
 .contact { text-align: center; background-color: var(--color-card-bg); border-top: 1px solid var(--color-border); padding: var(--spacing-xl) 0; }
 .contact p { margin: 0 auto var(--spacing-lg) auto; font-size: 1.125rem; }
@@ -475,26 +475,27 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 .social-links a { font-weight: 600; text-decoration: none; }
 .social-links a:hover { text-decoration: underline; }
 
+/* Uppåtpil (Tillbaka till toppen) */
 .back-to-top {
     position: fixed;
     bottom: 1.75rem;
     right: 1.75rem;
-    width: 44px;
-    height: 44px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
     color: #ffffff;
-    border: none;
+    border: 2px solid rgba(255, 255, 255, 0.25);
     box-shadow: var(--shadow-md);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 900;
+    z-index: 950;
     opacity: 0;
     visibility: hidden;
-    transform: translateY(12px);
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+    transform: translateY(15px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s, box-shadow 0.2s ease;
 }
 
 .back-to-top.is-visible {
@@ -504,8 +505,13 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 }
 
 .back-to-top:hover {
-    transform: translateY(-3px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-lg);
+    filter: brightness(110%);
+}
+
+.back-to-top:active {
+    transform: translateY(-1px);
 }
 
 @media (min-width: 768px) {
