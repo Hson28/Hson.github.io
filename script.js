@@ -5,7 +5,7 @@
 *  2. Språkväxling
 *  3. Mobilmeny
 *  4. Animationer (Skrivmaskin & scroll)
-*  5. Pop-ups för kurser och diagram (inkl. tangentbordsstöd)
+*  5. Pop-ups för kurser och diagram (inkl. taggar & tangentbordsstöd)
 */
 (function () {
     "use strict";
@@ -37,6 +37,8 @@
             
             // --- KURS-TEXTER (ENGELSKA) ---
             courses_h2: "Academic Courses",
+            progress_label: "Study Progress (Theory & Courses)",
+            progress_stats: "8 of 11 courses completed (1 ongoing)",
             courses_completed: "Completed & Ongoing",
             courses_upcoming: "Upcoming Courses",
             tag_upcoming: "Upcoming",
@@ -73,7 +75,7 @@
             course5_desc: "Minimizing attack surfaces through hardening. Covers LDAP management, Identity and Access (IDA) Control, password policies, and logging/auditing.",
             blog_course5: "<p>This intensive course provided an advanced technical specialization in security for Microsoft environments, from the client side to the server level. The training began with a detailed analysis of the current threat landscape and Windows' underlying architecture. I gained in-depth knowledge of the operating system's core (Kernel), LSA, SAM, and boot security. After that, we shifted focus to actively minimizing the attack surface through system hardening. This included working with security baselines, implementing WDAC (Windows Defender Application Control) and ASR (Attack Surface Reduction) rules, as well as securing network protocols like SMB.</p><p>A critical area during the course was identity and access management. I delved into protocols such as Kerberos and LDAP, configured Extended Protection for Authentication (EPA), and learned advanced techniques for protecting credentials and secrets using Credential Guard, HVCI, and DMSA. To be able to detect and respond to threats, great emphasis was placed on logging and monitoring. I was trained in structuring event logs and audit policies, as well as using powerful monitoring tools like Sysmon, Microsoft Defender, and Microsoft Sentinel.</p><p>In the later parts of the course, modern device management and data protection were covered. I learned to control and secure devices via GPO and Intune, and to protect data at rest and in transit using encryption technologies like BitLocker, TPM, TLS, and QUIC. The training concluded with highly advanced security mechanisms, such as Virtualization-Based Security (VBS), Shadow Stack, and Control Flow Guard (CFG). All of this was finally tied together in a comprehensive deep dive into the security architecture of the new Windows Server 2025, where we evaluated security from the hardware and silicon level all the way up to specific workloads.</p>",
 
-            // Kurs 6 (Nu helt avklarad)
+            // Kurs 6 (Avklarad)
             course6_title: "IT Security Linux, Unix and Mac",
             course6_points: "20 YH Credits",
             course6_desc: "Administration, configuration, and hardening of Linux, Unix, and Mac environments according to security standards to minimize attack surfaces and secure services.",
@@ -562,7 +564,7 @@
         });
     }
 
-    // --- 11. Modal Logik ---
+    // --- 11. Modal Logik (inkl. taggar i modalen) ---
     function openModal(card) {
         if (!dom.modal) return;
         activeCard = card;
@@ -570,10 +572,15 @@
         const titleEl = card.querySelector('h3');
         const pointsEl = card.querySelector('.project-role');
         const blogEl = card.querySelector('.course-blog');
+        const tagsEl = card.querySelector('.project-tags');
         
         if (dom.modalTitle && titleEl) dom.modalTitle.textContent = titleEl.textContent;
         if (dom.modalSubtitle && pointsEl) dom.modalSubtitle.textContent = pointsEl.textContent;
-        if (dom.modalBody && blogEl) dom.modalBody.innerHTML = blogEl.innerHTML;
+        
+        if (dom.modalBody && blogEl) {
+            const tagsHtml = tagsEl ? `<div class="project-tags" style="margin-top: 0; margin-bottom: 1.25rem;">${tagsEl.innerHTML}</div>` : '';
+            dom.modalBody.innerHTML = tagsHtml + blogEl.innerHTML;
+        }
         
         dom.modal.setAttribute('aria-hidden', 'false');
         dom.html.style.overflow = 'hidden'; 
