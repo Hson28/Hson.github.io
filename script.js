@@ -6,6 +6,7 @@
 *  3. Mobilmeny
 *  4. Animationer (Skrivmaskin & snabb scroll)
 *  5. Pop-ups för kurser och diagram (inkl. taggar & tangentbordsstöd)
+*  6. Kursfiltrering, Kopiera mejladress & Tillbaka till toppen
 */
 (function () {
     "use strict";
@@ -39,6 +40,10 @@
             courses_h2: "Academic Courses",
             progress_label: "Study Progress (Theory & Courses)",
             progress_stats: "8 of 11 courses completed (1 ongoing)",
+            filter_all: "All (11)",
+            filter_completed: "Completed (8)",
+            filter_ongoing: "Ongoing (1)",
+            filter_upcoming: "Upcoming (2)",
             courses_completed: "Completed & Ongoing",
             courses_upcoming: "Upcoming Courses",
             tag_upcoming: "Upcoming",
@@ -148,6 +153,7 @@
             topo_mgmt_role: "Quorum & Access",
             topo_mgmt_modal: "<p>Critical standalone management node. Runs <strong>Tailscale VPN</strong> as a subnet router, giving me secure remote access to the entire lab no matter where I am.</p><p>Furthermore, it acts as a <strong>QDevice</strong> for the Proxmox cluster. If one of the large servers needs a reboot or goes down, the Radxa ensures the cluster retains its quorum (vote majority) and continues to operate undisturbed.</p>",
             
+            topo_qdevice_badge: "🔗 QDevice Quorum: Okdo Radxa 4C",
             topo_cluster_title: "Proxmox Cluster (Lab Cluster)",
             topo_cluster_desc: "High Availability Compute",
             topo_cluster_role: "Virtualization",
@@ -216,6 +222,8 @@
             contact_h2: "Want to get in touch?",
             contact_p: "I am always open to making new connections, discussing IT security, or talking about future opportunities. If you are looking for someone who combines technical knowledge with methodical thinking and pedagogical skills, feel free to reach out!",
             contact_btn_email: "Email me",
+            contact_btn_copy: "Copy email",
+            contact_btn_copied: "Copied! ✓",
             contact_btn_linkedin: "Message on LinkedIn",
             
             footer_copy: "© 2026 Jehanni Halvarsson. All rights reserved.",
@@ -238,6 +246,12 @@
         heroH1: document.querySelector(".hero-text h1"),
         heroTagline: document.querySelector(".hero-tagline"),
         projectCards: document.querySelectorAll(".project-card"),
+        filterBtns: document.querySelectorAll(".filter-btn"),
+        courseCards: document.querySelectorAll("#projects .project-card"),
+        courseGroupTitles: document.querySelectorAll(".course-group-title"),
+        courseGroupGrids: document.querySelectorAll("[data-group-grid]"),
+        copyEmailBtn: document.getElementById("copy-email-btn"),
+        backToTopBtn: document.getElementById("back-to-top"),
         
         // Modal-element
         modal: document.getElementById('course-modal'),
@@ -506,7 +520,7 @@
 
         const observerOptions = {
             root: null, 
-            rootMargin: '0px 0px 60px 0px', // Triggar strax innan kortet når skärmkanten
+            rootMargin: '0px 0px 60px 0px',
             threshold: 0.05 
         };
 
@@ -514,7 +528,6 @@
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('is-visible');
-                    // Rensa fördröjningen efter intåg så att hover-effekten blir omedelbar
                     setTimeout(() => {
                         entry.target.style.transitionDelay = '0ms';
                     }, 450);
@@ -525,7 +538,6 @@
 
         const scrollObserver = new IntersectionObserver(observerCallback, observerOptions);
 
-        // Nollställer fördröjningen för varje ny rad med 3 kort (0ms, 70ms, 140ms)
         dom.projectCards.forEach((card, index) => {
             const columnDelay = (index % 3) * 70;
             card.style.transitionDelay = `${columnDelay}ms`;
@@ -534,40 +546,50 @@
     }
 
 
-    // --- 10. Scrollspy ---
+    // --- 10. Scrollspy & Tillbaka till toppen ---
     function initScrollspy() {
-        if (!('IntersectionObserver' in window)) {
-            return; 
-        }
-        
-        const sections = document.querySelectorAll("main section[id]");
-        
-        const observerOptions = {
-            root: null,
-            rootMargin: "-40% 0px -60% 0px",
-            threshold: 0 
-        };
+        if ('IntersectionObserver' in window) {
+            const sections = document.querySelectorAll("main section[id]");
+            
+            const observerOptions = {
+                root: null,
+                rootMargin: "-40% 0px -60% 0px",
+                threshold: 0 
+            };
 
-        const observerCallback = (entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const id = entry.target.getAttribute('id');
-                    const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
+            const observerCallback = (entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        const activeLink = document.querySelector(`.nav-link[href="#${id}"]`);
 
-                    dom.navLinks.forEach(link => link.classList.remove('is-active'));
-                    
-                    if (activeLink) {
-                        activeLink.classList.add('is-active');
+                        dom.navLinks.forEach(link => link.classList.remove('is-active'));
+                        
+                        if (activeLink) {
+                            activeLink.classList.add('is-active');
+                        }
                     }
+                });
+            };
+
+            const scrollspyObserver = new IntersectionObserver(observerCallback, observerOptions);
+            sections.forEach(section => scrollspyObserver.observe(section));
+        }
+
+        // Visa/dölj "Tillbaka till toppen"-knapp
+        if (dom.backToTopBtn) {
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 500) {
+                    dom.backToTopBtn.classList.add('is-visible');
+                } else {
+                    dom.backToTopBtn.classList.remove('is-visible');
                 }
+            }, { passive: true });
+
+            dom.backToTopBtn.addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
             });
-        };
-
-        const scrollspyObserver = new IntersectionObserver(observerCallback, observerOptions);
-
-        sections.forEach(section => {
-            scrollspyObserver.observe(section);
-        });
+        }
     }
 
     // --- 11. Modal Logik (inkl. taggar i modalen) ---
@@ -602,8 +624,69 @@
         activeCard = null;
     }
 
+    // --- 12. Kursfiltrering & Kopiera mejladress ---
+    function filterCourses(filter) {
+        dom.filterBtns.forEach(btn => {
+            btn.classList.toggle('is-active', btn.dataset.filter === filter);
+        });
 
-    // --- 12. Initiering ---
+        dom.courseCards.forEach(card => {
+            const status = card.dataset.status;
+            const match = (filter === 'all') || (status === filter);
+            card.style.display = match ? 'flex' : 'none';
+            if (match) {
+                card.classList.add('is-visible');
+                card.style.transitionDelay = '0ms';
+            }
+        });
+
+        // Dölj underrubriker om en hel grupp filtreras bort
+        dom.courseGroupTitles.forEach(title => {
+            const group = title.dataset.groupTitle;
+            if (filter === 'all') {
+                title.style.display = 'inline-block';
+            } else if (filter === 'upcoming') {
+                title.style.display = (group === 'upcoming') ? 'inline-block' : 'none';
+            } else {
+                title.style.display = (group === 'completed') ? 'inline-block' : 'none';
+            }
+        });
+
+        dom.courseGroupGrids.forEach(grid => {
+            const group = grid.dataset.groupGrid;
+            if (filter === 'all') {
+                grid.style.display = 'grid';
+            } else if (filter === 'upcoming') {
+                grid.style.display = (group === 'upcoming') ? 'grid' : 'none';
+            } else {
+                grid.style.display = (group === 'completed') ? 'grid' : 'none';
+            }
+        });
+    }
+
+    function copyEmail() {
+        if (!dom.copyEmailBtn) return;
+        const email = dom.copyEmailBtn.dataset.email;
+        const spanEl = dom.copyEmailBtn.querySelector('span');
+        if (!navigator.clipboard || !email || !spanEl) return;
+
+        navigator.clipboard.writeText(email).then(() => {
+            const originalText = spanEl.textContent;
+            spanEl.textContent = currentLang === 'en'
+                ? translations.en.contact_btn_copied
+                : 'Kopierad! ✓';
+            dom.copyEmailBtn.classList.add('is-copied');
+
+            setTimeout(() => {
+                spanEl.textContent = currentLang === 'en'
+                    ? translations.en.contact_btn_copy
+                    : (spanEl.dataset.defaultSv || originalText);
+                dom.copyEmailBtn.classList.remove('is-copied');
+            }, 2200);
+        });
+    }
+
+    // --- 13. Initiering ---
     function bindEvents() {
         if (dom.themeToggle) dom.themeToggle.addEventListener("click", toggleTheme);
         if (dom.langToggle) dom.langToggle.addEventListener("click", toggleLanguage);
@@ -611,6 +694,16 @@
         
         dom.navLinks.forEach(link => link.addEventListener("click", closeMenu));
         
+        // Kursfilter-lyssnare
+        dom.filterBtns.forEach(btn => {
+            btn.addEventListener("click", () => filterCourses(btn.dataset.filter));
+        });
+
+        // Kopiera mejl-lyssnare
+        if (dom.copyEmailBtn) {
+            dom.copyEmailBtn.addEventListener("click", copyEmail);
+        }
+
         // Modal-lyssnare (musklick + tangentbord Enter/Mellanslag)
         dom.modalTriggers.forEach(trigger => {
             trigger.addEventListener('click', () => openModal(trigger));
