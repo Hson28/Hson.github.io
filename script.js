@@ -236,6 +236,7 @@
         langToggle: document.querySelector(".lang-toggle"),
         navToggle: document.querySelector(".nav-toggle"),
         navMenu: document.querySelector(".site-nav"), 
+        navList: document.getElementById("primary-navigation"),
         navLinks: document.querySelectorAll(".nav-link"),
         langElements: document.querySelectorAll("[data-lang-key]"),
         anchorLinks: document.querySelectorAll('a[href^="#"]'),
@@ -431,9 +432,11 @@
         if (!dom.navMenu || !dom.navToggle) return;
         
         const isVisible = dom.navMenu.getAttribute("data-visible") === "true";
-        dom.navMenu.setAttribute("data-visible", !isVisible);
-        dom.navToggle.setAttribute("aria-expanded", !isVisible);
-        dom.html.style.overflow = !isVisible ? "hidden" : "auto";
+        const nextState = !isVisible;
+        dom.navMenu.setAttribute("data-visible", nextState);
+        if (dom.navList) dom.navList.setAttribute("data-visible", nextState);
+        dom.navToggle.setAttribute("aria-expanded", nextState);
+        dom.html.style.overflow = nextState ? "hidden" : "auto";
     }
 
     function closeMenu() {
@@ -441,6 +444,7 @@
 
         if (dom.navMenu.getAttribute("data-visible") === "true") {
             dom.navMenu.setAttribute("data-visible", false);
+            if (dom.navList) dom.navList.setAttribute("data-visible", false);
             dom.navToggle.setAttribute("aria-expanded", false);
             dom.html.style.overflow = "auto";
         }
