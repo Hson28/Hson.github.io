@@ -50,8 +50,8 @@
             <span class="hamburger-line"></span>
         </button>
 
-        <nav class="site-nav">
-            <ul id="primary-navigation" class="nav-list" data-visible="false">
+        <nav class="site-nav" data-visible="false">
+            <ul id="primary-navigation" class="nav-list">
                 <li><a href="#about" class="nav-link" data-lang-key="nav_about">Om</a></li>
                 <li><a href="#projects" class="nav-link" data-lang-key="nav_projects">Kurser</a></li>
                 <li><a href="#homelab" class="nav-link" data-lang-key="nav_homelab">Hemmalabb</a></li>
@@ -125,9 +125,18 @@
             </p>
             <h3 data-lang-key="about_h3">Certifikat & Utbildning</h3>
             <ul class="cert-list">
-                <li data-lang-key="about_cert1">Networking Basics (Cisco)</li>
-                <li data-lang-key="about_cert2">Networking Devices and Initial Configuration (Cisco)</li>
-                <li data-lang-key="about_cert3">Endpoint Security (Cisco)</li>
+                <li>
+                    <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <span data-lang-key="about_cert1">Networking Basics (Cisco)</span>
+                </li>
+                <li>
+                    <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <span data-lang-key="about_cert2">Networking Devices and Initial Configuration (Cisco)</span>
+                </li>
+                <li>
+                    <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    <span data-lang-key="about_cert3">Endpoint Security (Cisco)</span>
+                </li>
             </ul>
         </div>
     </section>
@@ -135,6 +144,18 @@
     <section id="projects" class="projects">
         <div class="container">
             <h2 data-lang-key="courses_h2">Kurser (YH)</h2>
+
+            <!-- Utbildningsprogress -->
+            <div class="course-progress-wrapper">
+                <div class="course-progress-header">
+                    <span data-lang-key="progress_label">Utbildningsprogress (Teori & Kurser)</span>
+                    <span class="course-progress-stats" data-lang-key="progress_stats">8 av 11 kurser avklarade (1 pågående)</span>
+                </div>
+                <div class="course-progress-bar" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100">
+                    <div class="course-progress-fill" style="width: 74%;"></div>
+                    <div class="course-progress-ongoing" style="width: 9%;"></div>
+                </div>
+            </div>
             
             <h3 class="section-subtitle" data-lang-key="courses_completed">Genomförda & Pågående</h3>
             <div class="project-grid">
@@ -692,8 +713,16 @@
             <p data-lang-key="cv_p">
                 Mitt fullständiga CV, som innehåller detaljerad information om min utbildning, erfarenhet och tekniska färdigheter, finns tillgängligt för nedladdning.
             </p>
-            <a href="Jehanni_CV_SV.pdf" class="button button-secondary" data-lang-key="cv_button_sv">Ladda ner CV (SV)</a>
-            <a href="Jehanni_CV_EN.pdf" class="button button-secondary" data-lang-key="cv_button_en">Ladda ner CV (EN)</a>
+            <div class="cv-buttons">
+                <a href="Jehanni_CV_SV.pdf" download class="button button-primary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span data-lang-key="cv_button_sv">Ladda ner CV (SV)</span>
+                </a>
+                <a href="Jehanni_CV_EN.pdf" download class="button button-secondary">
+                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                    <span data-lang-key="cv_button_en">Ladda ner CV (EN)</span>
+                </a>
+            </div>
         </div>
     </section>
 
