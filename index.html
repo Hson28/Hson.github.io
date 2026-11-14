@@ -19,7 +19,7 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="profile.jpg?v=1">
 
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=2">
 </head>
 <body>
 
@@ -156,19 +156,11 @@
                     <div class="course-progress-ongoing" style="width: 9%;"></div>
                 </div>
             </div>
-
-            <!-- Snabbfilter för kurser -->
-            <div class="course-filters" role="group" aria-label="Filtrera kurser">
-                <button class="filter-btn is-active" data-filter="all" data-lang-key="filter_all">Alla (11)</button>
-                <button class="filter-btn" data-filter="completed" data-lang-key="filter_completed">Avklarade (8)</button>
-                <button class="filter-btn" data-filter="ongoing" data-lang-key="filter_ongoing">Pågående (1)</button>
-                <button class="filter-btn" data-filter="upcoming" data-lang-key="filter_upcoming">Kommande (2)</button>
-            </div>
             
-            <h3 class="section-subtitle course-group-title" data-group-title="completed" data-lang-key="courses_completed">Genomförda & Pågående</h3>
-            <div class="project-grid" data-group-grid="completed">
+            <h3 class="section-subtitle" data-lang-key="courses_completed">Genomförda & Pågående</h3>
+            <div class="project-grid">
                 
-                <article class="project-card modal-trigger" data-status="completed" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course1_title">Nätverksteknik</h3>
                         <p class="project-role" data-lang-key="course1_points">25 YH-poäng</p>
@@ -190,7 +182,7 @@
                     </div>
                 </article>
 
-                <article class="project-card modal-trigger" data-status="completed" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course2_title">IT-infrastruktur</h3>
                         <p class="project-role" data-lang-key="course2_points">25 YH-poäng</p>
@@ -212,7 +204,7 @@
                     </div>
                 </article>
 
-                <article class="project-card modal-trigger" data-status="completed" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course3_title">Grundläggande IT-säkerhet</h3>
                         <p class="project-role" data-lang-key="course3_points">30 YH-poäng</p>
@@ -234,7 +226,7 @@
                     </div>
                 </article>
 
-                <article class="project-card modal-trigger" data-status="completed" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course4_title">Informationssäkerhet och IT-juridik</h3>
                         <p class="project-role" data-lang-key="course4_points">25 YH-poäng</p>
@@ -256,7 +248,7 @@
                     </div>
                 </article>
 
-                <article class="project-card modal-trigger" data-status="completed" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course5_title">IT-säkerhet Windows</h3>
                         <p class="project-role" data-lang-key="course5_points">20 YH-poäng</p>
@@ -278,7 +270,7 @@
                     </div>
                 </article>
 
-                <article class="project-card modal-trigger" data-status="completed" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course6_title">IT-säkerhet Linux, Unix och Mac</h3>
                         <p class="project-role" data-lang-key="course6_points">20 YH-poäng</p>
@@ -300,7 +292,7 @@
                     </div>
                 </article>
                 
-                <article class="project-card modal-trigger" data-status="completed" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course7_title">Nätverkssäkerhet</h3>
                         <p class="project-role" data-lang-key="course7_points">30 YH-poäng</p>
@@ -320,7 +312,7 @@
                     </div>
                 </article>
 
-                <article class="project-card modal-trigger" data-status="completed" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course8_title">Etisk Hackning</h3>
                         <p class="project-role" data-lang-key="course8_points">25 YH-poäng</p>
@@ -341,7 +333,7 @@
                     </div>
                 </article>
 
-                <article class="project-card modal-trigger" data-status="ongoing" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course9_title">Avancerad IT-säkerhet</h3>
                         <p class="project-role" data-lang-key="course9_points">25 YH-poäng</p>
@@ -363,10 +355,10 @@
 
             </div>
             
-            <h3 class="section-subtitle course-group-title" data-group-title="upcoming" style="margin-top: 3rem;" data-lang-key="courses_upcoming">Kommande Kurser</h3>
-            <div class="project-grid" data-group-grid="upcoming">
+            <h3 class="section-subtitle" style="margin-top: 3rem;" data-lang-key="courses_upcoming">Kommande Kurser</h3>
+            <div class="project-grid">
 
-                <article class="project-card modal-trigger" data-status="upcoming" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course10_title">Molnsäkerhet</h3>
                         <p class="project-role" data-lang-key="course10_points">25 YH-poäng</p>
@@ -384,7 +376,7 @@
                     </div>
                 </article>
 
-                <article class="project-card modal-trigger" data-status="upcoming" tabindex="0" role="button">
+                <article class="project-card modal-trigger" tabindex="0" role="button">
                     <div class="card-content">
                         <h3 data-lang-key="course11_title">Examensarbete</h3>
                         <p class="project-role" data-lang-key="course11_points">20 YH-poäng</p>
@@ -466,7 +458,7 @@
                         </div>
                     </div>
 
-                    <!-- NY STAM-LINJE SOM GER MELLANRUM TILL DET VÅGRÄTA STRECKET -->
+                    <!-- STAM-LINJE SOM GER TYDLIGT MELLANRUM TILL DET VÅGRÄTA STRECKET -->
                     <div class="topo-stem"></div>
 
                     <!-- FÖRGRENINGAR -->
@@ -791,7 +783,7 @@
     </div>
 </div>
 
-<script src="script.js" defer></script>
+<script src="script.js?v=2" defer></script>
 
 </body>
 </html>
