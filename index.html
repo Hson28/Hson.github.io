@@ -19,7 +19,37 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="profile.jpg?v=1">
 
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
+
+    <!-- Garantiregel mot mobil-cache så att menyn aldrig blir genomskinlig eller hamnar bakom texten -->
+    <style>
+        .site-header { z-index: 1000 !important; }
+        @media (max-width: 767px) {
+            .site-header {
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                background-color: var(--color-bg) !important;
+            }
+            .site-nav {
+                position: fixed !important;
+                inset: 0 !important;
+                width: 100vw !important;
+                height: 100dvh !important;
+                background-color: var(--color-bg) !important;
+                backdrop-filter: none !important;
+                -webkit-backdrop-filter: none !important;
+                z-index: 10000 !important;
+                display: flex !important;
+                flex-direction: column !important;
+                justify-content: center !important;
+                align-items: center !important;
+                padding-top: 0 !important;
+            }
+            .logo, .nav-toggle, .header-toggles {
+                z-index: 10002 !important;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -51,7 +81,7 @@
         </button>
 
         <nav class="site-nav" data-visible="false">
-            <ul id="primary-navigation" class="nav-list">
+            <ul id="primary-navigation" class="nav-list" data-visible="false">
                 <li><a href="#about" class="nav-link" data-lang-key="nav_about">Om</a></li>
                 <li><a href="#projects" class="nav-link" data-lang-key="nav_projects">Kurser</a></li>
                 <li><a href="#homelab" class="nav-link" data-lang-key="nav_homelab">Hemmalabb</a></li>
@@ -786,7 +816,7 @@
     </div>
 </div>
 
-<script src="script.js?v=4" defer></script>
+<script src="script.js?v=5" defer></script>
 
 </body>
 </html>
