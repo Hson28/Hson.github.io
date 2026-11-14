@@ -6,7 +6,7 @@
 *  3. Mobilmeny
 *  4. Animationer (Skrivmaskin & snabb scroll)
 *  5. Pop-ups för kurser och diagram (inkl. taggar & tangentbordsstöd)
-*  6. Kopiera mejladress & Tillbaka till toppen
+*  6. Kopiera mejladress & Tillbaka till toppen-pil
 */
 (function () {
     "use strict";
@@ -346,6 +346,12 @@
             );
         }
 
+        if (dom.backToTopBtn) {
+            const label = lang === "en" ? "Back to top" : "Tillbaka till toppen";
+            dom.backToTopBtn.setAttribute("aria-label", label);
+            dom.backToTopBtn.setAttribute("title", label);
+        }
+
         if (typingTimeout) {
             clearTimeout(typingTimeout);
             typingTimeout = null;
@@ -570,7 +576,7 @@
 
         if (dom.backToTopBtn) {
             window.addEventListener('scroll', () => {
-                if (window.scrollY > 500) {
+                if (window.scrollY > 350) {
                     dom.backToTopBtn.classList.add('is-visible');
                 } else {
                     dom.backToTopBtn.classList.remove('is-visible');
