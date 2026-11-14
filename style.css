@@ -352,13 +352,13 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     flex-shrink: 0;
 }
 
-/* --- UTBILDNINGSPROGRESS-MÄTARE & KURSFILTER --- */
+/* --- UTBILDNINGSPROGRESS-MÄTARE --- */
 .course-progress-wrapper {
     background-image: linear-gradient(to bottom right, var(--color-card-grad-start), var(--color-card-grad-end));
     border: 1px solid var(--color-border);
     border-radius: var(--border-radius);
     padding: 1rem 1.25rem;
-    margin-bottom: 1.25rem;
+    margin-bottom: 2rem;
     box-shadow: var(--shadow-sm);
 }
 
@@ -402,38 +402,6 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
         transparent 10px
     );
     opacity: 0.65;
-}
-
-.course-filters {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    margin-bottom: 2rem;
-}
-
-.filter-btn {
-    background-color: var(--color-card-bg);
-    color: var(--color-text);
-    border: 1px solid var(--color-border);
-    padding: 0.45rem 1rem;
-    border-radius: 99px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    font-family: inherit;
-    cursor: pointer;
-    transition: all var(--transition-fast);
-}
-
-.filter-btn:hover {
-    border-color: var(--color-primary);
-    color: var(--color-primary);
-}
-
-.filter-btn.is-active {
-    background-color: var(--color-primary);
-    color: #ffffff;
-    border-color: var(--color-primary);
-    box-shadow: var(--shadow-sm);
 }
 
 /* --- PROJEKTKORT --- */
@@ -690,14 +658,15 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
     border-color: var(--color-primary) transparent transparent transparent;
 }
 
-/* NY STAM-LINJE: Skapar tydligt mellanrum mellan Huvudswitch och det vågräta strecket */
+/* STAM-LINJE: Skapar ett rejält 40px mellanrum mellan Huvudswitch och det vågräta strecket */
 .topo-stem {
     width: 4px;
-    height: 32px;
+    height: 40px;
     background: linear-gradient(to bottom, var(--color-primary) 50%, rgba(99, 179, 237, 0.25) 50%);
     background-size: 100% 16px;
     animation: data-flow 0.8s linear infinite;
     margin: 0 auto;
+    flex-shrink: 0;
 }
 
 /* Horisontell uppdelning för träd-strukturen */
@@ -770,7 +739,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
 /* Kort vertikal pil med animerad dataström */
 .topo-arrow-down-short {
     width: 4px;
-    height: 28px;
+    height: 32px;
     background: linear-gradient(to bottom, var(--color-primary) 50%, rgba(99, 179, 237, 0.25) 50%);
     background-size: 100% 16px;
     animation: data-flow 0.8s linear infinite;
@@ -881,7 +850,7 @@ section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-th
    12. UTSKRIFTSVY (PRINT STYLESHEET)
    ======================================== */
 @media print {
-    .site-header, .threatmap-container, .course-filters, .back-to-top, .contact-buttons, .read-more {
+    .site-header, .threatmap-container, .back-to-top, .contact-buttons, .read-more {
         display: none !important;
     }
     body, html {
