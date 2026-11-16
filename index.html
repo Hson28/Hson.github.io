@@ -1,822 +1,626 @@
-<!DOCTYPE html>
-<html lang="sv" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title data-lang-key="meta_title">Jehanni — Studerande IT-säkerhetsspecialist</title>
-    <meta name="description" lang="sv" content="Portfölj för Jehanni Halvarsson, blivande IT-säkerhetsspecialist. Bakgrund inom pedagogiskt ledarskap, specialiserad på infrastruktur, systemhärdning och defensiv säkerhet.">
-
-    <!-- Open Graph / LinkedIn delning -->
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://jehanni.tech/">
-    <meta property="og:title" content="Jehanni Halvarsson — IT-säkerhetsspecialist">
-    <meta property="og:description" content="Portfölj med fokus på IT-säkerhet, nätverksarkitektur, systemhärdning och mitt eget Proxmox-hemmalabb.">
-    <meta property="og:image" content="https://jehanni.tech/profile.jpg">
-
-    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
-    <meta name="theme-color" content="#1a202c" media="(prefers-color-scheme: dark)">
-
-    <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="profile.jpg?v=1">
-
-    <link rel="stylesheet" href="style.css?v=5">
-
-    <!-- Garantiregel mot mobil-cache så att menyn aldrig blir genomskinlig eller hamnar bakom texten -->
-    <style>
-        .site-header { z-index: 1000 !important; }
-        @media (max-width: 767px) {
-            .site-header {
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                background-color: var(--color-bg) !important;
-            }
-            .site-nav {
-                position: fixed !important;
-                inset: 0 !important;
-                width: 100vw !important;
-                height: 100dvh !important;
-                background-color: var(--color-bg) !important;
-                backdrop-filter: none !important;
-                -webkit-backdrop-filter: none !important;
-                z-index: 10000 !important;
-                display: flex !important;
-                flex-direction: column !important;
-                justify-content: center !important;
-                align-items: center !important;
-                padding-top: 0 !important;
-            }
-            .logo, .nav-toggle, .header-toggles {
-                z-index: 10002 !important;
-            }
-        }
-    </style>
-</head>
-<body>
-
-<a href="#main-content" class="skip-link" data-lang-key="skip_link">Hoppa till huvudinnehåll</a>
-
-<div class="threatmap-container">
-    <div class="threatmap-background"></div>
-</div>
-
-<header class="site-header">
-    <div class="container header-container">
-        <div class="logo">
-            <div class="header-socials">
-                <a href="https://github.com/Hson28" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="header-social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon-svg"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-                </a>
-                
-                <a href="https://www.linkedin.com/in/jehanni-halvarsson-9a5a771a8/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="header-social-link">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="social-icon-svg"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
-                </a>
-            </div>
-        </div>
-
-        <button class="nav-toggle" aria-controls="primary-navigation" aria-expanded="false">
-            <span class="sr-only" data-lang-key="aria_menu">Meny</span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-            <span class="hamburger-line"></span>
-        </button>
-
-        <nav class="site-nav" data-visible="false">
-            <ul id="primary-navigation" class="nav-list" data-visible="false">
-                <li><a href="#about" class="nav-link" data-lang-key="nav_about">Om</a></li>
-                <li><a href="#projects" class="nav-link" data-lang-key="nav_projects">Kurser</a></li>
-                <li><a href="#homelab" class="nav-link" data-lang-key="nav_homelab">Hemmalabb</a></li>
-                <li><a href="#skills" class="nav-link" data-lang-key="nav_skills">Färdigheter</a></li>
-                <li><a href="#cv" class="nav-link" data-lang-key="nav_cv">CV</a></li>
-                <li><a href="#contact" class="nav-link" data-lang-key="nav_contact">Kontakt</a></li>
-            </ul>
-        </nav>
-
-        <div class="header-toggles">
-            <button class="theme-toggle" aria-label="Växla mörkt/ljust läge">
-                <span class="theme-icon-light" aria-hidden="true">☀️</span>
-                <span class="theme-icon-dark" aria-hidden="true">🌙</span>
-            </button>
-            
-            <button class="lang-toggle" lang="sv" aria-label="Växla språk / Switch language">
-                <svg class="flag-icon flag-en" viewBox="0 0 60 30" xmlns="http://www.w3.org/2000/svg">
-                    <clipPath id="s">
-                        <path d="M0,0 v30 h60 v-30 z"/>
-                    </clipPath>
-                    <clipPath id="t">
-                        <path d="M30,15 h30 v15 z v15 h-30 z h-30 v-15 z v-15 h30 z"/>
-                    </clipPath>
-                    <g clip-path="url(#s)">
-                        <path d="M0,0 v30 h60 v-30 z" fill="#012169"/>
-                        <path d="M0,0 L60,30 M60,0 L0,30" stroke="#fff" stroke-width="6"/>
-                        <path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(#t)" stroke="#C8102E" stroke-width="4"/>
-                        <path d="M30,0 v30 M0,15 h60" stroke="#fff" stroke-width="10"/>
-                        <path d="M30,0 v30 M0,15 h60" stroke="#C8102E" stroke-width="6"/>
-                    </g>
-                </svg>
-
-                <svg class="flag-icon flag-sv" viewBox="0 0 16 10" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="16" height="10" fill="#006aa7"/>
-                    <rect width="2" height="10" x="5" fill="#fecc00"/>
-                    <rect width="16" height="2" y="4" fill="#fecc00"/>
-                </svg>
-            </button>
-        </div>
-    </div>
-</header>
-
 <main id="main-content">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1 data-lang-key="hero_h1">Jehanni</h1>
+                    <p class="hero-tagline" data-lang-key="hero_tagline">
+                        Blivande IT-säkerhetsspecialist med bakgrund inom pedagogik och ledarskap. Jag gör komplex teknik begriplig, identifierar risker och bygger en stark säkerhetskultur.
+                    </p>
+                    <a href="#contact" class="button button-primary" data-lang-key="hero_cta">Kontakta mig</a>
+                </div>
+            </div>
+        </section>
 
-    <section class="hero">
-        <div class="container hero-container">
-            <div class="hero-text">
-                <h1 data-lang-key="hero_h1">Jehanni Halvarsson</h1>
-                <p class="hero-tagline" data-lang-key="hero_tagline">
-                    Blivande IT-säkerhetsspecialist med pedagogisk bakgrund. Jag gör det komplexa begripligt, identifierar risker och stärker säkerhetskulturen.
+        <!-- OM MIG -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 data-lang-key="about_h2">Om mig</h2>
+                <p data-lang-key="about_p1">
+                    Efter flera år som förskollärare och arbetslagsledare sadlar jag nu om till IT-säkerhetsspecialist via TUC Yrkeshögskola. I en bransch där den mänskliga faktorn ofta är helt avgörande för säkerheten, tar jag med mig värdefull erfarenhet av ledarskap, kommunikation och struktur.
                 </p>
-                <a href="#contact" class="button button-primary" data-lang-key="hero_cta">Kontakta mig</a>
+                <p data-lang-key="about_p2">
+                    Min pedagogiska bakgrund gör att jag är van vid att förklara komplexa samband på ett enkelt sätt – en nyckelkompetens när man ska införa nya säkerhetsrutiner och höja säkerhetsmedvetenheten i en organisation. Jag arbetar metodiskt med dokumentation och incidenthantering, och trivs i rollen som brygga mellan tekniska specialister och resten av verksamheten.
+                </p>
+                <h3 data-lang-key="about_h3">Certifikat & Utbildning</h3>
+                <ul class="cert-list">
+                    <li>
+                        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span data-lang-key="about_cert1">Networking Basics (Cisco)</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span data-lang-key="about_cert2">Networking Devices and Initial Configuration (Cisco)</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span data-lang-key="about_cert3">Endpoint Security (Cisco)</span>
+                    </li>
+                </ul>
             </div>
-            
-            <div class="hero-image-wrapper">
-                <img src="profile.jpg?v=1" 
-                     alt="Porträttbild på Jehanni Halvarsson" 
-                     class="hero-image">
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="about" class="about">
-        <div class="container">
-            <h2 data-lang-key="about_h2">Om mig</h2>
-            <p data-lang-key="about_p1">
-                Jag skolar om mig från förskollärare och arbetsplatsledare till IT-säkerhetsspecialist via TUC Yrkeshögskola. I en värld där den mänskliga faktorn ofta är den avgörande länken, tar jag med mig förmågor som är centrala för en framgångsrik säkerhetsorganisation.
-            </p>
-            <p data-lang-key="about_p2">
-                Mitt pedagogiska ledarskap innebär att jag är van att göra det komplexa begripligt – en nyckel vid implementering av säkerhetsrutiner och utbildning i säkerhetsmedvetenhet. Jag arbetar metodiskt med dokumentation och avvikelsehantering, och drivs av att fungera som en länk mellan tekniska specialister och den övriga verksamheten.
-            </p>
-            <h3 data-lang-key="about_h3">Certifikat & Utbildning</h3>
-            <ul class="cert-list">
-                <li>
-                    <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    <span data-lang-key="about_cert1">Networking Basics (Cisco)</span>
-                </li>
-                <li>
-                    <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    <span data-lang-key="about_cert2">Networking Devices and Initial Configuration (Cisco)</span>
-                </li>
-                <li>
-                    <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
-                    <span data-lang-key="about_cert3">Endpoint Security (Cisco)</span>
-                </li>
-            </ul>
-        </div>
-    </section>
-
-    <section id="projects" class="projects">
-        <div class="container">
-            <h2 data-lang-key="courses_h2">Kurser (YH)</h2>
-
-            <!-- Utbildningsprogress -->
-            <div class="course-progress-wrapper">
-                <div class="course-progress-header">
-                    <span data-lang-key="progress_label">Utbildningsprogress (Teori & Kurser)</span>
-                    <span class="course-progress-stats" data-lang-key="progress_stats">8 av 11 kurser avklarade (1 pågående)</span>
-                </div>
-                <div class="course-progress-bar" role="progressbar" aria-valuenow="74" aria-valuemin="0" aria-valuemax="100">
-                    <div class="course-progress-fill" style="width: 74%;"></div>
-                    <div class="course-progress-ongoing" style="width: 9%;"></div>
-                </div>
-            </div>
-            
-            <h3 class="section-subtitle" data-lang-key="courses_completed">Genomförda & Pågående</h3>
-            <div class="project-grid">
+        <!-- KURSER -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 data-lang-key="courses_h2">Kurser (YH)</h2>
                 
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course1_title">Nätverksteknik</h3>
-                        <p class="project-role" data-lang-key="course1_points">25 YH-poäng</p>
+                <div class="course-progress">
+                    <div class="progress-header">
+                        <span class="progress-label" data-lang-key="progress_label">Utbildningsprogress (Teori & Kurser)</span>
+                        <span class="progress-stats" data-lang-key="progress_stats">8 av 11 kurser avklarade (1 pågående)</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 78%;"></div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" data-lang-key="courses_completed">Genomförda & Pågående</h3>
+                <div class="project-grid">
+                    
+                    <!-- Kurs 1 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course1_title">Nätverksteknik</h3>
+                            <span class="project-role" data-lang-key="course1_points">25 YH-poäng</span>
+                        </div>
                         <p data-lang-key="course1_desc">
-                            Konfiguration av routrar och switchar, VLAN och accesslistor. Omfattar även accesskontroll i trådlösa nätverk och felsökning med protokollanalysator.
+                            Konfiguration av routrar och switchar, VLAN och åtkomstlistor (ACL). Omfattar även säkerhet i trådlösa nätverk och felsökning med protokollanalysatorer.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">Routing/Switching</span>
-                            <span class="tag">VLAN/ACL</span>
-                            <span class="tag">Protokollanalys</span>
+                        <ul class="project-tags">
+                            <li>Cisco CLI</li>
+                            <li>VLAN & ACL</li>
+                            <li>Wireshark</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course1">
+                            <p>Kursen gav en bred praktisk och teoretisk grund i hur datanätverk byggs upp, säkras och felsöks. Vi började med nätverksarkitektur, OSI- och TCP/IP-modellerna, IPv4/IPv6-adressering och subnätning. Därefter fick jag praktisk erfarenhet av att konfigurera routrar och switchar via CLI, härda enheter och segmentera nätverk med VLAN.</p>
+                            <p>Ett stort fokus låg på trafikstyrning och säkerhet genom åtkomstlistor (ACL), routing och DNS-integrering, samt planering och säkring av trådlösa nätverk. Genom hela kursen arbetade vi aktivt med felsökning i Cisco Packet Tracer och Wireshark för att hitta och åtgärda säkerhetsbrister och anslutningsfel i felkonfigurerade miljöer.</p>
+                            <p>Kursen avslutades med ett skarpt case där jag tog fram en kravspecifikation, designade en komplett nätverkslösning och presenterade arkitekturen muntligt.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        
-                        <div class="course-blog" data-lang-key="blog_course1">
-                            <p>Den här kursen gav en heltäckande grund inom datornätverk och tog mig från teoretiska koncept till praktisk implementering och felsökning. Det började med grundprinciperna för nätverksarkitektur, med fokus på OSI- och TCP/IP-modellerna, IPv4- och IPv6-adressering samt subnätshantering. Utifrån denna teori fick jag praktisk erfarenhet av att konfigurera routrar och switchar via CLI (Command Line Interface), etablera enhetssäkerhet och sätta upp VLAN (Virtual Local Area Networks).</p>
-                            <p>Allt eftersom kursen fortskred skiftade fokus till att säkra och underhålla dessa miljöer. Jag lärde mig att styra nätverkstrafik med hjälp av accesslistor (ACL), konfigurera routing och integrera DNS. En betydande del av kursen ägnades åt trådlösa nätverk, där jag planerade, säkrade och optimerade accesspunkter genom radioplanering. Genom alla dessa moment låg ett stort fokus på praktisk felsökning. Med hjälp av simuleringsverktyg som Cisco Packet Tracer och protokollanalysatorer som Wireshark kunde jag diagnostisera och åtgärda säkerhetsbrister och anslutningsproblem i medvetet felkonfigurerade nätverksmiljöer.</p>
-                            <p>I slutändan kulminerade kursen i att tillämpa alla dessa tekniska färdigheter på verkliga scenarier. Jag lärde mig hur man identifierar specifika nätverksbehov, designar robusta infrastrukturlösningar och presenterar dessa tekniska designer i en muntlig redovisning.</p>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course2_title">IT-infrastruktur</h3>
-                        <p class="project-role" data-lang-key="course2_points">25 YH-poäng</p>
+                    <!-- Kurs 2 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course2_title">IT-infrastruktur</h3>
+                            <span class="project-role" data-lang-key="course2_points">25 YH-poäng</span>
+                        </div>
                         <p data-lang-key="course2_desc">
-                            Bygga IT-infrastrukturer med hög tillgänglighet och säkerhet. Innehåller PC-, server-, data- och applikationsvirtualisering samt plattformar för backup.
+                            Uppbyggnad av driftsäkra och säkra IT-miljöer. Inkluderar virtualisering av servrar och applikationer, molntjänster samt strategier för backup och återställning.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">Virtualisering</span>
-                            <span class="tag">Infrastruktur</span>
-                            <span class="tag">Backup-lösningar</span>
+                        <ul class="project-tags">
+                            <li>Hyper-V</li>
+                            <li>Backup (3-2-1)</li>
+                            <li>VPN & Bastion</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course2">
+                            <p>Här fördjupade vi oss i hur moderna IT-miljöer designas, optimeras och säkras. Vi inledde med serverarkitektur och resurshantering innan vi gick vidare till virtualisering i Hyper-V, containerteknik samt privata och publika molnlösningar.</p>
+                            <p>En central del av kursen handlade om driftsäkerhet och Disaster Recovery. Vi genomförde sårbarhetsanalyser, satte upp robusta rutiner för säkerhetskopiering enligt 3-2-1-regeln och arbetade praktiskt med systemhärdning på fysiska och virtuella servrar.</p>
+                            <p>Slutligen fokuserade vi på säker fjärråtkomst genom att jämföra och konfigurera VPN-protokoll (som OpenVPN och L2TP) samt sätta upp jumpboxes (bastion hosts). Allt knöts ihop i ett större grupparbete där vi designade och presenterade en komplett, säker infrastruktur.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        
-                        <div class="course-blog" data-lang-key="blog_course2">
-                            <p>Den här kursen i IT-infrastruktur gav en djupgående förståelse för hur moderna IT-miljöer byggs upp, optimeras och säkras. Den inleddes med fokus på serverarkitektur och systemoptimering, där jag lärde mig att hantera delade resurser effektivt, utvärdera olika serverplattformar utifrån prestanda och säkerhet, samt optimera servrar för energieffektivitet. Därefter skiftade kursen till virtualisering och molnverktyg. Jag fick praktisk kunskap kring virtuella maskiner (VM), specifikt med Hyper-V, och utforskade molninfrastruktur genom både privata och publika moln samt containerteknologi.</p>
-                            <p>En stor del av kursen ägnades åt IT-säkerhet, processer och katastrofåterställning (disaster recovery). Vi gick igenom säkerhetens historik och nuläge, genomförde sårbarhetsanalyser och lärde oss vikten av robusta säkerhetskopieringar enligt 3-2-1-regeln. I detta moment fördjupade vi oss även i systemhärdning och hur man skyddar system mot sidoattacker (side-channel attacks). Teorin kompletterades med praktiska inslag, såsom individuella platsbundna laborationer och granskning av fysiska servrar.</p>
-                            <p>Slutligen låg fokus på säker nätverksåtkomst och fjärrstyrning. Kursen täckte hur VPN bidrar till säker åtkomst genom att jämföra protokoll som PPTP, L2TP och OpenVPN, samt hur och när en så kallad jumpbox (bastion host) bör användas. Alla dessa teoretiska och praktiska moment knöts därefter samman i ett omfattande grupparbete. Detta gav mig chansen att tillämpa mina nya kunskaper om infrastruktur och säkerhet i ett större projekt, vilket slutligen redovisades i en examinerande presentation på plats.</p>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course3_title">Grundläggande IT-säkerhet</h3>
-                        <p class="project-role" data-lang-key="course3_points">30 YH-poäng</p>
+                    <!-- Kurs 3 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course3_title">Grundläggande IT-säkerhet</h3>
+                            <span class="project-role" data-lang-key="course3_points">30 YH-poäng</span>
+                        </div>
                         <p data-lang-key="course3_desc">
-                            Skydd av system och data genom riskanalys, Zero Trust-arkitektur och konfiguration av brandväggar. Hantering av PKI, digitala certifikat, SSO och MFA.
+                            Skydd av system och data genom riskanalys, Zero Trust-arkitektur och brandväggskonfiguration. Hantering av PKI, digitala certifikat, SSO och MFA.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">PKI & Certifikat</span>
-                            <span class="tag">Zero Trust</span>
-                            <span class="tag">SSO / MFA</span>
+                        <ul class="project-tags">
+                            <li>Zero Trust</li>
+                            <li>PKI & Certifikat</li>
+                            <li>Secure AD DS</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course3">
+                            <p>Den här kursen lade grunden för det systematiska säkerhetsarbetet i rollen som IT-säkerhetsspecialist. Vi arbetade med säkerhetsdokumentation, ISO-standarder och praktiska risk- och sårbarhetsanalyser (RSA) för att proaktivt identifiera hot mot både lokala miljöer och molntjänster.</p>
+                            <p>Ett genomgående tema var identitets- och behörighetsstyrning (IAM) utifrån en Zero Trust-modell. I praktiska labbar säkrade vi Active Directory-miljöer (Secure AD DS), implementerade Single Sign-On (SSO) och multifaktorautentisering (MFA), samt kopplade samman domäner bakom brandväggar med Microsoft Azure.</p>
+                            <p>Vi arbetade även ingående med kryptering, digitala signaturer och Public Key Infrastructure (PKI) för att säkra kommunikation med digitala certifikat, vilket examinerades under intensiva heldagslabbar.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        
-                        <div class="course-blog" data-lang-key="blog_course3">
-                            <p>Denna kurs gav en gedigen grund i principerna för att skydda moderna IT-miljöer och data, med ett tydligt fokus på yrkesrollen som IT-säkerhetsspecialist. Utbildningen inleddes med ett starkt fokus på säkerhetsdokumentation, standarder som ISO, samt riskanalys och riskhantering. Genom både teori och praktiska laborationer tränades jag i att utföra systematiska risk- och sårbarhetsanalyser (RSA) för att proaktivt kunna identifiera och hantera säkerhetsrisker kopplade till internet och molntjänster.</p>
-                            <p>Ett centralt tema i kursen var identitets- och åtkomsthantering utifrån en Zero Trust-arkitektur. Jag fördjupade mig i hur man säkerställer användarbehörighet genom tekniker som Single Sign-On (SSO) samt två- och trefaktorsautentisering. Dessa koncept omsattes i praktiken genom laborationer där vi arbetade med att säkra upp Active Directory Domain Services (Secure AD DS), ansluta domäner bakom brandväggar och integrera med molnmiljöer som Microsoft Azure.</p>
-                            <p>Vidare behandlade kursen avgörande tekniker för att skydda system mot skadlig kod och intrång. Vi studerade kryptering, digital signering och implementering av brandväggar. Stor vikt lades vid Public Key Infrastructure (PKI) och hantering av digitala certifikat för att säkerställa tillförlitlig kommunikation. Kursen avslutades med intensiva, heldagslaborationer där alla teoretiska och praktiska moment examinerades, tätt följt av en omfattande kunskapskontroll inför den avslutande tentamen.</p>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course4_title">Informationssäkerhet och IT-juridik</h3>
-                        <p class="project-role" data-lang-key="course4_points">25 YH-poäng</p>
+                    <!-- Kurs 4 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course4_title">Informationssäkerhet och IT-rätt</h3>
+                            <span class="project-role" data-lang-key="course4_points">25 YH-poäng</span>
+                        </div>
                         <p data-lang-key="course4_desc">
-                            Tillämpning av GDPR och NIS2. Praktiskt arbete med riskanalyser, upprättande av incidenthanteringsplaner och standarder som ISO 27000 och NIST.
+                            Tillämpning av GDPR och NIS2. Praktiskt arbete med riskanalyser, incidentplaner samt ramverk som ISO 27000, NIST och MSB:s riktlinjer.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">GDPR / NIS2</span>
-                            <span class="tag">ISO 27000 / NIST</span>
-                            <span class="tag">Säkerhetspolicys</span>
+                        <ul class="project-tags">
+                            <li>ISO 27000 & NIST</li>
+                            <li>GDPR & NIS2</li>
+                            <li>Incidentplaner</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course4">
+                            <p>Den här kursen kopplade samman den tekniska säkerheten med de lagkrav och ramverk som styr dagens informationshantering. Utifrån KONF-begreppen (konfidentialitet, riktighet och tillgänglighet) och MSB:s metodstöd fördjupade jag mig i dataskyddsförordningen (GDPR), kamerabevakningslagen och ansvarsfördelningen mellan personuppgiftsansvariga och biträden.</p>
+                            <p>Vi arbetade praktiskt med ledningssystem för informationssäkerhet (LIS/ISMS) enligt ISO 27000-serien, samt ramverk som NIST 800-53 och IEC-62443 för OT-säkerhet. Med stöd av metoder från MSB, OWASP och NIST RMF ledde jag workshops för att kartlägga skyddsvärda tillgångar och bedöma sårbarheter.</p>
+                            <p>Under kursens sista del tog jag fram konkreta incidenthanteringsplaner och informationssäkerhetspolicyer, samtidigt som vi analyserade hur direktiv som NIS2 påverkar kraven på rapportering, efterlevnad och balansen mellan säkerhet och personlig integritet.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
+                    </article>
 
-                        <div class="course-blog" data-lang-key="blog_course4">
-                            <p>Denna kurs knöt samman de tekniska aspekterna av IT-säkerhet med de organisatoriska och juridiska ramverk som styr modern informationshantering. Kursen inleddes med informationssäkerhetens grunder, där fokus låg på CIA-triaden (konfidentialitet, riktighet och tillgänglighet) samt MSB:s grundläggande principer för ett systematiskt och riskbaserat säkerhetsarbete. Därefter fördjupade jag mig i IT-relaterad juridik med en omfattande genomgång av Dataskyddsförordningen (GDPR), Kamerabevakningslagen och e-Privacy. Detta inkluderade ansvarsfördelningen mellan personuppgiftsansvariga och biträden, samt hantering av samtycke, rättslig grund och rätten till radering.</p>
-                            <p>Ett centralt inslag i kursen var arbetet med etablerade säkerhetsstandarder. Jag studerade strukturen och funktionen i ISO 27000-serien och införandet av ledningssystem för informationssäkerhet (ISMS), samt introducerades till ramverk som NIST 800-53 och IEC-62443 för OT-säkerhet. Denna teoretiska grund omsattes i praktiken genom djupgående riskanalyser. Med hjälp av metoder från MSB, OWASP och NIST RMF genomförde jag workshops för att kartlägga tillgångar, identifiera hot och sårbarheter, samt analysera hur känsliga uppgifter bör hanteras.</p>
-                            <p>I kursens avslutande delar skiftade fokus till operativ incidenthantering och strategiskt policyarbete. Jag tränades i att upprätta incidenthanteringsplaner – från förberedelse och detektion till respons och återställning – samt hur man utformar en heltäckande informationssäkerhetspolicy. Vi diskuterade även det juridiska ansvaret vid incidenter och introducerades till kraven i NIS2-direktivet. Avslutningsvis analyserade jag komplexa IT-juridiska situationer, utvärderade organisationers regelefterlevnad och problematiserade balansen mellan rigorös IT-säkerhet och personlig integritet.</p>
+                    <!-- Kurs 5 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course5_title">IT-säkerhet Windows</h3>
+                            <span class="project-role" data-lang-key="course5_points">20 YH-poäng</span>
                         </div>
-                    </div>
-                </article>
-
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course5_title">IT-säkerhet Windows</h3>
-                        <p class="project-role" data-lang-key="course5_points">20 YH-poäng</p>
                         <p data-lang-key="course5_desc">
-                            Minimering av attackyta genom härdning. Omfattar hantering av LDAP, Identity and Access (IDA) Control, lösenordspolicy och loggning/auditing.
+                            Minimering av attackytor i Microsoft-miljöer genom systemhärdning. Omfattar AD/LDAP, behörighetsstyrning, säkerhetspolicyer samt loggning och övervakning.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">Windows Hardening</span>
-                            <span class="tag">LDAP / IDA</span>
-                            <span class="tag">Auditing</span>
+                        <ul class="project-tags">
+                            <li>GPO & Härdning</li>
+                            <li>Kerberos & LDAP</li>
+                            <li>Sysmon & Sentinel</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course5">
+                            <p>En teknisk djupdykning i hur man säkrar Microsoft-miljöer från klient till server. Vi började på djupet med Windows arkitektur – inklusive Kernel, LSA, SAM och bootsäkerhet – för att sedan arbeta praktiskt med att minimera attackytor via security baselines, WDAC (Windows Defender Application Control), ASR-regler och säkring av SMB-protokollet.</p>
+                            <p>Inom identitetshantering arbetade vi med Kerberos, LDAP och Extended Protection for Authentication (EPA), samt skydd av inloggningsuppgifter via Credential Guard, HVCI och dMSA. För att kunna upptäcka intrång konfigurerade vi strukturerade audit-policyer och analyserade händelseloggar med verktyg som Sysmon, Microsoft Defender och Microsoft Sentinel.</p>
+                            <p>Vi arbetade även med enhetshantering via GPO och Intune, kryptering med BitLocker, TPM, TLS och QUIC, samt hårdvarunära skydd som Virtualization-Based Security (VBS) och Shadow Stack. Kursen avrundades med en genomgång av säkerhetsarkitekturen i Windows Server 2025.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
+                    </article>
 
-                        <div class="course-blog" data-lang-key="blog_course5">
-                            <p>Denna intensiva kurs gav en avancerad teknisk specialisering inom säkerhet för Microsoft-miljöer, från klientsida till servernivå. Utbildningen inleddes med en detaljerad analys av det aktuella hotlandskapet och Windows underliggande arkitektur. Jag fick djupgående kunskaper om operativsystemets kärna (Kernel), LSA, SAM och uppstartssäkerhet (boot security). Därefter skiftade vi fokus till att aktivt minimera attackytan genom systemhärdning. Detta innefattade arbete med säkerhetsbaslinjer, implementering av WDAC (Windows Defender Application Control) och ASR-regler (Attack Surface Reduction), samt säkring av nätverksprotokoll som SMB.</p>
-                            <p>Ett kritiskt område under kursen var identitets- och åtkomsthantering. Jag fördjupade mig i protokoll som Kerberos och LDAP, konfigurerade Extended Protection for Authentication (EPA) och lärde mig avancerade tekniker för att skydda inloggningsuppgifter och hemligheter med hjälp av Credential Guard, HVCI och DMSA. För att kunna upptäcka och svara på hot lades stor vikt vid loggning och övervakning. Jag tränades i att strukturera händelseloggar och granskningspolicyer (audit policies) samt att använda kraftfulla övervakningsverktyg som Sysmon, Microsoft Defender och Microsoft Sentinel.</p>
-                            <p>I kursens senare delar behandlades modern enhetshantering och dataskydd. Jag lärde mig styra och säkra enheter via GPO och Intune, samt skydda data i vila och i transit med krypteringstekniker som BitLocker, TPM, TLS och QUIC. Utbildningen avslutades med mycket avancerade säkerhetsmekanismer, såsom virtualiseringsbaserad säkerhet (VBS), Shadow Stack och Control Flow Guard (CFG). Allt detta knöts slutligen samman i en omfattande djupdykning i säkerhetsarkitekturen för nya Windows Server 2025, där vi utvärderade säkerheten från hårdvaru- och kiselnivå hela vägen upp till specifika arbetsbelastningar.</p>
+                    <!-- Kurs 6 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course6_title">IT-säkerhet Linux, Unix och Mac</h3>
+                            <span class="project-role" data-lang-key="course6_points">20 YH-poäng</span>
                         </div>
-                    </div>
-                </article>
-
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course6_title">IT-säkerhet Linux, Unix och Mac</h3>
-                        <p class="project-role" data-lang-key="course6_points">20 YH-poäng</p>
                         <p data-lang-key="course6_desc">
-                            Administration, konfiguration och härdning av Linux-, Unix- och Mac-miljöer enligt säkerhetsstandard för att minimera attackytor och säkra systemtjänster.
+                            Administration, konfiguration och härdning av Linux-, Unix- och Mac-miljöer enligt etablerade säkerhetsstandarder för att minimera attackytor och säkra tjänster.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">Linux/Unix</span>
-                            <span class="tag">Systemhärdning</span>
-                            <span class="tag">Loggning & Detektion</span>
+                        <ul class="project-tags">
+                            <li>Linux CLI</li>
+                            <li>SSH-härdning</li>
+                            <li>Behörigheter</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course6">
+                            <p>Kursen gav en gedigen praktisk grund i att administrera och säkra Linux-, Unix- och Mac-system i professionella miljöer. Med utgångspunkt i Ubuntu LTS och KVM-virtualisering arbetade vi systematiskt med hotbildsanalyser och systemhärdning enligt vedertagna säkerhetsstandarder.</p>
+                            <p>Vi fokuserade på att krympa attackytan genom strikt kontroll av användare, filrättigheter och autentisering (exempelvis SSH-härdning), samt genom att granska och stänga ner onödiga processer och systemtjänster. Vi konfigurerade även brandväggar på OS-nivå och satte upp loggning för spårbarhet och tidig detektering av avvikelser.</p>
+                            <p>Allt prövades i en 48 timmar lång praktisk examination där en hel servermiljö skulle härdas, dokumenteras och försvaras utifrån specifika säkerhetskrav.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
+                    </article>
 
-                        <div class="course-blog" data-lang-key="blog_course6">
-                            <p>Kursen gav en djupgående förståelse för hur Linux-, Unix- och Mac-system är uppbyggda och hur de säkras i professionella miljöer. Med utgångspunkt i Ubuntu LTS och Linux-baserad virtualisering (såsom KVM) arbetade vi systematiskt med att analysera hotbilder och implementera grundläggande samt avancerad systemhärdning enligt etablerade säkerhetsstandarder.</p>
-                            <p>Ett stort fokus låg på att minimera möjliga attackytor genom strikt kontroll av användare, filrättigheter, autentiseringsmekanismer samt granskning av aktiva processer och installerade systemtjänster. Vi fördjupade oss även i nätverkssäkerhet på operativsystemsnivå samt hur man konfigurerar robust loggning, spårbarhet och detektion för att tidigt upptäcka avvikelser.</p>
-                            <p>Avslutningsvis knöts tekniken samman med förebyggande säkerhetsarbete, riskanalys och avancerade försvarsmekanismer. Kunskaperna prövades i en omfattande 48-timmars praktisk laboration där en hel miljö skulle säkras upp, dokumenteras och försvaras utifrån specifika säkerhetskrav.</p>
+                    <!-- Kurs 7 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course7_title">Nätverkssäkerhet</h3>
+                            <span class="project-role" data-lang-key="course7_points">30 YH-poäng</span>
                         </div>
-                    </div>
-                </article>
-                
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course7_title">Nätverkssäkerhet</h3>
-                        <p class="project-role" data-lang-key="course7_points">30 YH-poäng</p>
                         <p data-lang-key="course7_desc">
-                            Hantering av nätverksattacker, intrångsförsök och skadlig programvara. Praktiskt arbete med brandväggar, IDS/IPS-system och säkra protokoll.
+                            Skydd mot nätverksattacker, intrångsförsök och skadlig kod. Praktiskt arbete med brandväggar, IDS/IPS-system, segmentering och säkra protokoll.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">Brandväggar / IDS/IPS</span>
-                            <span class="tag">Nätverksattacker</span>
-                            <span class="tag">Kryptering/Protokoll</span>
+                        <ul class="project-tags">
+                            <li>Brandväggar</li>
+                            <li>IDS / IPS</li>
+                            <li>Trafikanalys</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course7">
+                            <p>Här fördjupade vi oss i teknisk nätverkssäkerhet med fokus på att skydda organisationers infrastruktur och data. Vi analyserade vanliga angreppsvektorer – från överbelastningsattacker (DDoS) och webbattacker till spridning av skadlig kod – samt hur man hanterar interna avvikelser mot gällande säkerhetspolicyer.</p>
+                            <p>En stor del av kursen bestod av praktiskt arbete med att upptäcka och stoppa intrångsförsök. Vi implementerade och utvärderade IDS/IPS-system, brandväggar och antivirusskydd, och tränade på att självständigt utreda säkerhetsbrister i nätverket, skärpa krypteringsprotokoll och införa rätt skyddsåtgärder.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        <div class="course-blog" data-lang-key="blog_course7">
-                            <p>Denna kurs gav en djupgående förståelse för teknisk nätverkssäkerhet med stort fokus på att skydda organisationens IT-infrastruktur och information. Vi studerade och analyserade de vanligaste typerna av nätverksattacker, inklusive fullskaleattacker, webbangrepp och spridning av skadlig programvara, men även hur man hanterar interna överträdelser mot etablerade säkerhetsregler.</p>
-                            <p>Ett centralt inslag var praktiskt arbete med att upptäcka och hantera intrångsförsök. Vi fördjupade oss i intrångssäkerhet genom att implementera och utvärdera IDS/IPS-system, brandväggar och antivirusprogram. Utöver detta övade vi på att analysera och utvärdera nätverk för att självständigt kunna utreda säkerhetsbrister, vidta skyddsåtgärder och genomföra modifikationer av säkerhetsprotokoll och kryptering.</p>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course8_title">Etisk Hackning</h3>
-                        <p class="project-role" data-lang-key="course8_points">25 YH-poäng</p>
+                    <!-- Kurs 8 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course8_title">Etisk Hackning</h3>
+                            <span class="project-role" data-lang-key="course8_points">25 YH-poäng</span>
+                        </div>
                         <p data-lang-key="course8_desc">
-                            Metoder för penetrationstestning, sårbarhetsskanning, nätverksintrång, lateral movement, incidenthantering och digital forensik.
+                            Metoder för penetrationstestning, sårbarhetsskanning, nätverksintrång och lateral förflyttning, kombinerat med incidenthantering och digital forensik.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">Kali Linux</span>
-                            <span class="tag">Pentesting</span>
-                            <span class="tag">Incident Response</span>
+                        <ul class="project-tags">
+                            <li>Pentesting</li>
+                            <li>Nmap & Metasploit</li>
+                            <li>Digital Forensik</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course8">
+                            <p>Kursen gav en djup praktisk förståelse för hur angripare tänker och arbetar, med målet att proaktivt hitta och åtgärda sårbarheter i både mjukvara och hårdvara. Vi började med rekognosering, nätverksskanning med Nmap och trafikanalys i Wireshark, för att sedan gå vidare till initial access, skapande av payloads, lösenordsattacker och hur man etablerar persistens.</p>
+                            <p>En viktig del var post-exploitation och lateral movement, där vi övade på att navigera genom domänmiljöer med verktyg som Metasploit, Meterpreter och Responder. Det offensiva perspektivet knöts sedan ihop med det defensiva genom moduler i intrångsdetektering, incidenthantering och digital forensik för att säkra digitala spår och återställa system efter ett angrepp.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        
-                        <div class="course-blog" data-lang-key="blog_course8">
-                            <p>Denna kurs gav en djupgående praktisk förståelse för hur en angripare arbetar och hur man proaktivt kan identifiera samt åtgärda sårbarheter, inklusive hårdvarubaserade sådana. Vi inledde med grundläggande metoder för rekognoscering, nätverksscanning med Nmap och trafikanalys via Wireshark. Därefter gick vi vidare till mer avancerade moment som initial access, skapande av payloads, bruteforcing och hur man upprätthåller persisterande åtkomst (persistence) i en miljö.</p>
-                            <p>En betydande del av utbildningen handlade om post-exploitation och lateral movement, där vi övade på att ta oss vidare i domänmiljöer med hjälp av verktyg som Metasploit, Meterpreter och Responder. Kursen vävde också skickligt samman det offensiva perspektivet med defensiv säkerhet genom att utvärdera övervaknings- och intrångsdetekteringsstrategier, upprätta incidenthanteringsplaner och tillämpa digital forensik för att säkra spår och återställa system efter en inträffad incident.</p>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course9_title">Avancerad IT-säkerhet</h3>
-                        <p class="project-role" data-lang-key="course9_points">25 YH-poäng</p>
+                    <!-- Kurs 9 (Pågående) -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course9_title">Avancerad IT-säkerhet</h3>
+                            <span class="project-role" data-lang-key="course9_points">25 YH-poäng</span>
+                        </div>
                         <p data-lang-key="course9_desc">
-                            Hantering av komplexa säkerhetsarkitekturer, incidenthantering (IR), logganalys i SIEM och SOC-verktyg.
+                            Hantering av komplexa säkerhetsarkitekturer, strukturerad incidenthantering (IR), logganalys i SIEM-system och arbete med SOC-verktyg.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag tag-ongoing" data-lang-key="tag_ongoing">Pågående</span>
-                            <span class="tag">Incident Response</span>
-                            <span class="tag">SIEM</span>
-                            <span class="tag">SOC</span>
+                        <ul class="project-tags">
+                            <li class="tag-highlight" data-lang-key="tag_ongoing">Pågående</li>
+                            <li>SIEM & SOC</li>
+                            <li>Incident Response</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course9">
+                            <p>Just nu fördjupar vi oss i avancerad IT-säkerhet med fokus på komplexa säkerhetsarkitekturer och operativt försvar. Vi arbetar praktiskt med logganalys i SIEM-system, övervakning med SOC-verktyg och strukturerad incidenthantering (Incident Response) för att effektivt kunna upptäcka, analysera och isolera avancerade hot.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        <div class="course-blog" data-lang-key="blog_course9">
-                            <p>Just nu fördjupar vi oss i avancerad IT-säkerhet med fokus på komplexa säkerhetsarkitekturer och defensivt arbete i praktiken. Vi arbetar med logganalys i SIEM-system, övervakning med SOC-verktyg och strukturerad incidenthantering (Incident Response) för att effektivt kunna upptäcka, analysera och isolera avancerade hot.</p>
+                    </article>
+                </div>
+
+                <!-- KOMMANDE KURSER -->
+                <h3 class="subsection-title" data-lang-key="courses_upcoming">Kommande kurser</h3>
+                <div class="project-grid">
+                    <!-- Kurs 10 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course10_title">Molnsäkerhet</h3>
+                            <span class="project-role" data-lang-key="course10_points">25 YH-poäng</span>
                         </div>
-                    </div>
-                </article>
-
-            </div>
-            
-            <h3 class="section-subtitle" style="margin-top: 3rem;" data-lang-key="courses_upcoming">Kommande Kurser</h3>
-            <div class="project-grid">
-
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course10_title">Molnsäkerhet</h3>
-                        <p class="project-role" data-lang-key="course10_points">25 YH-poäng</p>
                         <p data-lang-key="course10_desc">
-                            Säkerhetskonfiguration och arkitektur i molnmiljöer (t.ex. Azure/AWS), identitetshantering (IAM) och Zero Trust.
+                            Säkerhetskonfiguration och arkitektur i molnmiljöer (t.ex. Azure och AWS), identitetsstyrning (IAM) och implementering av Zero Trust.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag tag-upcoming" data-lang-key="tag_upcoming">Kommande</span>
-                            <span class="tag">Cloud</span>
-                            <span class="tag">IAM</span>
-                            <span class="tag">Zero Trust</span>
+                        <ul class="project-tags">
+                            <li data-lang-key="tag_upcoming">Kommande</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_upcoming">
+                            <p>Den här kursen har inte startat än. Mer information och en sammanfattning av mina labbar publiceras här så snart kursen är igång!</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        <div class="course-blog" data-lang-key="blog_upcoming"><p>Denna kurs har jag inte påbörjat ännu. Mer information och en sammanfattning av mina laborationer och insikter kommer att publiceras här så snart kursen är igång!</p></div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="course11_title">Examensarbete</h3>
-                        <p class="project-role" data-lang-key="course11_points">20 YH-poäng</p>
+                    <!-- Kurs 11 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course11_title">Examensarbete</h3>
+                            <span class="project-role" data-lang-key="course11_points">20 YH-poäng</span>
+                        </div>
                         <p data-lang-key="course11_desc">
-                            Avslutande projektarbete som knyter ihop teori och praktik inom ett valt fördjupningsområde inom IT-säkerhet.
+                            Avslutande fördjupningsprojekt som knyter ihop teori och praktik inom ett valt specialistområde inom IT-säkerhet.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag tag-upcoming" data-lang-key="tag_upcoming">Kommande</span>
-                            <span class="tag">Forskning</span>
-                            <span class="tag">Rapport</span>
+                        <ul class="project-tags">
+                            <li data-lang-key="tag_upcoming">Kommande</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_upcoming">
+                            <p>Den här kursen har inte startat än. Mer information och en sammanfattning av mina labbar publiceras här så snart kursen är igång!</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        <div class="course-blog" data-lang-key="blog_upcoming"><p>Denna kurs har jag inte påbörjat ännu. Mer information och en sammanfattning av mina laborationer och insikter kommer att publiceras här så snart kursen är igång!</p></div>
-                    </div>
-                </article>
-                
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="homelab" class="homelab">
-        <div class="container">
-            <h2 data-lang-key="homelab_h2">Hemmalabb</h2>
-            <p data-lang-key="homelab_intro">
-                Om det är något jag har lärt mig av att bygga och driva ett hemmalabb, så är det att det aldrig blir riktigt "klart". Antingen finns det något som kan optimeras, en fulfix som borde göras om ordentligt, eller en ny teknik som bara måste testas. Det är väl lite det som är grejen, känslan av att aldrig riktigt bli nöjd och alltid se nästa projekt i horisonten som gör det så kul.
-            </p>
-            <p data-lang-key="homelab_intro_2">
-                Från att tidigare ha stått utspritt i en vanlig hylla har hela bygget nu flyttat in i ett modifierat IKEA-skåp med ett 10"-rack och temperaturstyrd kylning. På insidan har ett enklare hemmabygge vuxit till en betydligt mer robust miljö med en dedikerad hårdvarubrandvägg i fronten, och ett kluster med tre aktiva noder. Till det har jag en fristående management-nod som bland annat sköter klustrets kvorum och säker fjärråtkomst.
-            </p>
-
-            <!-- INTERAKTIV TOPOLOGI -->
-            <div class="topology-diagram">
-                <h3 class="section-subtitle" style="margin-bottom: 0.5rem; border-bottom: none;" data-lang-key="topo_h3">Interaktiv Nätverkstopologi</h3>
-                <p style="text-align: center; margin-bottom: 2rem; font-size: 0.9rem; opacity: 0.8;" data-lang-key="topo_click_info">
-                    (Klicka på noderna för att läsa mer)
+        <!-- HEMMALABB -->
+        <section id="homelab" class="projects">
+            <div class="container">
+                <h2 data-lang-key="homelab_h2">Hemmalabb</h2>
+                <p class="section-intro" data-lang-key="homelab_intro">
+                    Om det är något jag har lärt mig av att bygga och driva ett hemmalabb, så är det att det aldrig blir riktigt ”klart”. Antingen finns det något att optimera, en tillfällig lösning som behöver göras ordentligt eller en ny teknik som bara måste testas. Det är just den där drivkraften – att alltid se nästa förbättring runt hörnet – som gör det så roligt.
                 </p>
-                
-                <div class="topo-flow">
-                    <!-- 1. Internet -->
-                    <div class="topo-node modal-trigger" tabindex="0" role="button">
-                        <div class="topo-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
-                        </div>
-                        <h3 data-lang-key="topo_net_title">Internet</h3>
-                        <p data-lang-key="topo_net_desc">Uppströms nätverk</p>
-                        <p class="project-role" style="display:none;" data-lang-key="topo_net_title">Internet</p>
-                        <div class="course-blog" data-lang-key="topo_net_modal">
-                            <p>Internetanslutningen anländer via dubbel-NAT från uppströmsutrustningen. Inga inkommande portar är öppna för allmänheten; all extern åtkomst hanteras via krypterade utgående tunnlar (Tailscale och Cloudflare Tunnels/playit.gg).</p>
-                        </div>
-                    </div>
+                <p class="section-intro" data-lang-key="homelab_intro_2">
+                    Från att tidigare ha legat utspritt på en vanlig hylla har hela bygget nu flyttat in i ett modifierat IKEA-skåp med ett 10-tumsrack och temperaturstyrd kylning. På insidan har en enkel hemmamiljö vuxit till en betydligt mer robust arkitektur med en dedikerad hårdvarubrandvägg i fronten och ett Proxmox-kluster med tre aktiva noder. Utöver det kör jag en fristående management-nod som bland annat hanterar klustrets röstmajoritet (quorum) och säker fjärråtkomst.
+                </p>
+
+                <!-- INTERAKTIV NÄTVERKSTOPOLOGI -->
+                <div class="topology-wrapper">
+                    <h3 class="topology-title">
+                        <span data-lang-key="topo_h3">Interaktiv Nätverkstopologi</span>
+                        <small data-lang-key="topo_click_info">(Klicka på noderna för att läsa mer)</small>
+                    </h3>
                     
-                    <div class="topo-arrow-down"></div>
-                    
-                    <!-- 2. Brandvägg -->
-                    <div class="topo-node modal-trigger" tabindex="0" role="button">
-                        <div class="topo-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
-                        </div>
-                        <h3 data-lang-key="topo_fw_title">Brandvägg</h3>
-                        <p data-lang-key="topo_fw_desc">Cisco ASA 5506-X</p>
-                        <p class="project-role" style="display:none;" data-lang-key="topo_fw_role">Gateway & DHCP</p>
-                        <div class="course-blog" data-lang-key="topo_fw_modal">
-                            <p>Fungerar som hemmalabbets primära försvarslinje och gateway. Brandväggen delar ut interna IP-adresser via DHCP och hanterar säkerhetspolicyer och routing mellan nätverkets insida och utsida.</p>
-                        </div>
-                    </div>
-
-                    <div class="topo-arrow-down"></div>
-
-                    <!-- 3. Huvudswitch -->
-                    <div class="topo-node modal-trigger" tabindex="0" role="button">
-                        <div class="topo-icon">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"></rect><path d="M6 8h.01"></path><path d="M10 8h.01"></path><path d="M14 8h.01"></path><path d="M18 8h.01"></path><path d="M6 16h12"></path></svg>
-                        </div>
-                        <h3 data-lang-key="topo_sw_title">Huvudswitch</h3>
-                        <p data-lang-key="topo_sw_desc">MikroTik hEX</p>
-                        <p class="project-role" style="display:none;" data-lang-key="topo_sw_role">Distribution</p>
-                        <div class="course-blog" data-lang-key="topo_sw_modal">
-                            <p>En central distributionsswitch som delar ut uppkopplingen från brandväggen till det resterande fysiska nätverket i 10"-racket. Här förbereds även framtida logisk VLAN-segmentering.</p>
-                        </div>
-                    </div>
-
-                    <!-- STAM-LINJE SOM GER TYDLIGT MELLANRUM TILL DET VÅGRÄTA STRECKET -->
-                    <div class="topo-stem"></div>
-
-                    <!-- FÖRGRENINGAR -->
-                    <div class="topo-split-container">
-                        <div class="topo-horizontal-line"></div>
-                        <div class="topo-branches">
-                            
-                            <!-- Gren 1: Accesspunkt -->
-                            <div class="topo-branch">
-                                <div class="topo-arrow-down-short"></div>
-                                <div class="topo-node modal-trigger" tabindex="0" role="button">
-                                    <div class="topo-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><line x1="12" y1="20" x2="12.01" y2="20"></line></svg>
-                                    </div>
-                                    <h3 data-lang-key="topo_ap_title">Trådlöst Labbnät</h3>
-                                    <p data-lang-key="topo_ap_desc">Cudy Reserouter (AP)</p>
-                                    <p class="project-role" style="display:none;" data-lang-key="topo_ap_role">Accesspunkt</p>
-                                    <div class="course-blog" data-lang-key="topo_ap_modal">
-                                        <p>Fungerar som en dedikerad trådlös accesspunkt där routing och DHCP-funktioner stängts av. Ger trådlös räckvidd uteslutande till labbets isolerade SSID och subnät.</p>
-                                    </div>
+                    <div class="topology-diagram">
+                        <!-- Nivå 1: Internet -->
+                        <div class="topo-level">
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🌐</span>
+                                <h3 data-lang-key="topo_net_title">Internet</h3>
+                                <span class="project-role" data-lang-key="topo_net_desc">Uppströmsnätverk</span>
+                                <div class="course-blog" hidden data-lang-key="topo_net_modal">
+                                    <p>Internetanslutningen kommer in via dubbel-NAT från uppströmsutrustningen. Inga inkommande portar är öppna mot omvärlden; all extern åtkomst sker uteslutande via krypterade, utgående tunnlar (Tailscale och Cloudflare Tunnels/playit.gg).</p>
                                 </div>
                             </div>
-                            
-                            <!-- Gren 2: Management & VPN -->
-                            <div class="topo-branch">
-                                <div class="topo-arrow-down-short"></div>
-                                <div class="topo-node modal-trigger" tabindex="0" role="button">
-                                    <div class="topo-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"></rect><rect x="9" y="9" width="6" height="6"></rect><line x1="9" y1="1" x2="9" y2="4"></line><line x1="15" y1="1" x2="15" y2="4"></line><line x1="9" y1="20" x2="9" y2="23"></line><line x1="15" y1="20" x2="15" y2="23"></line><line x1="20" y1="9" x2="23" y2="9"></line><line x1="20" y1="14" x2="23" y2="14"></line><line x1="1" y1="9" x2="4" y2="9"></line><line x1="1" y1="14" x2="4" y2="14"></line></svg>
-                                    </div>
-                                    <h3 data-lang-key="topo_mgmt_title">Management & VPN</h3>
-                                    <p data-lang-key="topo_mgmt_desc">Okdo Radxa 4C</p>
-                                    <p class="project-role" style="display:none;" data-lang-key="topo_mgmt_role">Kvorum & Åtkomst</p>
-                                    <div class="course-blog" data-lang-key="topo_mgmt_modal">
-                                        <p>Kritisk fristående management-nod. Driver <strong>Tailscale VPN</strong> som subnet router vilket ger mig säker fjärråtkomst till hela labbet oavsett var jag befinner mig.</p>
-                                        <p>Utöver detta agerar den <strong>QDevice</strong> för Proxmox-klustret. Om en av de stora servrarna måste startas om eller går ner ser Okdon till att klustret behåller sitt kvorum (röstmajoritet) och fortsätter fungera ostört.</p>
-                                    </div>
+                        </div>
+
+                        <div class="topo-connector"></div>
+
+                        <!-- Nivå 2: Brandvägg -->
+                        <div class="topo-level">
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🧱</span>
+                                <h3 data-lang-key="topo_fw_title">Brandvägg</h3>
+                                <p class="topo-model" data-lang-key="topo_fw_desc">Cisco ASA 5506-X</p>
+                                <span class="project-role" data-lang-key="topo_fw_role">Gateway & DHCP</span>
+                                <div class="course-blog" hidden data-lang-key="topo_fw_modal">
+                                    <p>Utgör hemmalabbets första försvarslinje och gateway. Brandväggen delar ut interna IP-adresser via DHCP samt styr säkerhetspolicyer och trafikflöden mellan labbnätet och omvärlden.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="topo-connector"></div>
+
+                        <!-- Nivå 3: Huvudswitch -->
+                        <div class="topo-level">
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🔀</span>
+                                <h3 data-lang-key="topo_sw_title">Huvudswitch</h3>
+                                <p class="topo-model" data-lang-key="topo_sw_desc">MikroTik hEX</p>
+                                <span class="project-role" data-lang-key="topo_sw_role">Distribution</span>
+                                <div class="course-blog" hidden data-lang-key="topo_sw_modal">
+                                    <p>Central distributionsswitch som fördelar trafiken från brandväggen vidare till de fysiska enheterna i 10-tumsracket. Här förbereds även logisk nätverkssegmentering med VLAN.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="topo-connector-branch"></div>
+
+                        <!-- Nivå 4: Förgrening -->
+                        <div class="topo-level topo-branches">
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🔌</span>
+                                <h3 data-lang-key="topo_ext_title">Portexpansion</h3>
+                                <p class="topo-model" data-lang-key="topo_ext_desc">Tenda 5-portars Switch</p>
+                                <span class="project-role" data-lang-key="topo_ext_role">Infrastruktur</span>
+                                <div class="course-blog" hidden data-lang-key="topo_ext_modal">
+                                    <p>En unmanaged switch som utökar antalet fysiska nätverksportar i racket så att samtliga servernoder får en stabil, trådbunden gigabitanslutning.</p>
                                 </div>
                             </div>
 
-                            <!-- Gren 3: Switch + Proxmox -->
-                            <div class="topo-branch">
-                                <div class="topo-arrow-down-short"></div>
-                                <div class="topo-node modal-trigger" tabindex="0" role="button">
-                                    <div class="topo-icon">
-                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 3 21 3 21 8"></polyline><line x1="4" y1="20" x2="21" y2="3"></line><polyline points="21 16 21 21 16 21"></polyline><line x1="15" y1="15" x2="21" y2="21"></line><line x1="4" y1="4" x2="9" y2="9"></line></svg>
-                                    </div>
-                                    <h3 data-lang-key="topo_ext_title">Portutökning</h3>
-                                    <p data-lang-key="topo_ext_desc">Tenda 5-ports Switch</p>
-                                    <p class="project-role" style="display:none;" data-lang-key="topo_ext_role">Infrastruktur</p>
-                                    <div class="course-blog" data-lang-key="topo_ext_modal">
-                                        <p>En okomplicerad omanagerad switch som används för att utöka antalet fysiska portar i racket. Den säkerställer att alla server-noder får stabil trådad gigabit-anslutning.</p>
-                                    </div>
-                                </div>
-                                
-                                <div class="topo-arrow-down"></div>
-                                
-                                <div class="topo-cluster modal-trigger" tabindex="0" role="button">
-                                    <span class="qdevice-badge" data-lang-key="topo_qdevice_badge">🔗 QDevice Quorum: Okdo Radxa 4C</span>
-                                    <h3 data-lang-key="topo_cluster_title">Proxmox-kluster (Labbkluster)</h3>
-                                    <p data-lang-key="topo_cluster_desc">High Availability Compute</p>
-                                    <p class="project-role" style="display:none;" data-lang-key="topo_cluster_role">Virtualisering</p>
-                                    <div class="cluster-grid">
-                                        <div class="cluster-item"><strong>Nod 1</strong><small>HP EliteDesk</small></div>
-                                        <div class="cluster-item"><strong>Nod 2</strong><small>Dell OptiPlex</small></div>
-                                        <div class="cluster-item"><strong>Nod 3</strong><small>Lenovo M700</small></div>
-                                    </div>
-                                    <div class="course-blog" data-lang-key="topo_cluster_modal">
-                                        <p>Ett hyperkonvergerat kluster bestående av tre fysiska micro-datorer. Miljön förlitar sig helt på lokal lagring för hastighet, men säkerställer stabilitet genom smart kluster-routing och det externa kvorum-stödet från management-noden.</p>
-                                        <p>Här driftas en rad isolerade LXC-containrar och virtuella maskiner, bland annat dedikerade Docker-värdar, övervakningsdashboards och alternativa management-miljöer baserade på Debian.</p>
-                                    </div>
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">📶</span>
+                                <h3 data-lang-key="topo_ap_title">Trådlöst Labbnät</h3>
+                                <p class="topo-model" data-lang-key="topo_ap_desc">Cudy Rese-router (AP)</p>
+                                <span class="project-role" data-lang-key="topo_ap_role">Accesspunkt</span>
+                                <div class="course-blog" hidden data-lang-key="topo_ap_modal">
+                                    <p>Konfigurerad som en renodlad trådlös accesspunkt med routing och DHCP avstängt. Ger säker trådlös åtkomst direkt till labbets isolerade SSID och subnät.</p>
                                 </div>
                             </div>
 
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🛡️</span>
+                                <h3 data-lang-key="topo_mgmt_title">Management & VPN</h3>
+                                <p class="topo-model" data-lang-key="topo_mgmt_desc">Okdo Radxa 4C</p>
+                                <span class="project-role" data-lang-key="topo_mgmt_role">Quorum & Åtkomst</span>
+                                <div class="course-blog" hidden data-lang-key="topo_mgmt_modal">
+                                    <p>Fristående management-nod som kör <strong>Tailscale VPN</strong> som subnet router, vilket ger mig säker fjärråtkomst till hela labbmiljön oavsett var jag befinner mig.</p>
+                                    <p>Noden fungerar dessutom som <strong>QDevice</strong> för Proxmox-klustret. Om någon av huvudservrarna startas om eller tas ner för underhåll, ser Radxa-noden till att klustret behåller sin röstmajoritet (quorum) och rullar vidare utan avbrott.</p>
+                                </div>
+                            </div>
+
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🖥️</span>
+                                <h3 data-lang-key="topo_cluster_title">Proxmox-kluster</h3>
+                                <p class="topo-model" data-lang-key="topo_cluster_desc">3x Fysiska Servernoder</p>
+                                <span class="project-role" data-lang-key="topo_cluster_role">Virtualisering</span>
+                                <div class="course-blog" hidden data-lang-key="topo_cluster_modal">
+                                    <p>Ett kluster bestående av tre fysiska mikrodatorer. Miljön använder snabb lokal lagring på respektive nod, men upprätthåller hög driftsäkerhet genom klusterstyrning och externt quorum-stöd från management-noden.</p>
+                                    <p>Här körs en rad isolerade LXC-containrar och virtuella maskiner, däribland dedikerade Docker-värdar, övervakningspaneler och Debian-baserade testmiljöer.</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            
-            <div class="project-grid">
-                
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="lab1_title">Nätverk & Infrastruktur</h3>
-                        <p class="project-role" data-lang-key="lab1_sub">Hårdvarubrandvägg</p>
+
+                <!-- HEMMALABB KORT -->
+                <div class="project-grid">
+                    <!-- Labb 1 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="lab1_title">Nätverk & Infrastruktur</h3>
+                            <span class="project-role" data-lang-key="lab1_sub">Hårdvarubrandvägg</span>
+                        </div>
                         <p data-lang-key="lab1_desc">
-                            Dedikerad hårdvarubrandvägg och switch-infrastruktur. Planering och förberedelser för strikt VLAN-segmentering.
+                            Dedikerad hårdvarubrandvägg och switch-infrastruktur med fokus på trafikstyrning och förberedelser för strikt VLAN-segmentering.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">Cisco ASA</span>
-                            <span class="tag">Switch</span>
-                            <span class="tag">VLAN</span>
+                        <ul class="project-tags">
+                            <li>Cisco ASA</li>
+                            <li>MikroTik</li>
+                            <li>VLAN / Zero Trust</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_lab1">
+                            <p>Nätverket i labbet kretsar kring en dedikerad hårdvarubrandvägg (Cisco ASA) som agerar gateway och kontrollerar all in- och utgående trafik. Bakom den fördelar en central switch-lösning nätverket vidare till de fysiska servernoderna och en trådlös accesspunkt.</p>
+                            <p>Ett pågående projekt i labbet är att införa strikt VLAN-segmentering. Målet är att helt isolera externt exponerade tjänster (som containrar för spelservrar) från det interna administrationsnätet, som en praktisk tillämpning av Zero Trust-principer.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        
-                        <div class="course-blog" data-lang-key="blog_lab1">
-                            <p>Labbets nätverk bygger på en dedikerad Cisco ASA-hårdvarubrandvägg som agerar gateway och hanterar inkommande samt utgående trafik. En central switch-lösning distribuerar sedan nätverket vidare till labbets olika fysiska enheter och trådlösa nät.</p>
-                            <p>Ett pågående projekt är att implementera en striktare VLAN-segmentering. Syftet är att isolera publika och internetexponerade tjänster (exempelvis containrar med spelservrar) från det interna management-nätverket, för att på ett säkert sätt tillämpa Zero Trust-koncept i praktiken.</p>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="lab2_title">Proxmox-kluster & Virtualisering</h3>
-                        <p class="project-role" data-lang-key="lab2_sub">Compute & Containrar</p>
+                    <!-- Labb 2 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="lab2_title">Proxmox-kluster & Virtualisering</h3>
+                            <span class="project-role" data-lang-key="lab2_sub">Compute & Containrar</span>
+                        </div>
                         <p data-lang-key="lab2_desc">
-                            Klustermiljö med tre aktiva noder och en fristående management-nod (QDevice) för kvorum och stabilitet.
+                            Klustermiljö med tre aktiva noder och en fristående management-nod (QDevice) för röstmajoritet (quorum) och hög driftsäkerhet.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">Proxmox VE</span>
-                            <span class="tag">LXC / Docker</span>
-                            <span class="tag">High Availability</span>
+                        <ul class="project-tags">
+                            <li>Proxmox VE</li>
+                            <li>LXC & Docker</li>
+                            <li>Kluster / Quorum</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_lab2">
+                            <p>Grunden för beräkningskraften i labbet är ett Proxmox-kluster med tre aktiva noder. Genom att integrera en fristående Linux-baserad management-nod som QDevice behåller klustret sin röstmajoritet (quorum) och stabilitet även om en av servernoderna tas ner för underhåll.</p>
+                            <p>Miljön är uppdelad i resurssnåla LXC-containrar och fullskaliga virtuella maskiner som bland annat kör Docker för isolerade tjänster. Arkitekturen gör att jag snabbt kan sätta upp, testa och riva ner komplexa servermiljöer.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        
-                        <div class="course-blog" data-lang-key="blog_lab2">
-                            <p>Grundbulten i miljöns beräkningskraft är ett Proxmox-kluster bestående av tre aktiva noder. Genom att integrera en fristående Linux-baserad management-nod som QDevice säkerställer jag att klustret bibehåller kvorum (röstmajoritet) och stabilitet även om en av compute-noderna skulle tas offline för underhåll.</p>
-                            <p>Miljön är uppdelad i resurssnåla LXC-containrar och fullskaliga virtuella maskiner, där jag bland annat driftar en Docker-miljö för isolerade tjänster. Arkitekturen låter mig bygga upp, testa och riva ner komplexa servermiljöer snabbt och effektivt.</p>
-                        </div>
-                    </div>
-                </article>
+                    </article>
 
-                <article class="project-card modal-trigger" tabindex="0" role="button">
-                    <div class="card-content">
-                        <h3 data-lang-key="lab3_title">Säkerhet, Åtkomst & Management</h3>
-                        <p class="project-role" data-lang-key="lab3_sub">Härdning & VPN</p>
+                    <!-- Labb 3 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="lab3_title">Säkerhet, Åtkomst & Härdning</h3>
+                            <span class="project-role" data-lang-key="lab3_sub">Härdning & VPN</span>
+                        </div>
                         <p data-lang-key="lab3_desc">
-                            Säker fjärråtkomst via VPN, SSH-härdning och MFA-skyddade gränssnitt för att minimera attackytan.
+                            Säker fjärråtkomst via VPN, SSH-härdning med kryptografiska nycklar och MFA-skyddade gränssnitt för att minimera attackytan.
                         </p>
-                        <div class="project-tags">
-                            <span class="tag">Tailscale VPN</span>
-                            <span class="tag">SSH (ed25519)</span>
-                            <span class="tag">MFA / 2FA</span>
+                        <ul class="project-tags">
+                            <li>Tailscale VPN</li>
+                            <li>SSH (ed25519)</li>
+                            <li>MFA</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_lab3">
+                            <p>Säkerhetstänket går som en röd tråd genom hela hemmalabbet. För att hålla attackytan så liten som möjligt exponeras inga kritiska administrationsportar direkt mot internet. Istället går all fjärråtkomst via en krypterad VPN-tunnel (Tailscale) på den dedikerade management-noden.</p>
+                            <p>Inloggning till webbgränssnitt som Proxmox är skyddad med multifaktorautentisering (MFA). På systemnivå är vanlig lösenordsinloggning helt avstängd; all SSH-åtkomst till noderna kräver kryptografiska nycklar (ed25519) för att stå emot obehöriga inloggningsförsök.</p>
                         </div>
-                        <p class="read-more" data-lang-key="read_more">Klicka för att läsa mer &rarr;</p>
-                        
-                        <div class="course-blog" data-lang-key="blog_lab3">
-                            <p>Säkerheten är en röd tråd genom hela hemmalabbet. För att hålla attackytan minimal exponeras inga kritiska management-portar direkt mot det publika nätet. Istället routas all fjärråtkomst genom en säker VPN-tunnel (Tailscale) som driftas direkt på den dedikerade management-noden.</p>
-                            <p>Autentisering mot webbgränssnitten (som Proxmox) skyddas med tvåfaktorsautentisering (MFA). På systemnivå är traditionell lösenordsinloggning helt avstängd; all SSH-åtkomst till noderna kräver kryptografiska nycklar (ed25519) för att motstå obehöriga intrångsförsök.</p>
-                        </div>
-                    </div>
-                </article>
-
+                    </article>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <section id="skills" class="skills">
-        <div class="container">
-            <h2 data-lang-key="skills_h2">Färdigheter & Kompetenser</h2>
-            
-            <h3 class="section-subtitle" data-lang-key="skills_tech">Tekniska Färdigheter</h3>
-            <div class="skills-grid">
+        <!-- FÄRDIGHETER -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 data-lang-key="skills_h2">Färdigheter & Kompetenser</h2>
                 
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="2" width="20" height="8" rx="2" ry="2"></rect><rect x="2" y="14" width="20" height="8" rx="2" ry="2"></rect><line x1="6" y1="6" x2="6.01" y2="6"></line><line x1="6" y1="18" x2="6.01" y2="18"></line>
-                    </svg>
-                    <h3 data-lang-key="skill_network_title">Nätverk & Brandväggar</h3>
-                    <p data-lang-key="skill_network_desc">
-                        Design och segmentering (VLAN, ACL), Cisco ASA, IDS/IPS, trafikanalys med Wireshark och säkra VPN-lösningar (Tailscale, OpenVPN).
-                    </p>
+                <h3 class="subsection-title" data-lang-key="skills_tech">Tekniska färdigheter</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_network_title">Nätverk & Brandväggar</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_network_desc">
+                            Nätverksdesign och segmentering (VLAN, ACL), Cisco ASA, IDS/IPS, trafikanalys med Wireshark samt säkra VPN-lösningar (Tailscale, OpenVPN).
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_windows_title">Windows & Active Directory</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_windows_desc">
+                            Härdning av Windows-miljöer (GPO, WDAC, ASR). Säker hantering av identiteter och domäner via AD DS, LDAP och Kerberos.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_linux_title">Linux & Systemhärdning</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_linux_desc">
+                            Administration och härdning av Ubuntu och Debian. Minimering av attackytor, tjänsteisolering, strikta filrättigheter, loggning och SSH-härdning.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_iam_title">IAM & Zero Trust</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_iam_desc">
+                            Implementering av Zero Trust-arkitektur. Hantering av PKI, digitala certifikat, SSO, MFA och skyddsmekanismer som Credential Guard.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_vm_title">Virtualisering & Kluster</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_vm_desc">
+                            Klusterhantering med Proxmox VE, KVM och Hyper-V. Tjänsteisolering med LXC-containrar och Docker, samt molnintegrering (Azure) och backup.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_grc_title">Riskanalys & GRC</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_grc_desc">
+                            Tillämpning av ISO 27000 och NIST RMF. Praktiskt arbete med incidentplaner, säkerhetspolicyer och regelefterlevnad (GDPR, NIS2).
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_monitoring_title">Pentesting, SIEM & Forensik</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_monitoring_desc">
+                            Sårbarhetsskanning och etisk hackning (Kali, Nmap, Metasploit) kombinerat med logganalys (Sysmon, SIEM) och digital forensik.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_endpoint_title">Klient- & Dataskydd</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_endpoint_desc">
+                            Enhetshantering via Intune, datakryptering (BitLocker, TPM) och hårdvarunära skyddsmekanismer (VBS, HVCI, CFG).
+                        </p>
+                    </div>
                 </div>
 
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    </svg>
-                    <h3 data-lang-key="skill_windows_title">Windows & Active Directory</h3>
-                    <p data-lang-key="skill_windows_desc">
-                        Härdning av Windows-miljöer (GPO, WDAC, ASR). Säker hantering av identiteter och domäner via AD DS, LDAP och Kerberos.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <polyline points="4 17 10 11 4 5"></polyline><line x1="12" y1="19" x2="20" y2="19"></line>
-                    </svg>
-                    <h3 data-lang-key="skill_linux_title">Linux & Systemhärdning</h3>
-                    <p data-lang-key="skill_linux_desc">
-                        Administration och härdning (Ubuntu/Debian). Minimering av attackytor, tjänsteisolering, strikta filrättigheter, loggning och SSH-härdning.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"></path>
-                    </svg>
-                    <h3 data-lang-key="skill_iam_title">IAM & Zero Trust</h3>
-                    <p data-lang-key="skill_iam_desc">
-                        Implementering av Zero Trust-arkitektur. Hantering av PKI, digitala certifikat, SSO, MFA och skyddstekniker som Credential Guard.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"></path>
-                    </svg>
-                    <h3 data-lang-key="skill_vm_title">Virtualisering & Kluster</h3>
-                    <p data-lang-key="skill_vm_desc">
-                        Klusterdrift med Proxmox VE, KVM och Hyper-V. Tjänsteisolering med LXC-containrar och Docker, samt molnintegration (Azure) och backup.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path><rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-                    </svg>
-                    <h3 data-lang-key="skill_grc_title">Riskanalys & GRC</h3>
-                    <p data-lang-key="skill_grc_desc">
-                        Tillämpning av ISO 27000 och NIST RMF. Praktiskt arbete med incidenthanteringsplaner, säkerhetspolicys och efterlevnad (GDPR, NIS2).
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path><circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                    <h3 data-lang-key="skill_monitoring_title">Pentesting, SIEM & Forensik</h3>
-                    <p data-lang-key="skill_monitoring_desc">
-                        Sårbarhetsskanning och etisk hackning (Kali, Nmap, Metasploit) kombinerat med logganalys (Sysmon, SIEM) och digital spårsäkring.
-                    </p>
-                </div>
-
-                <div class="skill-card">
-                    <svg class="skill-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line>
-                    </svg>
-                    <h3 data-lang-key="skill_endpoint_title">Endpoint & Dataskydd</h3>
-                    <p data-lang-key="skill_endpoint_desc">
-                        Enhetshantering via Intune. Kryptering av data (BitLocker, TPM) och skyddsmekanismer på hårdvarunivå (VBS, HVCI, CFG).
-                    </p>
-                </div>
-
+                <h3 class="subsection-title" data-lang-key="skills_soft">Personliga egenskaper</h3>
+                <ul class="soft-skills-list">
+                    <li data-lang-key="soft_leadership">Pedagogiskt ledarskap</li>
+                    <li data-lang-key="soft_systematic">Metodiskt arbetssätt</li>
+                    <li data-lang-key="soft_communication">Kommunikativ förmåga</li>
+                    <li data-lang-key="soft_problem_solving">Analytisk problemlösning</li>
+                    <li data-lang-key="soft_organization">Strukturerad & organiserad</li>
+                    <li data-lang-key="soft_responsibility">Ansvarstagande</li>
+                    <li data-lang-key="soft_adaptability">Anpassningsbar</li>
+                    <li data-lang-key="soft_integrity">Hög integritet</li>
+                </ul>
             </div>
+        </section>
 
-            <h3 class="section-subtitle" style="margin-top: 4rem;" data-lang-key="skills_soft">Personliga egenskaper</h3>
-            <div class="soft-skills-container">
-                <span class="tag soft-tag" data-lang-key="soft_leadership">Ledarskap</span>
-                <span class="tag soft-tag" data-lang-key="soft_systematic">Systematiskt arbetssätt</span>
-                <span class="tag soft-tag" data-lang-key="soft_communication">Kommunikativ skicklighet</span>
-                <span class="tag soft-tag" data-lang-key="soft_problem_solving">Problemlösningsförmåga</span>
-                <span class="tag soft-tag" data-lang-key="soft_organization">Organisationsförmåga</span>
-                <span class="tag soft-tag" data-lang-key="soft_responsibility">Ansvarstagande</span>
-                <span class="tag soft-tag" data-lang-key="soft_adaptability">Anpassningsförmåga</span>
-                <span class="tag soft-tag" data-lang-key="soft_integrity">Hög integritet</span>
+        <!-- CV -->
+        <section id="cv" class="cv">
+            <div class="container">
+                <h2 data-lang-key="cv_h2">CV</h2>
+                <p data-lang-key="cv_p">
+                    Här kan du ladda ner mitt fullständiga CV med mer information om min utbildning, arbetslivserfarenhet och tekniska profil.
+                </p>
+                <div class="cv-buttons">
+                    <a href="CV-Jehanni-Halvarsson-SV.pdf" download class="button button-primary" data-lang-key="cv_button_sv">Ladda ner CV (SV)</a>
+                    <a href="CV-Jehanni-Halvarsson-EN.pdf" download class="button button-secondary" data-lang-key="cv_button_en">Ladda ner CV (EN)</a>
+                </div>
             </div>
+        </section>
 
-        </div>
-    </section>
-    
-    <section id="cv" class="cv">
-         <div class="container">
-            <h2 data-lang-key="cv_h2">CV</h2>
-            <p data-lang-key="cv_p">
-                Mitt fullständiga CV, som innehåller detaljerad information om min utbildning, erfarenhet och tekniska färdigheter, finns tillgängligt för nedladdning.
+        <!-- KONTAKT -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 data-lang-key="contact_h2">Vill du komma i kontakt?</h2>
+                <p data-lang-key="contact_p">
+                    Jag är alltid öppen för att knyta nya kontakter, diskutera IT-säkerhet eller prata om framtida möjligheter. Söker ni någon som kombinerar teknisk kompetens med ett metodiskt arbetssätt och pedagogisk förmåga? Hör gärna av dig!
+                </p>
+                <div class="contact-buttons">
+                    <a href="mailto:jehanni.halvarsson@protonmail.com" class="button button-primary" data-lang-key="contact_btn_email">Mejla mig</a>
+                    <a href="https://www.linkedin.com/in/jehanni-halvarsson-9a5a771a8/" target="_blank" rel="noopener noreferrer" class="button button-secondary" data-lang-key="contact_btn_linkedin">Meddelande på LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p data-lang-key="footer_copy">© 2026 Jehanni Halvarsson. Alla rättigheter förbehållna.</p>
+            <p class="footer-privacy" data-lang-key="footer_cloudflare">
+                Sidan använder Cloudflare för säkerhet och anonym besöksstatistik. Inga spårningscookies används.
             </p>
-            <div class="cv-buttons">
-                <a href="Jehanni_CV_SV.pdf" download class="button button-primary">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    <span data-lang-key="cv_button_sv">Ladda ner CV (SV)</span>
-                </a>
-                <a href="Jehanni_CV_EN.pdf" download class="button button-secondary">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
-                    <span data-lang-key="cv_button_en">Ladda ner CV (EN)</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2 data-lang-key="contact_h2">Vill du komma i kontakt?</h2>
-            <p data-lang-key="contact_p">
-                Jag är alltid öppen för att knyta nya kontakter, diskutera IT-säkerhet eller prata om framtida möjligheter. Om ni söker någon som kombinerar tekniskt kunnande med metodiskt tänkande och pedagogisk förmåga, hör gärna av dig!
-            </p>
-            <div class="contact-buttons">
-                <a href="mailto:jehanni.halvarsson@protonmail.com" class="button button-primary" data-lang-key="contact_btn_email">Mejla mig</a>
-                <button type="button" id="copy-email-btn" class="button button-secondary" data-email="jehanni.halvarsson@protonmail.com">
-                    <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-                    <span data-lang-key="contact_btn_copy">Kopiera mejladress</span>
-                </button>
-                <a href="https://www.linkedin.com/in/jehanni-halvarsson-9a5a771a8/" target="_blank" rel="noopener noreferrer" class="button button-secondary" data-lang-key="contact_btn_linkedin">Meddelande på LinkedIn</a>
-            </div>
-        </div>
-    </section>
-
-</main>
-
-<footer class="site-footer">
-    <div class="container footer-container">
-        <div class="footer-info">
-            <p style="margin-bottom: 0;" data-lang-key="footer_copy">&copy; 2026 Jehanni Halvarsson. Alla rättigheter förbehållna.</p>
-            <p style="font-size: 0.75rem; opacity: 0.7; margin-top: 0.25rem; margin-bottom: 0;" data-lang-key="footer_cloudflare">Denna sida använder Cloudflare för säkerhet och anonym statistik. Inga spårningscookies används.</p>
-        </div>
-        <ul class="social-links">
-            <li>
-                <a href="https://github.com/Hson28" target="_blank" rel="noopener noreferrer" data-lang-key="footer_github">GitHub</a>
-            </li>
-            <li>
+            <div class="footer-links">
+                <a href="https://github.com/jehanni" target="_blank" rel="noopener noreferrer" data-lang-key="footer_github">GitHub</a>
                 <a href="https://www.linkedin.com/in/jehanni-halvarsson-9a5a771a8/" target="_blank" rel="noopener noreferrer" data-lang-key="footer_linkedin">LinkedIn</a>
-            </li>
-        </ul>
-    </div>
-</footer>
-
-<!-- Tillbaka till toppen-knapp (Uppåtpil) -->
-<button id="back-to-top" class="back-to-top" aria-label="Tillbaka till toppen" title="Tillbaka till toppen">
-    <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <line x1="12" y1="19" x2="12" y2="5"></line>
-        <polyline points="5 12 12 5 19 12"></polyline>
-    </svg>
-</button>
-
-<div id="course-modal" class="modal" aria-hidden="true" role="dialog">
-    <div class="modal-overlay" tabindex="-1" data-close="modal"></div>
-    <div class="modal-content" role="document">
-        <button class="modal-close" aria-label="Stäng" data-close="modal">&times;</button>
-        <div class="modal-header">
-            <h3 id="modal-title" class="modal-title"></h3>
-            <p id="modal-subtitle" class="modal-subtitle"></p>
+            </div>
         </div>
-        <div id="modal-body" class="modal-body"></div>
+    </footer>
+
+    <!-- MODAL FÖR KURSER & DIAGRAM -->
+    <div id="course-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-overlay" data-close="modal"></div>
+        <div class="modal-container">
+            <header class="modal-header">
+                <div>
+                    <h3 id="modal-title">Kurstitel</h3>
+                    <span id="modal-subtitle" class="project-role">YH-poäng</span>
+                </div>
+                <button class="modal-close" aria-label="Stäng" data-close="modal">✕</button>
+            </header>
+            <div id="modal-body" class="modal-body"></div>
+        </div>
     </div>
-</div>
-
-<script src="script.js?v=5" defer></script>
-
-</body>
-</html>
