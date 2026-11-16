@@ -1,989 +1,626 @@
-/* ========================================
-   1. GLOBAL SETUP & CSS-VARIABLER
-   ======================================== */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
-
-:root {
-    --font-family-system: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-    --font-family-base: 'Inter', var(--font-family-system);
-    --font-family-heading: 'Inter', var(--font-family-system);
-
-    /* --- FÄRGPALETT (Ljust läge) --- */
-    --color-text: #2d3748;            
-    --color-bg: #ffffff;             
-    --color-primary: #2b6cb0;        
-    --color-primary-hover: #2c5282;  
-    --color-secondary: #e2e8f0;      
-    --color-secondary-hover: #cbd5e0;
-    --color-border: #cbd5e0;         
-    --color-card-bg: #f7fafc; 
-
-    /* KORT-GRADIENT (Ljust) */
-    --color-card-grad-start: #dbeafe; 
-    --color-card-grad-end: #ffffff;   
-
-    /* BADGE-FÄRGER (Ljust) */
-    --color-badge-bg: #ffffff;
-    --color-badge-border: #e2e8f0;
-    --color-badge-text: #2d3748;
-
-    --color-focus-ring: #4299e1;     
-
-    /* Effekter */
-    --color-bg-transparent: rgba(255, 255, 255, 0.88); 
-    --color-shadow: rgba(45, 55, 72, 0.1); 
-    --color-shadow-hover: rgba(45, 55, 72, 0.15);
-
-    /* Textskugga för rubriker (Ljust) */
-    --text-shadow: 0 2px 4px rgba(0,0,0,0.05);
-
-    /* Avstånd */
-    --spacing-xs: 0.25rem;
-    --spacing-sm: 0.5rem;
-    --spacing-md: 1rem;
-    --spacing-lg: 2rem;
-    --spacing-xl: 4rem;
-
-    --border-radius: 12px;
-
-    /* Skuggor */
-    --shadow-sm: 0 2px 4px var(--color-shadow);
-    --shadow-md: 0 8px 16px var(--color-shadow);
-    --shadow-lg: 0 15px 30px var(--color-shadow-hover);
-
-    /* Animationer / Map */
-    --map-opacity: 0.15;
-    --transition-fast: 0.2s ease-in-out;
-}
-
-/* --- FÄRGPALETT (Mörkt läge) --- */
-[data-theme="dark"] {
-    --color-text: #e2e8f0;
-    --color-bg: #1a202c;
-    --color-primary: #63b3ed;
-    --color-primary-hover: #90cdf4;
-    --color-secondary: #2d3748;
-    --color-secondary-hover: #4a5568;
-    --color-border: #3b4c63;
-    --color-card-bg: #2d3748;
-
-    /* KORT-GRADIENT (Mörkt) */
-    --color-card-grad-start: #2c3e50; 
-    --color-card-grad-end: #1a202c;
-
-    /* BADGE-FÄRGER (Mörkt) */
-    --color-badge-bg: #2d3748;
-    --color-badge-border: #4a5568;
-    --color-badge-text: #e2e8f0;
-
-    --color-focus-ring: #63b3ed;
-
-    --color-bg-transparent: rgba(26, 32, 44, 0.88);
-    --color-shadow: rgba(0, 0, 0, 0.4);
-    --color-shadow-hover: rgba(0, 0, 0, 0.6);
-
-    --text-shadow: none;
-    --map-opacity: 0.25;
-}
-
-@media (prefers-color-scheme: dark) {
-    :root:not([data-theme="light"]) {
-        meta[name="theme-color"][media="(prefers-color-scheme: dark)"] { display: block; }
-        meta[name="theme-color"][media="(prefers-color-scheme: light)"] { display: none; }
-    }
-}
-
-/* ========================================
-   2. GRUNDLÄGGANDE STYLING & BAKGRUND
-   ======================================== */
-*, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-html {
-    font-size: 100%;
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-    background-color: var(--color-bg);
-
-    background-image: linear-gradient(
-        to bottom,
-        color-mix(in srgb, var(--color-primary) 8%, var(--color-bg)) 0%, 
-        var(--color-bg) 60%, 
-        color-mix(in srgb, var(--color-bg) 92%, var(--color-text)) 100% 
-    );
-    min-height: 100vh;
-    background-attachment: fixed; 
-    background-repeat: no-repeat;
-    overflow-x: hidden; 
-    width: 100%;
-}
-
-body {
-    background-color: transparent;
-    color: var(--color-text);
-    font-family: var(--font-family-base);
-    line-height: 1.7;
-    font-weight: 400;
-    transition: background-color var(--transition-fast), color var(--transition-fast);
-    position: relative;
-    overflow-x: hidden;
-    width: 100%;
-
-    background-image: 
-        repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(43, 108, 176, 0.1) 50px),
-        repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(43, 108, 176, 0.1) 50px);
-    background-size: 50px 50px;
-    background-blend-mode: overlay; 
-}
-
-[data-theme="dark"] body {
-    background-image: 
-        repeating-linear-gradient(0deg, transparent, transparent 49px, rgba(99, 179, 237, 0.1) 50px),
-        repeating-linear-gradient(90deg, transparent, transparent 49px, rgba(99, 179, 237, 0.1) 50px);
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-family-heading);
-    font-weight: 700;
-    line-height: 1.3;
-    margin-top: var(--spacing-lg);
-    margin-bottom: var(--spacing-sm);
-    text-shadow: var(--text-shadow);
-}
-h1:first-child, h2:first-child, h3:first-child,
-section h1:first-child, section h2:first-child, section h3:first-child {
-    margin-top: 0;
-}
-
-h1 { font-size: 2.5rem; }
-h2 { font-size: 2rem; }
-h3 { font-size: 1.5rem; }
-
-p { margin-bottom: var(--spacing-md); max-width: 75ch; }
-a { color: var(--color-primary); text-decoration: none; transition: color var(--transition-fast); }
-
-ul, ol { list-style: none; }
-img { max-width: 100%; height: auto; display: block; }
-
-/* ========================================
-   3. TILLGÄNGLIGHET
-   ======================================== */
-.sr-only {
-    position: absolute; width: 1px; height: 1px; padding: 0;
-    margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0);
-    white-space: nowrap; border-width: 0;
-}
-
-.skip-link {
-    position: absolute; top: -100px; left: 0.5rem;
-    background: var(--color-primary); color: var(--color-bg);
-    padding: var(--spacing-sm) var(--spacing-md);
-    z-index: 9999; transition: top var(--transition-fast);
-    border-radius: 0 0 var(--border-radius) var(--border-radius); font-weight: 600;
-}
-.skip-link:focus { top: 0; outline: none; }
-:focus-visible { outline: 3px solid var(--color-focus-ring); outline-offset: 2px; border-radius: var(--border-radius); }
-:focus:not(:focus-visible) { outline: none; }
-
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-    .typing-effect::after { animation: none !important; }
-    .project-card, .topo-node { opacity: 1 !important; transform: translateY(0) !important; transition-delay: 0ms !important; }
-    .site-header, .site-nav { backdrop-filter: none !important; background-color: var(--color-bg) !important; }
-    .hero-image { animation: none !important; box-shadow: none !important; border: 2px solid var(--color-primary) !important; }
-}
-
-/* ========================================
-   4. HJÄLPKLASSER & KNAPPAR
-   ======================================== */
-.container { width: 90%; max-width: 1200px; margin-left: auto; margin-right: auto; }
-
-.button {
-    display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
-    padding: var(--spacing-sm) var(--spacing-lg);
-    border: none; border-radius: var(--border-radius); font-weight: 600; font-family: inherit; font-size: 1rem;
-    text-decoration: none; cursor: pointer;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), filter var(--transition-fast), border-color var(--transition-fast);
-    position: relative; box-shadow: var(--shadow-sm);
-}
-.button:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); filter: brightness(110%); }
-.button:active { transform: translateY(0); box-shadow: var(--shadow-sm); }
-.button-primary { background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover)); color: #ffffff; }
-.button-secondary { background-color: var(--color-bg); color: var(--color-text); border: 1px solid var(--color-border); }
-.button-secondary:hover { background-color: var(--color-secondary); }
-.button-secondary.is-copied { border-color: var(--color-primary); color: var(--color-primary); }
-
-.btn-icon {
-    width: 18px;
-    height: 18px;
-    flex-shrink: 0;
-}
-
-/* ========================================
-   5. SIDHUVUD (HEADER) & NAVIGATION (MOBIL-FIX)
-   ======================================== */
-.site-header {
-    padding: var(--spacing-md) 0;
-    border-bottom: 1px solid var(--color-border);
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    background-color: var(--color-bg);
-    transition: background-color var(--transition-fast);
-}
-
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    position: relative;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-    position: relative;
-    z-index: 10002;
-}
-
-.header-socials { display: flex; gap: 0.75rem; align-items: center; }
-.header-social-link { display: flex; align-items: center; color: var(--color-text); transition: color var(--transition-fast), transform var(--transition-fast); }
-.header-social-link:hover { color: var(--color-primary); transform: translateY(-2px); }
-.social-icon-svg { width: 1.25rem; height: 1.25rem; }
-
-/* Mobilmeny-knapp */
-.nav-toggle {
-    display: block;
-    background: transparent;
-    border: none;
-    padding: 0.75rem;
-    cursor: pointer;
-    z-index: 10002;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.hamburger-line {
-    display: block;
-    width: 25px;
-    height: 3px;
-    background-color: var(--color-text);
-    margin: 5px 0;
-    transition: transform 0.3s ease, opacity 0.3s ease;
-    border-radius: 2px;
-}
-
-.nav-toggle[aria-expanded="true"] .hamburger-line:nth-of-type(2) { transform: translateY(8px) rotate(45deg); }
-.nav-toggle[aria-expanded="true"] .hamburger-line:nth-of-type(3) { opacity: 0; }
-.nav-toggle[aria-expanded="true"] .hamburger-line:nth-of-type(4) { transform: translateY(-8px) rotate(-45deg); }
-
-/* Navigationsmeny på mobil (100% solid täckande helskärm) */
-.site-nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    width: 100vw;
-    height: 100vh;
-    height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--color-bg);
-    z-index: 10000;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transform: translateY(-10px); 
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
-}
-
-.site-nav[data-visible="true"],
-.site-nav:has(.nav-list[data-visible="true"]) {
-    opacity: 1;
-    visibility: visible;
-    pointer-events: auto;
-    transform: translateY(0);
-}
-
-.nav-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 2rem;
-}
-
-.nav-link {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--color-text);
-    text-decoration: none;
-    transition: color var(--transition-fast);
-    position: relative;
-    padding-bottom: var(--spacing-xs);
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: var(--color-primary);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform 0.3s ease-out;
-}
-
-.nav-link:hover::after,
-.nav-link.is-active::after {
-    transform: scaleX(1);
-}
-
-.nav-link:hover,
-.nav-link.is-active {
-    color: var(--color-primary);
-}
-
-.header-toggles {
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    position: relative;
-    z-index: 10002;
-}
-
-.theme-toggle, .lang-toggle { background: transparent; border: none; cursor: pointer; padding: var(--spacing-sm); font-weight: 600; border-radius: var(--border-radius); color: var(--color-text); }
-.theme-toggle { font-size: 1.25rem; line-height: 1; }
-.theme-icon-dark { display: none; }
-[data-theme="dark"] .theme-icon-dark { display: block; }
-[data-theme="dark"] .theme-icon-light { display: none; }
-
-.flag-icon { width: 2rem; height: auto; border-radius: 4px; box-shadow: 0 2px 4px var(--color-shadow); transition: transform var(--transition-fast); display: none; }
-.lang-toggle:hover .flag-icon { transform: scale(1.1); }
-html[lang="sv"] .flag-en { display: block; }
-html[lang="en"] .flag-sv { display: block; }
-
-@media (min-width: 768px) {
-    .site-header {
-        background-color: var(--color-bg-transparent);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    }
-    .nav-toggle { display: none; }
-    .site-nav {
-        position: static;
-        width: auto;
-        height: auto;
-        display: block;
-        transform: none;
-        padding-top: 0;
-        transition: none;
-        background-color: transparent;
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        z-index: auto;
-    }
-    .nav-list { flex-direction: row; gap: var(--spacing-lg); }
-    .nav-link { font-size: 1rem; font-weight: 600; }
-}
-
-/* ========================================
-   6. SEKTIONER & INNEHÅLL
-   ======================================== */
-section { padding: var(--spacing-xl) 0; }
-section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(odd), [data-theme="dark"] section:nth-of-type(even) { background-color: transparent; }
-
-.hero { padding-top: var(--spacing-lg); padding-bottom: var(--spacing-xl); text-align: center; }
-.hero-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-lg); }
-.hero-tagline { font-size: 1.25rem; margin-bottom: var(--spacing-lg); color: var(--color-text); opacity: 0.9; }
-
-.hero-text h1[data-lang-key="hero_h1"] { min-height: 2.6em; position: relative; }
-.hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 6em; }
-@media (min-width: 768px) {
-    .hero-text h1[data-lang-key="hero_h1"] { min-height: 1.3em; }
-    .hero-text p.hero-tagline[data-lang-key="hero_tagline"] { min-height: 1.7em; }
-}
-
-.typing-effect::after { content: '|'; display: inline-block; margin-left: 0.15em; color: var(--color-text); animation: blink 0.7s infinite; }
-@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
-
-.section-subtitle { font-size: 1.5rem; color: var(--color-text); margin-bottom: var(--spacing-md); border-bottom: 2px solid var(--color-primary); display: inline-block; padding-bottom: var(--spacing-xs); }
-
-/* --- CERTIFIKAT BADGES --- */
-.cert-list {
-    list-style: none;
-    padding-left: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--spacing-sm);
-    margin-top: var(--spacing-sm);
-}
-
-.cert-list li {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    background-image: linear-gradient(to bottom right, var(--color-card-grad-start), var(--color-card-grad-end));
-    border: 1px solid var(--color-border);
-    padding: 0.6rem 1rem;
-    border-radius: var(--border-radius);
-    font-weight: 600;
-    font-size: 0.95rem;
-    box-shadow: var(--shadow-sm);
-    margin-bottom: 0;
-    transition: transform var(--transition-fast), border-color var(--transition-fast);
-}
-
-.cert-list li:hover {
-    transform: translateY(-2px);
-    border-color: var(--color-primary);
-}
-
-.cert-icon {
-    width: 18px;
-    height: 18px;
-    color: var(--color-primary);
-    flex-shrink: 0;
-}
-
-/* --- UTBILDNINGSPROGRESS-MÄTARE --- */
-.course-progress-wrapper {
-    background-image: linear-gradient(to bottom right, var(--color-card-grad-start), var(--color-card-grad-end));
-    border: 1px solid var(--color-border);
-    border-radius: var(--border-radius);
-    padding: 1rem 1.25rem;
-    margin-bottom: 2rem;
-    box-shadow: var(--shadow-sm);
-}
-
-.course-progress-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    font-size: 0.9rem;
-    font-weight: 600;
-    margin-bottom: 0.6rem;
-}
-
-.course-progress-stats {
-    color: var(--color-primary);
-}
-
-.course-progress-bar {
-    width: 100%;
-    height: 10px;
-    background-color: var(--color-secondary);
-    border-radius: 99px;
-    overflow: hidden;
-    display: flex;
-}
-
-.course-progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--color-primary), var(--color-primary-hover));
-    transition: width 0.6s ease;
-}
-
-.course-progress-ongoing {
-    height: 100%;
-    background: repeating-linear-gradient(
-        45deg,
-        var(--color-primary),
-        var(--color-primary) 5px,
-        transparent 5px,
-        transparent 10px
-    );
-    opacity: 0.65;
-}
-
-/* --- PROJEKTKORT --- */
-.project-grid { display: grid; grid-template-columns: 1fr; gap: var(--spacing-lg); margin-top: var(--spacing-md); }
-
-.project-card {
-    background-image: linear-gradient(to bottom right, var(--color-card-grad-start), var(--color-card-grad-end));
-    border: 1px solid var(--color-border); border-radius: var(--border-radius); box-shadow: var(--shadow-md);
-    overflow: hidden; opacity: 0; transform: translateY(15px);
-    transition: opacity 0.35s ease-out, transform 0.35s ease-out, box-shadow var(--transition-fast);
-    display: flex; flex-direction: column;
-}
-.project-card.is-visible { opacity: 1; transform: translateY(0); }
-.project-card:hover { transform: translateY(-7px); box-shadow: var(--shadow-lg); }
-.card-content { padding: var(--spacing-lg); display: flex; flex-direction: column; flex-grow: 1; }
-.project-role { font-size: 0.875rem; font-weight: 600; color: var(--color-primary); margin-bottom: var(--spacing-sm); text-transform: uppercase; }
-.project-tags { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
-
-.tag { background-color: var(--color-badge-bg); color: var(--color-badge-text); border: 1px solid var(--color-badge-border); padding: var(--spacing-xs) var(--spacing-sm); border-radius: 99px; font-size: 0.75rem; font-weight: 600; box-shadow: 0 1px 2px rgba(0,0,0,0.05); }
-.tag-upcoming { background-color: var(--color-secondary); color: var(--color-text); border: 1px dashed var(--color-primary); font-style: italic; }
-.tag-ongoing { background-color: var(--color-primary); color: #ffffff; border-color: var(--color-primary-hover); box-shadow: 0 0 8px rgba(43, 108, 176, 0.4); }
-
-.project-links { margin-top: var(--spacing-lg); }
-.project-link { font-weight: 600; text-decoration: none; }
-.project-link:hover { text-decoration: underline; }
-.project-link span { transition: transform var(--transition-fast); display: inline-block; }
-.project-link:hover span { transform: translateX(4px); }
-
-/* --- FÄRDIGHETER (SKILLS) --- */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--spacing-md); }
-.skill-card {
-    background-image: linear-gradient(to bottom right, var(--color-card-grad-start), var(--color-card-grad-end));
-    border: 1px solid var(--color-border); border-radius: var(--border-radius); padding: var(--spacing-md); box-shadow: var(--shadow-sm);
-    text-align: center; display: flex; flex-direction: column; justify-content: center; align-items: center;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1); cursor: default; min-height: 80px;
-}
-.skill-icon { width: 32px; height: 32px; margin-bottom: var(--spacing-sm); color: var(--color-primary); transition: transform 0.3s ease; }
-.skill-card h3 { font-size: 1.125rem; margin: 0; color: var(--color-primary); transition: transform 0.3s ease; }
-.skill-card p { font-size: 0.95rem; color: var(--color-text); line-height: 1.5; max-height: 0; opacity: 0; overflow: hidden; margin-top: 0; transition: all 0.4s ease; }
-.skill-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-lg); border-color: var(--color-primary); background-color: var(--color-card-bg); }
-.skill-card:hover .skill-icon { transform: scale(1.1) translateY(-2px); }
-.skill-card:hover h3 { transform: translateY(-2px); }
-.skill-card:hover p { max-height: 200px; opacity: 1; margin-top: var(--spacing-sm); }
-
-/* Mobilvänlighet: Visa beskrivningar direkt på pekskärmar */
-@media (hover: none) {
-    .skill-card p {
-        max-height: none;
-        opacity: 0.9;
-        margin-top: var(--spacing-sm);
-    }
-}
-
-/* MJUKA FÄRDIGHETER */
-.soft-skills-container { display: flex; flex-wrap: wrap; gap: var(--spacing-sm); margin-top: var(--spacing-md); }
-.soft-tag { font-size: 1rem; padding: var(--spacing-sm) var(--spacing-md); background-color: var(--color-card-bg); border: 1px solid var(--color-border); color: var(--color-text); border-radius: 99px; box-shadow: var(--shadow-sm); transition: transform var(--transition-fast), border-color var(--transition-fast); cursor: default; }
-.soft-tag:hover { transform: translateY(-2px); border-color: var(--color-primary); color: var(--color-primary); }
-
-.cv-buttons { display: flex; flex-wrap: wrap; gap: var(--spacing-md); }
-
-/* ========================================
-   7. KONTAKTSEKTION & TILLBAKA TILL TOPPEN-PIL
-   ======================================== */
-.contact { text-align: center; background-color: var(--color-card-bg); border-top: 1px solid var(--color-border); padding: var(--spacing-xl) 0; }
-.contact p { margin: 0 auto var(--spacing-lg) auto; font-size: 1.125rem; }
-.contact-buttons { display: flex; justify-content: center; gap: var(--spacing-md); flex-wrap: wrap; }
-
-.site-footer { padding: var(--spacing-lg) 0; background-color: var(--color-card-bg); border-top: 1px solid var(--color-border); font-size: 0.875rem; }
-.footer-container { display: flex; flex-direction: column; align-items: center; gap: var(--spacing-md); text-align: center; }
-.social-links { display: flex; gap: var(--spacing-lg); }
-.social-links a { font-weight: 600; text-decoration: none; }
-.social-links a:hover { text-decoration: underline; }
-
-/* Uppåtpil (Tillbaka till toppen) */
-.back-to-top {
-    position: fixed;
-    bottom: 1.75rem;
-    right: 1.75rem;
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: linear-gradient(135deg, var(--color-primary), var(--color-primary-hover));
-    color: #ffffff;
-    border: 2px solid rgba(255, 255, 255, 0.25);
-    box-shadow: var(--shadow-md);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 950;
-    opacity: 0;
-    visibility: hidden;
-    transform: translateY(15px);
-    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s, box-shadow 0.2s ease;
-}
-
-.back-to-top.is-visible {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-}
-
-.back-to-top:hover {
-    transform: translateY(-4px);
-    box-shadow: var(--shadow-lg);
-    filter: brightness(110%);
-}
-
-.back-to-top:active {
-    transform: translateY(-1px);
-}
-
-@media (min-width: 768px) {
-    h1 { font-size: 3rem; }
-    .hero { text-align: left; }
-    .hero-container { flex-direction: row; justify-content: space-between; }
-    .hero-text { flex: 2; }
-    .hero-image-wrapper { width: 280px; height: 280px; }
-    .project-grid { grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); }
-    .footer-container { flex-direction: row; justify-content: space-between; text-align: left; }
-}
-@media (min-width: 1200px) {
-    h1 { font-size: 3.5rem; }
-    .hero-tagline { font-size: 1.5rem; }
-    .hero-image-wrapper { width: 400px; height: 400px; }
-}
-
-/* ========================================
-   8. THREAT MAP (BAKGRUND)
-   ======================================== */
-.threatmap-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; overflow: hidden; }
-.threatmap-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: url('threatmap_background.png'); background-size: cover; background-position: center; opacity: var(--map-opacity); }
-/* VIKTIGT: .site-header får INTE ha z-index: 5 här, för då hamnar #main-content ovanpå mobilmenyn! */
-#main-content, .site-footer { position: relative; z-index: 5; }
-
-/* ========================================
-   9. PROFILBILD (MJUK GLÖD/PULSERING)
-   ======================================== */
-.hero-image-wrapper { position: relative; z-index: 10; display: flex; justify-content: center; align-items: center; width: 280px; height: 280px; margin: 0 auto; }
-.hero-image { width: 80%; height: 80%; border-radius: 50%; object-fit: cover; position: relative; z-index: 5; border: 3px solid var(--color-primary); box-shadow: 0 0 20px rgba(43, 108, 176, 0.4); animation: soft-pulse 4s ease-in-out infinite; }
-@keyframes soft-pulse { 0% { box-shadow: 0 0 15px rgba(43, 108, 176, 0.4); } 50% { box-shadow: 0 0 35px rgba(43, 108, 176, 0.8); } 100% { box-shadow: 0 0 15px rgba(43, 108, 176, 0.4); } }
-[data-theme="dark"] .hero-image { border-color: var(--color-primary); animation: soft-pulse-dark 4s ease-in-out infinite; }
-@keyframes soft-pulse-dark { 0% { box-shadow: 0 0 15px rgba(99, 179, 237, 0.3); } 50% { box-shadow: 0 0 35px rgba(99, 179, 237, 0.6); } 100% { box-shadow: 0 0 15px rgba(99, 179, 237, 0.3); } }
-
-/* ========================================
-   10. MODAL (POP-UP FÖR KURSER)
-   ======================================== */
-.project-card.modal-trigger { cursor: pointer; }
-.read-more { margin-top: auto; padding-top: var(--spacing-md); font-size: 0.875rem; font-weight: 600; color: var(--color-primary); transition: transform var(--transition-fast); }
-.project-card:hover .read-more { transform: translateX(5px); }
-.course-blog { display: none; }
-.modal { position: fixed; inset: 0; z-index: 99999; display: flex; justify-content: center; align-items: center; opacity: 0; visibility: hidden; transition: opacity 0.3s ease, visibility 0.3s ease; }
-.modal[aria-hidden="false"] { opacity: 1; visibility: visible; }
-.modal-overlay { position: absolute; inset: 0; background-color: rgba(0, 0, 0, 0.6); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); cursor: pointer; }
-.modal-content { position: relative; z-index: 10; background-color: var(--color-bg); border: 1px solid var(--color-border); border-radius: var(--border-radius); width: 90%; max-width: 600px; max-height: 85vh; padding: var(--spacing-lg); overflow-y: auto; box-shadow: var(--shadow-lg); transform: translateY(20px); transition: transform 0.3s ease; }
-.modal[aria-hidden="false"] .modal-content { transform: translateY(0); }
-.modal-close { position: absolute; top: 1rem; right: 1rem; background: transparent; border: none; font-size: 2rem; line-height: 1; color: var(--color-text); cursor: pointer; transition: color var(--transition-fast); }
-.modal-close:hover { color: var(--color-primary); }
-.modal-header { margin-bottom: var(--spacing-md); padding-right: 2rem; border-bottom: 1px solid var(--color-border); padding-bottom: var(--spacing-sm); }
-.modal-title { margin: 0; color: var(--color-primary); }
-.modal-subtitle { font-size: 0.875rem; font-weight: 600; color: var(--color-text); opacity: 0.7; margin-top: var(--spacing-xs); margin-bottom: 0; text-transform: uppercase; }
-.modal-body { color: var(--color-text); font-size: 1rem; line-height: 1.6; }
-
-/* ========================================
-   11. INTERAKTIV NÄTVERKSTOPOLOGI (TRÄD-LAYOUT)
-   ======================================== */
-.topology-diagram {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin: 3rem 0 4rem 0;
-    padding: 2.5rem 1rem;
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    width: 100%;
-}
-
-.topo-flow {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    max-width: 1000px;
-}
-
-/* De klickbara rutorna */
-.topo-node {
-    background-image: linear-gradient(to bottom right, var(--color-card-grad-start), var(--color-card-grad-end));
-    border: 2px solid var(--color-primary);
-    border-radius: var(--border-radius);
-    padding: 1.25rem 1.5rem;
-    text-align: center;
-    min-width: 240px;
-    box-shadow: var(--shadow-sm);
-    cursor: pointer;
-    transition: transform var(--transition-fast), box-shadow var(--transition-fast), background-color var(--transition-fast);
-    position: relative;
-    z-index: 2;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-}
-
-.topo-node:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-md);
-    background-color: var(--color-secondary);
-}
-
-.topo-icon {
-    margin-bottom: 0.5rem;
-    color: var(--color-primary);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.topo-icon svg {
-    width: 36px;
-    height: 36px;
-    transition: transform 0.3s ease;
-}
-
-.topo-node:hover .topo-icon svg {
-    transform: scale(1.1);
-}
-
-.topo-node h3 {
-    font-size: 1.15rem;
-    margin: 0 0 0.25rem 0;
-    color: var(--color-text);
-    border-bottom: none;
-}
-
-.topo-node p {
-    font-size: 0.85rem;
-    margin: 0;
-    opacity: 0.85;
-}
-
-/* Långa vertikala pilar med animerad dataström */
-.topo-arrow-down {
-    width: 4px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--color-primary) 50%, rgba(99, 179, 237, 0.25) 50%);
-    background-size: 100% 16px;
-    animation: data-flow 0.8s linear infinite;
-    margin: 0 auto;
-    position: relative;
-}
-
-.topo-arrow-down::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: -6px;
-    border-width: 8px 8px 0;
-    border-style: solid;
-    border-color: var(--color-primary) transparent transparent transparent;
-}
-
-/* STAM-LINJE: Skapar ett rejält 40px mellanrum mellan Huvudswitch och det vågräta strecket */
-.topo-stem {
-    width: 4px;
-    height: 40px;
-    background: linear-gradient(to bottom, var(--color-primary) 50%, rgba(99, 179, 237, 0.25) 50%);
-    background-size: 100% 16px;
-    animation: data-flow 0.8s linear infinite;
-    margin: 0 auto;
-    flex-shrink: 0;
-}
-
-/* Horisontell uppdelning för träd-strukturen */
-.topo-split-container {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: 0; 
-}
-
-/* Vågrät linje som animerar dataström från mitten och ut mot båda sidorna */
-.topo-horizontal-line {
-    width: 66%;
-    height: 4px;
-    margin-bottom: -4px;
-    position: relative;
-    overflow: hidden;
-    border-radius: 2px;
-}
-
-.topo-horizontal-line::before,
-.topo-horizontal-line::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width: 50%;
-    background: linear-gradient(to right, var(--color-primary) 50%, rgba(99, 179, 237, 0.25) 50%);
-    background-size: 16px 100%;
-}
-
-.topo-horizontal-line::before {
-    left: 0;
-    animation: data-flow-left 0.8s linear infinite;
-}
-
-.topo-horizontal-line::after {
-    right: 0;
-    animation: data-flow-right 0.8s linear infinite;
-}
-
-@keyframes data-flow-left {
-    0% { background-position: 0 0; }
-    100% { background-position: -16px 0; }
-}
-
-@keyframes data-flow-right {
-    0% { background-position: 0 0; }
-    100% { background-position: 16px 0; }
-}
-
-/* De 3 grenarna */
-.topo-branches {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    width: 100%;
-    gap: 1.5rem;
-}
-
-.topo-branch {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-    min-width: 250px;
-}
-
-/* Kort vertikal pil med animerad dataström */
-.topo-arrow-down-short {
-    width: 4px;
-    height: 32px;
-    background: linear-gradient(to bottom, var(--color-primary) 50%, rgba(99, 179, 237, 0.25) 50%);
-    background-size: 100% 16px;
-    animation: data-flow 0.8s linear infinite;
-    position: relative;
-}
-
-.topo-arrow-down-short::after {
-    content: '';
-    position: absolute;
-    bottom: -6px;
-    left: -6px;
-    border-width: 8px 8px 0;
-    border-style: solid;
-    border-color: var(--color-primary) transparent transparent transparent;
-}
-
-@keyframes data-flow {
-    0% { background-position: 0 0; }
-    100% { background-position: 0 16px; }
-}
-
-/* Proxmox-klustret (Stor streckad box i botten på switch-grenen) */
-.topo-cluster {
-    border: 2px dashed var(--color-primary);
-    border-radius: var(--border-radius);
-    padding: 1.5rem;
-    background: rgba(43, 108, 176, 0.05);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    width: 100%;
-    margin-top: 1rem;
-    text-align: center;
-    transition: background-color var(--transition-fast);
-    cursor: pointer;
-}
-
-.topo-cluster:hover {
-    background: rgba(43, 108, 176, 0.1);
-}
-
-.qdevice-badge {
-    display: inline-block;
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--color-primary);
-    background-color: var(--color-bg);
-    border: 1px dashed var(--color-primary);
-    padding: 0.2rem 0.65rem;
-    border-radius: 99px;
-    margin-bottom: 0.65rem;
-}
-
-.topo-cluster > h3 {
-    color: var(--color-primary);
-    margin-top: 0;
-    font-size: 1.25rem;
-    margin-bottom: 0.25rem;
-    border-bottom: none;
-}
-
-.topo-cluster > p {
-    font-size: 0.85rem;
-    opacity: 0.85;
-    margin-bottom: 1rem;
-}
-
-.cluster-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-    gap: 1rem;
-}
-
-.cluster-item {
-    background-color: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: 8px;
-    padding: 0.75rem;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    transition: transform 0.2s ease, border-color 0.2s ease;
-}
-
-.topo-cluster:hover .cluster-item {
-    transform: translateY(-2px);
-    border-color: var(--color-primary);
-}
-
-.cluster-item strong {
-    display: block;
-    font-size: 0.95rem;
-    color: var(--color-text);
-}
-
-.cluster-item small {
-    font-size: 0.8rem;
-    opacity: 0.75;
-}
-
-/* Anpassning för mindre skärmar (mobiler) */
-@media (max-width: 900px) {
-    .topo-stem { display: none; }
-    .topo-horizontal-line { display: none; }
-    .topo-branches { flex-direction: column; align-items: center; }
-    .topo-branch { width: 100%; max-width: 320px; }
-    .topo-arrow-down-short { height: 35px; }
-}
-
-/* ========================================
-   12. UTSKRIFTSVY (PRINT STYLESHEET)
-   ======================================== */
-@media print {
-    .site-header, .threatmap-container, .back-to-top, .contact-buttons, .read-more {
-        display: none !important;
-    }
-    body, html {
-        background: #ffffff !important;
-        color: #000000 !important;
-    }
-    .project-card, .skill-card, .topo-node, .topo-cluster {
-        opacity: 1 !important;
-        transform: none !important;
-        box-shadow: none !important;
-        border: 1px solid #cccccc !important;
-        break-inside: avoid;
-    }
-    .skill-card p {
-        max-height: none !important;
-        opacity: 1 !important;
-    }
-}
+<main id="main-content">
+        <!-- HERO -->
+        <section class="hero">
+            <div class="container hero-content">
+                <div class="hero-text">
+                    <h1 data-lang-key="hero_h1">Jehanni</h1>
+                    <p class="hero-tagline" data-lang-key="hero_tagline">
+                        Blivande IT-säkerhetsspecialist med bakgrund inom pedagogik och ledarskap. Jag gör komplex teknik begriplig, identifierar risker och bygger en stark säkerhetskultur.
+                    </p>
+                    <a href="#contact" class="button button-primary" data-lang-key="hero_cta">Kontakta mig</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- OM MIG -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 data-lang-key="about_h2">Om mig</h2>
+                <p data-lang-key="about_p1">
+                    Efter flera år som förskollärare och arbetslagsledare sadlar jag nu om till IT-säkerhetsspecialist via TUC Yrkeshögskola. I en bransch där den mänskliga faktorn ofta är helt avgörande för säkerheten, tar jag med mig värdefull erfarenhet av ledarskap, kommunikation och struktur.
+                </p>
+                <p data-lang-key="about_p2">
+                    Min pedagogiska bakgrund gör att jag är van vid att förklara komplexa samband på ett enkelt sätt – en nyckelkompetens när man ska införa nya säkerhetsrutiner och höja säkerhetsmedvetenheten i en organisation. Jag arbetar metodiskt med dokumentation och incidenthantering, och trivs i rollen som brygga mellan tekniska specialister och resten av verksamheten.
+                </p>
+                <h3 data-lang-key="about_h3">Certifikat & Utbildning</h3>
+                <ul class="cert-list">
+                    <li>
+                        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span data-lang-key="about_cert1">Networking Basics (Cisco)</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span data-lang-key="about_cert2">Networking Devices and Initial Configuration (Cisco)</span>
+                    </li>
+                    <li>
+                        <svg class="cert-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <span data-lang-key="about_cert3">Endpoint Security (Cisco)</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- KURSER -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 data-lang-key="courses_h2">Kurser (YH)</h2>
+                
+                <div class="course-progress">
+                    <div class="progress-header">
+                        <span class="progress-label" data-lang-key="progress_label">Utbildningsprogress (Teori & Kurser)</span>
+                        <span class="progress-stats" data-lang-key="progress_stats">8 av 11 kurser avklarade (1 pågående)</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill" style="width: 78%;"></div>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" data-lang-key="courses_completed">Genomförda & Pågående</h3>
+                <div class="project-grid">
+                    
+                    <!-- Kurs 1 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course1_title">Nätverksteknik</h3>
+                            <span class="project-role" data-lang-key="course1_points">25 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course1_desc">
+                            Konfiguration av routrar och switchar, VLAN och åtkomstlistor (ACL). Omfattar även säkerhet i trådlösa nätverk och felsökning med protokollanalysatorer.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Cisco CLI</li>
+                            <li>VLAN & ACL</li>
+                            <li>Wireshark</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course1">
+                            <p>Kursen gav en bred praktisk och teoretisk grund i hur datanätverk byggs upp, säkras och felsöks. Vi började med nätverksarkitektur, OSI- och TCP/IP-modellerna, IPv4/IPv6-adressering och subnätning. Därefter fick jag praktisk erfarenhet av att konfigurera routrar och switchar via CLI, härda enheter och segmentera nätverk med VLAN.</p>
+                            <p>Ett stort fokus låg på trafikstyrning och säkerhet genom åtkomstlistor (ACL), routing och DNS-integrering, samt planering och säkring av trådlösa nätverk. Genom hela kursen arbetade vi aktivt med felsökning i Cisco Packet Tracer och Wireshark för att hitta och åtgärda säkerhetsbrister och anslutningsfel i felkonfigurerade miljöer.</p>
+                            <p>Kursen avslutades med ett skarpt case där jag tog fram en kravspecifikation, designade en komplett nätverkslösning och presenterade arkitekturen muntligt.</p>
+                        </div>
+                    </article>
+
+                    <!-- Kurs 2 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course2_title">IT-infrastruktur</h3>
+                            <span class="project-role" data-lang-key="course2_points">25 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course2_desc">
+                            Uppbyggnad av driftsäkra och säkra IT-miljöer. Inkluderar virtualisering av servrar och applikationer, molntjänster samt strategier för backup och återställning.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Hyper-V</li>
+                            <li>Backup (3-2-1)</li>
+                            <li>VPN & Bastion</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course2">
+                            <p>Här fördjupade vi oss i hur moderna IT-miljöer designas, optimeras och säkras. Vi inledde med serverarkitektur och resurshantering innan vi gick vidare till virtualisering i Hyper-V, containerteknik samt privata och publika molnlösningar.</p>
+                            <p>En central del av kursen handlade om driftsäkerhet och Disaster Recovery. Vi genomförde sårbarhetsanalyser, satte upp robusta rutiner för säkerhetskopiering enligt 3-2-1-regeln och arbetade praktiskt med systemhärdning på fysiska och virtuella servrar.</p>
+                            <p>Slutligen fokuserade vi på säker fjärråtkomst genom att jämföra och konfigurera VPN-protokoll (som OpenVPN och L2TP) samt sätta upp jumpboxes (bastion hosts). Allt knöts ihop i ett större grupparbete där vi designade och presenterade en komplett, säker infrastruktur.</p>
+                        </div>
+                    </article>
+
+                    <!-- Kurs 3 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course3_title">Grundläggande IT-säkerhet</h3>
+                            <span class="project-role" data-lang-key="course3_points">30 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course3_desc">
+                            Skydd av system och data genom riskanalys, Zero Trust-arkitektur och brandväggskonfiguration. Hantering av PKI, digitala certifikat, SSO och MFA.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Zero Trust</li>
+                            <li>PKI & Certifikat</li>
+                            <li>Secure AD DS</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course3">
+                            <p>Den här kursen lade grunden för det systematiska säkerhetsarbetet i rollen som IT-säkerhetsspecialist. Vi arbetade med säkerhetsdokumentation, ISO-standarder och praktiska risk- och sårbarhetsanalyser (RSA) för att proaktivt identifiera hot mot både lokala miljöer och molntjänster.</p>
+                            <p>Ett genomgående tema var identitets- och behörighetsstyrning (IAM) utifrån en Zero Trust-modell. I praktiska labbar säkrade vi Active Directory-miljöer (Secure AD DS), implementerade Single Sign-On (SSO) och multifaktorautentisering (MFA), samt kopplade samman domäner bakom brandväggar med Microsoft Azure.</p>
+                            <p>Vi arbetade även ingående med kryptering, digitala signaturer och Public Key Infrastructure (PKI) för att säkra kommunikation med digitala certifikat, vilket examinerades under intensiva heldagslabbar.</p>
+                        </div>
+                    </article>
+
+                    <!-- Kurs 4 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course4_title">Informationssäkerhet och IT-rätt</h3>
+                            <span class="project-role" data-lang-key="course4_points">25 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course4_desc">
+                            Tillämpning av GDPR och NIS2. Praktiskt arbete med riskanalyser, incidentplaner samt ramverk som ISO 27000, NIST och MSB:s riktlinjer.
+                        </p>
+                        <ul class="project-tags">
+                            <li>ISO 27000 & NIST</li>
+                            <li>GDPR & NIS2</li>
+                            <li>Incidentplaner</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course4">
+                            <p>Den här kursen kopplade samman den tekniska säkerheten med de lagkrav och ramverk som styr dagens informationshantering. Utifrån KONF-begreppen (konfidentialitet, riktighet och tillgänglighet) och MSB:s metodstöd fördjupade jag mig i dataskyddsförordningen (GDPR), kamerabevakningslagen och ansvarsfördelningen mellan personuppgiftsansvariga och biträden.</p>
+                            <p>Vi arbetade praktiskt med ledningssystem för informationssäkerhet (LIS/ISMS) enligt ISO 27000-serien, samt ramverk som NIST 800-53 och IEC-62443 för OT-säkerhet. Med stöd av metoder från MSB, OWASP och NIST RMF ledde jag workshops för att kartlägga skyddsvärda tillgångar och bedöma sårbarheter.</p>
+                            <p>Under kursens sista del tog jag fram konkreta incidenthanteringsplaner och informationssäkerhetspolicyer, samtidigt som vi analyserade hur direktiv som NIS2 påverkar kraven på rapportering, efterlevnad och balansen mellan säkerhet och personlig integritet.</p>
+                        </div>
+                    </article>
+
+                    <!-- Kurs 5 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course5_title">IT-säkerhet Windows</h3>
+                            <span class="project-role" data-lang-key="course5_points">20 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course5_desc">
+                            Minimering av attackytor i Microsoft-miljöer genom systemhärdning. Omfattar AD/LDAP, behörighetsstyrning, säkerhetspolicyer samt loggning och övervakning.
+                        </p>
+                        <ul class="project-tags">
+                            <li>GPO & Härdning</li>
+                            <li>Kerberos & LDAP</li>
+                            <li>Sysmon & Sentinel</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course5">
+                            <p>En teknisk djupdykning i hur man säkrar Microsoft-miljöer från klient till server. Vi började på djupet med Windows arkitektur – inklusive Kernel, LSA, SAM och bootsäkerhet – för att sedan arbeta praktiskt med att minimera attackytor via security baselines, WDAC (Windows Defender Application Control), ASR-regler och säkring av SMB-protokollet.</p>
+                            <p>Inom identitetshantering arbetade vi med Kerberos, LDAP och Extended Protection for Authentication (EPA), samt skydd av inloggningsuppgifter via Credential Guard, HVCI och dMSA. För att kunna upptäcka intrång konfigurerade vi strukturerade audit-policyer och analyserade händelseloggar med verktyg som Sysmon, Microsoft Defender och Microsoft Sentinel.</p>
+                            <p>Vi arbetade även med enhetshantering via GPO och Intune, kryptering med BitLocker, TPM, TLS och QUIC, samt hårdvarunära skydd som Virtualization-Based Security (VBS) och Shadow Stack. Kursen avrundades med en genomgång av säkerhetsarkitekturen i Windows Server 2025.</p>
+                        </div>
+                    </article>
+
+                    <!-- Kurs 6 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course6_title">IT-säkerhet Linux, Unix och Mac</h3>
+                            <span class="project-role" data-lang-key="course6_points">20 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course6_desc">
+                            Administration, konfiguration och härdning av Linux-, Unix- och Mac-miljöer enligt etablerade säkerhetsstandarder för att minimera attackytor och säkra tjänster.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Linux CLI</li>
+                            <li>SSH-härdning</li>
+                            <li>Behörigheter</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course6">
+                            <p>Kursen gav en gedigen praktisk grund i att administrera och säkra Linux-, Unix- och Mac-system i professionella miljöer. Med utgångspunkt i Ubuntu LTS och KVM-virtualisering arbetade vi systematiskt med hotbildsanalyser och systemhärdning enligt vedertagna säkerhetsstandarder.</p>
+                            <p>Vi fokuserade på att krympa attackytan genom strikt kontroll av användare, filrättigheter och autentisering (exempelvis SSH-härdning), samt genom att granska och stänga ner onödiga processer och systemtjänster. Vi konfigurerade även brandväggar på OS-nivå och satte upp loggning för spårbarhet och tidig detektering av avvikelser.</p>
+                            <p>Allt prövades i en 48 timmar lång praktisk examination där en hel servermiljö skulle härdas, dokumenteras och försvaras utifrån specifika säkerhetskrav.</p>
+                        </div>
+                    </article>
+
+                    <!-- Kurs 7 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course7_title">Nätverkssäkerhet</h3>
+                            <span class="project-role" data-lang-key="course7_points">30 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course7_desc">
+                            Skydd mot nätverksattacker, intrångsförsök och skadlig kod. Praktiskt arbete med brandväggar, IDS/IPS-system, segmentering och säkra protokoll.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Brandväggar</li>
+                            <li>IDS / IPS</li>
+                            <li>Trafikanalys</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course7">
+                            <p>Här fördjupade vi oss i teknisk nätverkssäkerhet med fokus på att skydda organisationers infrastruktur och data. Vi analyserade vanliga angreppsvektorer – från överbelastningsattacker (DDoS) och webbattacker till spridning av skadlig kod – samt hur man hanterar interna avvikelser mot gällande säkerhetspolicyer.</p>
+                            <p>En stor del av kursen bestod av praktiskt arbete med att upptäcka och stoppa intrångsförsök. Vi implementerade och utvärderade IDS/IPS-system, brandväggar och antivirusskydd, och tränade på att självständigt utreda säkerhetsbrister i nätverket, skärpa krypteringsprotokoll och införa rätt skyddsåtgärder.</p>
+                        </div>
+                    </article>
+
+                    <!-- Kurs 8 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course8_title">Etisk Hackning</h3>
+                            <span class="project-role" data-lang-key="course8_points">25 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course8_desc">
+                            Metoder för penetrationstestning, sårbarhetsskanning, nätverksintrång och lateral förflyttning, kombinerat med incidenthantering och digital forensik.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Pentesting</li>
+                            <li>Nmap & Metasploit</li>
+                            <li>Digital Forensik</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course8">
+                            <p>Kursen gav en djup praktisk förståelse för hur angripare tänker och arbetar, med målet att proaktivt hitta och åtgärda sårbarheter i både mjukvara och hårdvara. Vi började med rekognosering, nätverksskanning med Nmap och trafikanalys i Wireshark, för att sedan gå vidare till initial access, skapande av payloads, lösenordsattacker och hur man etablerar persistens.</p>
+                            <p>En viktig del var post-exploitation och lateral movement, där vi övade på att navigera genom domänmiljöer med verktyg som Metasploit, Meterpreter och Responder. Det offensiva perspektivet knöts sedan ihop med det defensiva genom moduler i intrångsdetektering, incidenthantering och digital forensik för att säkra digitala spår och återställa system efter ett angrepp.</p>
+                        </div>
+                    </article>
+
+                    <!-- Kurs 9 (Pågående) -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course9_title">Avancerad IT-säkerhet</h3>
+                            <span class="project-role" data-lang-key="course9_points">25 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course9_desc">
+                            Hantering av komplexa säkerhetsarkitekturer, strukturerad incidenthantering (IR), logganalys i SIEM-system och arbete med SOC-verktyg.
+                        </p>
+                        <ul class="project-tags">
+                            <li class="tag-highlight" data-lang-key="tag_ongoing">Pågående</li>
+                            <li>SIEM & SOC</li>
+                            <li>Incident Response</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_course9">
+                            <p>Just nu fördjupar vi oss i avancerad IT-säkerhet med fokus på komplexa säkerhetsarkitekturer och operativt försvar. Vi arbetar praktiskt med logganalys i SIEM-system, övervakning med SOC-verktyg och strukturerad incidenthantering (Incident Response) för att effektivt kunna upptäcka, analysera och isolera avancerade hot.</p>
+                        </div>
+                    </article>
+                </div>
+
+                <!-- KOMMANDE KURSER -->
+                <h3 class="subsection-title" data-lang-key="courses_upcoming">Kommande kurser</h3>
+                <div class="project-grid">
+                    <!-- Kurs 10 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course10_title">Molnsäkerhet</h3>
+                            <span class="project-role" data-lang-key="course10_points">25 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course10_desc">
+                            Säkerhetskonfiguration och arkitektur i molnmiljöer (t.ex. Azure och AWS), identitetsstyrning (IAM) och implementering av Zero Trust.
+                        </p>
+                        <ul class="project-tags">
+                            <li data-lang-key="tag_upcoming">Kommande</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_upcoming">
+                            <p>Den här kursen har inte startat än. Mer information och en sammanfattning av mina labbar publiceras här så snart kursen är igång!</p>
+                        </div>
+                    </article>
+
+                    <!-- Kurs 11 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="course11_title">Examensarbete</h3>
+                            <span class="project-role" data-lang-key="course11_points">20 YH-poäng</span>
+                        </div>
+                        <p data-lang-key="course11_desc">
+                            Avslutande fördjupningsprojekt som knyter ihop teori och praktik inom ett valt specialistområde inom IT-säkerhet.
+                        </p>
+                        <ul class="project-tags">
+                            <li data-lang-key="tag_upcoming">Kommande</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_upcoming">
+                            <p>Den här kursen har inte startat än. Mer information och en sammanfattning av mina labbar publiceras här så snart kursen är igång!</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- HEMMALABB -->
+        <section id="homelab" class="projects">
+            <div class="container">
+                <h2 data-lang-key="homelab_h2">Hemmalabb</h2>
+                <p class="section-intro" data-lang-key="homelab_intro">
+                    Om det är något jag har lärt mig av att bygga och driva ett hemmalabb, så är det att det aldrig blir riktigt ”klart”. Antingen finns det något att optimera, en tillfällig lösning som behöver göras ordentligt eller en ny teknik som bara måste testas. Det är just den där drivkraften – att alltid se nästa förbättring runt hörnet – som gör det så roligt.
+                </p>
+                <p class="section-intro" data-lang-key="homelab_intro_2">
+                    Från att tidigare ha legat utspritt på en vanlig hylla har hela bygget nu flyttat in i ett modifierat IKEA-skåp med ett 10-tumsrack och temperaturstyrd kylning. På insidan har en enkel hemmamiljö vuxit till en betydligt mer robust arkitektur med en dedikerad hårdvarubrandvägg i fronten och ett Proxmox-kluster med tre aktiva noder. Utöver det kör jag en fristående management-nod som bland annat hanterar klustrets röstmajoritet (quorum) och säker fjärråtkomst.
+                </p>
+
+                <!-- INTERAKTIV NÄTVERKSTOPOLOGI -->
+                <div class="topology-wrapper">
+                    <h3 class="topology-title">
+                        <span data-lang-key="topo_h3">Interaktiv Nätverkstopologi</span>
+                        <small data-lang-key="topo_click_info">(Klicka på noderna för att läsa mer)</small>
+                    </h3>
+                    
+                    <div class="topology-diagram">
+                        <!-- Nivå 1: Internet -->
+                        <div class="topo-level">
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🌐</span>
+                                <h3 data-lang-key="topo_net_title">Internet</h3>
+                                <span class="project-role" data-lang-key="topo_net_desc">Uppströmsnätverk</span>
+                                <div class="course-blog" hidden data-lang-key="topo_net_modal">
+                                    <p>Internetanslutningen kommer in via dubbel-NAT från uppströmsutrustningen. Inga inkommande portar är öppna mot omvärlden; all extern åtkomst sker uteslutande via krypterade, utgående tunnlar (Tailscale och Cloudflare Tunnels/playit.gg).</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="topo-connector"></div>
+
+                        <!-- Nivå 2: Brandvägg -->
+                        <div class="topo-level">
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🧱</span>
+                                <h3 data-lang-key="topo_fw_title">Brandvägg</h3>
+                                <p class="topo-model" data-lang-key="topo_fw_desc">Cisco ASA 5506-X</p>
+                                <span class="project-role" data-lang-key="topo_fw_role">Gateway & DHCP</span>
+                                <div class="course-blog" hidden data-lang-key="topo_fw_modal">
+                                    <p>Utgör hemmalabbets första försvarslinje och gateway. Brandväggen delar ut interna IP-adresser via DHCP samt styr säkerhetspolicyer och trafikflöden mellan labbnätet och omvärlden.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="topo-connector"></div>
+
+                        <!-- Nivå 3: Huvudswitch -->
+                        <div class="topo-level">
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🔀</span>
+                                <h3 data-lang-key="topo_sw_title">Huvudswitch</h3>
+                                <p class="topo-model" data-lang-key="topo_sw_desc">MikroTik hEX</p>
+                                <span class="project-role" data-lang-key="topo_sw_role">Distribution</span>
+                                <div class="course-blog" hidden data-lang-key="topo_sw_modal">
+                                    <p>Central distributionsswitch som fördelar trafiken från brandväggen vidare till de fysiska enheterna i 10-tumsracket. Här förbereds även logisk nätverkssegmentering med VLAN.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="topo-connector-branch"></div>
+
+                        <!-- Nivå 4: Förgrening -->
+                        <div class="topo-level topo-branches">
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🔌</span>
+                                <h3 data-lang-key="topo_ext_title">Portexpansion</h3>
+                                <p class="topo-model" data-lang-key="topo_ext_desc">Tenda 5-portars Switch</p>
+                                <span class="project-role" data-lang-key="topo_ext_role">Infrastruktur</span>
+                                <div class="course-blog" hidden data-lang-key="topo_ext_modal">
+                                    <p>En unmanaged switch som utökar antalet fysiska nätverksportar i racket så att samtliga servernoder får en stabil, trådbunden gigabitanslutning.</p>
+                                </div>
+                            </div>
+
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">📶</span>
+                                <h3 data-lang-key="topo_ap_title">Trådlöst Labbnät</h3>
+                                <p class="topo-model" data-lang-key="topo_ap_desc">Cudy Rese-router (AP)</p>
+                                <span class="project-role" data-lang-key="topo_ap_role">Accesspunkt</span>
+                                <div class="course-blog" hidden data-lang-key="topo_ap_modal">
+                                    <p>Konfigurerad som en renodlad trådlös accesspunkt med routing och DHCP avstängt. Ger säker trådlös åtkomst direkt till labbets isolerade SSID och subnät.</p>
+                                </div>
+                            </div>
+
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🛡️</span>
+                                <h3 data-lang-key="topo_mgmt_title">Management & VPN</h3>
+                                <p class="topo-model" data-lang-key="topo_mgmt_desc">Okdo Radxa 4C</p>
+                                <span class="project-role" data-lang-key="topo_mgmt_role">Quorum & Åtkomst</span>
+                                <div class="course-blog" hidden data-lang-key="topo_mgmt_modal">
+                                    <p>Fristående management-nod som kör <strong>Tailscale VPN</strong> som subnet router, vilket ger mig säker fjärråtkomst till hela labbmiljön oavsett var jag befinner mig.</p>
+                                    <p>Noden fungerar dessutom som <strong>QDevice</strong> för Proxmox-klustret. Om någon av huvudservrarna startas om eller tas ner för underhåll, ser Radxa-noden till att klustret behåller sin röstmajoritet (quorum) och rullar vidare utan avbrott.</p>
+                                </div>
+                            </div>
+
+                            <div class="topo-node modal-trigger" tabindex="0" role="button">
+                                <span class="topo-icon">🖥️</span>
+                                <h3 data-lang-key="topo_cluster_title">Proxmox-kluster</h3>
+                                <p class="topo-model" data-lang-key="topo_cluster_desc">3x Fysiska Servernoder</p>
+                                <span class="project-role" data-lang-key="topo_cluster_role">Virtualisering</span>
+                                <div class="course-blog" hidden data-lang-key="topo_cluster_modal">
+                                    <p>Ett kluster bestående av tre fysiska mikrodatorer. Miljön använder snabb lokal lagring på respektive nod, men upprätthåller hög driftsäkerhet genom klusterstyrning och externt quorum-stöd från management-noden.</p>
+                                    <p>Här körs en rad isolerade LXC-containrar och virtuella maskiner, däribland dedikerade Docker-värdar, övervakningspaneler och Debian-baserade testmiljöer.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- HEMMALABB KORT -->
+                <div class="project-grid">
+                    <!-- Labb 1 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="lab1_title">Nätverk & Infrastruktur</h3>
+                            <span class="project-role" data-lang-key="lab1_sub">Hårdvarubrandvägg</span>
+                        </div>
+                        <p data-lang-key="lab1_desc">
+                            Dedikerad hårdvarubrandvägg och switch-infrastruktur med fokus på trafikstyrning och förberedelser för strikt VLAN-segmentering.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Cisco ASA</li>
+                            <li>MikroTik</li>
+                            <li>VLAN / Zero Trust</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_lab1">
+                            <p>Nätverket i labbet kretsar kring en dedikerad hårdvarubrandvägg (Cisco ASA) som agerar gateway och kontrollerar all in- och utgående trafik. Bakom den fördelar en central switch-lösning nätverket vidare till de fysiska servernoderna och en trådlös accesspunkt.</p>
+                            <p>Ett pågående projekt i labbet är att införa strikt VLAN-segmentering. Målet är att helt isolera externt exponerade tjänster (som containrar för spelservrar) från det interna administrationsnätet, som en praktisk tillämpning av Zero Trust-principer.</p>
+                        </div>
+                    </article>
+
+                    <!-- Labb 2 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="lab2_title">Proxmox-kluster & Virtualisering</h3>
+                            <span class="project-role" data-lang-key="lab2_sub">Compute & Containrar</span>
+                        </div>
+                        <p data-lang-key="lab2_desc">
+                            Klustermiljö med tre aktiva noder och en fristående management-nod (QDevice) för röstmajoritet (quorum) och hög driftsäkerhet.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Proxmox VE</li>
+                            <li>LXC & Docker</li>
+                            <li>Kluster / Quorum</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_lab2">
+                            <p>Grunden för beräkningskraften i labbet är ett Proxmox-kluster med tre aktiva noder. Genom att integrera en fristående Linux-baserad management-nod som QDevice behåller klustret sin röstmajoritet (quorum) och stabilitet även om en av servernoderna tas ner för underhåll.</p>
+                            <p>Miljön är uppdelad i resurssnåla LXC-containrar och fullskaliga virtuella maskiner som bland annat kör Docker för isolerade tjänster. Arkitekturen gör att jag snabbt kan sätta upp, testa och riva ner komplexa servermiljöer.</p>
+                        </div>
+                    </article>
+
+                    <!-- Labb 3 -->
+                    <article class="project-card modal-trigger" tabindex="0" role="button">
+                        <div class="project-header">
+                            <h3 data-lang-key="lab3_title">Säkerhet, Åtkomst & Härdning</h3>
+                            <span class="project-role" data-lang-key="lab3_sub">Härdning & VPN</span>
+                        </div>
+                        <p data-lang-key="lab3_desc">
+                            Säker fjärråtkomst via VPN, SSH-härdning med kryptografiska nycklar och MFA-skyddade gränssnitt för att minimera attackytan.
+                        </p>
+                        <ul class="project-tags">
+                            <li>Tailscale VPN</li>
+                            <li>SSH (ed25519)</li>
+                            <li>MFA</li>
+                        </ul>
+                        <span class="read-more-link" data-lang-key="read_more">Klicka för att läsa mer →</span>
+                        <div class="course-blog" hidden data-lang-key="blog_lab3">
+                            <p>Säkerhetstänket går som en röd tråd genom hela hemmalabbet. För att hålla attackytan så liten som möjligt exponeras inga kritiska administrationsportar direkt mot internet. Istället går all fjärråtkomst via en krypterad VPN-tunnel (Tailscale) på den dedikerade management-noden.</p>
+                            <p>Inloggning till webbgränssnitt som Proxmox är skyddad med multifaktorautentisering (MFA). På systemnivå är vanlig lösenordsinloggning helt avstängd; all SSH-åtkomst till noderna kräver kryptografiska nycklar (ed25519) för att stå emot obehöriga inloggningsförsök.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- FÄRDIGHETER -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 data-lang-key="skills_h2">Färdigheter & Kompetenser</h2>
+                
+                <h3 class="subsection-title" data-lang-key="skills_tech">Tekniska färdigheter</h3>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_network_title">Nätverk & Brandväggar</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_network_desc">
+                            Nätverksdesign och segmentering (VLAN, ACL), Cisco ASA, IDS/IPS, trafikanalys med Wireshark samt säkra VPN-lösningar (Tailscale, OpenVPN).
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_windows_title">Windows & Active Directory</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_windows_desc">
+                            Härdning av Windows-miljöer (GPO, WDAC, ASR). Säker hantering av identiteter och domäner via AD DS, LDAP och Kerberos.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_linux_title">Linux & Systemhärdning</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_linux_desc">
+                            Administration och härdning av Ubuntu och Debian. Minimering av attackytor, tjänsteisolering, strikta filrättigheter, loggning och SSH-härdning.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_iam_title">IAM & Zero Trust</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_iam_desc">
+                            Implementering av Zero Trust-arkitektur. Hantering av PKI, digitala certifikat, SSO, MFA och skyddsmekanismer som Credential Guard.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_vm_title">Virtualisering & Kluster</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_vm_desc">
+                            Klusterhantering med Proxmox VE, KVM och Hyper-V. Tjänsteisolering med LXC-containrar och Docker, samt molnintegrering (Azure) och backup.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_grc_title">Riskanalys & GRC</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_grc_desc">
+                            Tillämpning av ISO 27000 och NIST RMF. Praktiskt arbete med incidentplaner, säkerhetspolicyer och regelefterlevnad (GDPR, NIS2).
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_monitoring_title">Pentesting, SIEM & Forensik</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_monitoring_desc">
+                            Sårbarhetsskanning och etisk hackning (Kali, Nmap, Metasploit) kombinerat med logganalys (Sysmon, SIEM) och digital forensik.
+                        </p>
+                    </div>
+
+                    <div class="skill-card">
+                        <div class="skill-header">
+                            <h4 data-lang-key="skill_endpoint_title">Klient- & Dataskydd</h4>
+                        </div>
+                        <p class="skill-desc" data-lang-key="skill_endpoint_desc">
+                            Enhetshantering via Intune, datakryptering (BitLocker, TPM) och hårdvarunära skyddsmekanismer (VBS, HVCI, CFG).
+                        </p>
+                    </div>
+                </div>
+
+                <h3 class="subsection-title" data-lang-key="skills_soft">Personliga egenskaper</h3>
+                <ul class="soft-skills-list">
+                    <li data-lang-key="soft_leadership">Pedagogiskt ledarskap</li>
+                    <li data-lang-key="soft_systematic">Metodiskt arbetssätt</li>
+                    <li data-lang-key="soft_communication">Kommunikativ förmåga</li>
+                    <li data-lang-key="soft_problem_solving">Analytisk problemlösning</li>
+                    <li data-lang-key="soft_organization">Strukturerad & organiserad</li>
+                    <li data-lang-key="soft_responsibility">Ansvarstagande</li>
+                    <li data-lang-key="soft_adaptability">Anpassningsbar</li>
+                    <li data-lang-key="soft_integrity">Hög integritet</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- CV -->
+        <section id="cv" class="cv">
+            <div class="container">
+                <h2 data-lang-key="cv_h2">CV</h2>
+                <p data-lang-key="cv_p">
+                    Här kan du ladda ner mitt fullständiga CV med mer information om min utbildning, arbetslivserfarenhet och tekniska profil.
+                </p>
+                <div class="cv-buttons">
+                    <a href="CV-Jehanni-Halvarsson-SV.pdf" download class="button button-primary" data-lang-key="cv_button_sv">Ladda ner CV (SV)</a>
+                    <a href="CV-Jehanni-Halvarsson-EN.pdf" download class="button button-secondary" data-lang-key="cv_button_en">Ladda ner CV (EN)</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- KONTAKT -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 data-lang-key="contact_h2">Vill du komma i kontakt?</h2>
+                <p data-lang-key="contact_p">
+                    Jag är alltid öppen för att knyta nya kontakter, diskutera IT-säkerhet eller prata om framtida möjligheter. Söker ni någon som kombinerar teknisk kompetens med ett metodiskt arbetssätt och pedagogisk förmåga? Hör gärna av dig!
+                </p>
+                <div class="contact-buttons">
+                    <a href="mailto:jehanni.halvarsson@protonmail.com" class="button button-primary" data-lang-key="contact_btn_email">Mejla mig</a>
+                    <a href="https://www.linkedin.com/in/jehanni-halvarsson-9a5a771a8/" target="_blank" rel="noopener noreferrer" class="button button-secondary" data-lang-key="contact_btn_linkedin">Meddelande på LinkedIn</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="container footer-content">
+            <p data-lang-key="footer_copy">© 2026 Jehanni Halvarsson. Alla rättigheter förbehållna.</p>
+            <p class="footer-privacy" data-lang-key="footer_cloudflare">
+                Sidan använder Cloudflare för säkerhet och anonym besöksstatistik. Inga spårningscookies används.
+            </p>
+            <div class="footer-links">
+                <a href="https://github.com/jehanni" target="_blank" rel="noopener noreferrer" data-lang-key="footer_github">GitHub</a>
+                <a href="https://www.linkedin.com/in/jehanni-halvarsson-9a5a771a8/" target="_blank" rel="noopener noreferrer" data-lang-key="footer_linkedin">LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL FÖR KURSER & DIAGRAM -->
+    <div id="course-modal" class="modal" aria-hidden="true" role="dialog" aria-labelledby="modal-title">
+        <div class="modal-overlay" data-close="modal"></div>
+        <div class="modal-container">
+            <header class="modal-header">
+                <div>
+                    <h3 id="modal-title">Kurstitel</h3>
+                    <span id="modal-subtitle" class="project-role">YH-poäng</span>
+                </div>
+                <button class="modal-close" aria-label="Stäng" data-close="modal">✕</button>
+            </header>
+            <div id="modal-body" class="modal-body"></div>
+        </div>
+    </div>
